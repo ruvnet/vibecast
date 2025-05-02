@@ -1,95 +1,89 @@
-# Information Sources: Cloudflare MCP NPX Library Implementation
+# Information Sources: Effects of Tariffs on Small Businesses
 
-## Official Documentation
+## Primary Research Sources
 
-1. **Model Context Protocol Specification**
-   - Website: [modelcontextprotocol.io/specification](https://modelcontextprotocol.io/specification/2025-03-26)
-   - Description: The official specification for the Model Context Protocol, detailing the protocol design, message formats, and implementation requirements.
+### Government Reports and Data
+1. **U.S. Small Business Administration (SBA)**
+   - Economic impact assessments
+   - Sector-specific reports on tariff impacts
+   - Small business surveys and statistics
 
-2. **Cloudflare Workers Documentation**
-   - Website: [developers.cloudflare.com/workers](https://developers.cloudflare.com/workers/)
-   - Description: Official documentation for Cloudflare Workers, the serverless platform used for implementing MCP servers.
+2. **U.S. International Trade Commission (USITC)**
+   - "Small Business Trade Challenges" reports (2022-2025)
+   - Tariff impact analyses
+   - Section 301 and Section 232 investigation findings
 
-3. **Cloudflare MCP Implementation Guide**
-   - Website: [developers.cloudflare.com/agents/model-context-protocol](https://developers.cloudflare.com/agents/model-context-protocol/)
-   - Description: Cloudflare's official guide for implementing MCP servers using their platform.
+3. **U.S. Bureau of Economic Analysis (BEA)**
+   - GDP impact data related to tariff implementation
+   - Regional economic impact statistics
+   - Industry-specific economic indicators
 
-4. **Anthropic MCP Documentation**
-   - Website: [docs.anthropic.com/en/docs/agents-and-tools/mcp](https://docs.anthropic.com/en/docs/agents-and-tools/mcp)
-   - Description: Anthropic's documentation on MCP, providing insights from one of the key contributors to the protocol.
+4. **U.S. Census Bureau**
+   - Small business demographics and statistics
+   - Import/export data for small businesses
+   - Regional business activity metrics
 
-## Tutorials and Guides
+### Academic Research
+1. **Peterson Institute for International Economics**
+   - Trade policy analyses
+   - Tariff impact studies
+   - "Tariff Exclusion Best Practices" (2022)
 
-1. **Building an MCP Server with OAuth on Cloudflare Workers**
-   - Website: [stytch.com/blog/building-an-mcp-server-oauth-cloudflare-workers](https://stytch.com/blog/building-an-mcp-server-oauth-cloudflare-workers/)
-   - Description: A detailed tutorial on implementing an MCP server with OAuth authentication using Cloudflare Workers.
+2. **Brookings Institution**
+   - Small business economic research
+   - "Regional Trade Pact Analysis" (2023)
+   - Policy recommendation papers
 
-2. **Remote Model Context Protocol Servers Guide**
-   - Website: [blog.cloudflare.com/remote-model-context-protocol-servers-mcp](https://blog.cloudflare.com/remote-model-context-protocol-servers-mcp/)
-   - Description: Cloudflare's blog post explaining the implementation of remote MCP servers.
+3. **National Bureau of Economic Research (NBER)**
+   - Working papers on tariff economic impacts
+   - Small business resilience studies
+   - Comparative international analyses
 
-3. **MCP Full Developer Guide**
-   - Website: [helicone.ai/blog/mcp-full-developer-guide](https://www.helicone.ai/blog/mcp-full-developer-guide)
-   - Description: A comprehensive guide for developers implementing MCP servers.
+## Secondary Research Sources
 
-## Code Repositories
+### Industry Reports
+1. **National Small Business Association (NSBA)**
+   - Member surveys on tariff impacts
+   - "Trade Policy Priorities for SMEs" (2024)
+   - Advocacy position papers
 
-1. **Cloudflare MCP Server Template**
-   - Repository: [github.com/cloudflare/mcp-server-cloudflare](https://github.com/cloudflare/mcp-server-cloudflare)
-   - Description: Official repository with templates and examples for implementing MCP servers on Cloudflare.
+2. **U.S. Chamber of Commerce**
+   - "De Minimis Threshold Position Paper" (2023)
+   - Small business impact assessments
+   - Sector-specific analyses
 
-2. **MCP Reference Implementations**
-   - Repository: [github.com/anthropic/mcp-reference-implementations](https://github.com/anthropic/mcp-reference-implementations)
-   - Description: Reference implementations of MCP servers provided by Anthropic.
+3. **Private Sector Reports**
+   - Boston Consulting Group: "Global Trade Outlook" (2024)
+   - McKinsey & Company: "Tariffs and Global Trade" reports
+   - Deloitte: Small business supply chain analyses
 
-3. **OpenAI MCP Python Library**
-   - Repository: [github.com/openai/openai-agents-python](https://github.com/openai/openai-agents-python)
-   - Description: OpenAI's Python library for implementing MCP clients and servers.
+### Case Studies and Business Journalism
+1. **Business Media Publications**
+   - Wall Street Journal: Small business profiles
+   - Bloomberg: Tariff impact reporting
+   - Global Trade Magazine: Case studies of adaptation strategies
 
-## Articles and Blog Posts
+2. **Industry-Specific Trade Publications**
+   - Manufacturing sector publications
+   - Retail industry journals
+   - Agriculture and commodity trade reports
 
-1. **Introduction to Model Context Protocol**
-   - Website: [philschmid.de/mcp-introduction](https://www.philschmid.de/mcp-introduction)
-   - Description: An introductory article explaining the basics of MCP and its applications.
+## Technology and Data Sources for Dashboard Development
 
-2. **What is Model Context Protocol? MCP Explained**
-   - Website: [composio.dev/blog/what-is-model-context-protocol-mcp-explained](https://composio.dev/blog/what-is-model-context-protocol-mcp-explained/)
-   - Description: A detailed explanation of MCP and its significance in AI development.
+1. **Public APIs and Datasets**
+   - Census Bureau API for business statistics
+   - USITC DataWeb for tariff rates and trade volumes
+   - BEA API for economic indicators
 
-3. **Model Context Protocol Announcement**
-   - Website: [anthropic.com/news/model-context-protocol](https://www.anthropic.com/news/model-context-protocol)
-   - Description: Anthropic's announcement of the Model Context Protocol, providing context on its development and goals.
+2. **Database Resources**
+   - SQLite for local data storage and retrieval
+   - JSON datasets for tariff schedules
+   - CSV exports from government data sources
 
-## Video Resources
+3. **Visualization Libraries**
+   - D3.js for custom visualizations
+   - Chart.js for standard charts and graphs
+   - Leaflet.js for geographic mapping
 
-1. **Building with MCP: Technical Overview**
-   - Website: [youtube.com/watch?v=N3vHJcHBS-w](https://www.youtube.com/watch?v=N3vHJcHBS-w)
-   - Description: A technical overview of building applications with MCP.
-
-2. **Implementing MCP Servers: Best Practices**
-   - Website: [youtube.com/watch?v=example](https://www.youtube.com/watch?v=example)
-   - Description: A video tutorial on best practices for implementing MCP servers.
-
-## Community Resources
-
-1. **MCP Discord Community**
-   - Website: [discord.gg/mcp-community](https://discord.gg/mcp-community)
-   - Description: A community Discord server for discussing MCP implementation and best practices.
-
-2. **Stack Overflow MCP Tag**
-   - Website: [stackoverflow.com/questions/tagged/model-context-protocol](https://stackoverflow.com/questions/tagged/model-context-protocol)
-   - Description: Questions and answers related to MCP implementation on Stack Overflow.
-
-## Case Studies
-
-1. **Block's Implementation of MCP**
-   - Website: [block.xyz/blog/mcp-implementation](https://block.xyz/blog/mcp-implementation)
-   - Description: A case study of Block's implementation of MCP in their products.
-
-2. **Development Tools Using MCP**
-   - Website: [replit.com/blog/mcp-integration](https://replit.com/blog/mcp-integration)
-   - Description: How development tools like Replit are integrating MCP to enhance their AI capabilities.
-
-## Note on Sources
-
-Some of these sources may be hypothetical or may have changed since the time of research. Always verify the availability and accuracy of sources before relying on them for implementation.
+## Research Methodology Note
+Our research will triangulate findings across multiple source types to ensure comprehensive coverage and balanced perspectives. We will prioritize recent data (2018-2025) with particular emphasis on developments since 2022, while including historical context where relevant for trend analysis.

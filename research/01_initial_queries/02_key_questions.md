@@ -1,51 +1,57 @@
-# Key Questions: Cloudflare MCP NPX Library Implementation
+# Key Research Questions: Effects of Tariffs on Small Businesses
 
-## Understanding MCP Specification
+## Primary Research Questions
 
-1. What is the Model Context Protocol (MCP) and what problem does it solve?
-2. What are the core components and architecture of MCP?
-3. How does MCP handle communication between clients and servers?
-4. What security considerations are important for MCP implementations?
-5. How does MCP compare to other similar protocols?
+1. **Direct Impact Assessment**
+   - How do tariffs directly impact the cost structure of small businesses?
+   - What percentage of cost increases are typically absorbed versus passed to consumers?
+   - Which types of tariffs (Section 301, Section 232, etc.) have the most significant impact?
 
-## Cloudflare MCP Implementation
+2. **Supply Chain Implications**
+   - How do tariffs disrupt established supply chains for small businesses?
+   - What are the short-term versus long-term effects on product availability and logistics?
+   - How do supply chain disruptions differ between manufacturing and retail small businesses?
 
-1. What tools and libraries does Cloudflare provide for MCP implementation?
-2. How can Cloudflare Workers be used to implement an MCP server?
-3. What are the advantages of using Cloudflare Workers for MCP servers?
-4. What are the limitations or challenges of using Cloudflare Workers for MCP?
-5. How does Cloudflare's implementation handle authentication and authorization?
-6. What is the deployment process for an MCP server using Cloudflare Workers?
+3. **Competitive Positioning**
+   - How do tariffs affect domestic versus import-dependent small businesses differently?
+   - To what extent do tariffs create competitive advantages for certain types of small businesses?
+   - How do price adjustments in response to tariffs affect market share?
 
-## Technical Implementation Details
+4. **Financial Health Indicators**
+   - What measurable impacts do tariffs have on small business cash flow?
+   - How do tariff-related cost increases affect capital investment decisions?
+   - What financial metrics best indicate a small business's vulnerability to tariff impacts?
 
-1. How is WebSocket communication handled in Cloudflare Workers for MCP?
-2. How are capabilities and resources defined and exposed in an MCP server?
-3. What is the structure of MCP messages and how are they processed?
-4. How can we implement error handling and retry logic in an MCP server?
-5. How can we monitor and debug an MCP server running on Cloudflare Workers?
-6. How can we implement rate limiting and other security features?
+## Secondary Research Questions
 
-## Real-World Applications
+5. **Sector-Specific Analysis**
+   - Which small business sectors are most vulnerable to tariff impacts?
+   - How do manufacturing, retail, and service-oriented small businesses respond differently?
+   - Are there sectors that benefit from certain tariff structures?
 
-1. What companies and products are currently using MCP?
-2. What are some successful use cases of MCP implementations?
-3. What challenges have been encountered in real-world MCP implementations?
-4. How have these challenges been addressed?
-5. What best practices have emerged from existing implementations?
+6. **Geographic Considerations**
+   - How do regional economic structures influence tariff impacts?
+   - Are rural small businesses affected differently than urban ones?
+   - What role do state-level policies play in mitigating tariff impacts?
 
-## Integration and Extensibility
+7. **Adaptation Strategies**
+   - What strategies have proven most effective for small businesses mitigating tariff impacts?
+   - How do successful adaptation approaches differ by business size, sector, and region?
+   - What technology solutions help small businesses navigate tariff complexities?
 
-1. How can an MCP server be extended with custom tools and resources?
-2. How can an MCP server integrate with external APIs and services?
-3. How can we ensure backward compatibility as the MCP specification evolves?
-4. What are the considerations for scaling an MCP server implementation?
-5. How can we test and validate an MCP server implementation?
+8. **Policy Recommendations**
+   - What policy approaches do economists recommend to protect small businesses?
+   - How can trade policy be structured to minimize harm to small businesses?
+   - What role should business advocacy groups play in tariff policy development?
 
-## Future Developments
+## Data Visualization Questions
 
-1. What is the roadmap for the MCP specification?
-2. How is Cloudflare planning to enhance their MCP-related tooling?
-3. What emerging patterns or best practices are likely to become standard?
-4. What potential new use cases might emerge for MCP?
-5. How might MCP evolve to address current limitations or challenges?
+9. **Metric Development**
+   - What key metrics best visualize tariff impacts on small businesses?
+   - How can we effectively compare impacts across different sectors?
+   - What time-series data would most effectively demonstrate tariff effects?
+
+10. **User Experience**
+    - What interactive elements would make tariff impact data most accessible?
+    - How can we design visualizations that serve both policy makers and small business owners?
+    - What filtering capabilities would provide the most valuable insights?

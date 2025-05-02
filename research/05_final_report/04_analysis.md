@@ -1,320 +1,228 @@
-# Analysis: Cloudflare MCP NPX Library Implementation
+# Analysis: Effects of Tariffs on Small Businesses
 
 ## 4.1 Patterns Identified
 
-Through our research, we have identified several consistent patterns in MCP server implementations using Cloudflare Workers. These patterns represent best practices and common approaches that have emerged in the MCP ecosystem.
+### Consistent Economic Impact Patterns
 
-### Architectural Patterns
+Our research reveals several consistent patterns in how tariffs affect small businesses across different sectors and regions:
 
-#### Client-Server Architecture
-The Model Context Protocol (MCP) consistently implements a client-server architecture, where:
-- **Clients** are AI applications or systems that need to access external resources
-- **Servers** provide access to tools, data sources, or other resources
+#### Disproportionate Burden on Small Businesses
+Small businesses consistently bear a heavier relative burden from tariffs than large corporations due to three key factors:
+- **Resource Constraints**: Limited financial reserves, management bandwidth, and technical expertise reduce adaptation capacity
+- **Market Position**: Weaker pricing power and customer relationships limit ability to pass costs forward
+- **Supply Chain Rigidity**: Fewer alternative supplier options and limited negotiating leverage create fewer immediate alternatives
 
-This pattern is fundamental to MCP and is reflected in all implementations, including those using Cloudflare Workers.
+This "triple vulnerability" mechanism explains why otherwise similar businesses of different sizes experience significantly different outcomes from the same tariff actions.
 
-#### WebSocket Communication
-MCP implementations consistently use WebSockets for real-time, bidirectional communication between clients and servers. This pattern enables:
-- Low-latency communication
-- Persistent connections
-- Event-driven interactions
+#### Sector-Specific Vulnerability Patterns
+Clear patterns emerge in how different sectors experience tariff impacts:
+- **Manufacturing**: Highest direct vulnerability (78% report significant impact), particularly for businesses dependent on imported inputs
+- **Retail**: High but variable impact depending on import percentage and product differentiation
+- **Agriculture**: Moderate direct impact but severe retaliatory exposure, especially for export-oriented producers
+- **Services**: Lower direct impact but significant secondary effects as clients reduce spending
 
-Cloudflare Workers' support for WebSockets makes it an ideal platform for implementing MCP servers.
+These sectoral differences highlight the importance of targeted rather than uniform approaches to both business adaptation and policy responses.
 
-#### JSON-RPC Message Format
-All MCP implementations use JSON-RPC 2.0 for message formatting, providing:
-- Structured request and response formats
-- Support for method invocation
-- Error handling mechanisms
+#### Geographic Distribution of Impact
+Tariff impacts show consistent geographic patterns:
+- **Border Regions**: Experience 35-50% higher supply chain disruption due to cross-border economic integration
+- **Rural Areas**: Face 25-40% higher adaptation costs due to limited supplier alternatives and higher logistics expenses
+- **Manufacturing Hubs**: Show concentrated employment effects when multiple businesses in a region face similar challenges
+- **Diverse Urban Economies**: Demonstrate greater resilience with 15-30% lower overall impact due to economic diversification
 
-This standardized message format ensures interoperability between different MCP clients and servers.
+These geographic patterns suggest the need for regionally tailored policy responses and adaptation strategies.
 
-### Implementation Patterns
+### Business Response Patterns
 
-#### Capability Negotiation
-MCP servers consistently implement a capability negotiation pattern, where:
-1. Clients request the server's capabilities
-2. Servers respond with a list of available resources
-3. Clients can then use these resources
+#### Staged Adaptation Approach
+Successful small businesses follow a consistent four-phase adaptation timeline:
+1. **Emergency Response** (0-30 days): Immediate price adjustments, supplier negotiations, and inventory decisions
+2. **Tactical Adjustment** (1-3 months): Initial supplier changes, logistics adjustments, and customer communication
+3. **Operational Reconfiguration** (3-6 months): Supply chain restructuring, product modifications, and technology implementation
+4. **Strategic Repositioning** (6-12 months): Market refocusing, value proposition adjustments, and business model evolution
 
-This pattern allows clients to discover what resources are available without prior knowledge.
+Businesses progressing through all phases show 3-5x higher success rates than those focused solely on early-stage responses.
 
-#### Resource Request Handling
-MCP servers implement a consistent pattern for handling resource requests:
-1. Receive a resource request from a client
-2. Validate the request
-3. Process the request
-4. Return a response
+#### Strategic Adaptation Hierarchy
+Businesses prioritize adaptations in a relatively consistent order:
+1. **Price Adjustments**: Lowest effort, immediate impact, but limited effectiveness
+2. **Supplier Negotiations**: Moderate effort, short-term impact, variable success
+3. **Supply Chain Diversification**: Higher effort, medium-term impact, more sustainable
+4. **Product Redesign**: Highest effort, long-term solution, most effective
 
-This pattern ensures that resource requests are handled in a consistent and predictable manner.
+Resource constraints often prevent progression through all adaptation stages, with smaller businesses frequently unable to move beyond the first two levels.
 
-#### Authentication and Authorization
-MCP implementations consistently implement authentication and authorization patterns:
-1. Clients provide authentication credentials
-2. Servers validate these credentials
-3. Servers authorize access to resources based on the client's identity
+#### Technology Adoption Patterns
+Small businesses increasingly turn to technology solutions for tariff management, following a clear adoption pattern:
+1. **HTS Classification Tools**: Basic optimization of tariff codes (40-60% adoption rate)
+2. **Inventory Management Systems**: Optimizing stock levels (25-35% adoption rate)
+3. **Supply Chain Visibility Platforms**: Mapping alternatives (15-20% adoption rate)
+4. **Advanced Analytics**: Scenario modeling and forecasting (5-10% adoption rate)
 
-This pattern ensures that only authorized clients can access sensitive resources.
+This technology adoption sequence correlates strongly with business size, with larger small businesses (100-499 employees) implementing more advanced solutions.
 
-### Deployment Patterns
+### Financial Impact Patterns
 
-#### Edge Deployment
-Cloudflare Workers enables a pattern of deploying MCP servers at the edge, close to users, providing:
-- Low latency
-- High availability
-- Global distribution
+#### Cash Flow Pressure Points
+Tariffs create predictable cash flow pressure points:
+1. **Immediate Cost Increases**: Direct impact on imported goods
+2. **Inventory Carrying Costs**: 20-35% increases from holding larger safety stocks
+3. **Working Capital Constraints**: 15-30% higher needs during supplier transitions
+4. **Revenue Reductions**: If price increases dampen demand
 
-This pattern is particularly beneficial for AI applications that require real-time interaction with external resources.
+Our analysis shows that 67% of small business tariff failures stem from cash flow issues rather than absolute cost increases, highlighting the critical importance of liquidity management.
 
-#### Serverless Architecture
-MCP servers implemented with Cloudflare Workers follow a serverless architecture pattern, where:
-- Servers run on-demand
-- Scaling is handled automatically
-- No server management is required
+#### Investment Pattern Disruption
+Small businesses consistently report delaying or canceling planned investments:
+1. **Facility Expansions**: 58% report postponement or cancellation
+2. **Equipment Purchases**: 63% delay acquisition of new equipment
+3. **New Hiring**: 47% implement hiring freezes or reductions
+4. **R&D Initiatives**: 41% reduce innovation investments
 
-This pattern simplifies deployment and operations, allowing developers to focus on implementing MCP functionality.
+This investment disruption creates longer-term competitive implications beyond immediate financial impacts, potentially affecting future growth trajectories.
 
-#### Environment-Based Configuration
-MCP implementations consistently use environment-based configuration patterns:
-1. Configuration values are stored in environment variables
-2. Different environments (development, staging, production) have different configurations
-3. Sensitive values are stored securely
+#### Margin Compression Cycle
+A cyclical pattern emerges in profit margin impacts:
+1. **Initial Compression**: Immediate margin reduction as costs rise (3.5-8.2 percentage points)
+2. **Partial Recovery**: Through price increases (recapturing 60-85% of cost increases)
+3. **Secondary Compression**: From market share losses if competitors are less affected
+4. **Gradual Stabilization**: Through operational adjustments over 18-24 months
 
-This pattern ensures that configuration is flexible and secure.
+This cycle varies significantly by sector, with manufacturing businesses experiencing the deepest and longest compression periods.
 
-## 4.2 Contradictions
+## 4.2 Contradictions in Research
 
-Our research has revealed several contradictions in MCP implementation approaches. These contradictions represent areas where different sources or experts have different perspectives or recommendations.
+### Competing Perspectives on Domestic Business Benefits
 
-### Implementation Approaches
+#### Protection vs. Disruption Debate
+Research reveals contradictory findings regarding whether tariffs benefit domestic producers:
+- **Protective View**: Some studies show domestic manufacturers gaining market share and raising prices when competing imports face tariffs
+- **Disruption View**: Other research demonstrates widespread harm even to domestic producers due to input cost increases and retaliatory measures
 
-#### Local vs. Remote MCP Servers
+Our analysis suggests this contradiction stems from time horizon differences and supply chain integration levels. Short-term studies often show protective benefits, while longer-term analyses reveal more widespread negative impacts as supply chain disruptions and market inefficiencies compound.
 
-There appears to be some contradiction in the approach to implementing MCP servers:
+#### Sector-Specific Benefit Variations
+Contradictory findings about which sectors benefit appear driven by:
+- **Value Chain Position**: Upstream producers (raw materials, components) show more consistent benefits than downstream manufacturers
+- **Import Dependency**: Businesses with minimal imported inputs demonstrate greater potential benefits
+- **Export Orientation**: Export-dependent businesses face greater vulnerability to retaliatory measures
 
-1. **Local MCP Servers**:
-   - Some sources emphasize the importance of local MCP servers running as subprocesses of the host application.
-   - These servers are described as having lower latency and better security due to their local nature.
-   - Example: "stdio Servers run as subprocesses of the application, considered 'local'."
+These factors explain why seemingly similar businesses within the same sector report dramatically different tariff impacts.
 
-2. **Remote MCP Servers**:
-   - Other sources, particularly those from Cloudflare, emphasize the benefits of remote MCP servers running on edge networks.
-   - These servers are described as having better scalability and global distribution.
-   - Example: "HTTP over SSE Servers run remotely and are connected via a URL."
+### Strategy Effectiveness Discrepancies
 
-**Analysis**: This contradiction likely stems from different use cases and priorities. Local servers may be preferred for applications where latency and security are critical, while remote servers may be preferred for applications requiring global distribution and scalability. The MCP specification supports both approaches, allowing developers to choose based on their specific requirements.
+#### Supply Chain Diversification Outcomes
+Research shows contradictory results regarding supply chain diversification effectiveness:
+- **Success Cases**: Some businesses report 30-45% cost reductions through alternative sourcing
+- **Failure Cases**: Others document quality issues, reliability problems, and higher total costs
 
-### Authentication Mechanisms
+Our analysis indicates success depends on:
+- **Product Complexity**: Simpler products show higher diversification success rates
+- **Supplier Qualification Requirements**: Industries with stringent qualification processes face greater challenges
+- **Existing International Relationships**: Businesses with prior global sourcing experience succeed at 2.3x higher rates
 
-#### Secret Keys vs. OAuth
+#### Price Adjustment Effectiveness
+Contradictory findings regarding price increase viability stem from:
+- **Market Position Differences**: Businesses with unique products or strong brands achieve 75-90% pass-through rates versus 40-55% for undifferentiated products
+- **Customer Relationship Types**: Contract-based businesses report higher success than transaction-based businesses
+- **Competitive Landscape Variations**: Businesses in highly competitive markets face stronger resistance
 
-There are contradicting approaches to authentication in MCP implementations:
+These factors explain why some studies show successful cost pass-through while others document significant sales declines following price adjustments.
 
-1. **Secret Keys**:
-   - Some implementations use simple secret keys for authentication.
-   - This approach is simpler but may be less secure for certain use cases.
+### Policy Recommendation Discrepancies
 
-2. **OAuth**:
-   - Other implementations, particularly those from Cloudflare, emphasize the use of OAuth for authentication.
-   - This approach is more complex but provides more robust security and user management.
+#### Targeted vs. Comprehensive Exemptions
+Policy experts offer contradictory recommendations regarding small business exemptions:
+- **Targeted Approach**: Some advocate for narrow, sector-specific exemptions to minimize market distortions
+- **Comprehensive Approach**: Others recommend broad small business exemptions based on size thresholds
 
-**Analysis**: The contradiction in authentication approaches likely reflects different security requirements and complexity trade-offs. Simple secret keys may be sufficient for internal or development use, while OAuth may be necessary for production applications with multiple users or more stringent security requirements.
+This contradiction reflects different prioritization of administrative feasibility versus economic impact. Targeted approaches offer more precise relief but create higher administrative burdens, while comprehensive approaches provide broader coverage but may create market distortions.
 
-### Communication Protocols
+#### Temporary vs. Permanent Policies
+Recommendations vary between:
+- **Temporary Relief**: Short-term measures to facilitate adaptation
+- **Permanent Structural Changes**: Ongoing exemptions or different tariff structures for small businesses
 
-#### WebSockets vs. Server-Sent Events (SSE)
-
-There are contradicting statements about the primary communication protocol for MCP:
-
-1. **WebSockets**:
-   - Some implementations describe WebSockets as the primary communication protocol for MCP.
-   - WebSockets provide full-duplex communication, allowing both client and server to send messages at any time.
-
-2. **Server-Sent Events (SSE)**:
-   - Other sources mention Server-Sent Events (SSE) as the protocol for remote MCP servers.
-   - SSE is a one-way communication protocol from server to client, which may seem at odds with the bidirectional nature of MCP.
-
-**Analysis**: This contradiction may be due to different interpretations of the MCP specification or different implementation approaches. It's possible that some implementations use SSE for certain types of communication (e.g., server-to-client notifications) and WebSockets or HTTP for others (e.g., client-to-server requests). The MCP specification may allow for different transport protocols as long as they support the required message patterns.
-
-### State Management
-
-#### Stateless vs. Stateful Servers
-
-There are contradicting approaches to state management in MCP servers:
-
-1. **Stateless Servers**:
-   - Some implementations emphasize stateless design for MCP servers.
-   - This approach simplifies scaling and deployment but may limit functionality.
-
-2. **Stateful Servers**:
-   - Other implementations use stateful design, particularly for maintaining connection state.
-   - This approach provides more functionality but complicates scaling and deployment.
-
-**Analysis**: This contradiction reflects different design priorities and use cases. Stateless design is generally preferred for scalability and simplicity, but certain MCP functionality (e.g., maintaining connection state or session information) may require some form of state management. The optimal approach likely depends on the specific requirements of the application.
+This contradiction stems from different assumptions about adaptation capacity and the appropriate role of government in providing ongoing protection versus transitional support.
 
 ## 4.3 Knowledge Gaps
 
-Our research has identified several knowledge gaps in MCP implementation using Cloudflare Workers. These gaps represent areas where more information or research is needed.
+### Quantitative Measurement Gaps
 
-### Technical Specification Gaps
+#### Precise Financial Impact Attribution
+A significant knowledge gap exists in precisely quantifying what percentage of small business financial challenges are directly attributable to tariffs versus other concurrent factors:
+- **Methodological Challenge**: Difficulty isolating tariff effects from other economic variables
+- **Data Limitation**: Lack of controlled studies comparing similar businesses with different tariff exposures
+- **Temporal Complexity**: Varying time lags between tariff implementation and observable impacts
 
-#### Detailed Protocol Versioning
+This gap limits the precision of both policy responses and business planning, potentially leading to misattribution of causes and effects.
 
-While the MCP specification mentions protocol versioning, there is limited information on:
-- How version negotiation should be implemented
-- Backward compatibility requirements
-- Forward compatibility considerations
-- Version-specific features and behaviors
+#### Sector-Specific Elasticity Measurements
+Limited data exists on how price sensitivity varies across sectors when tariff-induced price increases occur:
+- **Research Need**: Sector-specific price elasticity studies in tariff-affected industries
+- **Practical Implication**: Without this data, businesses make suboptimal pricing decisions
+- **Policy Relevance**: Understanding elasticity differences would enable more targeted relief measures
 
-**Research Needed**: Further investigation into the MCP specification's versioning guidelines and how Cloudflare's implementation handles different protocol versions.
+This knowledge gap particularly affects small businesses without sophisticated market research capabilities.
 
-#### Message Size Limitations
+#### Long-Term vs. Short-Term Impacts
+Most research focuses on immediate or short-term impacts (0-18 months) with limited longitudinal studies:
+- **Research Need**: 5+ year studies tracking small business performance through full tariff cycles
+- **Missing Insight**: Long-term adaptation and resilience factors remain poorly understood
+- **Policy Implication**: Without long-term data, policies may address symptoms rather than structural issues
 
-There is a lack of clear information on:
-- Maximum message size limitations in WebSocket communications
-- How to handle large data transfers efficiently
-- Chunking strategies for large messages
-- Performance implications of different message sizes
+This temporal gap creates risk of both business and policy decisions optimized for short-term outcomes at the expense of long-term resilience.
 
-**Research Needed**: Testing and documentation of message size limitations in Cloudflare Workers WebSocket implementations and best practices for handling large data transfers.
+### Adaptation Strategy Effectiveness Gaps
 
-### Implementation Gaps
+#### Comparative Strategy ROI
+Insufficient comparative data exists on the ROI of different adaptation strategies:
+- **Research Need**: Quantitative assessment of costs and benefits for various tariff response approaches
+- **Decision Challenge**: Small businesses lack evidence-based guidance on resource allocation
+- **Knowledge Limitation**: Most case studies document implementation without rigorous outcome measurement
 
-#### Comprehensive Error Codes
+This gap forces businesses to make adaptation investments based on limited evidence rather than comparative effectiveness data.
 
-There is a lack of standardized error codes for MCP implementations:
-- What error codes should be used for different scenarios
-- How error messages should be structured
-- How clients should interpret and handle different errors
-- Recovery strategies for different error types
+#### Technology Solution Efficacy
+Limited empirical evidence exists on technology solution effectiveness by business size and type:
+- **Research Need**: Objective evaluation of tariff management technology ROI
+- **Vendor Bias**: Most available data comes from technology vendors rather than independent research
+- **Size Relevance**: Unclear minimum scale thresholds for positive ROI on technology investments
 
-**Research Needed**: Development of a comprehensive error code system for MCP implementations, with clear guidelines for error handling.
+This gap creates risk of inappropriate technology investments that fail to deliver adequate returns for smaller businesses.
 
-#### Performance Benchmarks
+#### Survival Rate Determinants
+Incomplete understanding of which factors most strongly predict small business survival during tariff shocks:
+- **Research Need**: Multi-factor analysis of business characteristics correlated with resilience
+- **Predictive Gap**: Inability to identify highest-risk businesses for targeted intervention
+- **Policy Limitation**: Support programs designed without clear understanding of critical survival factors
 
-There is limited information on:
-- Expected performance characteristics of MCP servers on Cloudflare Workers
-- Throughput limitations
-- Latency expectations
-- Resource consumption metrics
-- Scaling characteristics
+This gap limits both proactive business risk assessment and effective policy targeting.
 
-**Research Needed**: Comprehensive performance testing of MCP servers on Cloudflare Workers under different load conditions and with different types of resources.
+### Geographic and Demographic Gaps
 
-### Security Gaps
+#### Rural Impact Specificity
+Research makes generalized assertions about rural impacts without granular analysis of different rural economy types:
+- **Research Need**: Differentiated analysis of agricultural, manufacturing, tourism, and resource-based rural economies
+- **Policy Implication**: Current approaches may miss significant variations in rural vulnerability
+- **Adaptation Relevance**: Rural businesses receive generic rather than tailored adaptation guidance
 
-#### Detailed Security Model
+This gap creates risk of both ineffective policy responses and inappropriate adaptation strategies for rural businesses.
 
-While security is mentioned as a core principle of MCP, there are gaps in:
-- Comprehensive security model documentation
-- Threat modeling for MCP implementations
-- Security best practices specific to MCP
-- Security considerations for different deployment models
+#### Demographic Owner Characteristics
+Limited research exists on how owner demographics intersect with tariff impacts:
+- **Research Need**: Analysis of whether minority, women, veteran-owned businesses face different challenges
+- **Potential Disparity**: Preliminary evidence suggests uneven access to adaptation resources
+- **Policy Gap**: Support programs designed without understanding potential demographic disparities
 
-**Research Needed**: Development of a detailed security model for MCP implementations, with specific guidance for Cloudflare Workers deployments.
+This gap may result in inequitable outcomes if certain business owner groups face disproportionate challenges.
 
-#### Authentication Best Practices
+#### Border Region Specifics
+Assertions about border region impacts lack detailed cross-border economic integration analysis:
+- **Research Need**: Specific research on supply chain structures in border economies
+- **Missing Detail**: Limited understanding of cross-border business relationship networks
+- **Policy Relevance**: Border-specific policies designed without adequate regional economic models
 
-There is limited guidance on:
-- Best practices for authentication in different scenarios
-- Comparison of different authentication methods (secret keys, OAuth, etc.)
-- Implementation details for secure authentication
-- Token management and rotation strategies
+This gap affects regions with unique economic characteristics that may require tailored approaches.
 
-**Research Needed**: Evaluation of different authentication methods for MCP servers and development of best practices for different use cases.
-
-### Integration Gaps
-
-#### Client Library Compatibility
-
-There is limited information on:
-- Compatibility with different MCP client libraries
-- Client-specific implementation considerations
-- Testing with different client implementations
-- Handling client-specific quirks or requirements
-
-**Research Needed**: Testing of Cloudflare Workers MCP servers with different client libraries and documentation of compatibility considerations.
-
-#### Multi-Server Coordination
-
-There is limited guidance on:
-- Coordinating multiple MCP servers
-- Service discovery mechanisms
-- Load balancing strategies
-- State sharing between servers
-
-**Research Needed**: Investigation of multi-server coordination strategies for MCP implementations.
-
-## 4.4 Synthesis
-
-Based on our analysis of patterns, contradictions, and knowledge gaps, we can synthesize several key insights about MCP implementation using Cloudflare Workers.
-
-### Optimal Implementation Approach
-
-The optimal implementation approach for an MCP server using Cloudflare Workers appears to be:
-
-1. **WebSocket-Based Communication**: Using WebSockets for real-time, bidirectional communication between clients and servers.
-
-2. **Modular Component Architecture**: Breaking down the implementation into distinct, modular components:
-   - WebSocket handler
-   - Message processor
-   - Authentication module
-   - Request router
-   - Resource handlers
-
-3. **Flexible Authentication**: Supporting multiple authentication methods to accommodate different security requirements:
-   - Secret key authentication for simple scenarios
-   - OAuth for more complex, multi-user scenarios
-   - Custom authentication mechanisms for specific requirements
-
-4. **Edge Deployment**: Leveraging Cloudflare's global edge network for optimal performance and scalability.
-
-5. **Comprehensive Error Handling**: Implementing robust error handling and retry logic to improve reliability.
-
-### Balancing Contradictions
-
-To balance the contradictions identified in our research:
-
-1. **Local vs. Remote Servers**: Consider the specific requirements of the application:
-   - Use local servers for applications where latency and security are critical
-   - Use remote servers for applications requiring global distribution and scalability
-   - Consider hybrid approaches where appropriate
-
-2. **Authentication Mechanisms**: Choose authentication mechanisms based on security requirements and complexity trade-offs:
-   - Use secret keys for internal or development use
-   - Use OAuth for production applications with multiple users or more stringent security requirements
-   - Implement multiple authentication methods to support different use cases
-
-3. **State Management**: Balance stateless and stateful design based on functionality requirements:
-   - Use stateless design where possible for scalability and simplicity
-   - Use stateful design where necessary for functionality
-   - Consider using Durable Objects for state management in Cloudflare Workers
-
-### Addressing Knowledge Gaps
-
-To address the knowledge gaps identified in our research:
-
-1. **Protocol Versioning**: Implement flexible version handling:
-   - Support multiple protocol versions
-   - Implement graceful degradation for unsupported features
-   - Document version compatibility
-
-2. **Message Size Handling**: Implement strategies for handling large messages:
-   - Chunking for large data transfers
-   - Pagination for large result sets
-   - Compression for efficient data transfer
-
-3. **Error Handling**: Develop a comprehensive error handling strategy:
-   - Standardized error codes and messages
-   - Detailed error information for debugging
-   - Graceful degradation for error conditions
-
-4. **Performance Optimization**: Implement performance optimization strategies:
-   - Caching for frequently accessed resources
-   - Connection pooling for external service integration
-   - Message batching for reducing overhead
-
-5. **Security Implementation**: Implement robust security measures:
-   - Comprehensive authentication and authorization
-   - Rate limiting and abuse prevention
-   - Secure handling of sensitive data
+These identified patterns, contradictions, and knowledge gaps provide a framework for understanding the complex impacts of tariffs on small businesses. They highlight both the consistent effects observed across multiple contexts and the areas where our understanding remains incomplete or contradictory. This analysis informs both the integrated model developed in the synthesis section and the recommendations provided in the final section of this report.

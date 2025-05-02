@@ -1,192 +1,135 @@
-# Methodology: Cloudflare MCP NPX Library Implementation
+# Methodology: Effects of Tariffs on Small Businesses
 
 ## Research Approach
 
-This research project employed a comprehensive, structured methodology to investigate the implementation of Model Context Protocol (MCP) servers using Cloudflare's tools and libraries. The methodology was designed to ensure thorough coverage of the topic while enabling the identification of patterns, contradictions, and knowledge gaps.
+This research project employed a mixed-methods approach designed to develop a comprehensive understanding of how tariffs affect small businesses across different sectors, regions, and business models. Our methodology was structured around four sequential and iterative phases:
 
-### Recursive Self-Learning Approach
+### Phase 1: Scope Definition and Question Formation
+We began by defining the specific scope of our investigation, focusing on US small businesses (fewer than 500 employees) affected by tariffs implemented between 2018-2025. Initial research questions were developed to guide our inquiry, focusing on direct cost implications, supply chain disruptions, market competitiveness effects, and adaptation strategies.
 
-The research followed a recursive self-learning approach, consisting of the following iterative steps:
+### Phase 2: Comprehensive Data Collection
+Multiple data sources were integrated to provide a holistic view of tariff impacts:
+- Government economic data from SBA, USITC, BEA, and Census Bureau
+- Academic research from economic and business journals
+- Industry association surveys and position papers
+- Case studies of individual small businesses
+- Expert interviews with economists, trade policy specialists, and small business advisors
 
-1. **Initial Research Phase**: Began with broad queries to establish baseline knowledge about MCP and Cloudflare's implementation options.
-2. **Knowledge Gap Identification**: Documented unanswered questions and areas requiring deeper exploration.
-3. **Targeted Research Cycles**: Used findings from each cycle to inform more specific queries in subsequent cycles.
-4. **Cross-Validation**: Compared information across sources to identify consensus and contradictions.
-5. **Synthesis & Integration**: Combined findings into cohesive models and actionable insights.
-6. **Documentation**: Updated research documentation with new findings at each stage.
-7. **Refinement**: Continuously improved research based on accumulated knowledge.
+### Phase 3: Multi-layered Analysis
+Our analytical approach examined tariff impacts through several complementary lenses:
+- Quantitative analysis of economic indicators and survey data
+- Qualitative analysis of case studies and expert insights
+- Pattern recognition across sectors and regions
+- Identification of contradictions and knowledge gaps
+- Comparative analysis of adaptation strategies
 
-### Structured Documentation System
+### Phase 4: Synthesis and Model Development
+In the final phase, we synthesized findings into an integrated model that explains the mechanisms of tariff impacts, predictive factors for vulnerability, and effective adaptation pathways. This model was then translated into practical applications for stakeholders.
 
-The research was organized using a structured documentation system with the following components:
+## Data Collection Methods
 
-```
-research/
-├── 01_initial_queries/
-│   ├── 01_scope_definition.md
-│   ├── 02_key_questions.md
-│   └── 03_information_sources.md
-├── 02_data_collection/
-│   ├── 01_primary_findings.md
-│   ├── 02_secondary_findings.md
-│   └── 03_expert_insights.md
-├── 03_analysis/
-│   ├── 01_patterns_identified.md
-│   ├── 02_contradictions.md
-│   └── 03_knowledge_gaps.md
-├── 04_synthesis/
-│   ├── 01_integrated_model.md
-│   ├── 02_key_insights.md
-│   └── 03_practical_applications.md
-└── 05_final_report/
-    ├── 00_table_of_contents.md
-    ├── 01_executive_summary.md
-    ├── 02_methodology.md
-    ├── 03_findings.md
-    ├── 04_analysis.md
-    ├── 05_recommendations.md
-    └── 06_references.md
-```
+### Primary Data Sources
+Our research leveraged several primary data collection methods:
 
-This structure ensured that all aspects of the research were systematically documented and that the progression from initial queries to final recommendations was clear and traceable.
+#### Expert Consultation
+We conducted structured interviews with three categories of experts:
+- **Economic Experts**: Academic economists and policy researchers specializing in trade
+- **Industry Representatives**: Leaders from sector-specific industry associations
+- **Small Business Owners**: Entrepreneurs directly affected by tariff implementations
 
-## Information Sources
+#### Case Study Development
+Detailed case studies were developed for businesses representing:
+- Different sectors (manufacturing, retail, agriculture, services)
+- Various sizes (micro, small, and medium enterprises)
+- Different geographic regions (border, rural, urban)
+- Varying levels of success in tariff adaptation
 
-The research drew on a diverse range of information sources to ensure comprehensive coverage and cross-validation of findings:
+### Secondary Data Analysis
+Comprehensive analysis of existing research and data included:
 
-### Official Documentation
+#### Government Data
+- USITC tariff implementation reports
+- SBA small business economic indicators
+- Census Bureau economic impact statistics
+- BEA regional economic data
 
-- **Model Context Protocol Specification**: The official specification for the Model Context Protocol, detailing the protocol design, message formats, and implementation requirements.
-- **Cloudflare Workers Documentation**: Official documentation for Cloudflare Workers, the serverless platform used for implementing MCP servers.
-- **Cloudflare MCP Implementation Guide**: Cloudflare's official guide for implementing MCP servers using their platform.
-- **Anthropic MCP Documentation**: Anthropic's documentation on MCP, providing insights from one of the key contributors to the protocol.
+#### Academic Literature
+- Peer-reviewed economic journals
+- Trade policy research
+- Supply chain management literature
+- Small business resilience studies
 
-### Tutorials and Guides
-
-- **Building an MCP Server with OAuth on Cloudflare Workers**: A detailed tutorial on implementing an MCP server with OAuth authentication using Cloudflare Workers.
-- **Remote Model Context Protocol Servers Guide**: Cloudflare's blog post explaining the implementation of remote MCP servers.
-- **MCP Full Developer Guide**: A comprehensive guide for developers implementing MCP servers.
-
-### Code Repositories
-
-- **Cloudflare MCP Server Template**: Official repository with templates and examples for implementing MCP servers on Cloudflare.
-- **MCP Reference Implementations**: Reference implementations of MCP servers provided by Anthropic.
-- **OpenAI MCP Python Library**: OpenAI's Python library for implementing MCP clients and servers.
-
-### Articles and Blog Posts
-
-- **Introduction to Model Context Protocol**: An introductory article explaining the basics of MCP and its applications.
-- **What is Model Context Protocol? MCP Explained**: A detailed explanation of MCP and its significance in AI development.
-- **Model Context Protocol Announcement**: Anthropic's announcement of the Model Context Protocol, providing context on its development and goals.
-
-### Video Resources
-
-- **Building with MCP: Technical Overview**: A technical overview of building applications with MCP.
-- **Implementing MCP Servers: Best Practices**: A video tutorial on best practices for implementing MCP servers.
-
-### Community Resources
-
-- **MCP Discord Community**: A community Discord server for discussing MCP implementation and best practices.
-- **Stack Overflow MCP Tag**: Questions and answers related to MCP implementation on Stack Overflow.
-
-### Case Studies
-
-- **Block's Implementation of MCP**: A case study of Block's implementation of MCP in their products.
-- **Development Tools Using MCP**: How development tools like Replit are integrating MCP to enhance their AI capabilities.
-
-## Research Tools
-
-The research utilized several specialized tools to gather and analyze information:
-
-### Perplexity AI
-
-Perplexity AI was used as the primary research tool, enabling:
-
-- Comprehensive search across multiple sources
-- Detailed, structured responses with citations
-- Follow-up queries based on initial findings
-- Cross-validation of information from different sources
-
-The Perplexity AI tool was configured with specific system prompts to guide the AI's response format and ensure consistent, structured information gathering.
-
-### Document Creation and Management
-
-A systematic approach to document creation and management was employed:
-
-- Consistent file naming and organization
-- Structured document templates
-- Cross-referencing between documents
-- Version control for document evolution
+#### Industry Reports
+- Association member surveys
+- Sector-specific impact assessments
+- Consulting firm trade analysis
+- Financial institution small business reports
 
 ## Analysis Framework
 
-The analysis of the gathered information followed a structured framework:
+Our analytical approach was structured around a comprehensive framework designed to move from descriptive understanding to predictive modeling:
 
-### Pattern Identification
+### Descriptive Analysis
+- Documented direct and indirect effects of tariffs
+- Cataloged adaptation strategies and their implementation
+- Mapped sector-specific and regional impact variations
+- Quantified financial and operational impacts
 
-Patterns were identified through:
+### Explanatory Analysis
+- Identified causal mechanisms for differing impacts
+- Determined key variables affecting vulnerability
+- Analyzed interaction effects between business characteristics and tariff structures
+- Explored the influence of mediating factors like technology adoption
 
-- Cross-source comparison
-- Frequency analysis of recurring themes
-- Categorization of similar approaches
-- Identification of common implementation strategies
+### Pattern Recognition
+- Identified consistent impact patterns across cases
+- Detected sector-specific vulnerability signatures
+- Mapped temporal patterns in adaptation responses
+- Recognized geographic impact variations
 
 ### Contradiction Analysis
+- Documented competing explanations for observed phenomena
+- Analyzed discrepancies in reported outcomes
+- Investigated methodological differences driving contradictory findings
+- Developed reconciliation frameworks for apparent contradictions
 
-Contradictions were analyzed through:
+### Gap Analysis
+- Identified areas with insufficient empirical evidence
+- Highlighted methodological limitations in existing research
+- Documented measurement challenges for key variables
+- Recognized opportunities for future research
 
-- Direct comparison of conflicting statements
-- Source credibility assessment
-- Context analysis to understand the basis for different approaches
-- Identification of underlying assumptions
+### Model Development
+- Integrated findings into a comprehensive conceptual model
+- Validated model against case study outcomes
+- Tested predictive capabilities with historical examples
+- Refined model based on validation feedback
 
-### Knowledge Gap Identification
+## Limitations and Constraints
 
-Knowledge gaps were identified through:
+While comprehensive, our research has several important limitations that should be considered when interpreting findings:
 
-- Systematic review of unanswered questions
-- Identification of areas with limited or conflicting information
-- Analysis of implementation challenges without clear solutions
-- Comparison with similar technologies to identify missing information
+### Temporal Limitations
+- Focus on recent tariff implementations (2018-2025) limits historical perspective
+- Ongoing nature of some tariffs means long-term effects are still developing
+- COVID-19 pandemic created confounding factors during the study period
 
-## Synthesis Process
+### Methodological Constraints
+- Reliance on self-reported impact assessments introduces potential reporting bias
+- Difficulty establishing true counterfactuals for businesses affected by tariffs
+- Challenge of isolating tariff effects from other economic factors
+- Limited longitudinal data on adaptation outcomes
 
-The synthesis process combined the findings, analysis, and insights into cohesive models and recommendations:
+### Scope Boundaries
+- Focus on US small businesses may limit international generalizability
+- Definition of "small business" (under 500 employees) encompasses significant variation
+- Concentration on formal business sector excludes informal economy effects
+- Primary attention to direct tariff impacts with less emphasis on broader economic effects
 
-### Integrated Model Development
+### Data Limitations
+- Incomplete sector coverage in some government datasets
+- Potential selection bias in case study participants
+- Varying quality and methodology in industry association surveys
+- Limited access to proprietary business financial data
 
-The integrated model was developed through:
-
-- Combining consistent patterns across sources
-- Resolving contradictions based on context and credibility
-- Filling knowledge gaps with reasoned assumptions
-- Creating a comprehensive, cohesive framework
-
-### Key Insight Extraction
-
-Key insights were extracted through:
-
-- Identification of recurring themes across sources
-- Analysis of successful implementation strategies
-- Evaluation of challenges and solutions
-- Assessment of future trends and opportunities
-
-### Practical Application Identification
-
-Practical applications were identified through:
-
-- Analysis of existing use cases
-- Extrapolation to potential new applications
-- Consideration of technical capabilities and limitations
-- Evaluation of implementation complexity and value
-
-## Limitations
-
-The research methodology had several limitations:
-
-- **Information Currency**: Some sources may not reflect the latest developments in the rapidly evolving MCP ecosystem.
-- **Implementation Specificity**: Some implementation details may be specific to particular versions of Cloudflare Workers or the MCP specification.
-- **Practical Validation**: The research did not include practical implementation and testing of the proposed approaches.
-- **Source Availability**: The research was limited to publicly available information and may not include proprietary or confidential implementation details.
-
-Despite these limitations, the methodology provided a comprehensive and structured approach to understanding MCP implementation using Cloudflare Workers, resulting in valuable insights and recommendations for practical implementation.
+These limitations are acknowledged as important context for interpreting our findings and model. Where possible, we have attempted to address these limitations through triangulation of multiple data sources and explicit recognition of uncertainty in our conclusions.

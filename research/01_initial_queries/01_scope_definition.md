@@ -1,55 +1,33 @@
-# Scope Definition: Cloudflare MCP NPX Library Implementation
+# Scope Definition: Effects of Tariffs on Small Businesses
 
-## Project Scope
+## Research Focus
+This research project aims to comprehensively examine the impact of tariffs on small businesses in the United States, with a specific focus on recent tariff policies implemented between 2018-2025. The research will investigate direct and indirect effects, sector-specific impacts, regional variations, and effective mitigation strategies.
 
-This research project aims to investigate and document the implementation of a Model Context Protocol (MCP) server using Cloudflare's tools and libraries. The scope encompasses understanding the MCP specification, exploring Cloudflare's implementation options, and developing a proof-of-concept implementation.
+## Key Areas of Investigation
+1. **Direct Cost Implications**: How tariffs directly increase operational costs for small businesses
+2. **Supply Chain Disruptions**: How tariffs affect small business supply chains and product availability
+3. **Market Competitiveness**: Impact on price structures and competitive positioning
+4. **Cash Flow and Operational Challenges**: Financial strain and operational adjustments
+5. **Sector-Specific Impacts**: Identification of most affected sectors and industries
+6. **Regional Differences**: Geographic variations in tariff impacts
+7. **Adaptation Strategies**: Successful mitigation approaches with case studies
+8. **Policy Recommendations**: Expert and advocacy group perspectives on protective measures
 
-## In Scope
+## Project Deliverables
+1. Comprehensive research documentation with structured findings
+2. Interactive data visualization dashboard built with Vite.js and SQLite
+3. Collection of case studies demonstrating successful adaptation strategies
+4. Data-driven policy recommendations for small business support
 
-1. **MCP Specification Research**
-   - Understanding the core components and architecture of MCP
-   - Analyzing the communication protocol details
-   - Identifying security considerations and best practices
+## Research Limitations
+- Focus primarily on U.S. small businesses (fewer than 500 employees)
+- Emphasis on tariff impacts from 2018-2025
+- Consideration of both direct tariffs and retaliatory measures
 
-2. **Cloudflare MCP Implementation**
-   - Exploring Cloudflare Workers as a platform for MCP servers
-   - Investigating Cloudflare's MCP-related tooling (Workers-OAuth-Provider, McpAgent Class, mcp-remote Adapter)
-   - Understanding the deployment and configuration process
-
-3. **Development of Proof-of-Concept**
-   - Setting up a basic MCP server using Cloudflare Workers
-   - Implementing core MCP functionality (capabilities negotiation, resource handling)
-   - Testing and validating the implementation
-
-4. **Documentation**
-   - Creating comprehensive documentation of the implementation process
-   - Developing a step-by-step guide for future implementations
-   - Compiling references and resources for further development
-
-## Out of Scope
-
-1. **Production-Ready Implementation**
-   - While we will develop a functional proof-of-concept, a fully production-ready implementation with all security features and optimizations is beyond the scope of this research.
-
-2. **Integration with Specific LLM Applications**
-   - The research will focus on the server-side implementation rather than integrating with specific LLM applications or clients.
-
-3. **Custom Tool Development**
-   - Developing custom tools and resources beyond basic examples is outside the scope of this research.
-
-4. **Performance Optimization**
-   - While basic performance considerations will be noted, detailed performance optimization is not within the scope.
-
-## Deliverables
-
-1. Comprehensive research documentation following the structured approach
-2. A functional proof-of-concept MCP server implementation using Cloudflare Workers
-3. Step-by-step implementation guide with code examples
-4. Recommendations for future development and best practices
-
-## Success Criteria
-
-1. The research documentation provides a clear understanding of MCP and Cloudflare's implementation options
-2. The proof-of-concept implementation successfully demonstrates core MCP functionality
-3. The implementation guide enables developers to create their own MCP servers using Cloudflare Workers
-4. The research identifies potential challenges and provides recommendations for addressing them
+## Data Visualization Requirements
+The interactive dashboard will present:
+1. Sector-specific tariff impact metrics
+2. Regional impact distribution maps
+3. Financial impact indicators (revenue changes, cost increases)
+4. Strategy effectiveness comparisons
+5. Timeline of tariff policy changes and corresponding business impacts

@@ -1,104 +1,116 @@
-# Table of Contents: Cloudflare MCP NPX Library Implementation
+# Effects of Tariffs on Small Businesses: Final Report
 
-## 1. Executive Summary
-- Overview of the Model Context Protocol (MCP)
-- Summary of Cloudflare's MCP implementation
-- Key findings and recommendations
-- Implementation roadmap
+## Table of Contents
 
-## 2. Methodology
-- Research approach
-- Information sources
-- Analysis framework
-- Synthesis process
+### 1. Executive Summary
+- Overview of Research Project
+- Key Findings
+- Critical Insights for Stakeholders
+- Dashboard Overview
 
-## 3. Findings
-- **3.1 MCP Specification**
-  - Core components and architecture
-  - Communication protocol
-  - Security considerations
-  - Comparison with other protocols
+### 2. Methodology
+- Research Approach
+- Data Collection Methods
+- Analysis Framework
+- Limitations and Constraints
 
-- **3.2 Cloudflare MCP Implementation**
-  - Core components
-  - Implementation options
-  - Deployment models
-  - Security features
+### 3. Findings
+- **3.1 Direct Cost Implications**
+  - Cost Structure Impacts
+  - Margin Effects
+  - Pricing Strategy Adjustments
+  
+- **3.2 Supply Chain Disruptions**
+  - Supplier Relationship Changes
+  - Inventory Management Challenges
+  - Logistics and Delivery Impacts
+  
+- **3.3 Market Competitiveness**
+  - Domestic vs. Import-Dependent Businesses
+  - Pricing Power Variations
+  - Market Share Shifts
+  
+- **3.4 Sector-Specific Impacts**
+  - Manufacturing Sector Analysis
+  - Retail Sector Analysis
+  - Agricultural Sector Analysis
+  - Service Sector Secondary Effects
+  
+- **3.5 Regional Differences**
+  - Border Region Vulnerabilities
+  - Rural vs. Urban Impact Disparities
+  - State-Level Policy Influences
+  
+- **3.6 Adaptation Strategies**
+  - Successful Mitigation Examples
+  - Technology Solution Effectiveness
+  - Strategic Repositioning Approaches
+  - Timeline of Adaptation Phases
 
-- **3.3 Technical Implementation Details**
-  - WebSocket implementation
-  - Message processing
-  - Authentication and authorization
-  - Resource handling
-  - Error handling and retry logic
-  - Monitoring and logging
-
-- **3.4 Real-World Applications**
-  - Current implementations
-  - Success stories
-  - Challenges and solutions
-  - Emerging use cases
-
-## 4. Analysis
+### 4. Analysis
 - **4.1 Patterns Identified**
-  - Architectural patterns
-  - Implementation patterns
-  - Deployment patterns
-  - Security patterns
-  - Integration patterns
-
-- **4.2 Contradictions**
-  - Implementation approaches
-  - Authentication mechanisms
-  - Communication protocols
-  - Resource types
-  - Error handling
-  - Deployment models
-  - State management
-
+  - Consistent Economic Impact Patterns
+  - Business Response Patterns
+  - Financial Impact Patterns
+  - Policy Response Patterns
+  
+- **4.2 Contradictions in Research**
+  - Competing Perspectives on Benefits
+  - Strategy Effectiveness Discrepancies
+  - Policy Recommendation Disparities
+  - Methodological Challenges
+  
 - **4.3 Knowledge Gaps**
-  - Technical specification gaps
-  - Implementation gaps
-  - Security gaps
-  - Deployment and operations gaps
-  - Integration gaps
-  - Documentation gaps
-  - Future development gaps
+  - Quantitative Measurement Gaps
+  - Adaptation Strategy Effectiveness
+  - Geographic and Demographic Gaps
+  - Policy Effectiveness Uncertainties
 
-## 5. Recommendations
-- **5.1 Implementation Strategy**
-  - Phased approach
-  - Technology selection
-  - Development best practices
-  - Testing strategy
+### 5. Synthesis
+- **5.1 Integrated Impact Model**
+  - Framework Overview
+  - Component Interactions
+  - Predictive Applications
+  
+- **5.2 Key Strategic Insights**
+  - Disproportionate Impact Mechanism
+  - Sector-Specific Vulnerability
+  - Adaptation Timeline Model
+  - Technology as Force Multiplier
+  
+- **5.3 Practical Applications**
+  - Small Business Owner Guidelines
+  - Policy Design Recommendations
+  - Industry Association Strategies
+  - Economic Development Approaches
 
-- **5.2 Security Recommendations**
-  - Authentication and authorization
-  - Rate limiting and abuse prevention
-  - Data protection
-  - Monitoring and alerting
+### 6. Recommendations
+- **6.1 Small Business Strategies**
+  - Vulnerability Assessment Framework
+  - Immediate Response Tactics
+  - Medium-Term Adaptation
+  - Long-Term Resilience Building
+  
+- **6.2 Policy Recommendations**
+  - Small Business Protection Measures
+  - Implementation Approach Improvements
+  - Support Program Enhancements
+  - Trade Policy Structural Reforms
+  
+- **6.3 Research Agenda**
+  - Priority Knowledge Gaps
+  - Methodological Improvements
+  - Longitudinal Study Needs
+  - Cross-Sector Collaboration Opportunities
 
-- **5.3 Performance Optimization**
-  - Edge deployment
-  - Caching strategies
-  - Connection management
-  - Message optimization
+### 7. References
+- Academic Sources
+- Government Reports
+- Industry Analyses
+- Case Studies
 
-- **5.4 Integration Recommendations**
-  - External service integration
-  - Client library compatibility
-  - Multi-server coordination
-  - Versioning strategy
-
-- **5.5 Operational Recommendations**
-  - Monitoring and observability
-  - Deployment automation
-  - Cost optimization
-  - Incident response
-
-## 6. References
-- Official documentation
-- Articles and blog posts
-- Code repositories
-- Community resources
-- Case studies
+### Appendices
+- **Appendix A**: Dashboard Technical Documentation
+- **Appendix B**: Case Study Collection
+- **Appendix C**: Statistical Tables
+- **Appendix D**: Research Instrument Details

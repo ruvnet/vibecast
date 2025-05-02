@@ -1,265 +1,94 @@
-# Patterns Identified: Cloudflare MCP NPX Library Implementation
+# Patterns Identified in Tariff Impact Research
 
-## Architectural Patterns
+## Consistent Economic Impact Patterns
 
-### Client-Server Architecture
-The Model Context Protocol (MCP) consistently implements a client-server architecture, where:
-- **Clients** are AI applications or systems that need to access external resources
-- **Servers** provide access to tools, data sources, or other resources
+### Disproportionate Burden on Small Businesses
+- Small businesses consistently bear a heavier relative burden from tariffs than large corporations
+- Limited resources, thin profit margins, and reduced negotiating power amplify tariff impacts
+- The "double tariff" effect hits small businesses both on input costs and consumer purchasing power
 
-This pattern is fundamental to MCP and is reflected in all implementations, including those using Cloudflare Workers.
+### Sector-Specific Vulnerability Patterns
+- Manufacturing and retail sectors show the highest direct vulnerability to tariff impacts
+- Import-dependent businesses face immediate cost increases and supply disruptions
+- Export-oriented businesses suffer from retaliatory tariffs and reduced foreign market access
+- Service sectors demonstrate relatively lower direct impacts but experience secondary effects
 
-### WebSocket Communication
-MCP implementations consistently use WebSockets for real-time, bidirectional communication between clients and servers. This pattern enables:
-- Low-latency communication
-- Persistent connections
-- Event-driven interactions
+### Geographic Distribution of Impact
+- Border regions consistently show heightened sensitivity to tariff changes
+- Rural areas with economic specialization in agriculture or manufacturing face concentrated impacts
+- Regions with diverse economic bases demonstrate greater resilience to tariff shocks
 
-Cloudflare Workers' support for WebSockets makes it an ideal platform for implementing MCP servers.
+## Business Response Patterns
 
-### JSON-RPC Message Format
-All MCP implementations use JSON-RPC 2.0 for message formatting, providing:
-- Structured request and response formats
-- Support for method invocation
-- Error handling mechanisms
+### Staged Adaptation Approach
+- Small businesses typically follow a consistent response pattern to tariff implementation:
+  1. Initial absorption of costs (1-3 months)
+  2. Selective price increases (3-6 months)
+  3. Supply chain adjustments (6-12 months)
+  4. Product redesign or market repositioning (12+ months)
+- This pattern appears consistent across multiple sectors and tariff episodes
 
-This standardized message format ensures interoperability between different MCP clients and servers.
+### Strategic Adaptation Hierarchy
+- Businesses prioritize adaptations in a relatively consistent order:
+  1. Price adjustments (lowest effort, immediate impact)
+  2. Supplier negotiations (moderate effort, short-term impact)
+  3. Supply chain diversification (higher effort, medium-term impact)
+  4. Product redesign (highest effort, long-term solution)
+- Resource constraints often prevent progression through all adaptation stages
 
-## Implementation Patterns
+### Technology Adoption Patterns
+- Small businesses increasingly turn to technology solutions for tariff management
+- Adoption follows a clear pattern from basic to advanced:
+  1. HTS classification optimization tools
+  2. Inventory management systems
+  3. Supply chain visibility platforms
+  4. Advanced analytics and forecasting tools
 
-### Capability Negotiation
-MCP servers consistently implement a capability negotiation pattern, where:
-1. Clients request the server's capabilities
-2. Servers respond with a list of available resources
-3. Clients can then use these resources
+## Financial Impact Patterns
 
-This pattern allows clients to discover what resources are available without prior knowledge.
+### Cash Flow Pressure Points
+- Tariffs create predictable cash flow pressure points:
+  1. Immediate cost increases on imported goods
+  2. Inventory carrying cost increases (from holding larger safety stocks)
+  3. Working capital constraints from supplier relationship changes
+  4. Reduced sales revenue if price increases dampen demand
 
-```typescript
-function handleCapabilitiesRequest(ws: WebSocket) {
-  const resources = [
-    {
-      id: 'example-tool',
-      type: 'tool',
-      metadata: { 
-        description: 'Example tool',
-        endpoints: ['/example']
-      }
-    }
-  ];
-  
-  ws.send(JSON.stringify({
-    type: 'capabilities-response',
-    resources
-  }));
-}
-```
+### Investment Pattern Disruption
+- Small businesses consistently report delaying or canceling:
+  1. Facility expansions
+  2. Equipment purchases
+  3. New hiring
+  4. R&D initiatives
+- This pattern suggests long-term growth implications beyond immediate financial impacts
 
-### Resource Request Handling
-MCP servers implement a consistent pattern for handling resource requests:
-1. Receive a resource request from a client
-2. Validate the request
-3. Process the request
-4. Return a response
+### Margin Compression Cycle
+- A cyclical pattern emerges in profit margin impacts:
+  1. Initial margin compression as costs rise
+  2. Partial recovery through price increases
+  3. Secondary compression from market share losses
+  4. Gradual stabilization through operational adjustments
+- This cycle typically spans 18-24 months following tariff implementation
 
-This pattern ensures that resource requests are handled in a consistent and predictable manner.
+## Policy Response Patterns
 
-```typescript
-function handleResourceRequest(ws: WebSocket, message: any) {
-  // Validate request
-  if (!message.resourceId) {
-    return ws.send(JSON.stringify({
-      type: 'error',
-      requestId: message.requestId,
-      error: 'Missing resourceId'
-    }));
-  }
-  
-  // Process request
-  const result = processResource(message.resourceId, message.params);
-  
-  // Return response
-  ws.send(JSON.stringify({
-    type: 'resource-response',
-    requestId: message.requestId,
-    data: result
-  }));
-}
-```
+### Exclusion Process Utilization
+- Exclusion application patterns show consistent disparities:
+  1. Large businesses submit proportionally more applications
+  2. Resource-intensive application processes disadvantage small firms
+  3. Sector-specific success rates vary significantly
+  4. Geographic disparities in application rates
 
-### Authentication and Authorization
-MCP implementations consistently implement authentication and authorization patterns:
-1. Clients provide authentication credentials
-2. Servers validate these credentials
-3. Servers authorize access to resources based on the client's identity
+### Advocacy Approach Patterns
+- Small business advocacy follows consistent patterns:
+  1. Initial opposition to tariff announcements
+  2. Push for exemptions and exclusions once implemented
+  3. Focus on implementation timelines and phase-in periods
+  4. Emphasis on predictability over specific tariff rates
 
-This pattern ensures that only authorized clients can access sensitive resources.
-
-```typescript
-function processMessage(ws: WebSocket, message: any, env: Env) {
-  // Authentication check
-  if (message.auth?.secret !== env.MCP_SECRET) {
-    return ws.send(JSON.stringify({ error: 'Unauthorized' }));
-  }
-  
-  // Process message
-  // ...
-}
-```
-
-## Deployment Patterns
-
-### Edge Deployment
-Cloudflare Workers enables a pattern of deploying MCP servers at the edge, close to users, providing:
-- Low latency
-- High availability
-- Global distribution
-
-This pattern is particularly beneficial for AI applications that require real-time interaction with external resources.
-
-### Serverless Architecture
-MCP servers implemented with Cloudflare Workers follow a serverless architecture pattern, where:
-- Servers run on-demand
-- Scaling is handled automatically
-- No server management is required
-
-This pattern simplifies deployment and operations, allowing developers to focus on implementing MCP functionality.
-
-### Environment-Based Configuration
-MCP implementations consistently use environment-based configuration patterns:
-1. Configuration values are stored in environment variables
-2. Different environments (development, staging, production) have different configurations
-3. Sensitive values are stored securely
-
-This pattern ensures that configuration is flexible and secure.
-
-```toml
-# wrangler.toml
-name = "mcp-server"
-main = "src/index.ts"
-
-[vars]
-MCP_SECRET = "your-secret-key-here"
-
-[env.production]
-vars = { MCP_SECRET = "production-secret" }
-
-[env.staging]
-vars = { MCP_SECRET = "staging-secret" }
-```
-
-## Error Handling Patterns
-
-### Graceful Degradation
-MCP implementations implement graceful degradation patterns:
-1. Detect errors
-2. Provide meaningful error messages
-3. Continue operating if possible
-
-This pattern ensures that errors don't completely disrupt the client-server interaction.
-
-### Retry Logic
-MCP implementations often implement retry logic patterns:
-1. Detect transient failures
-2. Wait for a backoff period
-3. Retry the operation
-
-This pattern improves reliability in the face of temporary issues.
-
-```typescript
-function withRetry(fn: Function, retries = 3) {
-  return async (...args: any[]) => {
-    for (let i = 0; i < retries; i++) {
-      try {
-        return await fn(...args);
-      } catch (err) {
-        if (i === retries - 1) throw err;
-        await new Promise(r => setTimeout(r, 1000 * (i + 1)));
-      }
-    }
-  };
-}
-```
-
-### Comprehensive Logging
-MCP implementations implement comprehensive logging patterns:
-1. Log all significant events
-2. Include relevant context
-3. Use appropriate log levels
-
-This pattern aids in debugging and monitoring.
-
-```typescript
-function logEvent(type: string, data: any) {
-  console.log(JSON.stringify({
-    timestamp: new Date().toISOString(),
-    type,
-    data
-  }));
-}
-```
-
-## Integration Patterns
-
-### External API Integration
-MCP servers often implement patterns for integrating with external APIs:
-1. Receive a request from a client
-2. Translate it to an API request
-3. Send the request to the external API
-4. Translate the response
-5. Return the response to the client
-
-This pattern allows MCP servers to provide access to a wide range of external services.
-
-### Database Integration
-MCP servers implement patterns for integrating with databases:
-1. Receive a query request from a client
-2. Validate and sanitize the query
-3. Execute the query against the database
-4. Process the results
-5. Return the results to the client
-
-This pattern allows MCP servers to provide access to structured data.
-
-### File System Integration
-MCP servers implement patterns for integrating with file systems:
-1. Receive a file operation request from a client
-2. Validate the request
-3. Perform the file operation
-4. Return the results to the client
-
-This pattern allows MCP servers to provide access to files and directories.
-
-## Security Patterns
-
-### Input Validation
-MCP implementations consistently implement input validation patterns:
-1. Validate all client input
-2. Reject invalid input
-3. Sanitize input before use
-
-This pattern prevents security vulnerabilities such as injection attacks.
-
-### Rate Limiting
-MCP implementations often implement rate limiting patterns:
-1. Track request rates
-2. Enforce limits
-3. Reject or delay excessive requests
-
-This pattern prevents abuse and ensures fair resource allocation.
-
-```toml
-# wrangler.toml
-[triggers]
-rate_limits = [
-  { period = 60s, requests = 100 }
-]
-```
-
-### Least Privilege
-MCP implementations implement least privilege patterns:
-1. Grant minimal access rights
-2. Require explicit authorization for sensitive operations
-3. Validate authorization for each request
-
-This pattern minimizes the potential impact of security breaches.
+### Timeline of Impacts
+- A consistent timeline pattern emerges across different tariff episodes:
+  1. Immediate price effects (0-3 months)
+  2. Supply chain disruptions (3-6 months)
+  3. Market share realignments (6-12 months)
+  4. Structural business model adjustments (12+ months)
+- This pattern provides a framework for anticipating and planning for future tariff actions
