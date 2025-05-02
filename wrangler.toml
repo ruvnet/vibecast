@@ -1,0 +1,25 @@
+name = "cloudflare-mcp-server"
+main = "src/index.ts"
+compatibility_date = "2023-05-18"
+
+# Specify the Cloudflare Workers environment
+workers_dev = true
+
+# Configure environment variables
+[vars]
+MCP_SERVER_NAME = "cloudflare-mcp-server"
+MCP_VERSION = "1.0.0"
+
+# Development environment
+[env.dev]
+name = "cloudflare-mcp-server-dev"
+vars = { MCP_ENV = "development" }
+
+# Production environment
+[env.production]
+name = "cloudflare-mcp-server"
+vars = { MCP_ENV = "production" }
+
+# Configure build settings
+[build]
+command = "npm run build"
