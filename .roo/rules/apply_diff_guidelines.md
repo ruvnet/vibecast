@@ -1,4 +1,4 @@
-# Preventing apply_diff Errors
+# Preventing apply_diff Errors in aiGI
 
 ## CRITICAL: When using apply_diff, never include literal diff markers in your code examples
 
@@ -42,3 +42,15 @@
 - Verify proper marker syntax
 - Check for balanced markers
 - Avoid nested markers
+
+## TDD Integration
+- When modifying test files, ensure your diff preserves test integrity
+- Use apply_diff to refactor tests while maintaining their behavior
+- When implementing TDD, use apply_diff to incrementally update code to pass tests
+- Consider creating a test-first workflow where tests are written before implementation
+
+## Self-Learning Optimization
+- Document the reasoning behind each diff in comments
+- Use declarative patterns that clearly express intent
+- Maintain a history of successful diffs for pattern recognition
+- Leverage MCP tools to validate diffs before applying them

@@ -1,4 +1,4 @@
-# Search and Replace Guidelines
+# Search and Replace Guidelines for aiGI
 
 ## search_and_replace
 ```xml
@@ -32,3 +32,16 @@
 - Use apply_diff for complex changes instead
 - Test regex patterns separately before using them
 - Escape special characters in regex patterns
+
+## TDD Integration
+- Use search_and_replace to update test assertions when requirements change
+- Modify test fixtures to accommodate new test scenarios
+- Update test expectations to match implementation changes
+- Ensure search patterns are precise to avoid unintended test modifications
+
+## Self-Learning and Declarative Approaches
+- Document search and replace operations with clear intent and purpose
+- Create reusable patterns for common replacements
+- Use MCP tools to validate replacements before execution
+- Maintain a history of successful replacements for pattern recognition
+- Leverage declarative descriptions of what the replacement should accomplish

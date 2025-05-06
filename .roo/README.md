@@ -1,402 +1,251 @@
-# Roo Modes and MCP Integration Guide
-
-## Overview
-
-This guide provides information about the various modes available in Roo and detailed documentation on the Model Context Protocol (MCP) integration capabilities.
-
-Create by @ruvnet
-
-## Available Modes
-
-Roo offers specialized modes for different aspects of the development process:
-
-### 📋 Specification Writer
-- **Role**: Captures project context, functional requirements, edge cases, and constraints
-- **Focus**: Translates requirements into modular pseudocode with TDD anchors
-- **Best For**: Initial project planning and requirement gathering
-
-### 🏗️ Architect
-- **Role**: Designs scalable, secure, and modular architectures
-- **Focus**: Creates architecture diagrams, data flows, and integration points
-- **Best For**: System design and component relationships
-
-### 🧠 Auto-Coder
-- **Role**: Writes clean, efficient, modular code based on pseudocode and architecture
-- **Focus**: Implements features with proper configuration and environment abstraction
-- **Best For**: Feature implementation and code generation
-
-### 🧪 Tester (TDD)
-- **Role**: Implements Test-Driven Development (TDD, London School)
-- **Focus**: Writes failing tests first, implements minimal code to pass, then refactors
-- **Best For**: Ensuring code quality and test coverage
-
-### 🪲 Debugger
-- **Role**: Troubleshoots runtime bugs, logic errors, or integration failures
-- **Focus**: Uses logs, traces, and stack analysis to isolate and fix bugs
-- **Best For**: Resolving issues in existing code
-
-### 🛡️ Security Reviewer
-- **Role**: Performs static and dynamic audits to ensure secure code practices
-- **Focus**: Flags secrets, poor modular boundaries, and oversized files
-- **Best For**: Security audits and vulnerability assessments
-
-### 📚 Documentation Writer
-- **Role**: Writes concise, clear, and modular Markdown documentation
-- **Focus**: Creates documentation that explains usage, integration, setup, and configuration
-- **Best For**: Creating user guides and technical documentation
-
-### 🔗 System Integrator
-- **Role**: Merges outputs of all modes into a working, tested, production-ready system
-- **Focus**: Verifies interface compatibility, shared modules, and configuration standards
-- **Best For**: Combining components into a cohesive system
-
-### 📈 Deployment Monitor
-- **Role**: Observes the system post-launch, collecting performance data and user feedback
-- **Focus**: Configures metrics, logs, uptime checks, and alerts
-- **Best For**: Post-deployment observation and issue detection
-
-### 🧹 Optimizer
-- **Role**: Refactors, modularizes, and improves system performance
-- **Focus**: Audits files for clarity, modularity, and size
-- **Best For**: Code refinement and performance optimization
-
-### 🚀 DevOps
-- **Role**: Handles deployment, automation, and infrastructure operations
-- **Focus**: Provisions infrastructure, configures environments, and sets up CI/CD pipelines
-- **Best For**: Deployment and infrastructure management
-
-### 🔐 Supabase Admin
-- **Role**: Designs and implements database schemas, RLS policies, triggers, and functions
-- **Focus**: Ensures secure, efficient, and scalable data management with Supabase
-- **Best For**: Database management and Supabase integration
-
-### ♾️ MCP Integration
-- **Role**: Connects to and manages external services through MCP interfaces
-- **Focus**: Ensures secure, efficient, and reliable communication with external APIs
-- **Best For**: Integrating with third-party services
-
-### ⚡️ SPARC Orchestrator
-- **Role**: Orchestrates complex workflows by breaking down objectives into subtasks
-- **Focus**: Ensures secure, modular, testable, and maintainable delivery
-- **Best For**: Managing complex projects with multiple components
-
-### ❓ Ask
-- **Role**: Helps users navigate, ask, and delegate tasks to the correct modes
-- **Focus**: Guides users to formulate questions using the SPARC methodology
-- **Best For**: Getting started and understanding how to use Roo effectively
-
-## MCP Integration Mode
-
-The MCP Integration Mode (♾️) in Roo is designed specifically for connecting to and managing external services through MCP interfaces. This mode ensures secure, efficient, and reliable communication between your application and external service APIs.
-
-### Key Features
-
-- Establish connections to MCP servers and verify availability
-- Configure and validate authentication for service access
-- Implement data transformation and exchange between systems
-- Robust error handling and retry mechanisms
-- Documentation of integration points, dependencies, and usage patterns
-
-### MCP Integration Workflow
-
-| Phase | Action | Tool Preference |
-|-------|--------|-----------------|
-| 1. Connection | Establish connection to MCP servers and verify availability | `use_mcp_tool` for server operations |
-| 2. Authentication | Configure and validate authentication for service access | `use_mcp_tool` with proper credentials |
-| 3. Data Exchange | Implement data transformation and exchange between systems | `use_mcp_tool` for operations, `apply_diff` for code |
-| 4. Error Handling | Implement robust error handling and retry mechanisms | `apply_diff` for code modifications |
-| 5. Documentation | Document integration points, dependencies, and usage patterns | `insert_content` for documentation |
-
-### Non-Negotiable Requirements
-
-- ✅ ALWAYS verify MCP server availability before operations
-- ✅ NEVER store credentials or tokens in code
-- ✅ ALWAYS implement proper error handling for all API calls
-- ✅ ALWAYS validate inputs and outputs for all operations
-- ✅ NEVER use hardcoded environment variables
-- ✅ ALWAYS document all integration points and dependencies
-- ✅ ALWAYS use proper parameter validation before tool execution
-- ✅ ALWAYS include complete parameters for MCP tool operations
-
-# Agentic Coding MCPs
-
-## Overview
-
-This guide provides detailed information on Management Control Panel (MCP) integration capabilities. MCP enables seamless agent workflows by connecting to more than 80 servers, covering development, AI, data management, productivity, cloud storage, e-commerce, finance, communication, and design. Each server offers specialized tools, allowing agents to securely access, automate, and manage external services through a unified and modular system. This approach supports building dynamic, scalable, and intelligent workflows with minimal setup and maximum flexibility.
-
-## Install via NPM
-```
-npx create-sparc init --force
-```
----
-
-## Available MCP Servers
-
-### 🛠️ Development & Coding
-
-|  | Service       | Description                        |
-|:------|:--------------|:-----------------------------------|
-| 🐙    | GitHub         | Repository management, issues, PRs |
-| 🦊    | GitLab         | Repo management, CI/CD pipelines   |
-| 🧺    | Bitbucket      | Code collaboration, repo hosting   |
-| 🐳    | DockerHub      | Container registry and management |
-| 📦    | npm            | Node.js package registry          |
-| 🐍    | PyPI           | Python package index              |
-| 🤗    | HuggingFace Hub| AI model repository               |
-| 🧠    | Cursor         | AI-powered code editor            |
-| 🌊    | Windsurf       | AI development platform           |
-
----
-
-### 🤖 AI & Machine Learning
-
-|  | Service       | Description                        |
-|:------|:--------------|:-----------------------------------|
-| 🔥    | OpenAI         | GPT models, DALL-E, embeddings      |
-| 🧩    | Perplexity AI  | AI search and question answering   |
-| 🧠    | Cohere         | NLP models                         |
-| 🧬    | Replicate      | AI model hosting                   |
-| 🎨    | Stability AI   | Image generation AI                |
-| 🚀    | Groq           | High-performance AI inference      |
-| 📚    | LlamaIndex     | Data framework for LLMs            |
-| 🔗    | LangChain      | Framework for LLM apps             |
-| ⚡    | Vercel AI      | AI SDK, fast deployment            |
-| 🛠️    | AutoGen        | Multi-agent orchestration          |
-| 🧑‍🤝‍🧑 | CrewAI         | Agent team framework               |
-| 🧠    | Huggingface    | Model hosting and APIs             |
-
----
-
-### 📈 Data & Analytics
-
-|  | Service        | Description                        |
-|:------|:---------------|:-----------------------------------|
-| 🛢️   | Supabase        | Database, Auth, Storage backend   |
-| 🔍   | Ahrefs          | SEO analytics                     |
-| 🧮   | Code Interpreter| Code execution and data analysis  |
-
----
-
-### 📅 Productivity & Collaboration
-
-|  | Service        | Description                        |
-|:------|:---------------|:-----------------------------------|
-| ✉️    | Gmail           | Email service                     |
-| 📹    | YouTube         | Video sharing platform            |
-| 👔    | LinkedIn        | Professional network              |
-| 📰    | HackerNews      | Tech news discussions             |
-| 🗒️   | Notion          | Knowledge management              |
-| 💬    | Slack           | Team communication                |
-| ✅    | Asana           | Project management                |
-| 📋    | Trello          | Kanban boards                     |
-| 🛠️    | Jira            | Issue tracking and projects       |
-| 🎟️   | Zendesk         | Customer service                  |
-| 🎮    | Discord         | Community messaging               |
-| 📲    | Telegram        | Messaging app                     |
-
----
-
-### 🗂️ File Storage & Management
-
-|  | Service        | Description                        |
-|:------|:---------------|:-----------------------------------|
-| ☁️    | Google Drive    | Cloud file storage                 |
-| 📦    | Dropbox         | Cloud file sharing                 |
-| 📁    | Box             | Enterprise file storage            |
-| 🪟    | OneDrive        | Microsoft cloud storage            |
-| 🧠    | Mem0            | Knowledge storage, notes           |
-
----
-
-### 🔎 Search & Web Information
-
-|  | Service         | Description                      |
-|:------|:----------------|:---------------------------------|
-| 🌐   | Composio Search  | Unified web search for agents    |
-
----
-
-### 🛒 E-commerce & Finance
-
-|  | Service        | Description                        |
-|:------|:---------------|:-----------------------------------|
-| 🛍️   | Shopify         | E-commerce platform               |
-| 💳    | Stripe          | Payment processing                |
-| 💰    | PayPal          | Online payments                   |
-| 📒    | QuickBooks      | Accounting software               |
-| 📈    | Xero            | Accounting and finance            |
-| 🏦    | Plaid           | Financial data APIs               |
-
----
-
-### 📣 Marketing & Communications
-
-|  | Service        | Description                        |
-|:------|:---------------|:-----------------------------------|
-| 🐒    | MailChimp       | Email marketing platform          |
-| ✉️    | SendGrid        | Email delivery service            |
-| 📞    | Twilio          | SMS and calling APIs              |
-| 💬    | Intercom        | Customer messaging                |
-| 🎟️   | Freshdesk       | Customer support                  |
-
----
-
-### 🛜 Social Media & Publishing
-
-|  | Service        | Description                        |
-|:------|:---------------|:-----------------------------------|
-| 👥    | Facebook        | Social networking                 |
-| 📷    | Instagram       | Photo sharing                     |
-| 🐦    | Twitter         | Microblogging platform            |
-| 👽    | Reddit          | Social news aggregation           |
-| ✍️    | Medium          | Blogging platform                 |
-| 🌐   | WordPress       | Website and blog publishing       |
-| 🌎   | Webflow         | Web design and hosting            |
-
----
-
-### 🎨 Design & Digital Assets
-
-|  | Service        | Description                        |
-|:------|:---------------|:-----------------------------------|
-| 🎨    | Figma           | Collaborative UI design           |
-| 🎞️   | Adobe           | Creative tools and software       |
-
----
-
-### 🗓️ Scheduling & Events
-
-|  | Service        | Description                        |
-|:------|:---------------|:-----------------------------------|
-| 📆    | Calendly        | Appointment scheduling            |
-| 🎟️   | Eventbrite      | Event management and tickets      |
-| 📅    | Calendar Google | Google Calendar Integration       |
-| 📅    | Calendar Outlook| Outlook Calendar Integration      |
-
----
-
-## 🧩 Using MCP Tools
-
-To use an MCP server:
-1. Connect to the desired MCP endpoint or install server (e.g., Supabase via `npx`).
-2. Authenticate with your credentials.
-3. Trigger available actions through Roo workflows.
-4. Maintain security and restrict only necessary permissions.
- 
-### Example: GitHub Integration
-
-```
-<!-- Initiate connection -->
-<use_mcp_tool>
-  <server_name>github</server_name>
-  <tool_name>GITHUB_INITIATE_CONNECTION</tool_name>
-  <arguments>{}</arguments>
-</use_mcp_tool>
-
-<!-- List pull requests -->
-<use_mcp_tool>
-  <server_name>github</server_name>
-  <tool_name>GITHUB_PULLS_LIST</tool_name>
-  <arguments>{"owner": "username", "repo": "repository-name"}</arguments>
-</use_mcp_tool>
+# aiGI: Artificial Intelligence Guided Implementation
+
+## Introduction
+
+aiGI (Artificial Intelligence Guided Implementation) is a sophisticated system that implements a layered recursive reflection workflow with a code-centric approach to software development. It leverages specialized AI modes working in concert to iteratively improve code quality through structured feedback loops and quantitative metrics.
+
+The system follows these key principles:
+
+1. **Layered Improvement**: Code is refined through multiple layers (LS1, LS2, etc.), with each layer building upon the insights and improvements of previous layers.
+2. **Recursive Reflection**: The system continuously evaluates its own outputs, identifies areas for improvement, and refines its approach accordingly.
+3. **Code-Centric Focus**: All aspects of the workflow prioritize code quality, maintainability, and performance.
+4. **Adaptive Learning**: The system adjusts its strategies based on feedback and metrics, optimizing for increasingly better results.
+5. **Structured Memory**: All artifacts are systematically stored and referenced, creating a comprehensive knowledge base that informs future decisions.
+
+## System Architecture
+
+The aiGI system architecture is built around a workflow of specialized modes that work together to implement the recursive improvement process:
+
+```mermaid
+flowchart TD
+  %% Entry point
+  UR([User Task Request])
+
+  %% Memory Manager integration
+  subgraph MemorySystem["🧠 Vector Memory System"]
+    VectorStore((Vector Store))
+    JSdiv["Jensen-Shannon Divergence"]
+    EmbedSim["Embedding Similarity"]
+    MetadataIndex["Metadata Index"]
+    
+    VectorStore <--> JSdiv
+    VectorStore <--> EmbedSim
+    VectorStore <--> MetadataIndex
+  end
+
+  %% Specification phase
+  UR --> SpecTask["new_task: spec-pseudocode"]
+  SpecTask --> SpecMD[/"spec_phase1.md"/]
+  SpecMD -.-> VectorStore
+
+  %% Layered reflection loop (LS1…LSn)
+  SpecMD --> PromptTask1["new_task: prompt-generator"]
+  PromptTask1 --> Prompts1[/"prompts_LS1.md"/]
+  Prompts1 --> LLM1["LLM API Call"]
+  LLM1 --> Resp1[/"responses_LS1.md"/]
+  Resp1 -.-> VectorStore
+  Resp1 --> CriticTask1["new_task: critic"]
+  CriticTask1 --> Refl1[/"reflection_LS1.md"/]
+  Refl1 -.-> VectorStore
+  Refl1 --> ScorerTask1["new_task: scorer"]
+  ScorerTask1 --> Scores1[["scores_LS1.json"]]
+  Scores1 -.-> VectorStore
+  Scores1 --> TDDTask1["new_task: tdd"]
+  TDDTask1 --> TDDSpec1[/"tdd_spec_LS1.md"/]
+  TDDSpec1 -.-> VectorStore
+  
+  %% Enhanced decision point with embedding similarity
+  TDDSpec1 --> MemoryTask1["new_task: memory-manager"]
+  MemoryTask1 --> EmbedSim
+  EmbedSim --> Decision1{Δ<ε OR Sim>τ?}
+  Decision1 -->|No| PromptTask2["new_task: reflection"]
+  Decision1 -->|Yes| CodePhase
+
+  %% Next layer with memory integration
+  PromptTask2 --> Prompts2[/"prompts_LS2.md"/]
+  Prompts2 --> LLM2["LLM API Call"]
+  LLM2 --> Resp2[/"responses_LS2.md"/]
+  Resp2 -.-> VectorStore
+  Resp2 --> CriticTask2["new_task: critic"]
+  CriticTask2 --> Refl2[/"reflection_LS2.md"/]
+  Refl2 -.-> VectorStore
+  Refl2 --> ScorerTask2["new_task: scorer"]
+  ScorerTask2 --> Scores2[["scores_LS2.json"]]
+  Scores2 -.-> VectorStore
+  Scores2 --> TDDTask2["new_task: tdd"]
+  TDDTask2 --> TDDSpec2[/"tdd_spec_LS2.md"/]
+  TDDSpec2 -.-> VectorStore
+  
+  %% Enhanced decision point with JS divergence
+  TDDSpec2 --> MemoryTask2["new_task: memory-manager"]
+  MemoryTask2 --> JSdiv
+  JSdiv --> Decision2{Δ<ε OR JSD<δ?}
+  Decision2 -->|No| PromptTask3["new_task: reflection"]
+  Decision2 -->|Yes| CodePhase
+
+  %% Code implementation phase
+  subgraph CodePhase["🧠 Auto-Coder & Testing"]
+    CodePhase --> CodeTask["new_task: code"]
+    CodeTask --> TDDImpl["new_task: tdd"]
+    TDDImpl --> CodeFiles[/"*.ts & tests"/]
+    CodeFiles -.-> VectorStore
+    CodeFiles --> TestTask["new_task: test"]
+    TestTask --> TestResults[["test_results.json"]]
+    TestResults -->|fail| ErrorCount{Failures > 3?}
+    ErrorCount -->|Yes| MCPToolFix["MCP Tool Error Resolution"]
+    ErrorCount -->|No| TDDImpl
+    MCPToolFix --> TDDImpl
+    TestResults -->|pass| TDDVerify["TDD Verification"]
+    TDDVerify --> MCPOpt
+  end
+
+  %% Optional MCP integration
+  subgraph MCPOpt["♾️ MCP Integration (optional)"]
+    MCPOpt --> MCPTask["new_task: mcp"]
+    MCPTask --> MCPCode[/"mcp_integration.ts"/]
+    MCPCode -.-> VectorStore
+    MCPCode --> TDDValidate["TDD Final Validation"]
+    TDDValidate --> FinalPhase
+  end
+  TestResults -->|pass| MCPOpt
+
+  %% Final assembly
+  subgraph FinalPhase["🏁 Final Assembly"]
+    FinalPhase --> FinalTask["new_task: final-assembly"]
+    FinalTask --> FinalMD[/"final.md"/]
+    FinalMD -.-> VectorStore
+    FinalMD --> Output([Final Deliverable])
+  end
 ```
 
-### Example: OpenAI Integration
+The workflow consists of:
 
-```
-<!-- Initiate connection -->
-<use_mcp_tool>
-  <server_name>openai</server_name>
-  <tool_name>OPENAI_INITIATE_CONNECTION</tool_name>
-  <arguments>{}</arguments>
-</use_mcp_tool>
+1. **Specification Phase**: Creating detailed requirements and constraints
+2. **Layered Reflection Loop**: Iterative improvement through prompt generation, code critique, scoring, and TDD specification
+3. **Code Implementation Phase**: Implementing and testing code based on refined prompts with TDD validation
+4. **MCP Integration (Optional)**: Connecting external services and APIs with TDD verification
+5. **Final Assembly**: Compiling all artifacts into a comprehensive deliverable after final TDD validation
 
-<!-- Generate text with GPT -->
-<use_mcp_tool>
-  <server_name>openai</server_name>
-  <tool_name>OPENAI_CHAT_COMPLETION</tool_name>
-  <arguments>{
-    "model": "gpt-4",
-    "messages": [
-      {"role": "system", "content": "You are a helpful assistant."},
-      {"role": "user", "content": "Explain quantum computing in simple terms."}
-    ],
-    "temperature": 0.7
-  }</arguments>
-</use_mcp_tool>
-```
+## Mode Directory
 
-## Tool Usage Guidelines
+The aiGI system is composed of several specialized modes, each with a specific role in the workflow:
+| Mode | Description | Documentation |
+|------|-------------|---------------|
+| **Orchestrator** | Coordinates the entire aiGI workflow, managing the recursive improvement process through multiple layers of refinement | [orchestrator.md](./orchestrator/orchestrator.md) |
+| **Memory Manager** | Manages vector memory storage, similarity search, and novelty detection for the aiGI workflow | [memory-manager.md](./memory-manager/memory-manager.md) |
+| **Prompt Generator** | Creates code-centric batched prompts for aiGI layers using specifications and previous outputs | [prompt-generator.md](./prompt-generator/prompt-generator.md) |
+| **Critic** | Reviews code outputs to identify bugs, style issues, and optimization opportunities | [critic.md](./critic/critic.md) |
+| **Scorer** | Evaluates code batches by performance, correctness, and maintainability using quantitative metrics | [scorer.md](./scorer/scorer.md) |
+| **Reflection** | Generates refined code prompts and plans iterations based on previous outputs and metrics | [reflection.md](./reflection/reflection.md) |
+| **Code** | Implements, refactors, and self-tests modular code based on specifications and prompts | [code.md](./code/code.md) |
+| **TDD** | Implements test-driven development practices, ensuring code meets requirements through automated testing | [tdd.md](./tdd/tdd.md) |
+| **MCP Integration** | Connects external services via the Model Context Protocol for code deployment and management | [mcp.md](./mcp/mcp.md) |
+| **Final-Assembly** | Compiles code, documentation, and metrics into the final deliverable after validation | [final-assembly.md](./final-assembly/final-assembly.md) |
+| **Tutorial** | Onboards and educates users on the aiGI workflow and best practices | [tutorial.md](./tutorial/tutorial.md) |
 
-### Primary Tools
+## File Structure
 
-- `use_mcp_tool`: Use for all MCP server operations
-  ```
-  <use_mcp_tool>
-    <server_name>server_name</server_name>
-    <tool_name>tool_name</tool_name>
-    <arguments>{ "param1": "value1", "param2": "value2" }</arguments>
-  </use_mcp_tool>
-  ```
+The aiGI system uses a consistent file naming convention to track artifacts across layers:
 
-- `access_mcp_resource`: Use for accessing MCP resources
-  ```
-  <access_mcp_resource>
-    <server_name>server_name</server_name>
-    <uri>resource://path/to/resource</uri>
-  </access_mcp_resource>
-  ```
+| File Pattern | Description |
+|--------------|-------------|
+| `spec_phase{n}.md` | Specification documents for each phase |
+| `prompts_LS{n}.md` | Generated prompts for layer n |
+| `responses_LS{n}.md` | LLM responses for layer n |
+| `reflection_LS{n}.md` | Critic analysis for layer n |
+| `scores_LS{n}.json` | Metrics for layer n |
+| `tdd_spec_LS{n}.md` | TDD specifications for layer n |
+| `tdd_tests_LS{n}.ts` | TDD test implementations for layer n |
+| `final.md` | Consolidated final deliverable |
 
-- `apply_diff`: Use for code modifications with complete search and replace blocks
-  ```
-  <apply_diff>
-    <path>file/path.js</path>
-    <diff>
-      <<<<<<< SEARCH
-      // Original code
-      =======
-      // Updated code
-      >>>>>>> REPLACE
-    </diff>
-  </apply_diff>
-  ```
+The "LS" prefix stands for "Layer Score" and is followed by a number indicating the iteration (LS1, LS2, etc.). Each layer builds upon the insights and improvements of previous layers, creating a recursive improvement process.
 
-### Secondary Tools
+## Getting Started
 
-- `insert_content`: Use for documentation and adding new content
-- `execute_command`: Use for testing API connections and validating integrations
-- `search_and_replace`: Use only when necessary and always include both parameters
+To start using the aiGI system:
 
-## Detailed Documentation
+1. **Create a Specification**: Begin by creating a detailed specification document (`spec_phase1.md`) that outlines requirements, constraints, and acceptance criteria.
 
-For detailed information about each MCP server and its available tools, refer to the individual documentation files in the `.roo/rules-mcp/` directory:
+2. **Initiate the Workflow**: Use the orchestrator mode to start the aiGI workflow:
+   ```
+   new_task: orchestrator
+   ```
 
-- [GitHub](./rules-mcp/github.md)
-- [Supabase](./rules-mcp/supabase.md)
-- [Ahrefs](./rules-mcp/ahrefs.md)
-- [Gmail](./rules-mcp/gmail.md)
-- [YouTube](./rules-mcp/youtube.md)
-- [LinkedIn](./rules-mcp/linkedin.md)
-- [OpenAI](./rules-mcp/openai.md)
-- [Notion](./rules-mcp/notion.md)
-- [Slack](./rules-mcp/slack.md)
-- [Google Drive](./rules-mcp/google_drive.md)
-- [HackerNews](./rules-mcp/hackernews.md)
-- [Composio Search](./rules-mcp/composio_search.md)
-- [Mem0](./rules-mcp/mem0.md)
-- [PerplexityAI](./rules-mcp/perplexityai.md)
-- [CodeInterpreter](./rules-mcp/codeinterpreter.md)
+3. **Follow the Recursive Process**: The system will guide you through the layered improvement process, generating prompts, analyzing code, computing metrics, and implementing solutions.
 
-## Best Practices
+4. **Review and Refine**: Monitor the progress through each layer, reviewing the generated artifacts and adjusting specifications as needed.
 
-1. Always initiate a connection before attempting to use any MCP tools
-2. Implement retry mechanisms with exponential backoff for transient failures
-3. Use circuit breakers to prevent cascading failures
-4. Implement request batching to optimize API usage
-5. Use proper logging for all API operations
-6. Implement data validation for all incoming and outgoing data
-7. Use proper error codes and messages for API responses
-8. Implement proper timeout handling for all API calls
-9. Use proper versioning for API integrations
-10. Implement proper rate limiting to prevent API abuse
-11. Use proper caching strategies to reduce API calls
+5. **Finalize the Deliverable**: Once the code meets quality thresholds, the system will assemble the final deliverable with complete documentation.
+
+For a more detailed guide on using the aiGI system, refer to the [tutorial mode](./tutorial/tutorial.md), which provides comprehensive instructions, examples, and best practices.
+
+## Advanced Usage
+
+The aiGI system supports advanced features such as:
+
+- **Delta Improvement Calculation**: Automatically computes improvement between layers to determine when to proceed to code implementation
+- **Dynamic Depth and Batch Sizing**: Adjusts recursion depth and batch sizes based on complexity and performance metrics
+- **Vector Store Integration**: Maintains embeddings and metadata for efficient retrieval of relevant context
+- **MCP Integration**: Optional connection to external services and APIs through the Model Context Protocol
+- **Test-Driven Development**: Implements TDD practices throughout the workflow with automated test generation and validation
+- **MCP Tool Error Resolution**: Automatically resolves errors in MCP tool usage after multiple failures
+
+Refer to the specific mode documentation for detailed information on these advanced features.
+
+## Vector Memory and Embedding Divergence
+
+The aiGI system incorporates sophisticated vector memory capabilities through the Memory Manager mode:
+
+### Vector Memory Storage
+
+The system uses a markdown-based vector memory approach:
+
+1. **Embedding Generation**
+   - All artifacts (prompts, responses, reflections) are converted to vector embeddings
+   - Embeddings capture semantic meaning and code structure
+   - Consistent embedding dimensions maintained across all artifacts
+   - Incremental embedding updates when files change
+
+2. **Metadata Tagging**
+   - Each memory artifact is tagged with rich metadata:
+     - `layer`: Identifies which reflection layer (LS1, LS2, LS3, etc.)
+     - `prompt_id`: Unique identifier linking related artifacts
+     - `score`: Numerical evaluation from the Scorer mode
+     - `timestamp`: Creation and modification timestamps
+     - `artifact_type`: Classification (prompt, response, reflection, etc.)
+
+3. **Similarity Search**
+   - Vector-based retrieval using cosine similarity
+   - Context-aware search within or across layers
+   - Hybrid retrieval combining vector and metadata filtering
+   - Efficient indexing for fast retrieval
+
+### Embedding Divergence for Reflection Pruning
+
+The system uses embedding divergence to optimize the reflection process:
+
+1. **Jensen-Shannon Divergence**
+   - Measures information gain between iterations
+   - Quantifies semantic distance between related artifacts
+   - Provides mathematical foundation for novelty detection
+   - Enables data-driven decisions about reflection continuation
+
+2. **Novelty Detection**
+   - `noveltyScore`: Numerical measure of information novelty (0-1)
+   - `redundancyDetection`: Identification of duplicate information
+   - `innovationRate`: Change in novelty across iterations
+   - `saturationPoint`: Detection of diminishing returns
+
+3. **Reflection Pruning**
+   - Terminates reflection loops when novelty falls below threshold
+   - Prevents redundant processing of similar content
+   - Optimizes computational resources
+   - Balances quality improvement with efficiency
+
+4. **Decision Metrics**
+   - Combined score-based and embedding-based decision criteria
+   - Threshold parameters (ε for scores, τ for similarity, δ for divergence)
+   - Adaptive thresholds based on task complexity
+   - Historical performance tracking for continuous improvement
+
+The vector memory system enables the aiGI workflow to become increasingly efficient over time, learning from past iterations and avoiding redundant work. The embedding divergence calculations provide a mathematical foundation for determining when further reflection would yield diminishing returns, allowing the system to focus computational resources on the most productive paths.

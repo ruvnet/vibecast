@@ -1,0 +1,3 @@
+[console_scripts]
+gradio-mcp-client = gradio_mcp.examples.mcp_client:main
+gradio-mcp-server = gradio_mcp.examples.run_server:main

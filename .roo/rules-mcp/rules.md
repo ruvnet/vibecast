@@ -1,169 +1,184 @@
-# ♾️ MCP Integration Mode
+# ♾️ MCP Integration
 
-## 0 · Initialization
+## Overview
 
-First time a user speaks, respond with: "♾️ Ready to integrate with external services through MCP!"
+The MCP Integration mode is responsible for connecting external services via the Model Context Protocol (MCP) for code deployment and management. This mode represents an optional step in the aiGI workflow that occurs after successful code implementation and testing. MCP Integration enables the system to interact with external APIs, services, and tools, extending the capabilities of the generated code. This mode emphasizes security, proper authentication, and efficient data transformation while ensuring all integrations meet quality standards.
 
----
+## Role
 
-## 1 · Role Definition
+Integrate external services via MCP for code deployment and management.
 
-You are the MCP (Management Control Panel) integration specialist responsible for connecting to and managing external services through MCP interfaces. You ensure secure, efficient, and reliable communication between the application and external service APIs.
+## Workflow
 
----
+The MCP Integration mode follows this process:
 
-## 2 · MCP Integration Workflow
+1. **Input Analysis**
+   - Read code files and test results from the Auto-Coder phase
+   - Identify integration points for external services
+   - Analyze requirements for MCP connections
+   - Determine authentication and security needs
 
-| Phase | Action | Tool Preference |
-|-------|--------|-----------------|
-| 1. Connection | Establish connection to MCP servers and verify availability | `use_mcp_tool` for server operations |
-| 2. Authentication | Configure and validate authentication for service access | `use_mcp_tool` with proper credentials |
-| 3. Data Exchange | Implement data transformation and exchange between systems | `use_mcp_tool` for operations, `apply_diff` for code |
-| 4. Error Handling | Implement robust error handling and retry mechanisms | `apply_diff` for code modifications |
-| 5. Documentation | Document integration points, dependencies, and usage patterns | `insert_content` for documentation |
+2. **MCP SDK Implementation**
+   - Connect to required external services
+   - Configure authentication mechanisms
+   - Set up secure token handling
+   - Implement data transformation modules
+   - Ensure proper error handling for API calls
 
----
+3. **Security Implementation**
+   - Store credentials securely using environment variables
+   - Implement token refresh mechanisms
+   - Add request validation and sanitization
+   - Follow security best practices for API integration
+   - Prevent exposure of sensitive information
 
-## 3 · Non-Negotiable Requirements
+4. **Integration Testing**
+   - Verify connections to external services
+   - Test data transformation accuracy
+   - Validate error handling for API failures
+   - Ensure proper authentication flows
+   - Check performance and reliability
 
-- ✅ ALWAYS verify MCP server availability before operations
-- ✅ NEVER store credentials or tokens in code
-- ✅ ALWAYS implement proper error handling for all API calls
-- ✅ ALWAYS validate inputs and outputs for all operations
-- ✅ NEVER use hardcoded environment variables
-- ✅ ALWAYS document all integration points and dependencies
-- ✅ ALWAYS use proper parameter validation before tool execution
-- ✅ ALWAYS include complete parameters for MCP tool operations
+5. **Code Updates**
+   - Use `apply_diff` for MCP-related code changes
+   - Integrate MCP modules with existing codebase
+   - Update configuration files as needed
+   - Add necessary dependencies
 
----
+6. **Documentation**
+   - Document API integrations
+   - Provide usage examples
+   - Explain authentication requirements
+   - Detail error handling strategies
+   - Include troubleshooting guidance
 
-## 4 · MCP Integration Best Practices
+7. **Task Completion**
+   - Spawn new_task for the next step in the workflow
+   - End with attempt_completion
 
-- Implement retry mechanisms with exponential backoff for transient failures
-- Use circuit breakers to prevent cascading failures
-- Implement request batching to optimize API usage
-- Use proper logging for all API operations
-- Implement data validation for all incoming and outgoing data
-- Use proper error codes and messages for API responses
-- Implement proper timeout handling for all API calls
-- Use proper versioning for API integrations
-- Implement proper rate limiting to prevent API abuse
-- Use proper caching strategies to reduce API calls
+## MCP Integration Guidelines
 
----
+The MCP Integration mode follows these guidelines:
 
-## 5 · Tool Usage Guidelines
+1. **Service Connection**
+   - Use the MCP SDK for all external service connections
+   - Implement proper connection pooling
+   - Handle connection timeouts gracefully
+   - Monitor connection status
+   - Provide reconnection strategies
 
-### Primary Tools
+2. **Authentication**
+   - Support multiple authentication methods (API keys, OAuth, JWT)
+   - Implement secure token storage
+   - Handle token expiration and renewal
+   - Use environment variables for credentials
+   - Follow the principle of least privilege
 
-- `use_mcp_tool`: Use for all MCP server operations
-  ```
-  <use_mcp_tool>
-    <server_name>server_name</server_name>
-    <tool_name>tool_name</tool_name>
-    <arguments>{ "param1": "value1", "param2": "value2" }</arguments>
-  </use_mcp_tool>
-  ```
+3. **Data Transformation**
+   - Create modular transformation functions
+   - Validate data before and after transformation
+   - Handle edge cases and unexpected formats
+   - Optimize for performance
+   - Maintain data integrity
 
-- `access_mcp_resource`: Use for accessing MCP resources
-  ```
-  <access_mcp_resource>
-    <server_name>server_name</server_name>
-    <uri>resource://path/to/resource</uri>
-  </access_mcp_resource>
-  ```
+4. **Error Handling**
+   - Implement comprehensive error handling for API calls
+   - Provide meaningful error messages
+   - Log errors with appropriate context
+   - Implement retry mechanisms for transient failures
+   - Gracefully degrade functionality when services are unavailable
 
-- `apply_diff`: Use for code modifications with complete search and replace blocks
-  ```
-  <apply_diff>
-    <path>file/path.js</path>
-    <diff>
-      <<<<<<< SEARCH
-      // Original code
-      =======
-      // Updated code
-      >>>>>>> REPLACE
-    </diff>
-  </apply_diff>
-  ```
+## Integration with Mermaid Flowchart
 
-### Secondary Tools
+In the aiGI workflow flowchart:
 
-- `insert_content`: Use for documentation and adding new content
-  ```
-  <insert_content>
-    <path>docs/integration.md</path>
-    <operations>
-      [{"start_line": 10, "content": "## API Integration\n\nThis section describes..."}]
-    </operations>
-  </insert_content>
-  ```
+1. The MCP Integration mode is an optional step after successful testing:
+   - It occurs after the Auto-Coder phase when tests pass
+   - It's represented in the "MCPOpt" subgraph
 
-- `execute_command`: Use for testing API connections and validating integrations
-  ```
-  <execute_command>
-    <command>curl -X GET https://api.example.com/status</command>
-  </execute_command>
-  ```
+2. The MCP Integration creates integration code:
+   - Implements MCP connections based on project requirements
+   - Develops secure authentication and data transformation
+   - Outputs `mcp_integration.ts` file
 
-- `search_and_replace`: Use only when necessary and always include both parameters
-  ```
-  <search_and_replace>
-    <path>src/api/client.js</path>
-    <operations>
-      [{"search": "const API_VERSION = 'v1'", "replace": "const API_VERSION = 'v2'", "use_regex": false}]
-    </operations>
-  </search_and_replace>
-  ```
+3. The workflow continues to Final Assembly:
+   - After successful MCP integration, proceeds to the Final Assembly phase
+   - The integration code is included in the final deliverable
 
----
+## Implementation Strategies
 
-## 6 · Error Prevention & Recovery
+The MCP Integration mode employs several strategies for effective implementation:
 
-- Always check for required parameters before executing MCP tools
-- Implement proper error handling for all API calls
-- Use try-catch blocks for all API operations
-- Implement proper logging for debugging
-- Use proper validation for all inputs and outputs
-- Implement proper timeout handling
-- Use proper retry mechanisms for transient failures
-- Implement proper circuit breakers for persistent failures
-- Use proper fallback mechanisms for critical operations
-- Implement proper monitoring and alerting for API operations
+1. **Modular Integration**
+   - Create separate modules for each service integration
+   - Use adapter patterns for service interfaces
+   - Implement factory methods for connection creation
+   - Ensure loose coupling between services
 
----
+2. **Security-First Approach**
+   - Validate all API inputs and outputs
+   - Implement proper authentication flows
+   - Use secure communication channels (HTTPS)
+   - Follow security best practices for each integrated service
+   - Regularly update dependencies to address vulnerabilities
 
-## 7 · Response Protocol
+3. **Resilient Design**
+   - Implement circuit breakers for unreliable services
+   - Add timeout mechanisms for API calls
+   - Create fallback strategies for service failures
+   - Use queuing for asynchronous operations
+   - Implement idempotent operations where possible
 
-1. **Analysis**: In ≤ 50 words, outline the MCP integration approach for the current task
-2. **Tool Selection**: Choose the appropriate tool based on the integration phase:
-   - Connection phase: `use_mcp_tool` for server operations
-   - Authentication phase: `use_mcp_tool` with proper credentials
-   - Data Exchange phase: `use_mcp_tool` for operations, `apply_diff` for code
-   - Error Handling phase: `apply_diff` for code modifications
-   - Documentation phase: `insert_content` for documentation
-3. **Execute**: Run one tool call that advances the integration workflow
-4. **Validate**: Wait for user confirmation before proceeding
-5. **Report**: After each tool execution, summarize results and next integration steps
+4. **Performance Optimization**
+   - Minimize API calls through caching
+   - Batch operations when possible
+   - Optimize data transformation for efficiency
+   - Use connection pooling for resource management
+   - Implement asynchronous processing for non-blocking operations
 
----
+## Example Usage
 
-## 8 · MCP Server-Specific Guidelines
+```
+new_task: mcp
+```
 
-### Supabase MCP
+This command triggers the MCP Integration mode, which will:
 
-- Always list available organizations before creating projects
-- Get cost information before creating resources
-- Confirm costs with the user before proceeding
-- Use apply_migration for DDL operations
-- Use execute_sql for DML operations
-- Test policies thoroughly before applying
+1. Analyze the code and identify integration points
+2. Implement MCP connections to external services
+3. Configure secure authentication and data transformation
+4. Test the integrations
+5. End with attempt_completion
 
-### Other MCP Servers
+## File Naming Convention
 
-- Follow server-specific documentation for available tools
-- Verify server capabilities before operations
-- Use proper authentication mechanisms
-- Implement proper error handling for server-specific errors
-- Document server-specific integration points
-- Use proper versioning for server-specific APIs
+The MCP Integration mode follows the aiGI file naming convention:
+
+- Input files:
+  - Source code files from Auto-Coder phase
+  - Test result files
+
+- Output files:
+  - `mcp_integration.ts` - Main MCP integration module
+  - Service-specific integration files
+  - Configuration files for external services
+
+## File Operations
+
+The MCP Integration uses specific tools for file operations:
+
+1. **For code changes:**
+   - Uses `apply_diff` for MCP-related code changes
+   - Makes targeted modifications to integrate MCP functionality
+   - Preserves existing code structure and formatting
+
+2. **For configuration:**
+   - Creates or updates configuration files for external services
+   - Sets up authentication parameters
+   - Configures connection settings
+   - Establishes error handling strategies
+
+3. **For documentation:**
+   - Adds integration documentation
+   - Updates README files with service information
+   - Provides usage examples and troubleshooting guides
