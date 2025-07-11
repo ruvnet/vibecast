@@ -1,0 +1,148 @@
+[package]
+name = "cuda-rust-wasm"
+version = "0.1.0"
+edition = "2021"
+authors = ["CUDA-Rust Team"]
+description = "CUDA to Rust transpiler with WebGPU/WASM support"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/vibecast/cuda-rust-wasm"
+keywords = ["cuda", "gpu", "webgpu", "wasm", "transpiler"]
+categories = ["development-tools", "web-programming", "wasm"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Core dependencies
+thiserror = "1.0"
+anyhow = "1.0"
+clap = { version = "4.4", features = ["derive"] }
+
+# Parser dependencies
+nom = "7.1"  # Parser combinator for CUDA parsing
+logos = "0.14"  # Lexer generator
+syn = "2.0"  # Rust code generation
+quote = "1.0"  # Rust code generation
+proc-macro2 = "1.0"
+
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+futures = "0.3"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+bincode = "1.3"
+
+# GPU backends
+wgpu = { version = "0.19", features = ["webgl", "webgpu"] }
+bytemuck = { version = "1.14", features = ["derive"] }
+
+# Memory management
+parking_lot = "0.12"  # Faster mutex implementation
+crossbeam = "0.8"  # Concurrent data structures
+
+# Logging and debugging
+log = "0.4"
+env_logger = "0.11"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# WebAssembly support
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+web-sys = { version = "0.3", features = [
+    "console",
+    "Window",
+    "Document",
+    "Element",
+    "HtmlCanvasElement",
+    "WebGl2RenderingContext",
+    "GpuDevice",
+    "GpuQueue",
+    "GpuBuffer",
+    "GpuTexture",
+    "GpuShaderModule",
+    "GpuComputePipeline",
+    "GpuBindGroup",
+    "GpuBindGroupLayout",
+    "GpuCommandEncoder",
+    "GpuComputePassEncoder",
+] }
+js-sys = "0.3"
+console_error_panic_hook = "0.1"
+
+# Native GPU support
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+cuda-sys = { version = "0.2", optional = true }
+opencl3 = { version = "0.9", optional = true }
+vulkano = { version = "0.34", optional = true }
+
+[dev-dependencies]
+# Benchmarking
+criterion = { version = "0.5", features = ["html_reports"] }
+
+# Property-based testing
+proptest = "1.4"
+quickcheck = "1.0"
+
+# Test utilities
+pretty_assertions = "1.4"
+approx = "0.5"  # For floating point comparisons
+rand = "0.8"
+tempfile = "3.8"
+
+# Async testing
+tokio-test = "0.4"
+
+# Coverage
+cargo-tarpaulin = "0.27"
+
+[build-dependencies]
+lalrpop = "0.20"  # Parser generator for complex grammars
+
+[features]
+default = ["native-gpu"]
+native-gpu = ["cuda-sys", "opencl3"]
+vulkan = ["vulkano"]
+cuda-backend = ["cuda-sys"]
+opencl-backend = ["opencl3"]
+webgpu-only = []
+debug-transpiler = []
+
+[[example]]
+name = "vector_add"
+path = "examples/vector_add.rs"
+
+[[bench]]
+name = "memory_benchmarks"
+harness = false
+
+[[bench]]
+name = "kernel_benchmarks"
+harness = false
+
+[[bench]]
+name = "transpiler_benchmarks"
+harness = false
+
+[[bench]]
+name = "wasm_vs_native_benchmarks"
+harness = false
+
+[[bin]]
+name = "cuda2rust"
+path = "src/bin/cuda2rust.rs"
+
+[profile.release]
+lto = true
+opt-level = 3
+codegen-units = 1
+
+[profile.wasm]
+inherits = "release"
+opt-level = "z"  # Optimize for size
+lto = "fat"
+
+# Workspace configuration removed - using single crate structure

@@ -1,0 +1,33 @@
+# Tarpaulin configuration for test coverage
+
+[default]
+# Coverage options
+branch = true
+count = true
+line = true
+verbose = true
+all-features = true
+workspace = true
+timeout = "600"
+exclude-files = ["*/tests/*", "*/benches/*", "*/examples/*"]
+ignore-panics = true
+ignored = ["build.rs", "src/bin/*"]
+
+# Output formats
+out = ["Html", "Xml", "Lcov"]
+output-dir = "target/coverage"
+
+# Test options
+test-threads = 4
+release = false
+no-run = false
+
+# Coverage thresholds
+fail-under = 70.0
+
+[report]
+# Coveralls integration
+coveralls = "${COVERALLS_REPO_TOKEN}"
+
+# Codecov integration  
+codecov = "${CODECOV_TOKEN}"

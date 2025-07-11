@@ -1,0 +1,14 @@
+{
+  "name": "my-cuda-wasm-project",
+  "version": "1.0.0",
+  "description": "A CUDA-Rust-WASM project",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "cuda-rust-wasm transpile kernels/*.cu",
+    "test": "jest",
+    "benchmark": "cuda-rust-wasm benchmark kernels/*.cu"
+  },
+  "dependencies": {
+    "cuda-rust-wasm": "^0.1.0"
+  }
+}

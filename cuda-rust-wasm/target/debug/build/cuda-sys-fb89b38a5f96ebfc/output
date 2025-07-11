@@ -1,0 +1,4 @@
+cargo:rustc-link-lib=dylib=cuda
+cargo:rustc-link-lib=dylib=cudart
+cargo:rustc-link-lib=dylib=cublas
+cargo:rerun-if-changed=build.rs
