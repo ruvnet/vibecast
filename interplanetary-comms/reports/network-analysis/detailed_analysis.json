@@ -1,0 +1,129 @@
+{
+  "performance_trends": {
+    "latency": {
+      "scenarios": [
+        "earth_mars_opposition",
+        "earth_mars_conjunction",
+        "earth_jupiter_long_range"
+      ],
+      "mean_latencies_minutes": [
+        2.656257481987633,
+        21.75266612498978,
+        52.40464964321761
+      ],
+      "jitter_values": [
+        5.588975404822644,
+        50.3956374809603,
+        133.56039971801107
+      ],
+      "best_case_latency": 2.656257481987633,
+      "worst_case_latency": 52.40464964321761,
+      "latency_variation": 20.49151433938168
+    },
+    "throughput": {
+      "scenarios": [
+        "earth_mars_opposition",
+        "earth_mars_conjunction",
+        "earth_jupiter_long_range"
+      ],
+      "max_throughputs_mbps": [
+        96.62807988318177,
+        73.0814408156523,
+        45.78321730674255
+      ],
+      "average_efficiencies": [
+        0.02832964663127722,
+        0.07045283683304307,
+        0.13883323113000356
+      ],
+      "peak_throughput": 96.62807988318177,
+      "throughput_degradation": 0.52619137871629
+    }
+  },
+  "bottleneck_analysis": {
+    "latency_bottlenecks": [],
+    "throughput_bottlenecks": [
+      {
+        "test": "throughput_analysis",
+        "issue": "Throughput performance acceptable. Best case: 96.6 Mbps",
+        "severity": "WARNING"
+      }
+    ],
+    "reliability_bottlenecks": [
+      {
+        "test": "error_correction_validation",
+        "issue": "Exception: 'str' object has no attribute 'value'",
+        "severity": "FAIL"
+      },
+      {
+        "test": "fault_tolerance",
+        "issue": "Fault tolerance acceptable. Single failure: 66.7%, Double failure: 33.3%",
+        "severity": "WARNING"
+      }
+    ],
+    "capacity_bottlenecks": [
+      {
+        "test": "network_topology_optimization",
+        "issue": "Topology optimization poor. Best: mesh (score: 0.50)",
+        "severity": "FAIL"
+      },
+      {
+        "test": "relay_station_handoff",
+        "issue": "Handoff performance poor. Success rate: 0.0%, Max time: 0.10s",
+        "severity": "FAIL"
+      }
+    ]
+  },
+  "reliability_assessment": {
+    "error_correction": {
+      "overall_success_rate": 0,
+      "code_performance": {},
+      "best_performing_code": null
+    },
+    "fault_tolerance": {
+      "failure_scenarios": [
+        "no_failures",
+        "single_failure",
+        "double_failure",
+        "triple_failure"
+      ],
+      "connectivity_values": [
+        1.0,
+        0.6666666666666666,
+        0.3333333333333333,
+        0
+      ],
+      "delivery_probabilities": [
+        1.0,
+        0.99,
+        0.9801,
+        0.5
+      ],
+      "graceful_degradation": 0.9197530864197531,
+      "critical_failure_point": "double_failure"
+    }
+  },
+  "optimization_opportunities": [
+    {
+      "category": "reliability_optimization",
+      "priority": "critical",
+      "recommendation": "Implement adaptive error correction with machine learning",
+      "expected_improvement": "90%+ error correction success rate",
+      "implementation_cost": "medium"
+    },
+    {
+      "category": "protocol_optimization",
+      "priority": "medium",
+      "recommendation": "Implement quantum-enhanced routing protocols",
+      "expected_improvement": "20-30% overall performance boost",
+      "implementation_cost": "high"
+    },
+    {
+      "category": "monitoring_optimization",
+      "priority": "low",
+      "recommendation": "Deploy real-time network monitoring and analytics",
+      "expected_improvement": "Proactive issue detection and resolution",
+      "implementation_cost": "low"
+    }
+  ]
+}

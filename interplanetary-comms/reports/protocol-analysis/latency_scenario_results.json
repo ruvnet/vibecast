@@ -1,0 +1,10 @@
+{
+  "test_timestamp": 1752254777.9986281,
+  "scenarios_tested": 4,
+  "scenarios": [
+    {
+      "scenario": "Near Opposition",
+      "actual_distance_au": 0.19966683329365628,
+      "actual_delay_minutes": 1.6605624968922412,
+      "protocol_adaptation": true,
+      "error_correction_adequate": 

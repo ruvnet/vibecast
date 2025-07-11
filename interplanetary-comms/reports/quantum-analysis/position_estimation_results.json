@@ -1,0 +1,59 @@
+{
+  "test_summary": {
+    "total_tests": 4,
+    "overall_mean_error_meters": 6531.483701460127,
+    "overall_success_rate": 0.23552777777777778,
+    "overall_convergence_time_seconds": 1323.675,
+    "timestamp": 1752254825.1590536
+  },
+  "individual_results": {
+    "orbital_accuracy": {
+      "mean_error_meters": 1786.918779343554,
+      "std_error_meters": 950.7842268033731,
+      "max_error_meters": 6381.409422610168,
+      "min_error_meters": 73.10737442529654,
+      "convergence_time_seconds": 1800,
+      "final_uncertainty_meters": 22404.37318856526,
+      "success_rate": 0.002777777777777778,
+      "samples_tested": 1800
+    },
+    "interplanetary_accuracy": {
+      "mean_error_meters": 7579.147410086986,
+      "std_error_meters": 12685.377792655612,
+      "max_error_meters": 79038.90660637294,
+      "min_error_meters": 138.92072633718192,
+      "convergence_time_seconds": 340.0,
+      "final_uncertainty_meters": 51186534.19329304,
+      "success_rate": 0.0,
+      "samples_tested": 360
+    },
+    "high_precision": {
+      "mean_error_meters": 52.290574733416555,
+      "std_error_meters": 27.935647442564576,
+      "max_error_meters": 228.61705573422043,
+      "min_error_meters": 0.34584349057878727,
+      "convergence_time_seconds": 454.70000000000005,
+      "final_uncertainty_meters": 2384.6269637974597,
+      "success_rate": 0.9393333333333334,
+      "samples_tested": 9000
+    },
+    "degraded_conditions": {
+      "mean_error_meters": 16707.57804167655,
+      "std_error_meters": 9906.193139709512,
+      "max_error_meters": 59078.524113003754,
+      "min_error_meters": 212.76343662641412,
+      "convergence_time_seconds": 2700,
+      "final_uncertainty_meters": 76252.87331830508,
+      "success_rate": 0.0,
+      "samples_tested": 1350
+    }
+  },
+  "recommendations": [
+    "Implement advanced quantum error correction to reduce position errors",
+    "Optimize filter parameters for better convergence",
+    "Enhance orbital dynamics model in position estimator",
+    "Implement hybrid navigation for interplanetary missions",
+    "Deploy higher resolution magnetic field maps",
+    "Add robust estimation algorithms for challenging environments"
+  ]
+}

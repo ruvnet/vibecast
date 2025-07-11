@@ -1,0 +1,167 @@
+{
+  "simulation_scenarios": {
+    "earth_mars_communication": {
+      "description": "Standard Earth-Mars communication with varying orbital distances",
+      "parameters": {
+        "duration_hours": 24,
+        "messages_per_hour": 50,
+        "orbital_positions": {
+          "earth_angle": 0,
+          "mars_angle": 0.785398
+        },
+        "traffic_types": {
+          "emergency": 5,
+          "critical": 15,
+          "normal": 60,
+          "bulk_data": 20
+        }
+      },
+      "expected_metrics": {
+        "min_delay_minutes": 4,
+        "max_delay_minutes": 24,
+        "success_rate_percent": 95,
+        "relay_usage_percent": 15
+      }
+    },
+    "solar_conjunction_test": {
+      "description": "Communication during solar conjunction when sun blocks direct path",
+      "parameters": {
+        "duration_hours": 48,
+        "messages_per_hour": 30,
+        "orbital_positions": {
+          "earth_angle": 0,
+          "mars_angle": 3.14159
+        },
+        "solar_interference": true,
+        "relay_mandatory": true
+      },
+      "expected_metrics": {
+        "min_delay_minutes": 8,
+        "max_delay_minutes": 48,
+        "success_rate_percent": 85,
+        "relay_usage_percent": 100
+      }
+    },
+    "high_traffic_burst": {
+      "description": "High-traffic burst scenario simulating mission-critical operations",
+      "parameters": {
+        "duration_hours": 6,
+        "messages_per_hour": 200,
+        "orbital_positions": {
+          "earth_angle": 0,
+          "mars_angle": 1.5708
+        },
+        "traffic_types": {
+          "emergency": 10,
+          "critical": 40,
+          "normal": 30,
+          "bulk_data": 20
+        }
+      },
+      "expected_metrics": {
+        "min_delay_minutes": 6,
+        "max_delay_minutes": 30,
+        "success_rate_percent": 90,
+        "relay_usage_percent": 35
+      }
+    },
+    "quantum_security_test": {
+      "description": "Quantum key distribution and security validation",
+      "parameters": {
+        "duration_hours": 12,
+        "messages_per_hour": 25,
+        "quantum_encryption_rate": 100,
+        "key_generation_tests": 100,
+        "bell_inequality_tests": 50
+      },
+      "expected_metrics": {
+        "quantum_key_rate_mbps": 5,
+        "bell_test_success_rate": 95,
+        "encryption_overhead_percent": 15,
+        "key_generation_success_rate": 98
+      }
+    },
+    "relay_failure_simulation": {
+      "description": "Relay station failure and recovery simulation",
+      "parameters": {
+        "duration_hours": 24,
+        "messages_per_hour": 75,
+        "relay_failure_schedule": {
+          "hour_6": "l4_earth_offline",
+          "hour_12": "l5_earth_offline",
+          "hour_18": "l4_earth_recovered"
+        }
+      },
+      "expected_metrics": {
+        "recovery_time_minutes": 15,
+        "message_loss_percent": 5,
+        "reroute_success_rate": 90,
+        "failover_latency_increase": 25
+      }
+    },
+    "adaptive_protocol_test": {
+      "description": "Adaptive protocol behavior under varying conditions",
+      "parameters": {
+        "duration_hours": 36,
+        "messages_per_hour": 100,
+        "varying_conditions": {
+          "latency_profiles": ["interactive", "delayed_interactive", "store_and_forward"],
+          "bandwidth_variations": [0.5, 1.0, 2.0, 0.8, 1.5],
+          "error_rates": [0.001, 0.01, 0.05, 0.001]
+        }
+      },
+      "expected_metrics": {
+        "protocol_adaptations": 20,
+        "optimization_efficiency": 80,
+        "throughput_improvement": 30,
+        "error_correction_effectiveness": 95
+      }
+    }
+  },
+  "performance_targets": {
+    "earth_mars_direct": {
+      "min_delay_seconds": 240,
+      "max_delay_seconds": 1440,
+      "bandwidth_gbps": 1.0,
+      "availability_percent": 99.9
+    },
+    "earth_mars_relay": {
+      "min_delay_seconds": 480,
+      "max_delay_seconds": 2880,
+      "bandwidth_gbps": 0.5,
+      "availability_percent": 99.5
+    },
+    "quantum_security": {
+      "key_generation_rate_kbps": 1000,
+      "quantum_bit_error_rate": 0.03,
+      "bell_test_success_rate": 0.95,
+      "encryption_overhead_percent": 15
+    },
+    "relay_network": {
+      "storage_capacity_pb": 100,
+      "processing_delay_ms": 100,
+      "handoff_success_rate": 0.99,
+      "load_balancing_efficiency": 0.85
+    }
+  },
+  "test_validation_criteria": {
+    "communication_success": {
+      "message_delivery_rate": ">= 95%",
+      "end_to_end_latency": "within physics limits",
+      "data_integrity": "100%",
+      "security_validation": "all quantum tests pass"
+    },
+    "network_resilience": {
+      "single_point_failure": "< 5% message loss",
+      "recovery_time": "< 30 minutes",
+      "graceful_degradation": "maintain 80% capacity",
+      "fault_tolerance": "triple redundancy verified"
+    },
+    "performance_optimization": {
+      "throughput_efficiency": ">= 80%",
+      "bandwidth_utilization": ">= 75%",
+      "adaptive_improvements": ">= 25%",
+      "resource_optimization": ">= 90%"
+    }
+  }
+}

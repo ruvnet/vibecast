@@ -1,0 +1,193 @@
+{
+  "simulation_summary": {
+    "total_scenarios": 4,
+    "overall_success_rate": 0.2517361111111111,
+    "overall_quantum_fidelity": 0.9325,
+    "overall_latency_ms": 4.8135250392887325,
+    "timestamp": 1752254657.6110933
+  },
+  "scenario_performance": {
+    "orbital_accuracy": {
+      "success_rate": 0.006944444444444444,
+      "accuracy": 165.20752401897255,
+      "latency_ms": 0.0932175252172682,
+      "error_rate": 0.9930555555555556,
+      "quantum_fidelity": 0.92,
+      "details": {
+        "total_fixes": 288,
+        "successful_fixes": 2,
+        "duration_hours": 24,
+        "num_satellites": 12,
+        "orbital_altitude": 400000,
+        "accuracies": [
+          163.62249269324718,
+          175.00194878909568,
+          479.9914935918894,
+          106.83015999719936,
+          179.42086987380122,
+          219.44853836912128,
+          74.23772046297263,
+          96.97826404327878,
+          101.14787006429368,
+          243.7258545128682
+        ]
+      }
+    },
+    "interplanetary_navigation": {
+      "success_rate": 0.0,
+      "accuracy": 9694532.217178259,
+      "latency_ms": 0.010387102762858072,
+      "error_rate": 1.0,
+      "quantum_fidelity": 0.88,
+      "details": {
+        "total_fixes": 180,
+        "successful_fixes": 0,
+        "duration_days": 180,
+        "distance_au": 1.5,
+        "current_distance_km": 224396806.04999998,
+        "accuracies": [
+          14579519.916073428,
+          3537046.0677265325,
+          7024651.3022400895,
+          1790692.2158373331,
+          10676582.7067776,
+          9540624.554428158,
+          4569238.739888616,
+          9486773.959730579,
+          5687405.429036202,
+          9843586.786207562
+        ]
+      }
+    },
+    "quantum_key_security": {
+      "success_rate": 1.0,
+      "accuracy": 0.98,
+      "latency_ms": 3.8247108459472656,
+      "error_rate": 0.02,
+      "quantum_fidelity": 0.98,
+      "details": {
+        "protocol": "BB84",
+        "initial_key_length": 1024,
+        "final_key_length": 389,
+        "basis_matches": 489,
+        "measured_error_rate": 0.02,
+        "theoretical_error_rate": 0.05,
+        "sample_size": 100,
+        "errors_detected": 2
+      }
+    },
+    "entanglement_verification": {
+      "success_rate": 0.0,
+      "accuracy": 0.9475308641975309,
+      "latency_ms": 15.325784683227539,
+      "error_rate": 0.05246913580246913,
+      "quantum_fidelity": 0.9499999999999997,
+      "details": {
+        "protocol": "E91",
+        "initial_pairs": 1024,
+        "shared_bits": 324,
+        "bell_violations": 0.16243519945214857,
+        "error_rate": 0.05246913580246913,
+        "entanglement_fidelity": 0.9499999999999997
+      }
+    }
+  },
+  "recommendations": [
+    "Consider increasing magnetic field map resolution for improved navigation accuracy",
+    "Implement adaptive EKF parameters to improve navigation success rate"
+  ],
+  "detailed_results": [
+    {
+      "scenario": "orbital_accuracy",
+      "success_rate": 0.006944444444444444,
+      "accuracy": 165.20752401897255,
+      "latency_ms": 0.0932175252172682,
+      "error_rate": 0.9930555555555556,
+      "quantum_fidelity": 0.92,
+      "timestamp": 1752254657.5891178,
+      "details": {
+        "total_fixes": 288,
+        "successful_fixes": 2,
+        "duration_hours": 24,
+        "num_satellites": 12,
+        "orbital_altitude": 400000,
+        "accuracies": [
+          163.62249269324718,
+          175.00194878909568,
+          479.9914935918894,
+          106.83015999719936,
+          179.42086987380122,
+          219.44853836912128,
+          74.23772046297263,
+          96.97826404327878,
+          101.14787006429368,
+          243.7258545128682
+        ]
+      }
+    },
+    {
+      "scenario": "interplanetary_navigation",
+      "success_rate": 0.0,
+      "accuracy": 9694532.217178259,
+      "latency_ms": 0.010387102762858072,
+      "error_rate": 1.0,
+      "quantum_fidelity": 0.88,
+      "timestamp": 1752254657.5911498,
+      "details": {
+        "total_fixes": 180,
+        "successful_fixes": 0,
+        "duration_days": 180,
+        "distance_au": 1.5,
+        "current_distance_km": 224396806.04999998,
+        "accuracies": [
+          14579519.916073428,
+          3537046.0677265325,
+          7024651.3022400895,
+          1790692.2158373331,
+          10676582.7067776,
+          9540624.554428158,
+          4569238.739888616,
+          9486773.959730579,
+          5687405.429036202,
+          9843586.786207562
+        ]
+      }
+    },
+    {
+      "scenario": "quantum_key_security",
+      "success_rate": 1.0,
+      "accuracy": 0.98,
+      "latency_ms": 3.8247108459472656,
+      "error_rate": 0.02,
+      "quantum_fidelity": 0.98,
+      "timestamp": 1752254657.5950842,
+      "details": {
+        "protocol": "BB84",
+        "initial_key_length": 1024,
+        "final_key_length": 389,
+        "basis_matches": 489,
+        "measured_error_rate": 0.02,
+        "theoretical_error_rate": 0.05,
+        "sample_size": 100,
+        "errors_detected": 2
+      }
+    },
+    {
+      "scenario": "entanglement_verification",
+      "success_rate": 0.0,
+      "accuracy": 0.9475308641975309,
+      "latency_ms": 15.325784683227539,
+      "error_rate": 0.05246913580246913,
+      "quantum_fidelity": 0.9499999999999997,
+      "timestamp": 1752254657.6107836,
+      "details": {
+        "protocol": "E91",
+        "initial_pairs": 1024,
+        "shared_bits": 324,
+        "bell_violations": 0.16243519945214857,
+        "error_rate": 0.05246913580246913,
+        "entanglement_fidelity": 0.9499999999999997
+      }
+    }
+  ]
+}

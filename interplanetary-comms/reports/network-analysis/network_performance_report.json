@@ -1,0 +1,353 @@
+{
+  "test_summary": {
+    "total_tests": 8,
+    "passed_tests": 1,
+    "warning_tests": 2,
+    "failed_tests": 5,
+    "success_rate": 0.125,
+    "total_duration": 4.172370433807373,
+    "overall_status": "WARNING",
+    "timestamp": 1752254856.6944592
+  },
+  "detailed_results": [
+    {
+      "test_name": "latency_performance",
+      "status": "PASS",
+      "duration": 0.0156857967376709,
+      "metrics": {
+        "latency_results": {
+          "earth_mars_opposition": {
+            "mean_rtt": 159.375448919258,
+            "std_rtt": 6.208036808779009,
+            "min_rtt": 145.85820104907305,
+            "max_rtt": 173.84113233110628,
+            "mean_jitter": 5.588975404822644,
+            "percentile_95": 170.27997759380975,
+            "percentile_99": 172.56759777792067
+          },
+          "earth_mars_conjunction": {
+            "mean_rtt": 1305.1599674993868,
+            "std_rtt": 59.36780743159984,
+            "min_rtt": 1177.752299509321,
+            "max_rtt": 1436.4999869000208,
+            "mean_jitter": 50.3956374809603,
+            "percentile_95": 1415.549350443694,
+            "percentile_99": 1434.1310441220728
+          },
+          "earth_jupiter_long_range": {
+            "mean_rtt": 3144.2789785930568,
+            "std_rtt": 163.2818552183729,
+            "min_rtt": 2756.7904217313167,
+            "max_rtt": 3486.5057523613114,
+            "mean_jitter": 133.56039971801107,
+            "percentile_95": 3392.531977608293,
+            "percentile_99": 3480.483842290597
+          }
+        }
+      },
+      "details": "Latency performance within acceptable limits. Opposition: 2.7min, Conjunction: 21.8min",
+      "timestamp": 1752254852.5378635
+    },
+    {
+      "test_name": "throughput_analysis",
+      "status": "WARNING",
+      "duration": 5.1021575927734375e-05,
+      "metrics": {
+        "throughput_results": {
+          "earth_mars_opposition": {
+            "payload_1024": {
+              "throughput_bps": 99492.42837354128,
+              "throughput_mbps": 0.09949242837354128,
+              "transmission_time": 0.010001293473684211,
+              "efficiency": 0.0001047288719721487
+            },
+            "payload_10240": {
+              "throughput_bps": 1022308.9434326102,
+              "throughput_mbps": 1.0223089434326103,
+              "transmission_time": 0.010012934736842106,
+              "efficiency": 0.0010761146772974846
+            },
+            "payload_102400": {
+              "throughput_bps": 9902775.943865525,
+              "throughput_mbps": 9.902775943865525,
+              "transmission_time": 0.010129347368421053,
+              "efficiency": 0.010423974677753184
+            },
+            "payload_1048576": {
+              "throughput_bps": 96628079.88318177,
+              "throughput_mbps": 96.62807988318177,
+              "transmission_time": 0.011324517052631579,
+              "efficiency": 0.10171376829808607
+            }
+          },
+          "earth_mars_conjunction": {
+            "payload_1024": {
+              "throughput_bps": 107811.27111741545,
+              "throughput_mbps": 0.10781127111741545,
+              "transmission_time": 0.010004096,
+              "efficiency": 0.0003593709037247182
+            },
+            "payload_10240": {
+              "throughput_bps": 1082770.67779517,
+              "throughput_mbps": 1.08277067779517,
+              "transmission_time": 0.01004096,
+              "efficiency": 0.003609235592650567
+            },
+            "payload_102400": {
+              "throughput_bps": 10271381.435086794,
+              "throughput_mbps": 10.271381435086795,
+              "transmission_time": 0.0104096,
+              "efficiency": 0.03423793811695598
+            },
+            "payload_1048576": {
+              "throughput_bps": 73081440.8156523,
+              "throughput_mbps": 73.0814408156523,
+              "transmission_time": 0.014194304000000001,
+              "efficiency": 0.243604802718841
+            }
+          },
+          "earth_jupiter_long_range": {
+            "payload_1024": {
+              "throughput_bps": 99399.01467094356,
+              "throughput_mbps": 0.09939901467094356,
+              "transmission_time": 0.010012288,
+              "efficiency": 0.0009939901467094355
+            },
+            "payload_10240": {
+              "throughput_bps": 917789.6096065497,
+              "throughput_mbps": 0.9177896096065498,
+              "transmission_time": 0.01012288,
+              "efficiency": 0.009177896096065497
+            },
+            "payload_102400": {
+              "throughput_bps": 8732886.520981388,
+              "throughput_mbps": 8.732886520981388,
+              "transmission_time": 0.0112288,
+              "efficiency": 0.08732886520981388
+            },
+            "payload_1048576": {
+              "throughput_bps": 45783217.30674255,
+              "throughput_mbps": 45.78321730674255,
+              "transmission_time": 0.022582912,
+              "efficiency": 0.45783217306742546
+            }
+          }
+        }
+      },
+      "details": "Throughput performance acceptable. Best case: 96.6 Mbps",
+      "timestamp": 1752254852.5381253
+    },
+    {
+      "test_name": "error_correction_validation",
+      "status": "FAIL",
+      "duration": 0.13295793533325195,
+      "metrics": {},
+      "details": "Exception: 'str' object has no attribute 'value'",
+      "timestamp": 1752254852.6711998
+    },
+    {
+      "test_name": "network_topology_optimization",
+      "status": "FAIL",
+      "duration": 0.0016753673553466797,
+      "metrics": {
+        "topology_results": {
+          "star": {
+            "average_path_length": 1.75,
+            "redundancy": 0.25,
+            "fault_tolerance": 0.14285714285714285,
+            "bandwidth_efficiency": 0.5,
+            "total_connections": 7
+          },
+          "mesh": {
+            "average_path_length": 1.0,
+            "redundancy": 1.0,
+            "fault_tolerance": 1.0,
+            "bandwidth_efficiency": 0.5,
+            "total_connections": 28
+          },
+          "hybrid": {
+            "average_path_length": 1.8214285714285714,
+            "redundancy": 0.35714285714285715,
+            "fault_tolerance": 0.14285714285714285,
+            "bandwidth_efficiency": 0.45098039215686275,
+            "total_connections": 10
+          },
+          "hierarchical": {
+            "average_path_length": 2.5357142857142856,
+            "redundancy": 0.25,
+            "fault_tolerance": 0.14285714285714285,
+            "bandwidth_efficiency": 0.3450704225352113,
+            "total_connections": 7
+          }
+        },
+        "best_topology": "mesh"
+      },
+      "details": "Topology optimization poor. Best: mesh (score: 0.50)",
+      "timestamp": 1752254852.6731017
+    },
+    {
+      "test_name": "fault_tolerance",
+      "status": "WARNING",
+      "duration": 4.00543212890625e-05,
+      "metrics": {
+        "fault_tolerance_results": {
+          "no_failures": {
+            "failed_relays": 0,
+            "active_relays": 4,
+            "connectivity": 1.0,
+            "delivery_probability": 1.0,
+            "recovery_time": 0
+          },
+          "single_failure": {
+            "failed_relays": 1,
+            "active_relays": 3,
+            "connectivity": 0.6666666666666666,
+            "delivery_probability": 0.99,
+            "recovery_time": 60
+          },
+          "double_failure": {
+            "failed_relays": 2,
+            "active_relays": 2,
+            "connectivity": 0.3333333333333333,
+            "delivery_probability": 0.9801,
+            "recovery_time": 120
+          },
+          "triple_failure": {
+            "failed_relays": 3,
+            "active_relays": 1,
+            "connectivity": 0,
+            "delivery_probability": 0.5,
+            "recovery_time": 180
+          }
+        }
+      },
+      "details": "Fault tolerance acceptable. Single failure: 66.7%, Double failure: 33.3%",
+      "timestamp": 1752254852.673239
+    },
+    {
+      "test_name": "relay_station_handoff",
+      "status": "FAIL",
+      "duration": 4.019514560699463,
+      "metrics": {
+        "handoff_results": {
+          "size_1024": {
+            "avg_handoff_time": 0.10042352676391601,
+            "max_handoff_time": 0.10140228271484375,
+            "success_rate": 0.0,
+            "message_size": 1024
+          },
+          "size_10240": {
+            "avg_handoff_time": 0.10026121139526367,
+            "max_handoff_time": 0.10032534599304199,
+            "success_rate": 0.0,
+            "message_size": 10240
+          },
+          "size_102400": {
+            "avg_handoff_time": 0.10043811798095703,
+            "max_handoff_time": 0.10205292701721191,
+            "success_rate": 0.0,
+            "message_size": 102400
+          },
+          "size_1048576": {
+            "avg_handoff_time": 0.10040504932403564,
+            "max_handoff_time": 0.1013631820678711,
+            "success_rate": 0.0,
+            "message_size": 1048576
+          }
+        }
+      },
+      "details": "Handoff performance poor. Success rate: 0.0%, Max time: 0.10s",
+      "timestamp": 1752254856.6928608
+    },
+    {
+      "test_name": "solar_storm_resilience",
+      "status": "FAIL",
+      "duration": 0.0005238056182861328,
+      "metrics": {
+        "storm_results": {
+          "minor": {
+            "error_rate_multiplier": 2.0,
+            "signal_degradation": 0.1,
+            "transmission_success_rate": 0.88,
+            "network_availability": 0.9,
+            "estimated_recovery_time": 1
+          },
+          "moderate": {
+            "error_rate_multiplier": 5.0,
+            "signal_degradation": 0.3,
+            "transmission_success_rate": 0.66,
+            "network_availability": 0.7,
+            "estimated_recovery_time": 2
+          },
+          "major": {
+            "error_rate_multiplier": 10.0,
+            "signal_degradation": 0.5,
+            "transmission_success_rate": 0.49,
+            "network_availability": 0.5,
+            "estimated_recovery_time": 8
+          },
+          "extreme": {
+            "error_rate_multiplier": 20.0,
+            "signal_degradation": 0.8,
+            "transmission_success_rate": 0.14,
+            "network_availability": 0.19999999999999996,
+            "estimated_recovery_time": 24
+          }
+        }
+      },
+      "details": "Solar storm resilience poor. Major storm success: 49.0%, Extreme storm availability: 20.0%",
+      "timestamp": 1752254856.6938643
+    },
+    {
+      "test_name": "multi_hop_routing",
+      "status": "FAIL",
+      "duration": 0.0001990795135498047,
+      "metrics": {
+        "routing_results": {
+          "shortest_path": {
+            "average_latency": 12.209999999999999,
+            "average_hops": 1.4,
+            "overall_reliability": 0.5880458338820145,
+            "num_routes": 20
+          },
+          "lowest_latency": {
+            "average_latency": 12.209999999999999,
+            "average_hops": 1.4,
+            "overall_reliability": 0.5880458338820145,
+            "num_routes": 20
+          },
+          "highest_reliability": {
+            "average_latency": 12.209999999999999,
+            "average_hops": 1.4,
+            "overall_reliability": 0.6889894177271623,
+            "num_routes": 20
+          }
+        },
+        "best_strategy": "shortest_path"
+      },
+      "details": "Multi-hop routing poor. Best strategy: shortest_path, Latency: 12.2min, Reliability: 58.8%",
+      "timestamp": 1752254856.6943777
+    }
+  ],
+  "performance_analysis": {
+    "network_health": "POOR",
+    "bottlenecks": [
+      "throughput_analysis: Throughput performance acceptable. Best case: 96.6 Mbps",
+      "fault_tolerance: Fault tolerance acceptable. Single failure: 66.7%, Double failure: 33.3%"
+    ],
+    "strengths": [
+      "latency_performance: Latency performance within acceptable limits. Opposition: 2.7min, Conjunction: 21.8min"
+    ],
+    "critical_issues": [
+      "error_correction_validation: Exception: 'str' object has no attribute 'value'",
+      "network_topology_optimization: Topology optimization poor. Best: mesh (score: 0.50)",
+      "relay_station_handoff: Handoff performance poor. Success rate: 0.0%, Max time: 0.10s",
+      "solar_storm_resilience: Solar storm resilience poor. Major storm success: 49.0%, Extreme storm availability: 20.0%",
+      "multi_hop_routing: Multi-hop routing poor. Best strategy: shortest_path, Latency: 12.2min, Reliability: 58.8%"
+    ]
+  },
+  "recommendations": [
+    "Implement stronger error correction algorithms",
+    "Optimize network topology for better connectivity"
+  ]
+}
