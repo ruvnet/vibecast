@@ -10,7 +10,87 @@ import time
 from dataclasses import dataclass
 from typing import List, Dict, Tuple
 from enum import Enum
-import matplotlib.pyplot as plt
+try:
+    import matplotlib.pyplot as plt
+    HAS_MATPLOTLIB = True
+except ImportError:
+    HAS_MATPLOTLIB = False
+    # Mock matplotlib for when it's not available
+    class MockPlt:
+        @staticmethod
+        def figure(**kwargs):
+            pass
+        @staticmethod
+        def scatter(*args, **kwargs):
+            pass
+        @staticmethod
+        def plot(*args, **kwargs):
+            pass
+        @staticmethod
+        def annotate(*args, **kwargs):
+            pass
+        @staticmethod
+        def xlabel(*args, **kwargs):
+            pass
+        @staticmethod
+        def ylabel(*args, **kwargs):
+            pass
+        @staticmethod
+        def title(*args, **kwargs):
+            pass
+        @staticmethod
+        def legend(*args, **kwargs):
+            pass
+        @staticmethod
+        def grid(*args, **kwargs):
+            pass
+        @staticmethod
+        def axis(*args, **kwargs):
+            pass
+        @staticmethod
+        def tight_layout(*args, **kwargs):
+            pass
+        @staticmethod
+        def savefig(*args, **kwargs):
+            print(f"Plot would be saved to {args[0] if args else 'unknown'}")
+        @staticmethod
+        def close(*args, **kwargs):
+            pass
+        @staticmethod
+        def subplots(*args, **kwargs):
+            # Return mock figure and axes
+            return MockFig(), [MockAxes(), MockAxes(), MockAxes(), MockAxes()]
+        @staticmethod
+        def setp(*args, **kwargs):
+            pass
+    
+    class MockFig:
+        pass
+    
+    class MockAxes:
+        def hist(self, *args, **kwargs):
+            pass
+        def bar(self, *args, **kwargs):
+            pass
+        def set_xlabel(self, *args, **kwargs):
+            pass
+        def set_ylabel(self, *args, **kwargs):
+            pass
+        def set_title(self, *args, **kwargs):
+            pass
+        def set_xticks(self, *args, **kwargs):
+            pass
+        def set_xticklabels(self, *args, **kwargs):
+            pass
+        @property
+        def xaxis(self):
+            return MockXAxis()
+    
+    class MockXAxis:
+        def get_majorticklabels(self):
+            return []
+    
+    plt = MockPlt()
 from queue import PriorityQueue
 import hashlib
 # Constants
@@ -434,8 +514,14 @@ class InterplanetaryNetwork:
         
         # Priority breakdown
         for priority in range(5):
-            priority_results = [r for r in successful if 
-                              self.message_log[results.index(r)]['message'].priority == priority]
+            priority_results = []
+            for r in successful:
+                try:
+                    idx = results.index(r)
+                    if idx < len(self.message_log) and self.message_log[idx]['message'].priority == priority:
+                        priority_results.append(r)
+                except (ValueError, IndexError):
+                    continue
             if priority_results:
                 report[f'priority_{priority}_avg_delay'] = np.mean([r['total_delay'] for r in priority_results])
         
