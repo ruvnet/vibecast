@@ -1,0 +1,19 @@
+{
+  "name": "vibecast",
+  "version": "1.0.0",
+  "description": "Weekly Vibecast Live coding sessions with rUv",
+  "private": true,
+  "workspaces": [
+    "alexx-animator"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w alexx-animator",
+    "build": "npm run build -w alexx-animator",
+    "test": "npm run test -w alexx-animator"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  },
+  "author": "rUv",
+  "license": "MIT"
+}
