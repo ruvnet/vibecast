@@ -1,0 +1,232 @@
+# Quantum‑Magnetic Navigation — Multi‑Phased Implementation Plan  
+*(Python 3.11 • pytest 100 % coverage • Pydantic • Docker • FastAPI/uvicorn)*
+
+This roadmap breaks delivery into **seven tightly‑scoped phases**.  
+Each phase finishes **green**: `pytest --cov` ≥ **100 %**, `ruff` clean, Docker image builds.
+
+---
+
+## 0 · Global Tech Stack
+
+| Layer | Tooling | Notes |
+|-------|---------|-------|
+| Language | **Python 3.11** | Strict type‑hints (`mypy --strict`) |
+| Config / DTOs | **Pydantic v2** | Runtime validation & `.model_validate()` |
+| Tests | **pytest + pytest‑cov + hypothesis** | Fail under 100 % (`--cov-fail-under=100`) |
+| Lint / Format | ruff, black | Pre‑commit enforced |
+| API server | **FastAPI** + **uvicorn[standard]** | Optional service exposure |
+| Packaging | **pyproject.toml** (`hatch`/`poetry`) | PEP 621 metadata |
+| Docs | mkdocs‑material | Auto‑deploy via CI |
+| Container | Docker 23, slim `python:3.11-bookworm` base | Multi‑stage build |
+| CI | GitHub Actions | Matrix on OS+Python |
+
+---
+
+## 1 · Project Bootstrap
+
+> **Goal:** skeleton repo, fully automated test & coverage pipeline.
+
+### Tasks
+| # | Deliverable |
+|---|-------------|
+| 1.1 | `git init` + remote |
+| 1.2 | `pyproject.toml` with **hatch** (or poetry) & dev‑dependencies (`pytest`, `pytest‑cov`, `ruff`, `black`, `hypothesis`, `mypy`, `mkdocs`, `uvicorn`) |
+| 1.3 | Base package `qmag_nav/` + `__init__.py` holding semver |
+| 1.4 | Empty test `tests/test_sanity.py` (assert True) |
+| 1.5 | Pre‑commit config (`ruff`, `black`, `mypy`, `pytest --quiet`) |
+| 1.6 | **GitHub Actions:** `ci.yml` runs `pytest --cov=qmag_nav --cov-report=xml --cov-fail-under=100` + lint + mypy |
+| 1.7 | **Dockerfile** (multi‑stage) builds wheel, runs test layer then copies wheel to final image |
+
+### Acceptance
+`make test` passes with 100 % (one trivial line) + Docker image tagged `qmag-nav:dev` builds.
+
+---
+
+## 2 · Core Domain Models
+
+> **Goal:** typed, validated data layer.
+
+### Modules
+
+qmag_nav/
+└── models/
+├── base.py          # Pydantic BaseModel config
+├── geo.py           # LatLon, ECEF, MagneticVector
+├── sensor.py        # SensorSpec, CalibrationParams
+└── map.py           # MapHeader, TileMetadata
+
+### Tests
+*Hypothesis* property tests (e.g., round‑trip ECEF ↔ LLA).  
+All constructors enforce physical value ranges.
+
+---
+
+## 3 · Sensor Sub‑Package
+
+> **Goal:** bias‑compensated **Magnetometer** class + driver shim.
+
+qmag_nav/
+└── sensor/
+├── init.py
+├── magnetometer.py  # Magnetometer, MovingAvgFilter
+└── mock.py          # deterministic fake sensor for tests
+
+* 100 % unit tests with parameterized fixtures.  
+* Coverage includes edge cases: zero window, hot‑restart, extreme temps.
+
+---
+
+## 4 · Magnetic‑Map Engine
+
+> **Goal:** load GeoTIFF / NetCDF grids, bilinear interpolate anomaly.
+
+qmag_nav/
+└── mapping/
+├── init.py
+├── backend.py       # rasterio loader, cache
+├── interpolate.py   # bilinear + bicubic
+└── landmarks.py     # feature extractor (optional)
+
+* Use `numpy`/`xarray`; heavy lifting behind interface `MagneticMap`.  
+* Golden‑file tests: small 5×5 grid in `tests/data/` with expected outputs.  
+* Hypothesis fuzz on interpolation continuity.
+
+---
+
+## 5 · Navigation Filter & Fusion
+
+> **Goal:** Extended‑Kalman Filter (EKF) fusing IMU + mag anomaly.
+
+qmag_nav/
+└── filter/
+├── init.py
+├── ekf.py           # NavEKF (state, predict, update)
+└── utils.py         # Jacobian helpers
+
+* Deterministic simulation fixtures feed truth trajectory.  
+* Unit tests assert error bound < tolerance after `N` steps.  
+* 100 % branch coverage with hypothesis (random maneuvers).
+
+---
+
+## 6 · Interfaces: CLI + FastAPI
+
+> **Goal:** user‑facing entry points.
+
+qmag_nav/
+├── cli.py       #  python -m qmag_nav.cli simulate --steps 100
+└── service/
+├── init.py
+└── api.py   # FastAPI router
+
+### CLI
+* `simulate` sub‑command runs a demo trajectory, dumps JSON.  
+* Unit tests check exit code & JSON schema (validated by Pydantic).
+
+### API
+* `/healthz`, `/estimate` endpoints.  
+* Pytest + **httpx** async client; 100 % coverage.  
+* **uvicorn** entrypoint in `__main__.py`.
+
+---
+
+## 7 · Docker & Ops
+
+├── Dockerfile
+├── docker-compose.yml
+└── scripts/
+├── run-api.sh
+└── coverage.sh
+
+### Dockerfile (multi‑stage)
+1. **builder:**  
+   ```bash
+   FROM python:3.11-slim AS builder
+   RUN pip install hatch
+   COPY pyproject.toml poetry.lock ./
+   RUN hatch build -t wheel
+
+	2.	runtime:
+
+FROM python:3.11-slim
+COPY --from=builder /wheelhouse/qmag_nav*.whl /tmp/
+RUN pip install /tmp/qmag_nav*.whl uvicorn[standard]
+ENTRYPOINT ["uvicorn", "qmag_nav.service.api:app", "--host", "0.0.0.0", "--port", "8000"]
+
+
+
+docker‑compose
+
+version: "3.9"
+services:
+  qmag-nav:
+    build: .
+    ports: ["8000:8000"]
+    environment:
+      QMAG_ENV: "production"
+
+CI builds and pushes ghcr.io/<org>/qmag-nav:<sha> on every commit.
+
+⸻
+
+8 · Docs & Release
+	•	mkdocs-material site (docs/, mkdocs.yml) auto‑deployed via gh-pages.
+	•	CHANGELOG.md autogenerated with Commitizen.
+	•	Semantic‑version tag triggers PyPI publish and Docker latest.
+
+⸻
+
+File/Folder Cheat‑Sheet (after Phase 7)
+
+.
+├── qmag_nav/                 # src
+│   ├── __init__.py
+│   ├── models/
+│   ├── sensor/
+│   ├── mapping/
+│   ├── filter/
+│   ├── service/
+│   └── cli.py
+├── tests/                    # pytest suite (100 % coverage)
+│   ├── data/
+│   └── ...
+├── docs/                     # mkdocs pages
+├── pyproject.toml
+├── Dockerfile
+├── docker-compose.yml
+├── .pre-commit-config.yaml
+└── README.md
+
+
+
+⸻
+
+Make Targets (quality shorthand)
+
+lint:        ## Ruff + black + mypy
+	ruff check qmag_nav tests && black --check qmag_nav tests && mypy qmag_nav
+test:        ## Pytest + coverage (100 % fail‑under)
+	pytest --cov=qmag_nav --cov-report=term-missing --cov-fail-under=100
+build:       ## Local wheel build
+	hatch build -t wheel
+docker:      ## Build container image
+	docker build -t qmag-nav:dev .
+serve-docs:
+	mkdocs serve
+
+
+
+⸻
+
+Milestone Acceptance Gates
+
+Phase	Must‑Pass Criteria
+1	CI green on sanity test · Docker build succeeds
+2	All Pydantic models validated · 100 % coverage
+3	Magnetometer outputs correct bias‑free values · hypothesis passes
+4	Map interpolation error < 1 nT on golden grid
+5	EKF positional error < 1 m after 60 s sim
+6	CLI & API endpoints respond · JSON schema validated
+7	docker-compose up exposes GET /healthz → 200 OK
+
+Follow this blueprint and you’ll deliver a fully‑tested, containerized, modular quantum‑magnetic navigation framework ready for research, field trials, or extension into production avionics.
