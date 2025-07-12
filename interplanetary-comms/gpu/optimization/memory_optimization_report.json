@@ -1,0 +1,57 @@
+{
+  "timestamp": "2025-07-11T21:48:39.955879",
+  "patterns": {
+    "ekf_prediction_kernel": {
+      "pattern_type": "coalesced",
+      "stride": 1,
+      "alignment": 16,
+      "bank_conflicts": 0,
+      "efficiency": 0.78,
+      "shared_memory_usage": 1152,
+      "recommendations": [
+        "Optimize matrix tiling for better cache utilization"
+      ]
+    },
+    "matrix_multiply_kernel": {
+      "pattern_type": "tiled",
+      "stride": 16,
+      "alignment": 16,
+      "bank_conflicts": 0,
+      "efficiency": 0.91,
+      "shared_memory_usage": 1024,
+      "recommendations": [
+        "Excellent pattern - consider expanding tile size"
+      ]
+    },
+    "trajectory_optimization_kernel": {
+      "pattern_type": "coalesced",
+      "stride": 1,
+      "alignment": 16,
+      "bank_conflicts": 0,
+      "efficiency": 0.76,
+      "shared_memory_usage": 0,
+      "recommendations": [
+        "Add shared memory for gradient calculations"
+      ]
+    },
+    "magnetic_field_processing_kernel": {
+      "pattern_type": "irregular",
+      "stride": "variable",
+      "alignment": 16,
+      "bank_conflicts": 12,
+      "efficiency": 0.68,
+      "shared_memory_usage": 8192,
+      "recommendations": [
+        "Optimize trilinear interpolation",
+        "Use texture memory"
+      ]
+    }
+  },
+  "optimization_potential": 0.25,
+  "priority_optimizations": [
+    "Texture memory for magnetic field data",
+    "Shared memory optimization for field processing",
+    "Bank conflict elimination",
+    "Vectorized memory operations"
+  ]
+}

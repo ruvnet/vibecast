@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  cuda-dev:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: interplanetary-gpu:latest
+    container_name: interplanetary-gpu-dev
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - CUDA_VISIBLE_DEVICES=0,1,2,3  # Adjust based on available GPUs
+    volumes:
+      - ../:/workspace/interplanetary-gpu
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    network_mode: host
+    ipc: host
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    command: /bin/bash
+
+  cuda-jupyter:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.jupyter
+    image: interplanetary-gpu-jupyter:latest
+    container_name: interplanetary-gpu-jupyter
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    ports:
+      - "8888:8888"
+    volumes:
+      - ../:/workspace/interplanetary-gpu
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

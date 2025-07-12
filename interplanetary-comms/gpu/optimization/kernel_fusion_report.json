@@ -1,0 +1,41 @@
+{
+  "timestamp": "2025-07-11T21:48:59.183137",
+  "fusion_candidates": [
+    {
+      "kernel1": "ekf_prediction_kernel",
+      "kernel2": "matrix_multiply_kernel",
+      "fusion_type": "vertical_fusion",
+      "benefit": 0.35,
+      "shared_data": [
+        "covariance_matrix"
+      ],
+      "description": "Combine EKF prediction with matrix operations"
+    },
+    {
+      "kernel1": "trajectory_optimization_kernel",
+      "kernel2": "magnetic_field_processing_kernel",
+      "fusion_type": "horizontal_fusion",
+      "benefit": 0.28,
+      "shared_data": [
+        "position_data"
+      ],
+      "description": "Parallel trajectory and field processing"
+    },
+    {
+      "kernel1": "matrix_multiply_kernel",
+      "kernel2": "magnetic_field_processing_kernel",
+      "fusion_type": "nested_fusion",
+      "benefit": 0.22,
+      "shared_data": [
+        "interpolation_weights"
+      ],
+      "description": "Nested matrix operations for field interpolation"
+    }
+  ],
+  "total_benefit": 0.85,
+  "recommended_order": [
+    "vertical_fusion: EKF + Matrix (35% gain)",
+    "horizontal_fusion: Trajectory + Field (28% gain)",
+    "nested_fusion: Matrix + Field (22% gain)"
+  ]
+}

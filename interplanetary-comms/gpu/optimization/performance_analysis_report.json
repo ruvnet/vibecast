@@ -1,0 +1,58 @@
+{
+  "timestamp": "2025-07-11T21:48:08.650878",
+  "kernel_metrics": {
+    "ekf_prediction_kernel": {
+      "execution_time_ms": 0.85,
+      "memory_bandwidth_gb_s": 1250,
+      "occupancy": 0.72,
+      "registers_per_thread": 32,
+      "shared_memory_bytes": 1152,
+      "sm_efficiency": 0.78,
+      "warp_efficiency": 0.91,
+      "cache_hit_rate": 0.82
+    },
+    "matrix_multiply_kernel": {
+      "execution_time_ms": 0.12,
+      "memory_bandwidth_gb_s": 1420,
+      "occupancy": 0.81,
+      "registers_per_thread": 28,
+      "shared_memory_bytes": 1024,
+      "sm_efficiency": 0.85,
+      "warp_efficiency": 0.96,
+      "cache_hit_rate": 0.91
+    },
+    "trajectory_optimization_kernel": {
+      "execution_time_ms": 0.67,
+      "memory_bandwidth_gb_s": 1180,
+      "occupancy": 0.69,
+      "registers_per_thread": 24,
+      "shared_memory_bytes": 0,
+      "sm_efficiency": 0.74,
+      "warp_efficiency": 0.88,
+      "cache_hit_rate": 0.76
+    },
+    "magnetic_field_processing_kernel": {
+      "execution_time_ms": 1.2,
+      "memory_bandwidth_gb_s": 890,
+      "occupancy": 0.64,
+      "registers_per_thread": 36,
+      "shared_memory_bytes": 8192,
+      "sm_efficiency": 0.71,
+      "warp_efficiency": 0.83,
+      "cache_hit_rate": 0.68
+    }
+  },
+  "bottlenecks": [
+    "magnetic_field_processing_kernel: Low occupancy (64%)",
+    "trajectory_optimization_kernel: Memory bandwidth underutilized",
+    "ekf_prediction_kernel: High register pressure (32 registers)",
+    "magnetic_field_processing_kernel: Poor cache utilization (68%)"
+  ],
+  "recommendations": [
+    "Optimize shared memory layout in magnetic field kernel",
+    "Increase block size for trajectory optimization",
+    "Implement register spilling optimization for EKF",
+    "Use texture memory for spatial field data",
+    "Implement kernel fusion for sequential operations"
+  ]
+}

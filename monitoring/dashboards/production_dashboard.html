@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeCast Production Monitoring Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.28.0/index.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .dashboard-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        
+        .status-indicators {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-good { background: #4ade80; }
+        .status-warning { background: #fbbf24; }
+        .status-critical { background: #f87171; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .metric-card {
+            background: #2d2d2d;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .metric-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .metric-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .metric-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #4ade80;
+            margin-bottom: 5px;
+        }
+        
+        .metric-unit {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .metric-trend {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .trend-up { color: #4ade80; }
+        .trend-down { color: #f87171; }
+        
+        .chart-container {
+            background: #2d2d2d;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .chart-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .chart-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chart-button {
+            padding: 8px 16px;
+            background: #4a5568;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .chart-button:hover {
+            background: #667eea;
+        }
+        
+        .chart-button.active {
+            background: #667eea;
+        }
+        
+        .alerts-section {
+            background: #2d2d2d;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .alert-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #3a3a3a;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        
+        .alert-critical { border-left-color: #f87171; }
+        .alert-warning { border-left-color: #fbbf24; }
+        .alert-info { border-left-color: #60a5fa; }
+        
+        .alert-icon {
+            font-size: 20px;
+        }
+        
+        .alert-content {
+            flex: 1;
+        }
+        
+        .alert-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .alert-description {
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        .alert-time {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .gpu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .gpu-card {
+            background: #2d2d2d;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gpu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .gpu-name {
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .gpu-status {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4ade80;
+        }
+        
+        .gpu-metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .gpu-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .metric-bar {
+            width: 100px;
+            height: 6px;
+            background: #444;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .metric-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ade80, #fbbf24, #f87171);
+            transition: width 0.3s ease;
+        }
+        
+        .refresh-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .refresh-btn {
+            padding: 10px 20px;
+            background: #667eea;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .refresh-btn:hover {
+            background: #5a6fd8;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-header">
+        <div class="header-content">
+            <div class="logo">🚀 VibeCast Interplanetary Communications</div>
+            <div class="status-indicators">
+                <div class="status-item">
+                    <div class="status-indicator status-good"></div>
+                    <span>System Health</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-indicator status-good"></div>
+                    <span>GPU Status</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-indicator status-warning"></div>
+                    <span>Alerts</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-indicator status-good"></div>
+                    <span>Connectivity</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="refresh-controls">
+        <button class="refresh-btn" onclick="refreshData()">
+            <span id="refresh-icon">🔄</span> Refresh
+        </button>
+        <button class="refresh-btn" onclick="toggleAutoRefresh()">
+            <span id="auto-refresh-text">Auto: ON</span>
+        </button>
+    </div>
+    
+    <div class="dashboard-container">
+        <!-- Key Metrics -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">GPU Utilization</div>
+                    <div class="metric-trend trend-up">↗ +2.3%</div>
+                </div>
+                <div class="metric-value">87<span class="metric-unit">%</span></div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Memory Usage</div>
+                    <div class="metric-trend trend-up">↗ +1.1%</div>
+                </div>
+                <div class="metric-value">12.4<span class="metric-unit">GB</span></div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Temperature</div>
+                    <div class="metric-trend trend-down">↘ -0.8°C</div>
+                </div>
+                <div class="metric-value">76<span class="metric-unit">°C</span></div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Power Draw</div>
+                    <div class="metric-trend trend-up">↗ +15W</div>
+                </div>
+                <div class="metric-value">285<span class="metric-unit">W</span></div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Kernel Performance</div>
+                    <div class="metric-trend trend-up">↗ +5.2%</div>
+                </div>
+                <div class="metric-value">4.2<span class="metric-unit">ms</span></div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-title">Multi-GPU Sync</div>
+                    <div class="metric-trend trend-up">↗ +0.1%</div>
+                </div>
+                <div class="metric-value">99.7<span class="metric-unit">%</span></div>
+            </div>
+        </div>
+        
+        <!-- GPU Status Grid -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <div class="chart-title">GPU Status Overview</div>
+            </div>
+            <div class="gpu-grid" id="gpu-grid">
+                <!-- GPU cards will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Performance Charts -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <div class="chart-title">GPU Utilization Trends</div>
+                <div class="chart-controls">
+                    <button class="chart-button active" onclick="switchChart('1h')">1H</button>
+                    <button class="chart-button" onclick="switchChart('6h')">6H</button>
+                    <button class="chart-button" onclick="switchChart('24h')">24H</button>
+                    <button class="chart-button" onclick="switchChart('7d')">7D</button>
+                </div>
+            </div>
+            <canvas id="utilizationChart" width="800" height="400"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <div class="chart-header">
+                <div class="chart-title">Memory Usage & Temperature</div>
+                <div class="chart-controls">
+                    <button class="chart-button active" onclick="switchMemoryChart('1h')">1H</button>
+                    <button class="chart-button" onclick="switchMemoryChart('6h')">6H</button>
+                    <button class="chart-button" onclick="switchMemoryChart('24h')">24H</button>
+                </div>
+            </div>
+            <canvas id="memoryChart" width="800" height="400"></canvas>
+        </div>
+        
+        <div class="chart-container">
+            <div class="chart-header">
+                <div class="chart-title">Kernel Performance Metrics</div>
+            </div>
+            <canvas id="kernelChart" width="800" height="400"></canvas>
+        </div>
+        
+        <!-- Alerts Section -->
+        <div class="alerts-section">
+            <div class="chart-header">
+                <div class="chart-title">Active Alerts & Notifications</div>
+            </div>
+            <div id="alerts-container">
+                <!-- Alerts will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>VibeCast Interplanetary Communications System | Last Updated: <span id="last-updated"></span></p>
+    </div>
+    
+    <script>
+        // Global variables
+        let charts = {};
+        let autoRefreshInterval;
+        let isAutoRefreshEnabled = true;
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            loadInitialData();
+            startAutoRefresh();
+            updateLastUpdated();
+        });
+        
+        // Initialize charts
+        function initializeCharts() {
+            // GPU Utilization Chart
+            const utilizationCtx = document.getElementById('utilizationChart').getContext('2d');
+            charts.utilization = new Chart(utilizationCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'GPU 0',
+                        data: [],
+                        borderColor: '#4ade80',
+                        backgroundColor: 'rgba(74, 222, 128, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'GPU 1',
+                        data: [],
+                        borderColor: '#60a5fa',
+                        backgroundColor: 'rgba(96, 165, 250, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'GPU 2',
+                        data: [],
+                        borderColor: '#f87171',
+                        backgroundColor: 'rgba(248, 113, 113, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'GPU 3',
+                        data: [],
+                        borderColor: '#fbbf24',
+                        backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { color: '#888' },
+                            grid: { color: '#444' }
+                        },
+                        x: {
+                            ticks: { color: '#888' },
+                            grid: { color: '#444' }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
+                    }
+                }
+            });
+            
+            // Memory Chart
+            const memoryCtx = document.getElementById('memoryChart').getContext('2d');
+            charts.memory = new Chart(memoryCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Memory Usage (GB)',
+                        data: [],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        tension: 0.4,
+                        yAxisID: 'y'
+                    }, {
+                        label: 'Temperature (°C)',
+                        data: [],
+                        borderColor: '#f87171',
+                        backgroundColor: 'rgba(248, 113, 113, 0.1)',
+                        tension: 0.4,
+                        yAxisID: 'y1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            ticks: { color: '#888' },
+                            grid: { color: '#444' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            ticks: { color: '#888' },
+                            grid: { drawOnChartArea: false }
+                        },
+                        x: {
+                            ticks: { color: '#888' },
+                            grid: { color: '#444' }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
+                    }
+                }
+            });
+            
+            // Kernel Performance Chart
+            const kernelCtx = document.getElementById('kernelChart').getContext('2d');
+            charts.kernel = new Chart(kernelCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Quantum Navigation', 'Signal Processing', 'Compression', 'Multi-GPU Sync'],
+                    datasets: [{
+                        label: 'Execution Time (ms)',
+                        data: [4.2, 2.8, 1.9, 0.8],
+                        backgroundColor: [
+                            'rgba(74, 222, 128, 0.8)',
+                            'rgba(96, 165, 250, 0.8)',
+                            'rgba(248, 113, 113, 0.8)',
+                            'rgba(251, 191, 36, 0.8)'
+                        ],
+                        borderColor: [
+                            '#4ade80',
+                            '#60a5fa',
+                            '#f87171',
+                            '#fbbf24'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: '#888' },
+                            grid: { color: '#444' }
+                        },
+                        x: {
+                            ticks: { color: '#888' },
+                            grid: { color: '#444' }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Load initial data
+        function loadInitialData() {
+            updateGPUGrid();
+            updateAlerts();
+            updateChartData();
+        }
+        
+        // Update GPU grid
+        function updateGPUGrid() {
+            const gpuGrid = document.getElementById('gpu-grid');
+            const gpuData = [
+                { name: 'GPU 0', utilization: 87, memory: 78, temperature: 76, power: 285, status: 'good' },
+                { name: 'GPU 1', utilization: 92, memory: 82, temperature: 79, power: 295, status: 'good' },
+                { name: 'GPU 2', utilization: 85, memory: 75, temperature: 74, power: 280, status: 'good' },
+                { name: 'GPU 3', utilization: 89, memory: 80, temperature: 77, power: 290, status: 'warning' }
+            ];
+            
+            gpuGrid.innerHTML = '';
+            gpuData.forEach(gpu => {
+                const gpuCard = document.createElement('div');
+                gpuCard.className = 'gpu-card';
+                gpuCard.innerHTML = `
+                    <div class="gpu-header">
+                        <div class="gpu-name">${gpu.name}</div>
+                        <div class="gpu-status status-${gpu.status}"></div>
+                    </div>
+                    <div class="gpu-metrics">
+                        <div class="gpu-metric">
+                            <span>Utilization</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: ${gpu.utilization}%"></div>
+                            </div>
+                            <span>${gpu.utilization}%</span>
+                        </div>
+                        <div class="gpu-metric">
+                            <span>Memory</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: ${gpu.memory}%"></div>
+                            </div>
+                            <span>${gpu.memory}%</span>
+                        </div>
+                        <div class="gpu-metric">
+                            <span>Temperature</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: ${gpu.temperature}%"></div>
+                            </div>
+                            <span>${gpu.temperature}°C</span>
+                        </div>
+                        <div class="gpu-metric">
+                            <span>Power</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: ${gpu.power / 4}%"></div>
+                            </div>
+                            <span>${gpu.power}W</span>
+                        </div>
+                    </div>
+                `;
+                gpuGrid.appendChild(gpuCard);
+            });
+        }
+        
+        // Update alerts
+        function updateAlerts() {
+            const alertsContainer = document.getElementById('alerts-container');
+            const alerts = [
+                {
+                    type: 'warning',
+                    title: 'GPU 3 Temperature Warning',
+                    description: 'Temperature approaching 80°C threshold',
+                    time: '2 minutes ago',
+                    icon: '⚠️'
+                },
+                {
+                    type: 'info',
+                    title: 'Memory Usage Optimization',
+                    description: 'Memory usage patterns suggest optimization opportunity',
+                    time: '15 minutes ago',
+                    icon: '💡'
+                },
+                {
+                    type: 'critical',
+                    title: 'Kernel Performance Degradation',
+                    description: 'Quantum navigation kernel showing 12% performance drop',
+                    time: '45 minutes ago',
+                    icon: '🚨'
+                }
+            ];
+            
+            alertsContainer.innerHTML = '';
+            alerts.forEach(alert => {
+                const alertItem = document.createElement('div');
+                alertItem.className = `alert-item alert-${alert.type}`;
+                alertItem.innerHTML = `
+                    <div class="alert-icon">${alert.icon}</div>
+                    <div class="alert-content">
+                        <div class="alert-title">${alert.title}</div>
+                        <div class="alert-description">${alert.description}</div>
+                    </div>
+                    <div class="alert-time">${alert.time}</div>
+                `;
+                alertsContainer.appendChild(alertItem);
+            });
+        }
+        
+        // Update chart data
+        function updateChartData() {
+            const now = new Date();
+            const labels = [];
+            const data = { gpu0: [], gpu1: [], gpu2: [], gpu3: [] };
+            const memoryData = [];
+            const tempData = [];
+            
+            // Generate sample data for the last hour
+            for (let i = 59; i >= 0; i--) {
+                const time = new Date(now.getTime() - i * 60000);
+                labels.push(time.toLocaleTimeString());
+                
+                data.gpu0.push(Math.random() * 20 + 80);
+                data.gpu1.push(Math.random() * 15 + 85);
+                data.gpu2.push(Math.random() * 25 + 75);
+                data.gpu3.push(Math.random() * 18 + 82);
+                
+                memoryData.push(Math.random() * 3 + 11);
+                tempData.push(Math.random() * 8 + 72);
+            }
+            
+            // Update utilization chart
+            charts.utilization.data.labels = labels;
+            charts.utilization.data.datasets[0].data = data.gpu0;
+            charts.utilization.data.datasets[1].data = data.gpu1;
+            charts.utilization.data.datasets[2].data = data.gpu2;
+            charts.utilization.data.datasets[3].data = data.gpu3;
+            charts.utilization.update();
+            
+            // Update memory chart
+            charts.memory.data.labels = labels;
+            charts.memory.data.datasets[0].data = memoryData;
+            charts.memory.data.datasets[1].data = tempData;
+            charts.memory.update();
+        }
+        
+        // Refresh data
+        function refreshData() {
+            const refreshIcon = document.getElementById('refresh-icon');
+            refreshIcon.innerHTML = '<div class="loading"></div>';
+            
+            setTimeout(() => {
+                updateGPUGrid();
+                updateAlerts();
+                updateChartData();
+                updateLastUpdated();
+                refreshIcon.innerHTML = '🔄';
+            }, 1000);
+        }
+        
+        // Toggle auto refresh
+        function toggleAutoRefresh() {
+            isAutoRefreshEnabled = !isAutoRefreshEnabled;
+            const autoRefreshText = document.getElementById('auto-refresh-text');
+            
+            if (isAutoRefreshEnabled) {
+                autoRefreshText.textContent = 'Auto: ON';
+                startAutoRefresh();
+            } else {
+                autoRefreshText.textContent = 'Auto: OFF';
+                stopAutoRefresh();
+            }
+        }
+        
+        // Start auto refresh
+        function startAutoRefresh() {
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+            }
+            autoRefreshInterval = setInterval(refreshData, 30000); // 30 seconds
+        }
+        
+        // Stop auto refresh
+        function stopAutoRefresh() {
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+            }
+        }
+        
+        // Update last updated time
+        function updateLastUpdated() {
+            const lastUpdated = document.getElementById('last-updated');
+            lastUpdated.textContent = new Date().toLocaleString();
+        }
+        
+        // Chart switching functions
+        function switchChart(timeframe) {
+            const buttons = document.querySelectorAll('.chart-controls .chart-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update chart data based on timeframe
+            updateChartData();
+        }
+        
+        function switchMemoryChart(timeframe) {
+            const buttons = document.querySelectorAll('.chart-controls .chart-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update memory chart data based on timeframe
+            updateChartData();
+        }
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            Object.values(charts).forEach(chart => {
+                chart.resize();
+            });
+        });
+    </script>
+</body>
+</html>

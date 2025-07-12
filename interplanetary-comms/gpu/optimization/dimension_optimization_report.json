@@ -1,0 +1,62 @@
+{
+  "timestamp": "2025-07-11T21:49:23.468346",
+  "current_configs": {
+    "ekf_prediction_kernel": {
+      "block_size": 256,
+      "grid_size": "data_dependent",
+      "occupancy": 0.72,
+      "bottleneck": "register_pressure"
+    },
+    "matrix_multiply_kernel": {
+      "block_size": 256,
+      "grid_size": "matrix_dependent",
+      "occupancy": 0.81,
+      "bottleneck": "balanced"
+    },
+    "trajectory_optimization_kernel": {
+      "block_size": 256,
+      "grid_size": "points_dependent",
+      "occupancy": 0.69,
+      "bottleneck": "insufficient_parallelism"
+    },
+    "magnetic_field_processing_kernel": {
+      "block_size": 256,
+      "grid_size": "measurements_dependent",
+      "occupancy": 0.64,
+      "bottleneck": "shared_memory"
+    }
+  },
+  "optimizations": {
+    "ekf_prediction_kernel": {
+      "recommended_block_size": 128,
+      "reasoning": "Reduce register pressure, increase occupancy",
+      "expected_improvement": 0.15
+    },
+    "matrix_multiply_kernel": {
+      "recommended_block_size": 256,
+      "reasoning": "Current configuration is optimal",
+      "expected_improvement": 0.05
+    },
+    "trajectory_optimization_kernel": {
+      "recommended_block_size": 512,
+      "reasoning": "Increase parallelism, better SM utilization",
+      "expected_improvement": 0.2
+    },
+    "magnetic_field_processing_kernel": {
+      "recommended_block_size": 192,
+      "reasoning": "Reduce shared memory usage per block",
+      "expected_improvement": 0.25
+    }
+  },
+  "total_improvement": 0.1625,
+  "device_properties": {
+    "max_threads_per_block": 1024,
+    "max_blocks_per_sm": 32,
+    "max_threads_per_sm": 2048,
+    "multiprocessor_count": 82,
+    "warp_size": 32,
+    "max_shared_memory_per_block": 49152,
+    "max_registers_per_block": 65536,
+    "theoretical_bandwidth_gb_s": 1008
+  }
+}

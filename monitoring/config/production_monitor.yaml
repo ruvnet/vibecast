@@ -1,0 +1,230 @@
+# Production Monitoring Configuration
+# VibeCast Interplanetary Communications System
+version: "1.0"
+environment: "production"
+
+# Global monitoring settings
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'vibecast-interplanetary'
+    environment: 'production'
+
+# Data sources
+datasources:
+  prometheus:
+    url: "http://prometheus:9090"
+    retention: "30d"
+  
+  gpu_metrics:
+    nvidia_smi: true
+    nvml_interval: 5s
+    devices: "all"
+    
+  system_metrics:
+    node_exporter: true
+    process_monitor: true
+    
+  application_metrics:
+    cuda_profiler: true
+    kernel_metrics: true
+    memory_tracking: true
+
+# GPU Monitoring Configuration
+gpu_monitoring:
+  enabled: true
+  collection_interval: 5s
+  
+  metrics:
+    utilization:
+      gpu_utilization:
+        threshold_warning: 70
+        threshold_critical: 90
+        alert_duration: 1m
+      
+      memory_utilization:
+        threshold_warning: 80
+        threshold_critical: 95
+        alert_duration: 30s
+        
+      temperature:
+        threshold_warning: 80
+        threshold_critical: 85
+        alert_duration: 30s
+        
+      power_draw:
+        threshold_warning: 300  # watts
+        threshold_critical: 350
+        alert_duration: 1m
+        
+    performance:
+      kernel_execution_time:
+        threshold_warning: 10  # ms
+        threshold_critical: 20
+        alert_duration: 1m
+        
+      memory_bandwidth:
+        threshold_warning: 85  # % of theoretical
+        threshold_critical: 95
+        alert_duration: 30s
+        
+      occupancy:
+        threshold_warning: 50  # %
+        threshold_critical: 30
+        alert_duration: 2m
+
+# System Health Monitoring
+system_health:
+  enabled: true
+  check_interval: 30s
+  
+  checks:
+    - name: "GPU Availability"
+      command: "nvidia-smi -q"
+      timeout: 10s
+      
+    - name: "CUDA Runtime"
+      command: "nvcc --version"
+      timeout: 5s
+      
+    - name: "Memory Available"
+      type: "memory_threshold"
+      threshold: 1GB
+      
+    - name: "Disk Space"
+      type: "disk_threshold"
+      threshold: 10GB
+      path: "/var/log"
+      
+    - name: "Process Health"
+      type: "process_monitor"
+      processes:
+        - "quantum_navigation"
+        - "signal_processor"
+        - "multi_gpu_coordinator"
+
+# Alerting Configuration
+alerting:
+  enabled: true
+  
+  channels:
+    slack:
+      webhook_url: "${SLACK_WEBHOOK_URL}"
+      channel: "#vibecast-alerts"
+      
+    email:
+      smtp_server: "smtp.company.com"
+      recipients:
+        - "ops-team@company.com"
+        - "dev-team@company.com"
+        
+    pagerduty:
+      service_key: "${PAGERDUTY_SERVICE_KEY}"
+      
+  rules:
+    - alert: "HighGPUUtilization"
+      expr: "gpu_utilization > 90"
+      for: "1m"
+      severity: "warning"
+      annotations:
+        summary: "GPU utilization high on {{ $labels.device }}"
+        description: "GPU {{ $labels.device }} utilization is {{ $value }}%"
+        
+    - alert: "CriticalGPUUtilization"
+      expr: "gpu_utilization > 95"
+      for: "30s"
+      severity: "critical"
+      annotations:
+        summary: "CRITICAL: GPU utilization critical on {{ $labels.device }}"
+        
+    - alert: "MemoryLeakDetected"
+      expr: "memory_growth_rate > 100"  # MB/min
+      for: "5m"
+      severity: "warning"
+      annotations:
+        summary: "Memory leak detected in {{ $labels.process }}"
+        
+    - alert: "KernelPerformanceDegraded"
+      expr: "kernel_execution_time > 20"
+      for: "2m"
+      severity: "warning"
+      annotations:
+        summary: "Kernel {{ $labels.kernel_name }} performance degraded"
+        
+    - alert: "GPUTemperatureHigh"
+      expr: "gpu_temperature > 85"
+      for: "30s"
+      severity: "critical"
+      annotations:
+        summary: "GPU temperature critical: {{ $value }}°C"
+        
+    - alert: "MultiGPUCoordinationFailure"
+      expr: "multi_gpu_sync_failures > 5"
+      for: "1m"
+      severity: "critical"
+      annotations:
+        summary: "Multi-GPU coordination failures detected"
+
+# Log Aggregation
+logging:
+  enabled: true
+  
+  sources:
+    - name: "application_logs"
+      path: "/var/log/vibecast/*.log"
+      format: "json"
+      
+    - name: "cuda_logs"
+      path: "/var/log/cuda/*.log"
+      format: "text"
+      
+    - name: "system_logs"
+      path: "/var/log/syslog"
+      format: "syslog"
+      
+  aggregation:
+    elasticsearch:
+      url: "http://elasticsearch:9200"
+      index_pattern: "vibecast-logs-*"
+      
+  analysis:
+    error_patterns:
+      - "CUDA_ERROR"
+      - "OutOfMemory"
+      - "kernel_launch_failed"
+      - "device_synchronization_failed"
+      
+    performance_patterns:
+      - "slow_kernel_execution"
+      - "memory_bandwidth_low"
+      - "occupancy_warning"
+
+# Dashboard Configuration
+dashboards:
+  grafana:
+    url: "http://grafana:3000"
+    
+  default_dashboards:
+    - "gpu_overview"
+    - "system_health"
+    - "kernel_performance"
+    - "memory_usage"
+    - "multi_gpu_coordination"
+    - "error_analysis"
+    - "performance_trends"
+
+# Backup and Recovery
+backup:
+  enabled: true
+  schedule: "0 2 * * *"  # 2 AM daily
+  
+  retention:
+    metrics: "30d"
+    logs: "90d"
+    dashboards: "forever"
+    
+  destinations:
+    - type: "s3"
+      bucket: "vibecast-monitoring-backups"
+      path: "production/"

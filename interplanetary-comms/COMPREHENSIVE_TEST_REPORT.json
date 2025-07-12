@@ -4,38 +4,38 @@
     "passed_suites": 1,
     "failed_suites": 3,
     "success_rate": 25.0,
-    "total_duration": 17.082143306732178,
+    "total_duration": 32.59148597717285,
     "overall_status": "FAIL",
-    "timestamp": 1752253836.8481488
+    "timestamp": 1752270556.7514968
   },
   "test_results": [
     {
       "name": "integration_tests",
       "status": "FAIL",
-      "duration": 15.50949740409851,
-      "details": "Integration tests failed. Output: Navigation log: {\n  \"timestamp\": 1752253821.2927613,\n  \"message_id\": \"f210acecbc2d7ddb\",\n  \"source_position\": {\n    \"x\": 0.7756279872597815,\n    \"y\": -0.37604616152141945,\n    \"z\": -0.09987510409578776,\n    \"accuracy\": 1.482965174622512,\n    \"timestamp\": 1752253821.292593,\n    \"quantum_confidence\": 0.7,\n    \"entanglement_id\": \"ent_1752253821\"\n  },\n  \"relay_path\": [\n    \"mars_colony\"\n  ],\n  \"quantum_confidence\": 0.7\n}\nNavigation log: {\n  \"timestamp\": 1752253834.7627227,\n  \"message_id\": \"7f779138e7ee93d2\",\n  \"source_position\": {\n    \"x\": 1.2275227466466965,\n    \"y\": 0.0016855209143686878,\n    \"z\": -0.05568125064046062,\n    \"accuracy\": 26.60730954956952,\n    \"timestamp\": 1752253834.7624846,\n    \"quantum_confidence\": 0.7,\n    \"entanglement_id\": \"ent_1752253834\"\n  },\n  \"relay_path\": [\n    \"mars_colony\"\n  ],\n  \"quantum_confidence\": 0.7\n}\nRelay usage: {\n  \"timestamp\": 1752253834.8652573,\n  \"relay\": \"mars_colony\",\n  \"message_id\": \"7f779138e7ee93d2\",\n  \"payload_size\": 203,\n  \"priority\": 1\n}\nTotal Tests: 6\nPassed: 5\nFailed: 1\nSuccess Rate: 83.3%\nOverall Status: FAIL\n\nTest Details:\n  quantum_navigation: \u2713 PASS\n  relay_handoff: \u2713 PASS\n  routing_optimization: \u2713 PASS\n  error_correction: \u2713 PASS\n  adaptive_latency: \u2713 PASS\n  end_to_end_communication: \u2717 FAIL\n\nRecommendations:\n  - Investigate end-to-end communication flow\n",
-      "timestamp": 1752253835.2755556
+      "duration": 29.1804141998291,
+      "details": "Integration tests failed. Output: Navigation log: {\n  \"timestamp\": 1752270527.4220748,\n  \"message_id\": \"8ab0be6b92844788\",\n  \"source_position\": {\n    \"x\": -0.2439386907694545,\n    \"y\": 1.274873848016695,\n    \"z\": 0.019314449979211584,\n    \"accuracy\": 75.21368461467462,\n    \"timestamp\": 1752270527.42186,\n    \"quantum_confidence\": 0.7,\n    \"entanglement_id\": \"ent_1752270527\"\n  },\n  \"relay_path\": [\n    \"mars_colony\"\n  ],\n  \"quantum_confidence\": 0.7\n}\nNavigation log: {\n  \"timestamp\": 1752270552.8290966,\n  \"message_id\": \"68f37d22cc381b1b\",\n  \"source_position\": {\n    \"x\": -0.060817399076840584,\n    \"y\": 1.835569320600872,\n    \"z\": 0.03330565425266763,\n    \"accuracy\": 25.002668125149118,\n    \"timestamp\": 1752270552.8289168,\n    \"quantum_confidence\": 0.7,\n    \"entanglement_id\": \"ent_1752270552\"\n  },\n  \"relay_path\": [\n    \"mars_colony\"\n  ],\n  \"quantum_confidence\": 0.7\n}\nRelay usage: {\n  \"timestamp\": 1752270552.930758,\n  \"relay\": \"mars_colony\",\n  \"message_id\": \"68f37d22cc381b1b\",\n  \"payload_size\": 203,\n  \"priority\": 1\n}\nTotal Tests: 6\nPassed: 5\nFailed: 1\nSuccess Rate: 83.3%\nOverall Status: FAIL\n\nTest Details:\n  quantum_navigation: \u2713 PASS\n  relay_handoff: \u2713 PASS\n  routing_optimization: \u2713 PASS\n  error_correction: \u2713 PASS\n  adaptive_latency: \u2713 PASS\n  end_to_end_communication: \u2717 FAIL\n\nRecommendations:\n  - Investigate end-to-end communication flow\n",
+      "timestamp": 1752270553.340487
     },
     {
       "name": "protocol_validation",
       "status": "FAIL",
-      "duration": 1.5643930435180664,
+      "duration": 3.393475294113159,
       "details": "Protocol validation: 10 passed, 21 failed.\n\u2717 TestIPCPProtocol.test_message_priority_enum: type object 'MessagePriority' has no attribute 'P2_URGENT'\n\u2717 TestIPCPProtocol.test_message_receiving: TestIPCPProtocol.test_message_receiving() missing 1 required positional argument: 'ipcp_protocol'\n\u2717 TestIPCPProtocol.test_message_sending: TestIPCPProtocol.test_message_sending() missing 1 required positional argument: 'ipcp_protocol'\n\u2717 TestIPCPProtocol.test_protocol_initialization: TestIPCPProtocol.test_protocol_initialization() missing 1 required positional argument: 'ipcp_protocol'\n\u2713 TestIPCPProtocol.test_quantum_position_class\n\u2717 TestRelayStationProtocol.test_handoff_request: TestRelayStationProtocol.test_handoff_request() missing 1 required positional argument: 'relay_station'\n\u2717 TestRelayStationProtocol.test_message_storage: TestRelayStationProtocol.test_message_storage() missing 1 required positional argument: 'relay_station'\n\u2713 TestRelayStationProtocol.test_relay_capabilities\n\u2717 TestRelayStationProtocol.test_relay_initialization: TestRelayStationProtocol.test_relay_initialization() missing 1 required positional argument: 'relay_station'\n\u2713 TestRelayStationProtocol.test_relay_state_enum\n\u2713 TestQuantumRoutingAlgorithms.test_network_node_creation\n\u2717 TestQuantumRoutingAlgorithms.test_node_and_link_addition: TestQuantumRoutingAlgorithms.test_node_and_link_addition() missing 1 required positional argument: 'routing_engine'\n\u2713 TestQuantumRoutingAlgorithms.test_quantum_link_creation\n\u2717 TestQuantumRoutingAlgorithms.test_route_finding: TestQuantumRoutingAlgorithms.test_route_finding() missing 1 required positional argument: 'routing_engine'\n\u2717 TestQuantumRoutingAlgorithms.test_routing_engine_initialization: TestQuantumRoutingAlgorithms.test_routing_engine_initialization() missing 1 required positional argument: 'routing_engine'\n\u2713 TestQuantumRoutingAlgorithms.test_routing_strategy_enum\n\u2717 TestErrorCorrectionProtocols.test_error_correction_config: module 'deep_space_error_correction' has no attribute 'ErrorCorrectionType'\n\u2717 TestErrorCorrectionProtocols.test_error_correction_decoding: TestErrorCorrectionProtocols.test_error_correction_decoding() missing 1 required positional argument: 'error_correction'\n\u2717 TestErrorCorrectionProtocols.test_error_correction_initialization: TestErrorCorrectionProtocols.test_error_correction_initialization() missing 1 required positional argument: 'error_correction'\n\u2717 TestErrorCorrectionProtocols.test_error_correction_types: module 'deep_space_error_correction' has no attribute 'ErrorCorrectionType'\n\u2717 TestErrorCorrectionProtocols.test_reed_solomon_encoding: TestErrorCorrectionProtocols.test_reed_solomon_encoding() missing 1 required positional argument: 'error_correction'\n\u2717 TestAdaptiveLatencyProtocols.test_adaptive_session_creation: TestAdaptiveLatencyProtocols.test_adaptive_session_creation() missing 1 required positional argument: 'latency_manager'\n\u2717 TestAdaptiveLatencyProtocols.test_latency_manager_initialization: TestAdaptiveLatencyProtocols.test_latency_manager_initialization() missing 1 required positional argument: 'latency_manager'\n\u2713 TestAdaptiveLatencyProtocols.test_latency_measurement\n\u2717 TestAdaptiveLatencyProtocols.test_latency_profile_classification: TestAdaptiveLatencyProtocols.test_latency_profile_classification() missing 1 required positional argument: 'latency_manager'\n\u2717 TestAdaptiveLatencyProtocols.test_latency_profile_enum: type object 'LatencyProfile' has no attribute 'BATCH_PROCESSING'\n\u2717 TestAdaptiveLatencyProtocols.test_protocol_mode_enum: type object 'ProtocolMode' has no attribute 'ADAPTIVE'\n\u2713 TestProtocolIntegration.test_error_handling_integration\n\u2713 TestProtocolIntegration.test_full_protocol_stack\n\u2717 TestProtocolIntegration.test_protocol_compatibility: \n\u2713 TestProtocolIntegration.test_protocol_versioning",
-      "timestamp": 1752253836.8399835
+      "timestamp": 1752270556.7340083
     },
     {
       "name": "quantum_navigation",
       "status": "FAIL",
-      "duration": 0.00582432746887207,
+      "duration": 0.009725093841552734,
       "details": "Exception: cannot import name 'QuantumEntanglement' from 'quantum_navigator' (/workspaces/vibecast/interplanetary-comms/tests/../quantum_navigation/quantum_navigator.py)",
-      "timestamp": 1752253836.8458302
+      "timestamp": 1752270556.7437918
     },
     {
       "name": "performance_tests",
       "status": "PASS",
-      "duration": 0.0022737979888916016,
-      "details": "Performance tests passed. Message creation: 0.000s, Position calculation: 0.000s",
-      "timestamp": 1752253836.8481367
+      "duration": 0.0076448917388916016,
+      "details": "Performance tests passed. Message creation: 0.003s, Position calculation: 0.000s",
+      "timestamp": 1752270556.7514806
     }
   ],
   "recommendations": [
