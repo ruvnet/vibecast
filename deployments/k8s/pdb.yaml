@@ -1,0 +1,11 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: vibecast
+  labels:
+    app: vibecast
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: vibecast

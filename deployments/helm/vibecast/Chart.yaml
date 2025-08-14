@@ -1,0 +1,19 @@
+apiVersion: v2
+name: vibecast
+description: A Helm chart for Vibecast application
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+home: https://github.com/username/vibecast
+sources:
+  - https://github.com/username/vibecast
+maintainers:
+  - name: Vibecast Team
+    email: team@vibecast.example.com
+keywords:
+  - vibecast
+  - application
+  - web
+dependencies: []
+annotations:
+  category: Applications

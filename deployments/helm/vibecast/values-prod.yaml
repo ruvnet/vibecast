@@ -1,0 +1,73 @@
+# Production environment values
+replicaCount: 5
+
+image:
+  tag: "v1.0.0"
+
+ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/rate-limit: "500"
+    nginx.ingress.kubernetes.io/rate-limit-window: "1m"
+  hosts:
+    - host: vibecast.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: vibecast-prod-tls
+      hosts:
+        - vibecast.example.com
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 200m
+    memory: 256Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 5
+  maxReplicas: 20
+  targetCPUUtilizationPercentage: 70
+  targetMemoryUtilizationPercentage: 80
+
+env:
+  ENV: "production"
+  LOG_LEVEL: "warn"
+
+# Production secrets should use external secret management
+secrets:
+  databaseUrl: ""  # Retrieved from AWS Secrets Manager or similar
+  redisUrl: ""     # Retrieved from AWS Secrets Manager or similar
+  jwtSecret: ""    # Retrieved from AWS Secrets Manager or similar
+
+# Enhanced security for production
+podSecurityContext:
+  fsGroup: 1001
+  runAsNonRoot: true
+  runAsUser: 1001
+  runAsGroup: 1001
+  seccompProfile:
+    type: RuntimeDefault
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1001
+  capabilities:
+    drop:
+    - ALL
+
+# Network policy enabled in production
+networkPolicy:
+  enabled: true
+
+# Monitoring enabled
+monitoring:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    interval: 15s

@@ -1,0 +1,183 @@
+# GraphQL schema for Vibecast API
+
+scalar Time
+scalar UUID
+scalar JSON
+
+# User types
+type User {
+  id: UUID!
+  email: String!
+  username: String!
+  firstName: String!
+  lastName: String!
+  role: String!
+  isActive: Boolean!
+  createdAt: Time!
+  updatedAt: Time!
+}
+
+# Authentication types
+type AuthPayload {
+  token: String!
+  user: User!
+  expiresAt: Time!
+}
+
+# Anomaly detection types
+type AnomalyData {
+  id: UUID!
+  userId: UUID!
+  data: JSON!
+  score: Float!
+  isAnomaly: Boolean!
+  threshold: Float!
+  algorithm: String!
+  processedAt: Time
+  createdAt: Time!
+  user: User
+}
+
+type DetectionResult {
+  id: UUID!
+  isAnomaly: Boolean!
+  score: Float!
+  confidence: Float!
+  threshold: Float!
+  algorithm: String!
+  processingTime: Int!
+  metadata: Metadata!
+}
+
+type Metadata {
+  features: JSON!
+  explanations: [String!]!
+  suggestions: [String!]!
+}
+
+# Statistics types
+type UserStats {
+  userId: UUID!
+  username: String!
+  email: String!
+  role: String!
+  isActive: Boolean!
+  createdAt: Time!
+  anomalyDataCount: Int!
+  accountAgeDays: Int!
+}
+
+type AnomalyStats {
+  totalDetections: Int!
+  anomalyCount: Int!
+  normalCount: Int!
+  anomalyRate: Float!
+  generatedAt: Time!
+  userId: UUID
+}
+
+type SystemHealth {
+  status: String!
+  version: String!
+  timestamp: Time!
+  services: JSON!
+  uptime: String!
+}
+
+# Pagination types
+type PageInfo {
+  page: Int!
+  perPage: Int!
+  total: Int!
+  totalPages: Int!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+}
+
+type UserConnection {
+  nodes: [User!]!
+  pageInfo: PageInfo!
+}
+
+type AnomalyDataConnection {
+  nodes: [AnomalyData!]!
+  pageInfo: PageInfo!
+}
+
+# Input types
+input RegisterInput {
+  email: String!
+  username: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  firstName: String
+  lastName: String
+  email: String
+  username: String
+}
+
+input DetectionInput {
+  data: JSON!
+  algorithm: String
+  threshold: Float
+}
+
+input PaginationInput {
+  page: Int = 1
+  limit: Int = 20
+}
+
+# Root types
+type Query {
+  # User queries
+  me: User
+  user(id: UUID!): User
+  users(pagination: PaginationInput): UserConnection!
+  userStats(id: UUID): UserStats!
+
+  # Anomaly queries
+  anomaly(id: UUID!): AnomalyData
+  anomalies(pagination: PaginationInput): AnomalyDataConnection!
+  userAnomalies(userId: UUID, pagination: PaginationInput): AnomalyDataConnection!
+  anomalyStats(userId: UUID): AnomalyStats!
+
+  # System queries
+  systemHealth: SystemHealth!
+  systemStats: JSON!
+}
+
+type Mutation {
+  # Authentication mutations
+  register(input: RegisterInput!): AuthPayload!
+  login(input: LoginInput!): AuthPayload!
+  refreshToken: AuthPayload!
+
+  # User mutations
+  updateProfile(input: UpdateUserInput!): User!
+  deleteProfile: Boolean!
+  deleteUser(id: UUID!): Boolean!
+
+  # Anomaly detection mutations
+  detectAnomaly(input: DetectionInput!): DetectionResult!
+  deleteAnomaly(id: UUID!): Boolean!
+}
+
+type Subscription {
+  # Real-time anomaly detection updates
+  anomalyDetected(userId: UUID): DetectionResult!
+  
+  # User activity updates
+  userActivity(userId: UUID): JSON!
+  
+  # System status updates
+  systemStatus: SystemHealth!
+}

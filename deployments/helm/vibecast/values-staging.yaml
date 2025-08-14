@@ -1,0 +1,40 @@
+# Staging environment values
+replicaCount: 2
+
+image:
+  tag: "staging"
+
+ingress:
+  hosts:
+    - host: staging.vibecast.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: vibecast-staging-tls
+      hosts:
+        - staging.vibecast.example.com
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 384Mi
+  requests:
+    cpu: 75m
+    memory: 96Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+
+env:
+  ENV: "staging"
+  LOG_LEVEL: "info"
+
+# Staging-specific secrets (use external secret management in real scenarios)
+secrets:
+  databaseUrl: "postgres://staging_user:staging_pass@postgres-staging:5432/vibecast_staging"
+  redisUrl: "redis://redis-staging:6379"
+  jwtSecret: "staging-jwt-secret-key"

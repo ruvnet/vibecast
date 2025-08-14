@@ -1,0 +1,37 @@
+# Development environment values
+replicaCount: 1
+
+image:
+  tag: "develop"
+
+ingress:
+  hosts:
+    - host: dev.vibecast.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: vibecast-dev-tls
+      hosts:
+        - dev.vibecast.example.com
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+autoscaling:
+  enabled: false
+
+env:
+  ENV: "development"
+  LOG_LEVEL: "debug"
+
+# Development-specific secrets
+secrets:
+  databaseUrl: "postgres://dev:dev@postgres:5432/vibecast_dev"
+  redisUrl: "redis://redis:6379"
+  jwtSecret: "dev-jwt-secret-key"

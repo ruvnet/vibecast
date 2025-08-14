@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: anomaly-detector-config
+  namespace: anomaly-detector
+data:
+  LOG_LEVEL: "info"
+  DATABASE_HOST: "postgres"
+  DATABASE_PORT: "5432"
+  DATABASE_NAME: "anomaly_detector"
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+  API_PORT: "8080"
+  METRICS_PORT: "9090"

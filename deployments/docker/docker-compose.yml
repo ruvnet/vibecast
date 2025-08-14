@@ -1,0 +1,105 @@
+version: '3.8'
+
+services:
+  # Redis for caching and queuing
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - anomaly-network
+
+  # PostgreSQL for persistent storage
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: anomaly_detector
+      POSTGRES_USER: anomaly_user
+      POSTGRES_PASSWORD: anomaly_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - anomaly-network
+
+  # API Server
+  api:
+    build:
+      context: ../../
+      dockerfile: deployments/docker/Dockerfile
+      target: api
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgres://anomaly_user:anomaly_password@postgres:5432/anomaly_detector?sslmode=disable
+      - REDIS_URL=redis://redis:6379
+      - LOG_LEVEL=info
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - anomaly-network
+    restart: unless-stopped
+
+  # Worker
+  worker:
+    build:
+      context: ../../
+      dockerfile: deployments/docker/Dockerfile
+      target: worker
+    environment:
+      - DATABASE_URL=postgres://anomaly_user:anomaly_password@postgres:5432/anomaly_detector?sslmode=disable
+      - REDIS_URL=redis://redis:6379
+      - LOG_LEVEL=info
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - anomaly-network
+    restart: unless-stopped
+    deploy:
+      replicas: 2
+
+  # Prometheus for metrics
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - anomaly-network
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - anomaly-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  anomaly-network:
+    driver: bridge

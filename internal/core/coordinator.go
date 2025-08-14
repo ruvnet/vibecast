@@ -1,0 +1,351 @@
+package core
+
+import (
+	"context"
+	"fmt"
+	"sync"
+	"time"
+
+	"github.com/vibecast/anomaly-detector/internal/models/proto"
+	"go.uber.org/zap"
+)
+
+// CoordinatorConfig holds configuration for the messaging coordinator
+type CoordinatorConfig struct {
+	BrokerConfig         *BrokerConfig
+	QueueConfig          *QueueConfig
+	EventBusConfig       *EventBusConfig
+	RateLimiterConfig    *RateLimiterConfig
+	StorageConfig        *StorageConfig
+	BackpressureConfig   *BackpressureConfig
+	EnableMetrics        bool
+	MetricsInterval      time.Duration
+	HealthCheckInterval  time.Duration
+}
+
+// DefaultCoordinatorConfig returns default coordinator configuration
+func DefaultCoordinatorConfig() *CoordinatorConfig {
+	return &CoordinatorConfig{
+		BrokerConfig:         DefaultBrokerConfig(),
+		QueueConfig:          DefaultQueueConfig(),
+		EventBusConfig:       DefaultEventBusConfig(),
+		RateLimiterConfig:    DefaultRateLimiterConfig(),
+		StorageConfig:        DefaultStorageConfig(),
+		BackpressureConfig:   DefaultBackpressureConfig(),
+		EnableMetrics:        true,
+		MetricsInterval:      30 * time.Second,
+		HealthCheckInterval:  1 * time.Minute,
+	}
+}
+
+// MessagingCoordinator coordinates all messaging components
+type MessagingCoordinator struct {
+	config              *CoordinatorConfig
+	broker              MessageBroker
+	queue               MessageQueue
+	eventBus            EventBus
+	rateLimiter         RateLimiter
+	storage             Storage
+	backpressureManager *BackpressureManager
+	logger              *zap.Logger
+	ctx                 context.Context
+	cancel              context.CancelFunc
+	wg                  sync.WaitGroup
+	healthStatus        map[string]bool
+	mu                  sync.RWMutex
+}
+
+// NewMessagingCoordinator creates a new messaging coordinator
+func NewMessagingCoordinator(config *CoordinatorConfig, logger *zap.Logger) (*MessagingCoordinator, error) {
+	if config == nil {
+		config = DefaultCoordinatorConfig()
+	}
+	
+	ctx, cancel := context.WithCancel(context.Background())
+	
+	coordinator := &MessagingCoordinator{
+		config:       config,
+		logger:       logger,
+		ctx:          ctx,
+		cancel:       cancel,
+		healthStatus: make(map[string]bool),
+	}
+	
+	// Initialize components
+	if err := coordinator.initializeComponents(); err != nil {
+		cancel()
+		return nil, fmt.Errorf("failed to initialize components: %w", err)
+	}
+	
+	// Start background routines
+	if config.EnableMetrics {
+		coordinator.wg.Add(1)
+		go coordinator.metricsRoutine()
+	}
+	
+	coordinator.wg.Add(1)
+	go coordinator.healthCheckRoutine()
+	
+	logger.Info("messaging coordinator initialized successfully")
+	
+	return coordinator, nil
+}
+
+// initializeComponents initializes all messaging components
+func (mc *MessagingCoordinator) initializeComponents() error {
+	// Initialize storage
+	mc.storage = NewMemoryStorage(mc.config.StorageConfig, mc.logger.Named("storage"))
+	
+	// Initialize rate limiter
+	mc.rateLimiter = NewTokenBucketLimiter(mc.config.RateLimiterConfig, mc.logger.Named("ratelimiter"))
+	
+	// Initialize backpressure manager
+	mc.backpressureManager = NewBackpressureManager(mc.config.BackpressureConfig, mc.logger.Named("backpressure"))
+	
+	// Initialize broker
+	mc.broker = NewBroker(mc.config.BrokerConfig, mc.rateLimiter, mc.logger.Named("broker"))
+	
+	// Initialize queue with backpressure handler
+	backpressureHandler := func(queueSize int64) error {
+		return mc.backpressureManager.HandleBackpressure(queueSize, mc.config.QueueConfig.MaxQueueSize)
+	}
+	mc.queue = NewQueue(mc.config.QueueConfig, mc.storage, backpressureHandler, mc.logger.Named("queue"))
+	
+	// Initialize event bus
+	mc.eventBus = NewEventBus(mc.config.EventBusConfig, mc.storage, mc.rateLimiter, mc.logger.Named("eventbus"))
+	
+	// Set initial health status
+	mc.mu.Lock()
+	mc.healthStatus["broker"] = true
+	mc.healthStatus["queue"] = true
+	mc.healthStatus["eventbus"] = true
+	mc.healthStatus["ratelimiter"] = true
+	mc.healthStatus["storage"] = true
+	mc.mu.Unlock()
+	
+	return nil
+}
+
+// GetBroker returns the message broker
+func (mc *MessagingCoordinator) GetBroker() MessageBroker {
+	return mc.broker
+}
+
+// GetQueue returns the message queue
+func (mc *MessagingCoordinator) GetQueue() MessageQueue {
+	return mc.queue
+}
+
+// GetEventBus returns the event bus
+func (mc *MessagingCoordinator) GetEventBus() EventBus {
+	return mc.eventBus
+}
+
+// GetRateLimiter returns the rate limiter
+func (mc *MessagingCoordinator) GetRateLimiter() RateLimiter {
+	return mc.rateLimiter
+}
+
+// GetStorage returns the storage
+func (mc *MessagingCoordinator) GetStorage() Storage {
+	return mc.storage
+}
+
+// PublishMessage publishes a message through the broker
+func (mc *MessagingCoordinator) PublishMessage(ctx context.Context, topic string, msg *proto.Message) error {
+	return mc.broker.Publish(ctx, topic, msg)
+}
+
+// EnqueueMessage enqueues a message for processing
+func (mc *MessagingCoordinator) EnqueueMessage(ctx context.Context, queueName string, msg *proto.Message) error {
+	return mc.queue.Enqueue(ctx, queueName, msg)
+}
+
+// EmitEvent emits an event
+func (mc *MessagingCoordinator) EmitEvent(ctx context.Context, event *proto.Event) error {
+	return mc.eventBus.Emit(ctx, event)
+}
+
+// GetSystemHealth returns the health status of all components
+func (mc *MessagingCoordinator) GetSystemHealth(ctx context.Context) map[string]interface{} {
+	mc.mu.RLock()
+	defer mc.mu.RUnlock()
+	
+	health := make(map[string]interface{})
+	
+	// Component health status
+	health["components"] = make(map[string]bool)
+	for component, status := range mc.healthStatus {
+		health["components"].(map[string]bool)[component] = status
+	}
+	
+	// Overall health
+	overallHealthy := true
+	for _, status := range mc.healthStatus {
+		if !status {
+			overallHealthy = false
+			break
+		}
+	}
+	health["overall_healthy"] = overallHealthy
+	health["timestamp"] = time.Now()
+	
+	return health
+}
+
+// GetSystemMetrics returns comprehensive system metrics
+func (mc *MessagingCoordinator) GetSystemMetrics(ctx context.Context) (map[string]interface{}, error) {
+	metrics := make(map[string]interface{})
+	
+	// Broker stats
+	if brokerStats, err := mc.broker.GetStats(ctx); err == nil {
+		metrics["broker"] = map[string]interface{}{
+			"messages_published":   brokerStats.MessagesPublished,
+			"messages_delivered":   brokerStats.MessagesDelivered,
+			"active_subscriptions": brokerStats.ActiveSubscriptions,
+			"failed_deliveries":    brokerStats.FailedDeliveries,
+		}
+	}
+	
+	// Storage stats
+	if memStorage, ok := mc.storage.(*MemoryStorage); ok {
+		metrics["storage"] = memStorage.GetStats()
+	}
+	
+	// Rate limiter stats
+	if tokenLimiter, ok := mc.rateLimiter.(*TokenBucketLimiter); ok {
+		metrics["rate_limiter"] = tokenLimiter.GetStats()
+	}
+	
+	// System health
+	metrics["health"] = mc.GetSystemHealth(ctx)
+	
+	return metrics, nil
+}
+
+// Close gracefully shuts down the coordinator and all components
+func (mc *MessagingCoordinator) Close() error {
+	mc.logger.Info("closing messaging coordinator")
+	
+	// Cancel context to stop background routines
+	mc.cancel()
+	
+	// Close components in reverse order of initialization
+	var errors []error
+	
+	if err := mc.eventBus.Close(); err != nil {
+		errors = append(errors, fmt.Errorf("eventbus close error: %w", err))
+	}
+	
+	if err := mc.queue.Close(); err != nil {
+		errors = append(errors, fmt.Errorf("queue close error: %w", err))
+	}
+	
+	if err := mc.broker.Close(); err != nil {
+		errors = append(errors, fmt.Errorf("broker close error: %w", err))
+	}
+	
+	if err := mc.rateLimiter.Close(); err != nil {
+		errors = append(errors, fmt.Errorf("ratelimiter close error: %w", err))
+	}
+	
+	if err := mc.storage.Close(); err != nil {
+		errors = append(errors, fmt.Errorf("storage close error: %w", err))
+	}
+	
+	// Wait for background routines to finish
+	mc.wg.Wait()
+	
+	if len(errors) > 0 {
+		return fmt.Errorf("errors during shutdown: %v", errors)
+	}
+	
+	mc.logger.Info("messaging coordinator closed successfully")
+	return nil
+}
+
+// metricsRoutine collects and logs metrics periodically
+func (mc *MessagingCoordinator) metricsRoutine() {
+	defer mc.wg.Done()
+	
+	ticker := time.NewTicker(mc.config.MetricsInterval)
+	defer ticker.Stop()
+	
+	for {
+		select {
+		case <-ticker.C:
+			if metrics, err := mc.GetSystemMetrics(mc.ctx); err == nil {
+				mc.logger.Debug("system metrics", zap.Any("metrics", metrics))
+			} else {
+				mc.logger.Error("failed to collect metrics", zap.Error(err))
+			}
+		case <-mc.ctx.Done():
+			return
+		}
+	}
+}
+
+// healthCheckRoutine performs periodic health checks
+func (mc *MessagingCoordinator) healthCheckRoutine() {
+	defer mc.wg.Done()
+	
+	ticker := time.NewTicker(mc.config.HealthCheckInterval)
+	defer ticker.Stop()
+	
+	for {
+		select {
+		case <-ticker.C:
+			mc.performHealthCheck()
+		case <-mc.ctx.Done():
+			return
+		}
+	}
+}
+
+// performHealthCheck checks the health of all components
+func (mc *MessagingCoordinator) performHealthCheck() {
+	mc.mu.Lock()
+	defer mc.mu.Unlock()
+	
+	ctx, cancel := context.WithTimeout(mc.ctx, 10*time.Second)
+	defer cancel()
+	
+	// Check broker health
+	if _, err := mc.broker.GetStats(ctx); err != nil {
+		mc.healthStatus["broker"] = false
+		mc.logger.Error("broker health check failed", zap.Error(err))
+	} else {
+		mc.healthStatus["broker"] = true
+	}
+	
+	// Check storage health
+	if exists, err := mc.storage.Exists(ctx, "health_check"); err != nil {
+		mc.healthStatus["storage"] = false
+		mc.logger.Error("storage health check failed", zap.Error(err))
+	} else {
+		mc.healthStatus["storage"] = true
+		// Store a health check marker
+		if !exists {
+			_ = mc.storage.Store(ctx, "health_check", []byte("ok"), 1*time.Hour)
+		}
+	}
+	
+	// Check rate limiter health
+	if _, _, err := mc.rateLimiter.Allow(ctx, "health_check"); err != nil {
+		mc.healthStatus["ratelimiter"] = false
+		mc.logger.Error("rate limiter health check failed", zap.Error(err))
+	} else {
+		mc.healthStatus["ratelimiter"] = true
+	}
+	
+	// Check event bus health (simplified check)
+	mc.healthStatus["eventbus"] = true
+	
+	// Check queue health
+	if _, err := mc.queue.GetQueueSize(ctx, "health_check"); err != nil {
+		mc.healthStatus["queue"] = false
+		mc.logger.Error("queue health check failed", zap.Error(err))
+	} else {
+		mc.healthStatus["queue"] = true
+	}
+}
