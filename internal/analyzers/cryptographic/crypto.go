@@ -12,7 +12,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/vibecast/anomaly-detector/internal/models"
+	"github.com/vibecast/vibecast/internal/models"
 	"golang.org/x/crypto/blake2b"
 	"golang.org/x/crypto/blake2s"
 	"golang.org/x/crypto/sha3"

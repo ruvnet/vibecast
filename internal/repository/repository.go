@@ -7,8 +7,8 @@ import (
 
 	"github.com/google/uuid"
 	_ "github.com/lib/pq"
-	"github.com/vibecast/anomaly-detector/internal/config"
-	"github.com/vibecast/anomaly-detector/internal/models"
+	"github.com/vibecast/vibecast/internal/config"
+	"github.com/vibecast/vibecast/internal/models"
 	"go.uber.org/zap"
 )
 

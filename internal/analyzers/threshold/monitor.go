@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/internal/analyzers"
+	"github.com/vibecast/vibecast/internal/analyzers"
 )
 
 // ThresholdRule represents a threshold monitoring rule

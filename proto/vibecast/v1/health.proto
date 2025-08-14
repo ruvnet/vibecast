@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package vibecast.v1;
+
+option go_package = "github.com/vibecast/vibecast/proto/vibecast/v1;vibecast";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+// HealthService provides health check operations
+service HealthService {
+  // Check performs a health check
+  rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
+  // Watch streams health status updates
+  rpc Watch(google.protobuf.Empty) returns (stream HealthCheckResponse);
+}
+
+// HealthCheckRequest message
+message HealthCheckRequest {
+  string service = 1;
+}
+
+// HealthCheckResponse message
+message HealthCheckResponse {
+  enum Status {
+    UNKNOWN = 0;
+    HEALTHY = 1;
+    UNHEALTHY = 2;
+    DEGRADED = 3;
+  }
+  
+  Status status = 1;
+  string message = 2;
+  google.protobuf.Timestamp timestamp = 3;
+  map<string, string> details = 4;
+}

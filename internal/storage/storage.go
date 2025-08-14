@@ -9,8 +9,8 @@ import (
 	_ "github.com/lib/pq" // PostgreSQL driver
 	"go.uber.org/zap"
 
-	"github.com/vibecast/anomaly-detector/internal/config"
-	"github.com/vibecast/anomaly-detector/pkg/models"
+	"github.com/vibecast/vibecast/internal/config"
+	"github.com/vibecast/vibecast/pkg/models"
 )
 
 // Storage represents the data storage interface

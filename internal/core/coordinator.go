@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/anomaly-detector/internal/models/proto"
+	"github.com/vibecast/vibecast/internal/models/proto"
 	"go.uber.org/zap"
 )
 
@@ -106,13 +106,13 @@ func (mc *MessagingCoordinator) initializeComponents() error {
 	mc.broker = NewBroker(mc.config.BrokerConfig, mc.rateLimiter, mc.logger.Named("broker"))
 	
 	// Initialize queue with backpressure handler
-	backpressureHandler := func(queueSize int64) error {
-		return mc.backpressureManager.HandleBackpressure(queueSize, mc.config.QueueConfig.MaxQueueSize)
+	backpressureHandler := func(ctx context.Context, queueSize int64, concurrentRequests int64) bool {
+		return mc.backpressureManager.ShouldApplyBackpressure(ctx, queueSize)
 	}
 	mc.queue = NewQueue(mc.config.QueueConfig, mc.storage, backpressureHandler, mc.logger.Named("queue"))
 	
 	// Initialize event bus
-	mc.eventBus = NewEventBus(mc.config.EventBusConfig, mc.storage, mc.rateLimiter, mc.logger.Named("eventbus"))
+	mc.eventBus = NewEventBus(mc.config.EventBusConfig, mc.logger.Named("eventbus"))
 	
 	// Set initial health status
 	mc.mu.Lock()

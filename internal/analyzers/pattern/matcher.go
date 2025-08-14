@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/internal/analyzers"
+	"github.com/vibecast/vibecast/internal/analyzers"
 )
 
 // Pattern represents a detected pattern

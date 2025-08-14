@@ -11,19 +11,19 @@ import (
 // Metrics holds all metrics for the application
 type Metrics struct {
 	// Request metrics
-	requestsTotal     prometheus.Counter
-	requestDuration   prometheus.Histogram
-	requestsInFlight  prometheus.Gauge
-	
+	requestsTotal    prometheus.Counter
+	requestDuration  prometheus.Histogram
+	requestsInFlight prometheus.Gauge
+
 	// Analysis metrics
-	analysisTotal     *prometheus.CounterVec
-	analysisErrors    *prometheus.CounterVec
-	analysisScores    prometheus.Histogram
-	
+	analysisTotal  *prometheus.CounterVec
+	analysisErrors *prometheus.CounterVec
+	analysisScores prometheus.Histogram
+
 	// System metrics
-	systemMemory      prometheus.Gauge
-	systemCPU         prometheus.Gauge
-	
+	systemMemory prometheus.Gauge
+	systemCPU    prometheus.Gauge
+
 	mu sync.RWMutex
 }
 
@@ -34,18 +34,18 @@ func NewMetrics() *Metrics {
 			Name: "http_requests_total",
 			Help: "Total number of HTTP requests",
 		}),
-		
+
 		requestDuration: promauto.NewHistogram(prometheus.HistogramOpts{
 			Name:    "http_request_duration_seconds",
 			Help:    "HTTP request duration in seconds",
 			Buckets: prometheus.DefBuckets,
 		}),
-		
+
 		requestsInFlight: promauto.NewGauge(prometheus.GaugeOpts{
 			Name: "http_requests_in_flight",
 			Help: "Current number of HTTP requests being processed",
 		}),
-		
+
 		analysisTotal: promauto.NewCounterVec(
 			prometheus.CounterOpts{
 				Name: "analysis_requests_total",
@@ -53,7 +53,7 @@ func NewMetrics() *Metrics {
 			},
 			[]string{"analyzer", "status"},
 		),
-		
+
 		analysisErrors: promauto.NewCounterVec(
 			prometheus.CounterOpts{
 				Name: "analysis_errors_total",
@@ -61,18 +61,18 @@ func NewMetrics() *Metrics {
 			},
 			[]string{"analyzer", "error_type"},
 		),
-		
+
 		analysisScores: promauto.NewHistogram(prometheus.HistogramOpts{
 			Name:    "analysis_scores",
 			Help:    "Distribution of anomaly scores",
 			Buckets: []float64{0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0},
 		}),
-		
+
 		systemMemory: promauto.NewGauge(prometheus.GaugeOpts{
 			Name: "system_memory_usage_bytes",
 			Help: "Current memory usage in bytes",
 		}),
-		
+
 		systemCPU: promauto.NewGauge(prometheus.GaugeOpts{
 			Name: "system_cpu_usage_percent",
 			Help: "Current CPU usage percentage",

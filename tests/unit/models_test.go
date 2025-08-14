@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/vibecast/anomaly-detector/internal/models"
+	"github.com/vibecast/vibecast/internal/models"
 )
 
 // ModelsTestSuite provides comprehensive test coverage for model structs
@@ -22,12 +22,12 @@ func (suite *ModelsTestSuite) TestAnalysisResult_Creation() {
 		Score:      0.85,
 		Confidence: 0.92,
 		Metadata: map[string]interface{}{
-			"analyzer_name": "test-analyzer",
+			"analyzer_name":   "test-analyzer",
 			"processing_time": 150.5,
-			"features": []string{"entropy", "frequency"},
+			"features":        []string{"entropy", "frequency"},
 		},
 	}
-	
+
 	assert.Equal(suite.T(), 0.85, result.Score)
 	assert.Equal(suite.T(), 0.92, result.Confidence)
 	assert.NotNil(suite.T(), result.Metadata)
@@ -39,20 +39,20 @@ func (suite *ModelsTestSuite) TestAnalysisResult_JSONSerialization() {
 		Score:      0.75,
 		Confidence: 0.88,
 		Metadata: map[string]interface{}{
-			"test_field": "test_value",
+			"test_field":    "test_value",
 			"numeric_field": 42.0,
 		},
 	}
-	
+
 	// Serialize to JSON
 	jsonData, err := json.Marshal(original)
 	require.NoError(suite.T(), err)
-	
+
 	// Deserialize from JSON
 	var deserialized models.AnalysisResult
 	err = json.Unmarshal(jsonData, &deserialized)
 	require.NoError(suite.T(), err)
-	
+
 	assert.Equal(suite.T(), original.Score, deserialized.Score)
 	assert.Equal(suite.T(), original.Confidence, deserialized.Confidence)
 	assert.Equal(suite.T(), original.Metadata["test_field"], deserialized.Metadata["test_field"])
@@ -73,7 +73,7 @@ func (suite *ModelsTestSuite) TestAnomalyResult_Creation() {
 			Metadata:   map[string]interface{}{"type": "linguistic"},
 		},
 	}
-	
+
 	result := &models.AnomalyResult{
 		Score:       0.8,
 		Confidence:  0.85,
@@ -81,7 +81,7 @@ func (suite *ModelsTestSuite) TestAnomalyResult_Creation() {
 		Details:     details,
 		Timestamp:   timestamp,
 	}
-	
+
 	assert.Equal(suite.T(), 0.8, result.Score)
 	assert.Equal(suite.T(), 0.85, result.Confidence)
 	assert.True(suite.T(), result.IsAnomalous)
@@ -106,16 +106,16 @@ func (suite *ModelsTestSuite) TestAnomalyResult_JSONSerialization() {
 		},
 		Timestamp: timestamp,
 	}
-	
+
 	// Serialize to JSON
 	jsonData, err := json.Marshal(original)
 	require.NoError(suite.T(), err)
-	
+
 	// Deserialize from JSON
 	var deserialized models.AnomalyResult
 	err = json.Unmarshal(jsonData, &deserialized)
 	require.NoError(suite.T(), err)
-	
+
 	assert.Equal(suite.T(), original.Score, deserialized.Score)
 	assert.Equal(suite.T(), original.Confidence, deserialized.Confidence)
 	assert.Equal(suite.T(), original.IsAnomalous, deserialized.IsAnomalous)
@@ -125,9 +125,9 @@ func (suite *ModelsTestSuite) TestAnomalyResult_JSONSerialization() {
 
 func (suite *ModelsTestSuite) TestAnalysisRequest_Validation() {
 	testCases := []struct {
-		name     string
-		request  models.AnalysisRequest
-		isValid  bool
+		name    string
+		request models.AnalysisRequest
+		isValid bool
 	}{
 		{
 			name: "valid_request",
@@ -165,23 +165,23 @@ func (suite *ModelsTestSuite) TestAnalysisRequest_Validation() {
 			isValid: false,
 		},
 	}
-	
+
 	for _, tc := range testCases {
 		suite.T().Run(tc.name, func(t *testing.T) {
 			// JSON validation test
 			jsonData, err := json.Marshal(tc.request)
 			require.NoError(t, err)
-			
+
 			var deserialized models.AnalysisRequest
 			err = json.Unmarshal(jsonData, &deserialized)
 			require.NoError(t, err)
-			
+
 			if tc.isValid {
 				assert.Equal(t, tc.request.ID, deserialized.ID)
 				assert.Equal(t, tc.request.Text, deserialized.Text)
 				assert.Equal(t, tc.request.Priority, deserialized.Priority)
 			}
-			
+
 			// Basic validation
 			if tc.isValid {
 				assert.NotEmpty(t, deserialized.Text, "Valid request should have non-empty text")
@@ -197,13 +197,13 @@ func (suite *ModelsTestSuite) TestAnalysisResponse_Creation() {
 		IsAnomalous: true,
 		Timestamp:   time.Now(),
 	}
-	
+
 	response := &models.AnalysisResponse{
 		ID:       "response-123",
 		Result:   result,
 		Duration: 250 * time.Millisecond,
 	}
-	
+
 	assert.Equal(suite.T(), "response-123", response.ID)
 	assert.Equal(suite.T(), result, response.Result)
 	assert.Equal(suite.T(), 250*time.Millisecond, response.Duration)
@@ -216,7 +216,7 @@ func (suite *ModelsTestSuite) TestAnalysisResponse_WithError() {
 		Error:    "Analysis failed due to invalid input",
 		Duration: 50 * time.Millisecond,
 	}
-	
+
 	assert.Equal(suite.T(), "error-response-456", response.ID)
 	assert.Nil(suite.T(), response.Result)
 	assert.Equal(suite.T(), "Analysis failed due to invalid input", response.Error)
@@ -234,16 +234,16 @@ func (suite *ModelsTestSuite) TestAnalysisResponse_JSONSerialization() {
 		},
 		Duration: 180 * time.Millisecond,
 	}
-	
+
 	// Serialize to JSON
 	jsonData, err := json.Marshal(original)
 	require.NoError(suite.T(), err)
-	
+
 	// Deserialize from JSON
 	var deserialized models.AnalysisResponse
 	err = json.Unmarshal(jsonData, &deserialized)
 	require.NoError(suite.T(), err)
-	
+
 	assert.Equal(suite.T(), original.ID, deserialized.ID)
 	assert.Equal(suite.T(), original.Duration, deserialized.Duration)
 	assert.Equal(suite.T(), original.Result.Score, deserialized.Result.Score)
@@ -265,7 +265,7 @@ func (suite *ModelsTestSuite) TestTextSample_Creation() {
 		CreatedAt: timestamp,
 		UpdatedAt: timestamp,
 	}
-	
+
 	assert.Equal(suite.T(), "sample-123", sample.ID)
 	assert.Equal(suite.T(), "This is a sample text for testing", sample.Text)
 	assert.Equal(suite.T(), "human", sample.Label)
@@ -277,14 +277,14 @@ func (suite *ModelsTestSuite) TestTextSample_Creation() {
 
 func (suite *ModelsTestSuite) TestTextSample_Labels() {
 	validLabels := []string{"human", "ai", "unknown"}
-	
+
 	for _, label := range validLabels {
 		sample := &models.TextSample{
 			ID:    "test-" + label,
 			Text:  "Test text",
 			Label: label,
 		}
-		
+
 		assert.Equal(suite.T(), label, sample.Label)
 		assert.Contains(suite.T(), validLabels, sample.Label)
 	}
@@ -300,7 +300,7 @@ func (suite *ModelsTestSuite) TestModelMetrics_Creation() {
 		SampleCount: 1000,
 		LastUpdated: time.Now(),
 	}
-	
+
 	assert.Equal(suite.T(), 0.92, metrics.Accuracy)
 	assert.Equal(suite.T(), 0.89, metrics.Precision)
 	assert.Equal(suite.T(), 0.94, metrics.Recall)
@@ -319,7 +319,7 @@ func (suite *ModelsTestSuite) TestModelMetrics_Validation() {
 		SampleCount: 500,
 		LastUpdated: time.Now(),
 	}
-	
+
 	// All metrics should be between 0 and 1
 	assert.GreaterOrEqual(suite.T(), metrics.Accuracy, 0.0)
 	assert.LessOrEqual(suite.T(), metrics.Accuracy, 1.0)
@@ -331,7 +331,7 @@ func (suite *ModelsTestSuite) TestModelMetrics_Validation() {
 	assert.LessOrEqual(suite.T(), metrics.F1Score, 1.0)
 	assert.GreaterOrEqual(suite.T(), metrics.AUC, 0.0)
 	assert.LessOrEqual(suite.T(), metrics.AUC, 1.0)
-	
+
 	// Sample count should be non-negative
 	assert.GreaterOrEqual(suite.T(), metrics.SampleCount, 0)
 }
@@ -347,16 +347,16 @@ func (suite *ModelsTestSuite) TestModelMetrics_JSONSerialization() {
 		SampleCount: 750,
 		LastUpdated: timestamp,
 	}
-	
+
 	// Serialize to JSON
 	jsonData, err := json.Marshal(original)
 	require.NoError(suite.T(), err)
-	
+
 	// Deserialize from JSON
 	var deserialized models.ModelMetrics
 	err = json.Unmarshal(jsonData, &deserialized)
 	require.NoError(suite.T(), err)
-	
+
 	assert.Equal(suite.T(), original.Accuracy, deserialized.Accuracy)
 	assert.Equal(suite.T(), original.Precision, deserialized.Precision)
 	assert.Equal(suite.T(), original.Recall, deserialized.Recall)
@@ -378,42 +378,42 @@ func TestModels_EdgeCases(t *testing.T) {
 			Confidence: 0.0,
 			Metadata:   map[string]interface{}{},
 		}
-		
+
 		assert.Equal(t, 0.0, result.Score)
 		assert.Equal(t, 0.0, result.Confidence)
 		assert.NotNil(t, result.Metadata)
 	})
-	
+
 	t.Run("maximum_values", func(t *testing.T) {
 		result := &models.AnalysisResult{
 			Score:      1.0,
 			Confidence: 1.0,
 			Metadata:   map[string]interface{}{},
 		}
-		
+
 		assert.Equal(t, 1.0, result.Score)
 		assert.Equal(t, 1.0, result.Confidence)
 	})
-	
+
 	t.Run("nil_metadata", func(t *testing.T) {
 		result := &models.AnalysisResult{
 			Score:      0.5,
 			Confidence: 0.5,
 			Metadata:   nil,
 		}
-		
+
 		// Should handle nil metadata gracefully
 		jsonData, err := json.Marshal(result)
 		require.NoError(t, err)
-		
+
 		var deserialized models.AnalysisResult
 		err = json.Unmarshal(jsonData, &deserialized)
 		require.NoError(t, err)
-		
+
 		assert.Equal(t, result.Score, deserialized.Score)
 		assert.Equal(t, result.Confidence, deserialized.Confidence)
 	})
-	
+
 	t.Run("empty_strings", func(t *testing.T) {
 		sample := &models.TextSample{
 			ID:     "",
@@ -421,41 +421,41 @@ func TestModels_EdgeCases(t *testing.T) {
 			Label:  "",
 			Source: "",
 		}
-		
+
 		// Should handle empty strings
 		jsonData, err := json.Marshal(sample)
 		require.NoError(t, err)
-		
+
 		var deserialized models.TextSample
 		err = json.Unmarshal(jsonData, &deserialized)
 		require.NoError(t, err)
-		
+
 		assert.Equal(t, sample.ID, deserialized.ID)
 		assert.Equal(t, sample.Text, deserialized.Text)
 		assert.Equal(t, sample.Label, deserialized.Label)
 		assert.Equal(t, sample.Source, deserialized.Source)
 	})
-	
+
 	t.Run("large_metadata", func(t *testing.T) {
 		// Test with large metadata object
 		largeMetadata := make(map[string]interface{})
 		for i := 0; i < 1000; i++ {
 			largeMetadata[fmt.Sprintf("key_%d", i)] = fmt.Sprintf("value_%d", i)
 		}
-		
+
 		result := &models.AnalysisResult{
 			Score:      0.5,
 			Confidence: 0.5,
 			Metadata:   largeMetadata,
 		}
-		
+
 		jsonData, err := json.Marshal(result)
 		require.NoError(t, err)
-		
+
 		var deserialized models.AnalysisResult
 		err = json.Unmarshal(jsonData, &deserialized)
 		require.NoError(t, err)
-		
+
 		assert.Equal(t, result.Score, deserialized.Score)
 		assert.Equal(t, result.Confidence, deserialized.Confidence)
 		assert.Len(t, deserialized.Metadata, 1000)
@@ -473,7 +473,7 @@ func TestModels_DataIntegrity(t *testing.T) {
 			assert.LessOrEqual(t, result.Score, 1.0)
 		}
 	})
-	
+
 	t.Run("confidence_bounds", func(t *testing.T) {
 		// Confidence should be between 0 and 1
 		validConfidences := []float64{0.0, 0.25, 0.5, 0.75, 1.0}
@@ -483,28 +483,28 @@ func TestModels_DataIntegrity(t *testing.T) {
 			assert.LessOrEqual(t, result.Confidence, 1.0)
 		}
 	})
-	
+
 	t.Run("timestamp_consistency", func(t *testing.T) {
 		now := time.Now()
 		sample := &models.TextSample{
 			CreatedAt: now,
 			UpdatedAt: now.Add(time.Hour),
 		}
-		
+
 		// UpdatedAt should be after or equal to CreatedAt
 		assert.True(t, sample.UpdatedAt.After(sample.CreatedAt) || sample.UpdatedAt.Equal(sample.CreatedAt))
 	})
-	
+
 	t.Run("model_metrics_relationships", func(t *testing.T) {
 		metrics := &models.ModelMetrics{
 			Precision: 0.8,
 			Recall:    0.9,
 		}
-		
+
 		// F1 score should be harmonic mean of precision and recall
 		expectedF1 := 2 * (metrics.Precision * metrics.Recall) / (metrics.Precision + metrics.Recall)
 		metrics.F1Score = expectedF1
-		
+
 		assert.InDelta(t, expectedF1, metrics.F1Score, 0.001)
 	})
 }
@@ -515,13 +515,13 @@ func BenchmarkAnalysisResult_JSONMarshal(b *testing.B) {
 		Score:      0.75,
 		Confidence: 0.88,
 		Metadata: map[string]interface{}{
-			"entropy":     4.2,
-			"word_count":  150,
-			"char_count":  750,
-			"complexity":  0.65,
+			"entropy":    4.2,
+			"word_count": 150,
+			"char_count": 750,
+			"complexity": 0.65,
 		},
 	}
-	
+
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		_, err := json.Marshal(result)
@@ -537,12 +537,12 @@ func BenchmarkAnomalyResult_JSONMarshal(b *testing.B) {
 		Confidence:  0.86,
 		IsAnomalous: true,
 		Details: map[string]*models.AnalysisResult{
-			"entropy": {Score: 0.65, Confidence: 0.8},
+			"entropy":    {Score: 0.65, Confidence: 0.8},
 			"linguistic": {Score: 0.79, Confidence: 0.92},
 		},
 		Timestamp: time.Now(),
 	}
-	
+
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		_, err := json.Marshal(result)

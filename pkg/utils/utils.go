@@ -138,21 +138,21 @@ func Contains(slice []string, item string) bool {
 func RemoveDuplicates(slice []string) []string {
 	keys := make(map[string]bool)
 	var result []string
-	
+
 	for _, item := range slice {
 		if !keys[item] {
 			keys[item] = true
 			result = append(result, item)
 		}
 	}
-	
+
 	return result
 }
 
 // ChunkSlice splits a slice into chunks of specified size
 func ChunkSlice(slice []string, chunkSize int) [][]string {
 	var chunks [][]string
-	
+
 	for i := 0; i < len(slice); i += chunkSize {
 		end := i + chunkSize
 		if end > len(slice) {
@@ -160,7 +160,7 @@ func ChunkSlice(slice []string, chunkSize int) [][]string {
 		}
 		chunks = append(chunks, slice[i:end])
 	}
-	
+
 	return chunks
 }
 

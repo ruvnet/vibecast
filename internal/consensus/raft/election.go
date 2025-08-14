@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/vibecast/internal/consensus"
+	"github.com/vibecast/vibecast/internal/consensus"
 )
 
 // RequestVoteRequest represents a RequestVote RPC request

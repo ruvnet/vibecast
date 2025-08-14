@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/internal/analyzers/alerts"
+	"github.com/vibecast/vibecast/internal/analyzers/alerts"
 )
 
 // CompositeAnalyzer combines multiple analyzers to provide comprehensive anomaly detection
@@ -97,7 +97,7 @@ func (c *CompositeAnalyzer) Analyze(ctx context.Context, data *TimeSeries) (*Ana
 
 			totalScore += res.result.Score * weight
 			metadata[fmt.Sprintf("%s_score", res.analyzer.Name())] = res.result.Score
-			
+
 			// Merge analyzer-specific metadata
 			for k, v := range res.result.Metadata {
 				metadata[fmt.Sprintf("%s_%s", res.analyzer.Name(), k)] = v
@@ -196,7 +196,7 @@ func (c *CompositeAnalyzer) Close() error {
 func (c *CompositeAnalyzer) GetAnalyzers() []Analyzer {
 	c.mu.RLock()
 	defer c.mu.RUnlock()
-	
+
 	result := make([]Analyzer, len(c.analyzers))
 	copy(result, c.analyzers)
 	return result
@@ -206,7 +206,7 @@ func (c *CompositeAnalyzer) GetAnalyzers() []Analyzer {
 func (c *CompositeAnalyzer) SetWeights(weights map[AnomalyType]float64) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
-	
+
 	for anomalyType, weight := range weights {
 		c.weights[anomalyType] = weight
 	}
@@ -216,7 +216,7 @@ func (c *CompositeAnalyzer) SetWeights(weights map[AnomalyType]float64) {
 func (c *CompositeAnalyzer) getWeight(anomalyType AnomalyType) float64 {
 	c.mu.RLock()
 	defer c.mu.RUnlock()
-	
+
 	if weight, exists := c.weights[anomalyType]; exists {
 		return weight
 	}

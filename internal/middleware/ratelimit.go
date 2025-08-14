@@ -1,3 +1,154 @@
-// Package middleware provides rate limiting functionality\npackage middleware\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"strconv\"\n\t\"time\"\n\n\t\"github.com/gin-gonic/gin\"\n\t\"github.com/vibecast/anomaly-detector/internal/config\"\n\t\"github.com/vibecast/anomaly-detector/internal/models\"\n\t\"golang.org/x/time/rate\"\n)\n\n// RateLimiter holds rate limiting configuration and state\ntype RateLimiter struct {\n\tlimiters map[string]*rate.Limiter\n\tconfig   config.RateLimitConfig\n}\n\n// NewRateLimiter creates a new rate limiter\nfunc NewRateLimiter(config config.RateLimitConfig) *RateLimiter {\n\treturn &RateLimiter{\n\t\tlimiters: make(map[string]*rate.Limiter),\n\t\tconfig:   config,\n\t}\n}\n\n// getLimiter gets or creates a rate limiter for a client\nfunc (rl *RateLimiter) getLimiter(key string) *rate.Limiter {\n\tif limiter, exists := rl.limiters[key]; exists {\n\t\treturn limiter\n\t}\n\n\t// Create new limiter with configured rate and burst\n\tlimiter := rate.NewLimiter(\n\t\trate.Limit(rl.config.RequestsPerMinute)/60, // Convert per minute to per second\n\t\trl.config.Burst,\n\t)\n\trl.limiters[key] = limiter\n\n\t// Clean up old limiters periodically (simple approach)\n\tgo func() {\n\t\ttime.Sleep(10 * time.Minute)\n\t\tdelete(rl.limiters, key)\n\t}()\n\n\treturn limiter\n}\n\n// RateLimit middleware applies rate limiting per IP address\nfunc RateLimit(config config.RateLimitConfig) gin.HandlerFunc {\n\trl := NewRateLimiter(config)\n\n\treturn func(c *gin.Context) {\n\t\t// Get client identifier (IP address)\n\t\tclientIP := c.ClientIP()\n\t\t\n\t\t// Get or create limiter for this client\n\t\tlimiter := rl.getLimiter(clientIP)\n\n\t\t// Check if request is allowed\n\t\tif !limiter.Allow() {\n\t\t\t// Calculate retry after time\n\t\t\tretryAfter := time.Until(limiter.Reserve().OK().Add(time.Second))\n\t\t\tif retryAfter < 0 {\n\t\t\t\tretryAfter = time.Second\n\t\t\t}\n\n\t\t\tc.Header(\"Retry-After\", strconv.Itoa(int(retryAfter.Seconds())))\n\t\t\tc.Header(\"X-Rate-Limit-Limit\", strconv.Itoa(config.RequestsPerMinute))\n\t\t\tc.Header(\"X-Rate-Limit-Remaining\", \"0\")\n\t\t\tc.Header(\"X-Rate-Limit-Reset\", strconv.FormatInt(time.Now().Add(retryAfter).Unix(), 10))\n\n\t\t\tc.JSON(http.StatusTooManyRequests, models.APIResponse{\n\t\t\t\tSuccess: false,\n\t\t\t\tError: &models.APIError{\n\t\t\t\t\tCode:    \"RATE_LIMIT_EXCEEDED\",\n\t\t\t\t\tMessage: \"Rate limit exceeded. Please try again later.\",\n\t\t\t\t\tDetails: fmt.Sprintf(\"Limit: %d requests per minute\", config.RequestsPerMinute),\n\t\t\t\t},\n\t\t\t})\n\t\t\tc.Abort()\n\t\t\treturn\n\t\t}\n\n\t\t// Add rate limit headers\n\t\tc.Header(\"X-Rate-Limit-Limit\", strconv.Itoa(config.RequestsPerMinute))\n\t\tc.Header(\"X-Rate-Limit-Remaining\", strconv.Itoa(config.Burst-1))\n\t\tc.Header(\"X-Rate-Limit-Reset\", strconv.FormatInt(time.Now().Add(time.Minute).Unix(), 10))\n\n\t\tc.Next()\n\t}\n}\n\n// UserBasedRateLimit applies rate limiting per authenticated user\nfunc UserBasedRateLimit(config config.RateLimitConfig) gin.HandlerFunc {\n\trl := NewRateLimiter(config)\n\n\treturn func(c *gin.Context) {\n\t\t// Get user ID from context (set by auth middleware)\n\t\tuserID, exists := c.Get(\"user_id\")\n\t\tif !exists {\n\t\t\t// Fall back to IP-based rate limiting for unauthenticated users\n\t\t\tuserID = c.ClientIP()\n\t\t}\n\n\t\tkey := fmt.Sprintf(\"user:%v\", userID)\n\t\tlimiter := rl.getLimiter(key)\n\n\t\tif !limiter.Allow() {\n\t\t\tretryAfter := time.Until(limiter.Reserve().OK().Add(time.Second))\n\t\t\tif retryAfter < 0 {\n\t\t\t\tretryAfter = time.Second\n\t\t\t}\n\n\t\t\tc.Header(\"Retry-After\", strconv.Itoa(int(retryAfter.Seconds())))\n\t\t\tc.JSON(http.StatusTooManyRequests, models.APIResponse{\n\t\t\t\tSuccess: false,\n\t\t\t\tError: &models.APIError{\n\t\t\t\t\tCode:    \"USER_RATE_LIMIT_EXCEEDED\",\n\t\t\t\t\tMessage: \"User rate limit exceeded. Please try again later.\",\n\t\t\t\t},\n\t\t\t})\n\t\t\tc.Abort()\n\t\t\treturn\n\t\t}\n\n\t\tc.Next()\n\t}\n}\n\n// EndpointRateLimit applies rate limiting per endpoint\nfunc EndpointRateLimit(requestsPerMinute, burst int) gin.HandlerFunc {\n\tconfig := config.RateLimitConfig{\n\t\tRequestsPerMinute: requestsPerMinute,\n\t\tBurst:             burst,\n\t}\n\trl := NewRateLimiter(config)\n\n\treturn func(c *gin.Context) {\n\t\tkey := fmt.Sprintf(\"endpoint:%s:%s\", c.Request.Method, c.FullPath())\n\t\tlimiter := rl.getLimiter(key)\n\n\t\tif !limiter.Allow() {\n\t\t\tc.JSON(http.StatusTooManyRequests, models.APIResponse{\n\t\t\t\tSuccess: false,\n\t\t\t\tError: &models.APIError{\n\t\t\t\t\tCode:    \"ENDPOINT_RATE_LIMIT_EXCEEDED\",\n\t\t\t\t\tMessage: \"Endpoint rate limit exceeded. Please try again later.\",\n\t\t\t\t},\n\t\t\t})\n\t\t\tc.Abort()\n\t\t\treturn\n\t\t}\n\n\t\tc.Next()\n\t}\n}"
-  }
-]
+// Package middleware provides rate limiting functionality
+package middleware
+
+import (
+	"fmt"
+	"net/http"
+	"strconv"
+	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/vibecast/vibecast/internal/config"
+	"github.com/vibecast/vibecast/internal/models"
+	"golang.org/x/time/rate"
+)
+
+// RateLimiter holds rate limiting configuration and state
+type RateLimiter struct {
+	limiters map[string]*rate.Limiter
+	config   config.RateLimitConfig
+}
+
+// NewRateLimiter creates a new rate limiter
+func NewRateLimiter(config config.RateLimitConfig) *RateLimiter {
+	return &RateLimiter{
+		limiters: make(map[string]*rate.Limiter),
+		config:   config,
+	}
+}
+
+// getLimiter gets or creates a rate limiter for a client
+func (rl *RateLimiter) getLimiter(key string) *rate.Limiter {
+	if limiter, exists := rl.limiters[key]; exists {
+		return limiter
+	}
+
+	// Create new limiter with configured rate and burst
+	limiter := rate.NewLimiter(
+		rate.Limit(rl.config.RequestsPerMinute)/60, // Convert per minute to per second
+		rl.config.Burst,
+	)
+	rl.limiters[key] = limiter
+
+	// Clean up old limiters periodically (simple approach)
+	go func() {
+		time.Sleep(10 * time.Minute)
+		delete(rl.limiters, key)
+	}()
+
+	return limiter
+}
+
+// RateLimit middleware applies rate limiting per IP address
+func RateLimit(config config.RateLimitConfig) gin.HandlerFunc {
+	rl := NewRateLimiter(config)
+
+	return func(c *gin.Context) {
+		// Get client identifier (IP address)
+		clientIP := c.ClientIP()
+		
+		// Get or create limiter for this client
+		limiter := rl.getLimiter(clientIP)
+
+		// Check if request is allowed
+		if !limiter.Allow() {
+			// Calculate retry after time
+			retryAfter := time.Second
+			
+			c.Header("Retry-After", strconv.Itoa(int(retryAfter.Seconds())))
+			c.Header("X-Rate-Limit-Limit", strconv.Itoa(config.RequestsPerMinute))
+			c.Header("X-Rate-Limit-Remaining", "0")
+			c.Header("X-Rate-Limit-Reset", strconv.FormatInt(time.Now().Add(retryAfter).Unix(), 10))
+
+			c.JSON(http.StatusTooManyRequests, models.APIResponse{
+				Success: false,
+				Error: &models.APIError{
+					Code:    "RATE_LIMIT_EXCEEDED",
+					Message: "Rate limit exceeded. Please try again later.",
+					Details: fmt.Sprintf("Limit: %d requests per minute", config.RequestsPerMinute),
+				},
+			})
+			c.Abort()
+			return
+		}
+
+		// Add rate limit headers
+		c.Header("X-Rate-Limit-Limit", strconv.Itoa(config.RequestsPerMinute))
+		c.Header("X-Rate-Limit-Remaining", strconv.Itoa(config.Burst-1))
+		c.Header("X-Rate-Limit-Reset", strconv.FormatInt(time.Now().Add(time.Minute).Unix(), 10))
+
+		c.Next()
+	}
+}
+
+// UserBasedRateLimit applies rate limiting per authenticated user
+func UserBasedRateLimit(config config.RateLimitConfig) gin.HandlerFunc {
+	rl := NewRateLimiter(config)
+
+	return func(c *gin.Context) {
+		// Get user ID from context (set by auth middleware)
+		userID, exists := c.Get("user_id")
+		if !exists {
+			// Fall back to IP-based rate limiting for unauthenticated users
+			userID = c.ClientIP()
+		}
+
+		key := fmt.Sprintf("user:%v", userID)
+		limiter := rl.getLimiter(key)
+
+		if !limiter.Allow() {
+			retryAfter := time.Second
+
+			c.Header("Retry-After", strconv.Itoa(int(retryAfter.Seconds())))
+			c.JSON(http.StatusTooManyRequests, models.APIResponse{
+				Success: false,
+				Error: &models.APIError{
+					Code:    "USER_RATE_LIMIT_EXCEEDED",
+					Message: "User rate limit exceeded. Please try again later.",
+				},
+			})
+			c.Abort()
+			return
+		}
+
+		c.Next()
+	}
+}
+
+// EndpointRateLimit applies rate limiting per endpoint
+func EndpointRateLimit(requestsPerMinute, burst int) gin.HandlerFunc {
+	config := config.RateLimitConfig{
+		RequestsPerMinute: requestsPerMinute,
+		Burst:             burst,
+	}
+	rl := NewRateLimiter(config)
+
+	return func(c *gin.Context) {
+		key := fmt.Sprintf("endpoint:%s:%s", c.Request.Method, c.FullPath())
+		limiter := rl.getLimiter(key)
+
+		if !limiter.Allow() {
+			c.JSON(http.StatusTooManyRequests, models.APIResponse{
+				Success: false,
+				Error: &models.APIError{
+					Code:    "ENDPOINT_RATE_LIMIT_EXCEEDED",
+					Message: "Endpoint rate limit exceeded. Please try again later.",
+				},
+			})
+			c.Abort()
+			return
+		}
+
+		c.Next()
+	}
+}

@@ -1,8 +1,10 @@
-// Package ws provides WebSocket functionality
+// Package ws provides WebSocket handlers for real-time communication
 package ws
 
 import (
+	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"sync"
 	"time"
@@ -10,104 +12,97 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
-	"github.com/vibecast/anomaly-detector/internal/core"
-	"github.com/vibecast/anomaly-detector/internal/models"
+	"github.com/vibecast/vibecast/internal/core"
+	"github.com/vibecast/vibecast/internal/dto"
+	"github.com/vibecast/vibecast/internal/errors"
+	"github.com/vibecast/vibecast/internal/models"
+	"github.com/vibecast/vibecast/internal/services"
 	"go.uber.org/zap"
 )
 
-// Handler manages WebSocket connections
-type Handler struct {
-	detector  *core.AnomalyDetector
-	upgrader  websocket.Upgrader
-	logger    *zap.Logger
-	clients   map[*Client]bool
-	broadcast chan []byte
-	register  chan *Client
-	unregister chan *Client
-	mu        sync.RWMutex
+// MessageType represents different WebSocket message types
+type MessageType string
+
+const (
+	// Client to Server messages
+	TypeSubscribe   MessageType = "subscribe"
+	TypeUnsubscribe MessageType = "unsubscribe"
+	TypePing        MessageType = "ping"
+	TypeAnalyze     MessageType = "analyze"
+	TypeAuth        MessageType = "auth"
+	
+	// Server to Client messages
+	TypePong            MessageType = "pong"
+	TypeError           MessageType = "error"
+	TypeAnomalyAlert    MessageType = "anomaly_alert"
+	TypeAnalysisResult  MessageType = "analysis_result"
+	TypeSystemNotice    MessageType = "system_notice"
+	TypeSubscribed      MessageType = "subscribed"
+	TypeUnsubscribed    MessageType = "unsubscribed"
+	TypeWelcome         MessageType = "welcome"
+)
+
+// WebSocketMessage represents a WebSocket message
+type WebSocketMessage struct {
+	Type      MessageType `json:"type"`
+	Data      interface{} `json:"data,omitempty"`
+	ID        string      `json:"id,omitempty"`
+	Timestamp time.Time   `json:"timestamp"`
+	Error     *errors.APIError `json:"error,omitempty"`
 }
 
 // Client represents a WebSocket client connection
 type Client struct {
-	conn   *websocket.Conn
-	send   chan []byte
-	userID uuid.UUID
-	hub    *Handler
+	ID           uuid.UUID
+	UserID       *uuid.UUID
+	Conn         *websocket.Conn
+	Send         chan *WebSocketMessage
+	Hub          *Hub
+	Subscriptions map[string]bool
+	LastPing     time.Time
+	Authenticated bool
+	ClientInfo   map[string]string
+	mutex        sync.RWMutex
+}
+
+// Hub manages WebSocket client connections
+type Hub struct {
+	clients    map[uuid.UUID]*Client
+	register   chan *Client
+	unregister chan *Client
+	broadcast  chan *WebSocketMessage
+	detector   *core.AnomalyDetector
+	authService *services.AuthService
+	logger     *zap.Logger
+	mutex      sync.RWMutex
+}
+
+// Handler handles WebSocket connections
+type Handler struct {
+	hub      *Hub
+	upgrader websocket.Upgrader
+	logger   *zap.Logger
 }
 
 // NewHandler creates a new WebSocket handler
-func NewHandler(detector *core.AnomalyDetector, upgrader websocket.Upgrader, logger *zap.Logger) *Handler {
-	handler := &Handler{
-		detector:   detector,
-		upgrader:   upgrader,
-		logger:     logger,
-		clients:    make(map[*Client]bool),
-		broadcast:  make(chan []byte),
-		register:   make(chan *Client),
-		unregister: make(chan *Client),
+func NewHandler(detector *core.AnomalyDetector, authService *services.AuthService, upgrader websocket.Upgrader, logger *zap.Logger) *Handler {
+	hub := &Hub{
+		clients:     make(map[uuid.UUID]*Client),
+		register:    make(chan *Client),
+		unregister:  make(chan *Client),
+		broadcast:   make(chan *WebSocketMessage),
+		detector:    detector,
+		authService: authService,
+		logger:      logger,
 	}
 
 	// Start the hub
-	go handler.run()
+	go hub.run()
 
-	return handler
-}
-
-// run starts the WebSocket hub
-func (h *Handler) run() {
-	for {
-		select {
-		case client := <-h.register:
-			h.mu.Lock()
-			h.clients[client] = true
-			h.mu.Unlock()
-			
-			h.logger.Info("Client connected", 
-				zap.String("user_id", client.userID.String()),
-				zap.Int("total_clients", len(h.clients)),
-			)
-
-			// Send welcome message
-			welcome := models.WebSocketMessage{
-				Type:      "connection",
-				Data:      map[string]string{"status": "connected"},
-				Timestamp: time.Now(),
-				UserID:    client.userID,
-			}
-			if data, err := json.Marshal(welcome); err == nil {
-				select {
-				case client.send <- data:
-				default:
-					close(client.send)
-					delete(h.clients, client)
-				}
-			}
-
-		case client := <-h.unregister:
-			h.mu.Lock()
-			if _, ok := h.clients[client]; ok {
-				delete(h.clients, client)
-				close(client.send)
-			}
-			h.mu.Unlock()
-
-			h.logger.Info("Client disconnected", 
-				zap.String("user_id", client.userID.String()),
-				zap.Int("total_clients", len(h.clients)),
-			)
-
-		case message := <-h.broadcast:
-			h.mu.RLock()
-			for client := range h.clients {
-				select {
-				case client.send <- message:
-				default:
-					close(client.send)
-					delete(h.clients, client)
-				}
-			}
-			h.mu.RUnlock()
-		}
+	return &Handler{
+		hub:      hub,
+		upgrader: upgrader,
+		logger:   logger,
 	}
 }
 
@@ -116,321 +111,483 @@ func (h *Handler) HandleWebSocket(c *gin.Context) {
 	// Upgrade HTTP connection to WebSocket
 	conn, err := h.upgrader.Upgrade(c.Writer, c.Request, nil)
 	if err != nil {
-		h.logger.Error("WebSocket upgrade failed", zap.Error(err))
+		h.logger.Error("Failed to upgrade WebSocket connection", zap.Error(err))
 		return
 	}
 
-	// Get user ID from query parameter or context
-	userIDStr := c.Query("user_id")
-	var userID uuid.UUID
-	
-	if userIDStr != "" {
-		if id, err := uuid.Parse(userIDStr); err == nil {
-			userID = id
-		} else {
-			userID = uuid.New() // Generate anonymous ID
-		}
-	} else {
-		userID = uuid.New() // Generate anonymous ID
-	}
-
-	// Create client
+	// Create new client
 	client := &Client{
-		conn:   conn,
-		send:   make(chan []byte, 256),
-		userID: userID,
-		hub:    h,
+		ID:            uuid.New(),
+		Conn:          conn,
+		Send:          make(chan *WebSocketMessage, 256),
+		Hub:           h.hub,
+		Subscriptions: make(map[string]bool),
+		LastPing:      time.Now(),
+		Authenticated: false,
+		ClientInfo:    make(map[string]string),
 	}
 
 	// Register client
-	h.register <- client
+	h.hub.register <- client
 
 	// Start goroutines for reading and writing
 	go client.writePump()
 	go client.readPump()
+
+	// Send welcome message
+	welcomeMsg := &WebSocketMessage{
+		Type:      TypeWelcome,
+		ID:        uuid.New().String(),
+		Timestamp: time.Now(),
+		Data: map[string]interface{}{
+			"client_id": client.ID.String(),
+			"message":   "Connected to VibeCast WebSocket API",
+			"version":   "2.0.0",
+		},
+	}
+	client.Send <- welcomeMsg
+
+	h.logger.Info("WebSocket client connected", 
+		zap.String("client_id", client.ID.String()),
+		zap.String("remote_addr", c.Request.RemoteAddr),
+	)
 }
 
-// readPump handles reading messages from the client
+// Hub methods
+
+func (h *Hub) run() {
+	ticker := time.NewTicker(30 * time.Second)
+	defer ticker.Stop()
+
+	for {
+		select {
+		case client := <-h.register:
+			h.mutex.Lock()
+			h.clients[client.ID] = client
+			h.mutex.Unlock()
+			h.logger.Debug("Client registered", zap.String("client_id", client.ID.String()))
+
+		case client := <-h.unregister:
+			h.mutex.Lock()
+			if _, ok := h.clients[client.ID]; ok {
+				delete(h.clients, client.ID)
+				close(client.Send)
+				h.logger.Debug("Client unregistered", zap.String("client_id", client.ID.String()))
+			}
+			h.mutex.Unlock()
+
+		case message := <-h.broadcast:
+			h.mutex.RLock()
+			for _, client := range h.clients {
+				select {
+				case client.Send <- message:
+				default:
+					close(client.Send)
+					delete(h.clients, client.ID)
+				}
+			}
+			h.mutex.RUnlock()
+
+		case <-ticker.C:
+			// Cleanup inactive clients
+			h.cleanup()
+		}
+	}
+}
+
+func (h *Hub) cleanup() {
+	h.mutex.Lock()
+	defer h.mutex.Unlock()
+
+	now := time.Now()
+	for id, client := range h.clients {
+		if now.Sub(client.LastPing) > 60*time.Second {
+			client.Conn.Close()
+			close(client.Send)
+			delete(h.clients, id)
+			h.logger.Debug("Client cleaned up due to inactivity", zap.String("client_id", id.String()))
+		}
+	}
+}
+
+// BroadcastToSubscribers broadcasts a message to all clients subscribed to a topic
+func (h *Hub) BroadcastToSubscribers(topic string, message *WebSocketMessage) {
+	h.mutex.RLock()
+	defer h.mutex.RUnlock()
+
+	for _, client := range h.clients {
+		client.mutex.RLock()
+		subscribed := client.Subscriptions[topic]
+		client.mutex.RUnlock()
+
+		if subscribed {
+			select {
+			case client.Send <- message:
+			default:
+				// Client's send channel is full, skip
+			}
+		}
+	}
+}
+
+// SendToUser sends a message to a specific user
+func (h *Hub) SendToUser(userID uuid.UUID, message *WebSocketMessage) {
+	h.mutex.RLock()
+	defer h.mutex.RUnlock()
+
+	for _, client := range h.clients {
+		if client.UserID != nil && *client.UserID == userID {
+			select {
+			case client.Send <- message:
+			default:
+				// Client's send channel is full, skip
+			}
+		}
+	}
+}
+
+// Client methods
+
 func (c *Client) readPump() {
 	defer func() {
-		c.hub.unregister <- c
-		c.conn.Close()
+		c.Hub.unregister <- c
+		c.Conn.Close()
 	}()
 
 	// Set read deadline and pong handler
-	c.conn.SetReadDeadline(time.Now().Add(60 * time.Second))
-	c.conn.SetPongHandler(func(string) error {
-		c.conn.SetReadDeadline(time.Now().Add(60 * time.Second))
+	c.Conn.SetReadDeadline(time.Now().Add(60 * time.Second))
+	c.Conn.SetPongHandler(func(string) error {
+		c.LastPing = time.Now()
+		c.Conn.SetReadDeadline(time.Now().Add(60 * time.Second))
 		return nil
 	})
 
 	for {
-		var message models.WebSocketMessage
-		err := c.conn.ReadJSON(&message)
+		_, messageBytes, err := c.Conn.ReadMessage()
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
-				c.hub.logger.Error("WebSocket read error", zap.Error(err))
+				c.Hub.logger.Error("WebSocket error", zap.Error(err))
 			}
 			break
 		}
 
-		// Process the message
-		c.handleMessage(&message)
+		var msg WebSocketMessage
+		if err := json.Unmarshal(messageBytes, &msg); err != nil {
+			c.sendError("Invalid message format", err)
+			continue
+		}
+
+		c.handleMessage(&msg)
 	}
 }
 
-// writePump handles writing messages to the client
 func (c *Client) writePump() {
 	ticker := time.NewTicker(54 * time.Second)
 	defer func() {
 		ticker.Stop()
-		c.conn.Close()
+		c.Conn.Close()
 	}()
 
 	for {
 		select {
-		case message, ok := <-c.send:
-			c.conn.SetWriteDeadline(time.Now().Add(10 * time.Second))
+		case message, ok := <-c.Send:
+			c.Conn.SetWriteDeadline(time.Now().Add(10 * time.Second))
 			if !ok {
-				c.conn.WriteMessage(websocket.CloseMessage, []byte{})
+				c.Conn.WriteMessage(websocket.CloseMessage, []byte{})
 				return
 			}
 
-			w, err := c.conn.NextWriter(websocket.TextMessage)
-			if err != nil {
-				return
-			}
-			w.Write(message)
-
-			// Add queued messages to the current message
-			n := len(c.send)
-			for i := 0; i < n; i++ {
-				w.Write([]byte{'\n'})
-				w.Write(<-c.send)
-			}
-
-			if err := w.Close(); err != nil {
+			if err := c.Conn.WriteJSON(message); err != nil {
+				c.Hub.logger.Error("Failed to write WebSocket message", zap.Error(err))
 				return
 			}
 
 		case <-ticker.C:
-			c.conn.SetWriteDeadline(time.Now().Add(10 * time.Second))
-			if err := c.conn.WriteMessage(websocket.PingMessage, nil); err != nil {
+			c.Conn.SetWriteDeadline(time.Now().Add(10 * time.Second))
+			if err := c.Conn.WriteMessage(websocket.PingMessage, nil); err != nil {
 				return
 			}
 		}
 	}
 }
 
-// handleMessage processes incoming WebSocket messages
-func (c *Client) handleMessage(message *models.WebSocketMessage) {
-	c.hub.logger.Debug("Received WebSocket message",
-		zap.String("type", message.Type),
-		zap.String("user_id", c.userID.String()),
-	)
-
-	switch message.Type {
-	case "ping":
-		// Respond with pong
-		response := models.WebSocketMessage{
-			Type:      "pong",
-			Data:      map[string]string{"status": "alive"},
-			Timestamp: time.Now(),
-			UserID:    c.userID,
-		}
-		c.sendMessage(&response)
-
-	case "anomaly_detection":
-		// Handle real-time anomaly detection request
-		if data, ok := message.Data.(map[string]interface{}); ok {
-			c.processAnomalyDetection(data)
-		}
-
-	case "subscribe":
-		// Handle subscription to specific events
-		c.handleSubscription(message.Data)
-
-	case "unsubscribe":
-		// Handle unsubscription from events
-		c.handleUnsubscription(message.Data)
-
-	case "status":
-		// Send status update
-		status := models.WebSocketMessage{
-			Type: "status_update",
-			Data: map[string]interface{}{
-				"connected_clients": len(c.hub.clients),
-				"user_id":          c.userID,
-				"connection_time":  time.Now(),
-			},
-			Timestamp: time.Now(),
-			UserID:    c.userID,
-		}
-		c.sendMessage(&status)
-
+func (c *Client) handleMessage(msg *WebSocketMessage) {
+	switch msg.Type {
+	case TypeAuth:
+		c.handleAuth(msg)
+	case TypeSubscribe:
+		c.handleSubscribe(msg)
+	case TypeUnsubscribe:
+		c.handleUnsubscribe(msg)
+	case TypePing:
+		c.handlePing(msg)
+	case TypeAnalyze:
+		c.handleAnalyze(msg)
 	default:
-		c.hub.logger.Warn("Unknown message type", zap.String("type", message.Type))
+		c.sendError("Unknown message type", fmt.Errorf("unknown type: %s", msg.Type))
 	}
 }
 
-// processAnomalyDetection handles real-time anomaly detection
-func (c *Client) processAnomalyDetection(data map[string]interface{}) {
-	// In a real implementation, this would trigger anomaly detection
-	// For now, we'll simulate a response
-	
-	result := models.WebSocketMessage{
-		Type: "anomaly_result",
-		Data: map[string]interface{}{
-			"is_anomaly":      false,
-			"score":          0.3,
-			"confidence":     0.8,
-			"processing_time": 150,
-			"algorithm":      "isolation_forest",
-		},
+func (c *Client) handleAuth(msg *WebSocketMessage) {
+	data, ok := msg.Data.(map[string]interface{})
+	if !ok {
+		c.sendError("Invalid auth data", nil)
+		return
+	}
+
+	token, ok := data["token"].(string)
+	if !ok {
+		c.sendError("Missing token", nil)
+		return
+	}
+
+	// Validate token
+	claims, err := c.Hub.authService.ValidateToken(token)
+	if err != nil {
+		c.sendError("Invalid token", err)
+		return
+	}
+
+	// Set user info
+	c.mutex.Lock()
+	c.UserID = &claims.UserID
+	c.Authenticated = true
+	c.mutex.Unlock()
+
+	// Send success response
+	response := &WebSocketMessage{
+		Type:      TypeWelcome,
+		ID:        msg.ID,
 		Timestamp: time.Now(),
-		UserID:    c.userID,
+		Data: map[string]interface{}{
+			"authenticated": true,
+			"user_id":       claims.UserID.String(),
+			"role":          claims.Role,
+		},
 	}
+	c.Send <- response
 
-	c.sendMessage(&result)
+	c.Hub.logger.Info("WebSocket client authenticated", 
+		zap.String("client_id", c.ID.String()),
+		zap.String("user_id", claims.UserID.String()),
+	)
 }
 
-// handleSubscription processes subscription requests
-func (c *Client) handleSubscription(data interface{}) {
-	if subscriptions, ok := data.(map[string]interface{}); ok {
-		c.hub.logger.Info("Client subscribed to events",
-			zap.String("user_id", c.userID.String()),
-			zap.Any("subscriptions", subscriptions),
-		)
+func (c *Client) handleSubscribe(msg *WebSocketMessage) {
+	if !c.Authenticated {
+		c.sendError("Authentication required", nil)
+		return
+	}
 
-		response := models.WebSocketMessage{
-			Type: "subscription_confirmed",
-			Data: map[string]interface{}{
-				"subscriptions": subscriptions,
-				"status":       "confirmed",
+	data, ok := msg.Data.(map[string]interface{})
+	if !ok {
+		c.sendError("Invalid subscribe data", nil)
+		return
+	}
+
+	topic, ok := data["topic"].(string)
+	if !ok {
+		c.sendError("Missing topic", nil)
+		return
+	}
+
+	// Add subscription
+	c.mutex.Lock()
+	c.Subscriptions[topic] = true
+	c.mutex.Unlock()
+
+	// Send confirmation
+	response := &WebSocketMessage{
+		Type:      TypeSubscribed,
+		ID:        msg.ID,
+		Timestamp: time.Now(),
+		Data: map[string]interface{}{
+			"topic":      topic,
+			"subscribed": true,
+		},
+	}
+	c.Send <- response
+
+	c.Hub.logger.Debug("Client subscribed to topic", 
+		zap.String("client_id", c.ID.String()),
+		zap.String("topic", topic),
+	)
+}
+
+func (c *Client) handleUnsubscribe(msg *WebSocketMessage) {
+	data, ok := msg.Data.(map[string]interface{})
+	if !ok {
+		c.sendError("Invalid unsubscribe data", nil)
+		return
+	}
+
+	topic, ok := data["topic"].(string)
+	if !ok {
+		c.sendError("Missing topic", nil)
+		return
+	}
+
+	// Remove subscription
+	c.mutex.Lock()
+	delete(c.Subscriptions, topic)
+	c.mutex.Unlock()
+
+	// Send confirmation
+	response := &WebSocketMessage{
+		Type:      TypeUnsubscribed,
+		ID:        msg.ID,
+		Timestamp: time.Now(),
+		Data: map[string]interface{}{
+			"topic":        topic,
+			"unsubscribed": true,
+		},
+	}
+	c.Send <- response
+}
+
+func (c *Client) handlePing(msg *WebSocketMessage) {
+	c.LastPing = time.Now()
+	response := &WebSocketMessage{
+		Type:      TypePong,
+		ID:        msg.ID,
+		Timestamp: time.Now(),
+	}
+	c.Send <- response
+}
+
+func (c *Client) handleAnalyze(msg *WebSocketMessage) {
+	if !c.Authenticated {
+		c.sendError("Authentication required", nil)
+		return
+	}
+
+	data, ok := msg.Data.(map[string]interface{})
+	if !ok {
+		c.sendError("Invalid analyze data", nil)
+		return
+	}
+
+	text, ok := data["text"].(string)
+	if !ok {
+		c.sendError("Missing text", nil)
+		return
+	}
+
+	// Perform analysis
+	result, err := c.Hub.detector.AnalyzeText(text)
+	if err != nil {
+		c.sendError("Analysis failed", err)
+		return
+	}
+
+	// Send result
+	response := &WebSocketMessage{
+		Type:      TypeAnalysisResult,
+		ID:        msg.ID,
+		Timestamp: time.Now(),
+		Data: dto.TextAnalysisResponse{
+			BaseResponse: dto.BaseResponse{
+				Success:   true,
+				Message:   "Analysis completed",
+				Timestamp: time.Now(),
 			},
-			Timestamp: time.Now(),
-			UserID:    c.userID,
-		}
-		c.sendMessage(&response)
+			Result: result,
+		},
 	}
-}
+	c.Send <- response
 
-// handleUnsubscription processes unsubscription requests
-func (c *Client) handleUnsubscription(data interface{}) {
-	if unsubscriptions, ok := data.(map[string]interface{}); ok {
-		c.hub.logger.Info("Client unsubscribed from events",
-			zap.String("user_id", c.userID.String()),
-			zap.Any("unsubscriptions", unsubscriptions),
-		)
-
-		response := models.WebSocketMessage{
-			Type: "unsubscription_confirmed",
+	// If anomaly detected, broadcast alert to subscribers
+	if result.IsAnomalous {
+		alertMsg := &WebSocketMessage{
+			Type:      TypeAnomalyAlert,
+			Timestamp: time.Now(),
 			Data: map[string]interface{}{
-				"unsubscriptions": unsubscriptions,
-				"status":         "confirmed",
+				"user_id": c.UserID.String(),
+				"score":   result.Score,
+				"confidence": result.Confidence,
+				"text_preview": text[:min(100, len(text))],
 			},
-			Timestamp: time.Now(),
-			UserID:    c.userID,
 		}
-		c.sendMessage(&response)
+		c.Hub.BroadcastToSubscribers("anomaly_alerts", alertMsg)
 	}
 }
 
-// sendMessage sends a message to the client
-func (c *Client) sendMessage(message *models.WebSocketMessage) {
-	data, err := json.Marshal(message)
+func (c *Client) sendError(message string, err error) {
+	apiErr := errors.NewBadRequestError(message)
 	if err != nil {
-		c.hub.logger.Error("Failed to marshal WebSocket message", zap.Error(err))
-		return
+		apiErr.WithMetadata("details", err.Error())
 	}
 
-	select {
-	case c.send <- data:
-	default:
-		close(c.send)
-		delete(c.hub.clients, c)
+	errorMsg := &WebSocketMessage{
+		Type:      TypeError,
+		Timestamp: time.Now(),
+		Error:     apiErr,
 	}
+	c.Send <- errorMsg
 }
 
-// BroadcastToAll sends a message to all connected clients
-func (h *Handler) BroadcastToAll(message *models.WebSocketMessage) {
-	data, err := json.Marshal(message)
-	if err != nil {
-		h.logger.Error("Failed to marshal broadcast message", zap.Error(err))
-		return
-	}
+// Helper functions
 
-	h.broadcast <- data
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }
 
-// BroadcastToUser sends a message to a specific user's connections
-func (h *Handler) BroadcastToUser(userID uuid.UUID, message *models.WebSocketMessage) {
-	data, err := json.Marshal(message)
-	if err != nil {
-		h.logger.Error("Failed to marshal user message", zap.Error(err))
-		return
+// NotifyAnomalyDetected sends anomaly alerts to subscribed clients
+func (h *Handler) NotifyAnomalyDetected(userID uuid.UUID, result *models.AnomalyResult) {
+	message := &WebSocketMessage{
+		Type:      TypeAnomalyAlert,
+		Timestamp: time.Now(),
+		Data: map[string]interface{}{
+			"user_id":    userID.String(),
+			"score":      result.Score,
+			"confidence": result.Confidence,
+			"timestamp":  result.Timestamp,
+			"details":    result.Details,
+		},
 	}
 
-	h.mu.RLock()
-	defer h.mu.RUnlock()
+	// Broadcast to all subscribers of anomaly alerts
+	h.hub.BroadcastToSubscribers("anomaly_alerts", message)
+	
+	// Also send directly to the user
+	h.hub.SendToUser(userID, message)
+}
 
-	for client := range h.clients {
-		if client.userID == userID {
-			select {
-			case client.send <- data:
-			default:
-				close(client.send)
-				delete(h.clients, client)
-			}
-		}
+// NotifySystemEvent sends system notifications to all connected clients
+func (h *Handler) NotifySystemEvent(eventType, message string, data map[string]interface{}) {
+	msg := &WebSocketMessage{
+		Type:      TypeSystemNotice,
+		Timestamp: time.Now(),
+		Data: map[string]interface{}{
+			"event_type": eventType,
+			"message":    message,
+			"data":       data,
+		},
 	}
+
+	h.hub.broadcast <- msg
 }
 
 // GetConnectedClients returns the number of connected clients
 func (h *Handler) GetConnectedClients() int {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	return len(h.clients)
+	h.hub.mutex.RLock()
+	defer h.hub.mutex.RUnlock()
+	return len(h.hub.clients)
 }
 
-// GetUserClients returns the number of clients for a specific user
-func (h *Handler) GetUserClients(userID uuid.UUID) int {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-
+// GetAuthenticatedClients returns the number of authenticated clients
+func (h *Handler) GetAuthenticatedClients() int {
+	h.hub.mutex.RLock()
+	defer h.hub.mutex.RUnlock()
+	
 	count := 0
-	for client := range h.clients {
-		if client.userID == userID {
+	for _, client := range h.hub.clients {
+		if client.Authenticated {
 			count++
 		}
 	}
 	return count
-}
-
-// NotifyAnomalyDetected sends anomaly detection notifications
-func (h *Handler) NotifyAnomalyDetected(userID uuid.UUID, result *models.DetectionResult) {
-	message := models.WebSocketMessage{
-		Type:      "anomaly_detected",
-		Data:      result,
-		Timestamp: time.Now(),
-		UserID:    userID,
-	}
-
-	h.BroadcastToUser(userID, &message)
-	h.logger.Info("Anomaly detection notification sent",
-		zap.String("user_id", userID.String()),
-		zap.Bool("is_anomaly", result.IsAnomaly),
-	)
-}
-
-// NotifySystemStatus sends system status updates
-func (h *Handler) NotifySystemStatus(status map[string]interface{}) {
-	message := models.WebSocketMessage{
-		Type:      "system_status",
-		Data:      status,
-		Timestamp: time.Now(),
-	}
-
-	h.BroadcastToAll(&message)
-	h.logger.Debug("System status notification sent")
 }

@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/internal/consensus"
+	"github.com/vibecast/vibecast/internal/consensus"
 )
 
 // PBFT implements the Practical Byzantine Fault Tolerance consensus algorithm

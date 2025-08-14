@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/internal/consensus"
+	"github.com/vibecast/vibecast/internal/consensus"
 )
 
 // Raft implements the Raft consensus algorithm

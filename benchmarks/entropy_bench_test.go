@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/vibecast/anomaly-detector/internal/analyzers/entropy"
+	"github.com/vibecast/vibecast/internal/analyzers/entropy"
 )
 
 var sampleTexts = []string{
@@ -16,7 +16,7 @@ var sampleTexts = []string{
 func BenchmarkEntropyAnalyzer_Analyze(b *testing.B) {
 	analyzer := entropy.NewEntropyAnalyzer()
 	ctx := context.Background()
-	
+
 	for _, text := range sampleTexts {
 		b.Run(getLengthCategory(len(text)), func(b *testing.B) {
 			b.ResetTimer()
@@ -32,7 +32,7 @@ func BenchmarkEntropyAnalyzer_Analyze(b *testing.B) {
 
 func BenchmarkEntropyAnalyzer_CharacterEntropy(b *testing.B) {
 	analyzer := entropy.NewEntropyAnalyzer()
-	
+
 	for _, text := range sampleTexts {
 		b.Run(getLengthCategory(len(text)), func(b *testing.B) {
 			b.ResetTimer()
@@ -53,7 +53,7 @@ func BenchmarkEntropyAnalyzer_Parallel(b *testing.B) {
 	analyzer := entropy.NewEntropyAnalyzer()
 	ctx := context.Background()
 	text := sampleTexts[2] // Use the longest text
-	
+
 	b.RunParallel(func(pb *testing.PB) {
 		for pb.Next() {
 			_, err := analyzer.Analyze(ctx, text)
@@ -80,10 +80,10 @@ func BenchmarkEntropyAnalyzer_Memory(b *testing.B) {
 	analyzer := entropy.NewEntropyAnalyzer()
 	ctx := context.Background()
 	text := sampleTexts[2]
-	
+
 	b.ReportAllocs()
 	b.ResetTimer()
-	
+
 	for i := 0; i < b.N; i++ {
 		_, err := analyzer.Analyze(ctx, text)
 		if err != nil {

@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	"github.com/vibecast/internal/consensus"
+	"github.com/vibecast/vibecast/internal/consensus"
 )
 
 // WebSocketTransport implements the Transport interface using WebSockets

@@ -11,9 +11,9 @@ import (
 	"github.com/gorilla/websocket"
 	"go.uber.org/zap"
 
-	"github.com/vibecast/anomaly-detector/internal/storage"
-	"github.com/vibecast/anomaly-detector/pkg/detector"
-	"github.com/vibecast/anomaly-detector/pkg/models"
+	"github.com/vibecast/vibecast/internal/storage"
+	"github.com/vibecast/vibecast/pkg/detector"
+	"github.com/vibecast/vibecast/pkg/models"
 )
 
 // Handlers represents the HTTP handlers

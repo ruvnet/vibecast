@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/anomaly-detector/internal/models/proto"
+	"github.com/vibecast/vibecast/internal/models/proto"
 	"go.uber.org/zap"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -116,8 +116,8 @@ func (q *Queue) Enqueue(ctx context.Context, queueName string, msg *proto.Messag
 		QueueName:        queueName,
 		Message:          msg,
 		DeliveryCount:    0,
-		EnqueuedAt:       timestamppb.Now(),
-		NextDeliveryAt:   timestamppb.Now(),
+		EnqueuedAt:       time.Now(),
+		NextDeliveryAt:   time.Now(),
 		DeadLetter:       false,
 	}
 	
@@ -133,7 +133,7 @@ func (q *Queue) Enqueue(ctx context.Context, queueName string, msg *proto.Messag
 	
 	q.logger.Debug("message enqueued",
 		zap.String("queue", queueName),
-		zap.String("message_id", msg.Id),
+		zap.String("message_id", msg.ID),
 		zap.Int64("queue_size", currentSize+1))
 	
 	return nil
@@ -172,14 +172,14 @@ func (q *Queue) Dequeue(ctx context.Context, queueName string, timeout time.Dura
 			
 			// Remove from queue and add to in-flight
 			q.queues[queueName] = append(queue[:itemIndex], queue[itemIndex+1:]...)
-			q.inFlightMessages[availableItem.QueueMessage.Message.Id] = availableItem
+			q.inFlightMessages[availableItem.QueueMessage.Message.ID] = availableItem
 			
 			result := availableItem.QueueMessage
 			q.mu.Unlock()
 			
 			q.logger.Debug("message dequeued",
 				zap.String("queue", queueName),
-				zap.String("message_id", result.Message.Id),
+				zap.String("message_id", result.Message.ID),
 				zap.Int32("delivery_count", result.DeliveryCount))
 			
 			return result, nil

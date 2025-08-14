@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/vibecast/anomaly-detector/internal/core"
-	"github.com/vibecast/anomaly-detector/internal/models"
+	"github.com/vibecast/vibecast/internal/core"
+	"github.com/vibecast/vibecast/internal/models"
 	"go.uber.org/zap"
 )
 

@@ -8,10 +8,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/vibecast/anomaly-detector/internal/core"
-	"github.com/vibecast/anomaly-detector/internal/middleware"
-	"github.com/vibecast/anomaly-detector/internal/models"
-	"github.com/vibecast/anomaly-detector/internal/services"
+	"github.com/vibecast/vibecast/internal/core"
+	"github.com/vibecast/vibecast/internal/middleware"
+	"github.com/vibecast/vibecast/internal/models"
+	"github.com/vibecast/vibecast/internal/services"
 	"go.uber.org/zap"
 )
 

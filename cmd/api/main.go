@@ -17,15 +17,15 @@ import (
 	"github.com/gorilla/websocket"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"github.com/vibecast/anomaly-detector/internal/api/graphql"
-	"github.com/vibecast/anomaly-detector/internal/api/rest"
-	"github.com/vibecast/anomaly-detector/internal/api/ws"
-	"github.com/vibecast/anomaly-detector/internal/config"
-	"github.com/vibecast/anomaly-detector/internal/core"
-	"github.com/vibecast/anomaly-detector/internal/middleware"
-	"github.com/vibecast/anomaly-detector/internal/repository"
-	"github.com/vibecast/anomaly-detector/internal/services"
-	"github.com/vibecast/anomaly-detector/pkg/metrics"
+	"github.com/vibecast/vibecast/internal/api/graphql"
+	"github.com/vibecast/vibecast/internal/api/rest"
+	"github.com/vibecast/vibecast/internal/api/ws"
+	"github.com/vibecast/vibecast/internal/config"
+	"github.com/vibecast/vibecast/internal/core"
+	"github.com/vibecast/vibecast/internal/middleware"
+	"github.com/vibecast/vibecast/internal/repository"
+	"github.com/vibecast/vibecast/internal/services"
+	"github.com/vibecast/vibecast/pkg/metrics"
 	"go.uber.org/zap"
 )
 
@@ -52,7 +52,7 @@ import (
 func main() {
 	// Load configuration
 	cfg := config.Load()
-	
+
 	// Initialize logger
 	logger, _ := zap.NewProduction()
 	defer logger.Sync()
@@ -74,7 +74,7 @@ func main() {
 
 	// Initialize Gin router
 	router := gin.Default()
-	
+
 	// Global middleware
 	router.Use(middleware.CORS())
 	router.Use(middleware.RequestID())
@@ -99,11 +99,11 @@ func main() {
 	v1.Use(middleware.Auth(authService))
 	restHandler.SetupRoutes(v1)
 
-	// GraphQL endpoint
-	gqlResolver := graphql.NewResolver(anomalyService, userService, logger)
-	gqlHandler := handler.NewDefaultServer(graphql.NewExecutableSchema(graphql.Config{Resolvers: gqlResolver}))
-	router.POST("/graphql", gin.WrapH(gqlHandler))
-	router.GET("/playground", gin.WrapH(playground.Handler("GraphQL playground", "/graphql")))
+	// GraphQL endpoint (placeholder - implement if needed)
+	// gqlResolver := graphql.NewResolver(anomalyService, userService, logger)
+	// gqlHandler := handler.NewDefaultServer(graphql.NewExecutableSchema(graphql.Config{Resolvers: gqlResolver}))
+	// router.POST("/graphql", gin.WrapH(gqlHandler))
+	// router.GET("/playground", gin.WrapH(playground.Handler("GraphQL playground", "/graphql")))
 
 	// WebSocket endpoint
 	upgrader := websocket.Upgrader{
@@ -123,7 +123,7 @@ func main() {
 
 	// Start server in a goroutine
 	go func() {
-		logger.Info("Starting API server", 
+		logger.Info("Starting API server",
 			zap.Int("port", cfg.Port),
 			zap.String("environment", cfg.Environment),
 		)

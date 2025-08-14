@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/anomaly-detector/internal/models/proto"
+	"github.com/vibecast/vibecast/internal/models/proto"
 	"go.uber.org/zap"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -78,8 +78,14 @@ func NewTokenBucketLimiter(config *RateLimiterConfig, logger *zap.Logger) *Token
 	return limiter
 }
 
-// Allow checks if an operation is allowed
-func (tbl *TokenBucketLimiter) Allow(ctx context.Context, key string) (bool, *proto.RateLimitInfo, error) {
+// Allow checks if an operation is allowed (interface method)
+func (tbl *TokenBucketLimiter) Allow(key string) bool {
+	allowed, _, _ := tbl.AllowWithDetails(context.Background(), key)
+	return allowed
+}
+
+// AllowWithDetails provides detailed rate limiting information
+func (tbl *TokenBucketLimiter) AllowWithDetails(ctx context.Context, key string) (bool, *proto.RateLimitInfo, error) {
 	if key == "" {
 		return false, nil, fmt.Errorf("key cannot be empty")
 	}
@@ -331,67 +337,3 @@ func (tbl *TokenBucketLimiter) GetStats() map[string]interface{} {
 	return stats
 }
 
-// BackpressureConfig holds configuration for backpressure handling
-type BackpressureConfig struct {
-	Enabled          bool
-	ThresholdPercent float64
-	MaxDelay         time.Duration
-	DelayIncrement   time.Duration
-}
-
-// DefaultBackpressureConfig returns default backpressure configuration
-func DefaultBackpressureConfig() *BackpressureConfig {
-	return &BackpressureConfig{
-		Enabled:          true,
-		ThresholdPercent: 80.0,
-		MaxDelay:         5 * time.Second,
-		DelayIncrement:   100 * time.Millisecond,
-	}
-}
-
-// BackpressureManager handles backpressure situations
-type BackpressureManager struct {
-	config *BackpressureConfig
-	logger *zap.Logger
-}
-
-// NewBackpressureManager creates a new backpressure manager
-func NewBackpressureManager(config *BackpressureConfig, logger *zap.Logger) *BackpressureManager {
-	if config == nil {
-		config = DefaultBackpressureConfig()
-	}
-	
-	return &BackpressureManager{
-		config: config,
-		logger: logger,
-	}
-}
-
-// HandleBackpressure handles backpressure based on queue size
-func (bm *BackpressureManager) HandleBackpressure(currentSize, maxSize int64) error {
-	if !bm.config.Enabled {
-		return nil
-	}
-	
-	utilizationPercent := float64(currentSize) / float64(maxSize) * 100.0
-	
-	if utilizationPercent < bm.config.ThresholdPercent {
-		return nil // No backpressure needed
-	}
-	
-	// Calculate delay based on utilization
-	excessPercent := utilizationPercent - bm.config.ThresholdPercent
-	delayMultiplier := excessPercent / (100.0 - bm.config.ThresholdPercent)
-	
-	delay := time.Duration(float64(bm.config.DelayIncrement) * delayMultiplier)
-	if delay > bm.config.MaxDelay {
-		delay = bm.config.MaxDelay
-	}
-	
-	bm.logger.Debug("applying backpressure",
-		zap.Float64("utilization_percent", utilizationPercent),
-		zap.Duration("delay", delay))
-	
-	time.Sleep(delay)
-	return nil
-}

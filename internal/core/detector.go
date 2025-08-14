@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/vibecast/anomaly-detector/internal/models"
-	"github.com/vibecast/anomaly-detector/pkg/metrics"
+	"github.com/vibecast/vibecast/internal/models"
+	"github.com/vibecast/vibecast/pkg/metrics"
 	"go.uber.org/zap"
 )
 

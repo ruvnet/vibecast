@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/anomaly-detector/internal/models/proto"
+	"github.com/vibecast/vibecast/internal/models/proto"
 	"go.uber.org/zap"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -68,7 +68,7 @@ func NewBroker(config *BrokerConfig, rateLimiter RateLimiter, logger *zap.Logger
 		subscriptions: make(map[string]*subscription),
 		topics:        make(map[string][]*subscription),
 		stats: &proto.BrokerStats{
-			LastUpdated: timestamppb.Now(),
+			LastUpdated: time.Now(),
 		},
 		logger:      logger,
 		ctx:         ctx,
@@ -91,11 +91,7 @@ func (b *Broker) Publish(ctx context.Context, topic string, msg *proto.Message) 
 	
 	// Check rate limiting
 	if b.rateLimiter != nil {
-		allowed, _, err := b.rateLimiter.Allow(ctx, fmt.Sprintf("publish:%s", topic))
-		if err != nil {
-			b.logger.Error("rate limiter error", zap.Error(err))
-			return fmt.Errorf("rate limiter error: %w", err)
-		}
+		allowed := b.rateLimiter.Allow(fmt.Sprintf("publish:%s", topic))
 		if !allowed {
 			return fmt.Errorf("rate limit exceeded for topic: %s", topic)
 		}
@@ -103,7 +99,8 @@ func (b *Broker) Publish(ctx context.Context, topic string, msg *proto.Message) 
 	
 	// Set timestamp if not provided
 	if msg.Timestamp == nil {
-		msg.Timestamp = timestamppb.Now()
+		now := time.Now()
+		msg.Timestamp = &now
 	}
 	
 	b.mu.RLock()
@@ -146,7 +143,7 @@ func (b *Broker) Publish(ctx context.Context, topic string, msg *proto.Message) 
 	
 	b.logger.Debug("message published",
 		zap.String("topic", topic),
-		zap.String("message_id", msg.Id),
+		zap.String("message_id", msg.ID),
 		zap.Int("delivered_count", deliveredCount))
 	
 	return nil
@@ -241,8 +238,8 @@ func (b *Broker) Unsubscribe(ctx context.Context, subscriptionID string) error {
 	return nil
 }
 
-// GetStats returns broker statistics
-func (b *Broker) GetStats(ctx context.Context) (*proto.BrokerStats, error) {
+// GetStats returns broker statistics (interface method)
+func (b *Broker) GetStats() (*proto.BrokerStats, error) {
 	b.mu.RLock()
 	defer b.mu.RUnlock()
 	
@@ -250,9 +247,9 @@ func (b *Broker) GetStats(ctx context.Context) (*proto.BrokerStats, error) {
 	statsCopy := &proto.BrokerStats{
 		MessagesPublished:    b.stats.MessagesPublished,
 		MessagesDelivered:    b.stats.MessagesDelivered,
-		ActiveSubscriptions:  int64(len(b.subscriptions)),
+		ActiveSubscriptions:  int32(len(b.subscriptions)),
 		FailedDeliveries:     b.stats.FailedDeliveries,
-		LastUpdated:         timestamppb.Now(),
+		LastUpdated:         time.Now(),
 	}
 	
 	return statsCopy, nil
@@ -322,7 +319,7 @@ func (b *Broker) processMessages(sub *subscription) {
 				lastErr = err
 				b.logger.Warn("message handler failed",
 					zap.String("subscription_id", sub.ID),
-					zap.String("message_id", msg.Id),
+					zap.String("message_id", msg.ID),
 					zap.Int("attempt", attempt+1),
 					zap.Error(err))
 				
@@ -334,7 +331,7 @@ func (b *Broker) processMessages(sub *subscription) {
 			if lastErr != nil {
 				b.logger.Error("message processing failed after all retries",
 					zap.String("subscription_id", sub.ID),
-					zap.String("message_id", msg.Id),
+					zap.String("message_id", msg.ID),
 					zap.Error(lastErr))
 				
 				b.updateStats(func(stats *proto.BrokerStats) {
@@ -374,7 +371,7 @@ func (b *Broker) performCleanup() {
 	// This is a placeholder for more complex cleanup logic
 	
 	// Update stats timestamp
-	b.stats.LastUpdated = timestamppb.Now()
+	b.stats.LastUpdated = time.Now()
 }
 
 // updateStats safely updates broker statistics
@@ -383,5 +380,5 @@ func (b *Broker) updateStats(updateFunc func(*proto.BrokerStats)) {
 	defer b.mu.Unlock()
 	
 	updateFunc(b.stats)
-	b.stats.LastUpdated = timestamppb.Now()
+	b.stats.LastUpdated = time.Now()
 }

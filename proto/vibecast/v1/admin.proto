@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package vibecast.v1;
+
+option go_package = "github.com/vibecast/vibecast/proto/vibecast/v1;vibecast";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+// AdminService provides administrative operations
+service AdminService {
+  // GetSystemInfo returns system information
+  rpc GetSystemInfo(google.protobuf.Empty) returns (SystemInfo);
+  // GetMetrics returns system metrics
+  rpc GetMetrics(MetricsRequest) returns (MetricsResponse);
+  // ClearCache clears system caches
+  rpc ClearCache(ClearCacheRequest) returns (ClearCacheResponse);
+}
+
+// SystemInfo message
+message SystemInfo {
+  string version = 1;
+  string build_time = 2;
+  string git_commit = 3;
+  google.protobuf.Timestamp start_time = 4;
+  int64 uptime_seconds = 5;
+  string go_version = 6;
+  string os = 7;
+  string arch = 8;
+  int32 num_cpu = 9;
+  int64 memory_used = 10;
+  int64 memory_total = 11;
+}
+
+// MetricsRequest message
+message MetricsRequest {
+  repeated string metric_names = 1;
+  google.protobuf.Timestamp start_time = 2;
+  google.protobuf.Timestamp end_time = 3;
+}
+
+// MetricsResponse message
+message MetricsResponse {
+  map<string, MetricData> metrics = 1;
+}
+
+// MetricData message
+message MetricData {
+  string name = 1;
+  double value = 2;
+  string unit = 3;
+  google.protobuf.Timestamp timestamp = 4;
+  map<string, string> labels = 5;
+}
+
+// ClearCacheRequest message
+message ClearCacheRequest {
+  repeated string cache_names = 1;
+}
+
+// ClearCacheResponse message
+message ClearCacheResponse {
+  bool success = 1;
+  string message = 2;
+  int64 items_cleared = 3;
+}

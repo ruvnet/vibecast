@@ -7,7 +7,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/vibecast/anomaly-detector/internal/models"
+	"github.com/vibecast/vibecast/internal/models"
 )
 
 // EmbeddingAnalyzer analyzes text using embedding-based techniques

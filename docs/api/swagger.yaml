@@ -1,0 +1,1080 @@
+openapi: 3.0.3
+info:
+  title: VibeCast API
+  description: |
+    Comprehensive REST API for VibeCast anomaly detection system with real-time capabilities.
+    
+    ## Features
+    - **Authentication**: JWT-based authentication with refresh tokens
+    - **Rate Limiting**: Configurable rate limiting with Redis backend
+    - **Real-time Updates**: WebSocket support for live anomaly alerts
+    - **gRPC Support**: High-performance gRPC endpoints
+    - **API Gateway**: Intelligent routing and service discovery
+    
+    ## Base URLs
+    - **REST API**: `http://localhost:8080/api/v1`
+    - **WebSocket**: `ws://localhost:8080/ws`
+    - **gRPC**: `localhost:9090`
+    
+    ## Authentication
+    Most endpoints require authentication. Include the JWT token in the Authorization header:
+    ```
+    Authorization: Bearer <your-jwt-token>
+    ```
+  version: 2.0.0
+  contact:
+    name: VibeCast API Support
+    url: https://github.com/vibecast/anomaly-detector
+    email: support@vibecast.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Development server
+  - url: https://api.vibecast.com/v1
+    description: Production server
+
+paths:
+  # Health endpoints
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Health check
+      description: Returns the health status of the API and its dependencies
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+              example:
+                success: true
+                status: healthy
+                version: "2.0.0"
+                uptime: "2h 30m 15s"
+                services:
+                  database: healthy
+                  redis: healthy
+                  detector: healthy
+                timestamp: "2024-08-14T10:30:00Z"
+
+  /health/ready:
+    get:
+      tags:
+        - Health
+      summary: Readiness check
+      description: Checks if the service is ready to accept requests
+      responses:
+        '200':
+          description: Service is ready
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '503':
+          description: Service is not ready
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /health/live:
+    get:
+      tags:
+        - Health
+      summary: Liveness check
+      description: Checks if the service is alive
+      responses:
+        '200':
+          description: Service is alive
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  # Authentication endpoints
+  /auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: User login
+      description: Authenticate user and return JWT tokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+            examples:
+              basic_login:
+                summary: Basic login
+                value:
+                  email: "user@example.com"
+                  password: "password123"
+                  remember_me: false
+              remember_me:
+                summary: Login with remember me
+                value:
+                  email: "admin@example.com"
+                  password: "admin123"
+                  remember_me: true
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+              example:
+                success: true
+                message: "Login successful"
+                user:
+                  id: "550e8400-e29b-41d4-a716-446655440000"
+                  email: "user@example.com"
+                  username: "johndoe"
+                  first_name: "John"
+                  last_name: "Doe"
+                  role: "user"
+                  is_active: true
+                  created_at: "2024-01-01T00:00:00Z"
+                  updated_at: "2024-01-01T00:00:00Z"
+                token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                refresh_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                expires_at: "2024-08-15T10:30:00Z"
+                token_type: "Bearer"
+                timestamp: "2024-08-14T10:30:00Z"
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: User registration
+      description: Register a new user account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+            example:
+              email: "newuser@example.com"
+              username: "newuser"
+              first_name: "Jane"
+              last_name: "Smith"
+              password: "SecurePass123!"
+              role: "user"
+      responses:
+        '201':
+          description: Registration successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          description: Invalid request or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorResponse'
+        '409':
+          description: User already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /auth/refresh:
+    post:
+      tags:
+        - Authentication
+      summary: Refresh access token
+      description: Refresh an expired access token using refresh token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+            example:
+              refresh_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+      responses:
+        '200':
+          description: Token refreshed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshTokenResponse'
+        '401':
+          description: Invalid refresh token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  # User management endpoints
+  /users/me:
+    get:
+      tags:
+        - Users
+      summary: Get current user
+      description: Get information about the currently authenticated user
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: User information retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - Users
+      summary: Update current user
+      description: Update the current user's profile information
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+            example:
+              first_name: "John"
+              last_name: "Doe"
+              email: "newemail@example.com"
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /users/me/change-password:
+    post:
+      tags:
+        - Users
+      summary: Change password
+      description: Change the current user's password
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+            example:
+              current_password: "oldpassword123"
+              new_password: "newpassword456"
+      responses:
+        '200':
+          description: Password changed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required or invalid current password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  # Anomaly detection endpoints
+  /anomaly/detect:
+    post:
+      tags:
+        - Anomaly Detection
+      summary: Detect anomalies
+      description: Perform anomaly detection on provided data
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnomalyDetectionRequest'
+            examples:
+              simple_detection:
+                summary: Simple data anomaly detection
+                value:
+                  data:
+                    temperature: "75.5"
+                    humidity: "60.2"
+                    pressure: "1013.25"
+                  algorithm: "isolation_forest"
+                  threshold: 0.7
+              advanced_detection:
+                summary: Advanced detection with options
+                value:
+                  data:
+                    cpu_usage: "95.2"
+                    memory_usage: "87.5"
+                    disk_io: "1200"
+                    network_io: "850"
+                  algorithm: "one_class_svm"
+                  threshold: 0.8
+                  options:
+                    kernel: "rbf"
+                    gamma: "auto"
+                    sensitivity: "high"
+      responses:
+        '200':
+          description: Anomaly detection completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnomalyDetectionResponse'
+              example:
+                success: true
+                message: "Anomaly detection completed"
+                result:
+                  id: "550e8400-e29b-41d4-a716-446655440001"
+                  is_anomaly: true
+                  score: 0.85
+                  confidence: 0.92
+                  threshold: 0.7
+                  algorithm: "isolation_forest"
+                  processing_time_ms: 150
+                  metadata:
+                    features_analyzed: "4"
+                    outlier_score: "0.85"
+                timestamp: "2024-08-14T10:30:00Z"
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /anomaly/analyze/text:
+    post:
+      tags:
+        - Anomaly Detection
+      summary: Analyze text
+      description: Analyze text for anomalies using NLP techniques
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TextAnalysisRequest'
+            examples:
+              simple_text:
+                summary: Simple text analysis
+                value:
+                  text: "This is a normal text message for analysis."
+                  language: "en"
+                  priority: 5
+              suspicious_text:
+                summary: Potentially suspicious text
+                value:
+                  text: "Click here for amazing offers! Limited time only! Act now!"
+                  language: "en"
+                  options:
+                    check_spam: "true"
+                    sentiment_analysis: "true"
+                  priority: 8
+      responses:
+        '200':
+          description: Text analysis completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TextAnalysisResponse'
+              example:
+                success: true
+                message: "Text analysis completed"
+                result:
+                  score: 0.3
+                  confidence: 0.88
+                  is_anomalous: false
+                  details:
+                    linguistic:
+                      score: 0.2
+                      confidence: 0.9
+                      metadata:
+                        word_count: "10"
+                        avg_word_length: "5.2"
+                        sentiment: "neutral"
+                  timestamp: "2024-08-14T10:30:00Z"
+                duration: "125ms"
+                timestamp: "2024-08-14T10:30:00Z"
+
+  /anomaly/analyze/batch:
+    post:
+      tags:
+        - Anomaly Detection
+      summary: Batch text analysis
+      description: Analyze multiple text samples in a single request
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchAnalysisRequest'
+            example:
+              items:
+                - text: "First text sample to analyze"
+                  language: "en"
+                  priority: 5
+                - text: "Second text sample for batch processing"
+                  language: "en"
+                  priority: 3
+                - text: "Third sample with different content"
+                  language: "en"
+                  priority: 7
+      responses:
+        '200':
+          description: Batch analysis completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchAnalysisResponse'
+
+  /anomaly/history:
+    get:
+      tags:
+        - Anomaly Detection
+      summary: Get anomaly history
+      description: Retrieve anomaly detection history for the current user
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          description: Page number (starts from 1)
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: Number of items per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: date_from
+          in: query
+          description: Start date filter (ISO 8601)
+          schema:
+            type: string
+            format: date-time
+        - name: date_to
+          in: query
+          description: End date filter (ISO 8601)
+          schema:
+            type: string
+            format: date-time
+        - name: sort
+          in: query
+          description: Sort field
+          schema:
+            type: string
+            enum: [created_at, score, algorithm]
+            default: created_at
+        - name: order
+          in: query
+          description: Sort order
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+      responses:
+        '200':
+          description: Anomaly history retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAnomalyHistory'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        JWT token-based authentication. Include the token in the Authorization header:
+        `Authorization: Bearer <token>`
+
+  schemas:
+    # Base schemas
+    BaseResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the request was successful
+        message:
+          type: string
+          description: Human-readable message
+        timestamp:
+          type: string
+          format: date-time
+          description: Response timestamp
+        request_id:
+          type: string
+          description: Unique request identifier
+
+    ErrorResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            error:
+              $ref: '#/components/schemas/ErrorDetail'
+
+    ErrorDetail:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error message
+        details:
+          type: string
+          description: Additional error details
+        fields:
+          type: object
+          additionalProperties:
+            type: string
+          description: Field-specific errors
+
+    ValidationErrorResponse:
+      allOf:
+        - $ref: '#/components/schemas/ErrorResponse'
+        - type: object
+          properties:
+            validation_errors:
+              type: array
+              items:
+                $ref: '#/components/schemas/ValidationError'
+
+    ValidationError:
+      type: object
+      properties:
+        field:
+          type: string
+          description: Field name that failed validation
+        message:
+          type: string
+          description: Validation error message
+        value:
+          description: The invalid value
+
+    SuccessResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              description: Response data
+
+    # Authentication schemas
+    LoginRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          description: User email address
+        password:
+          type: string
+          minLength: 6
+          description: User password
+        remember_me:
+          type: boolean
+          default: false
+          description: Whether to issue a longer-lived token
+
+    RegisterRequest:
+      type: object
+      required:
+        - email
+        - username
+        - first_name
+        - last_name
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 255
+          description: User email address
+        username:
+          type: string
+          minLength: 3
+          maxLength: 50
+          pattern: '^[a-zA-Z0-9_]+$'
+          description: Unique username
+        first_name:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: User's first name
+        last_name:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: User's last name
+        password:
+          type: string
+          minLength: 8
+          maxLength: 100
+          description: User password (min 8 characters)
+        role:
+          type: string
+          enum: [user, admin]
+          default: user
+          description: User role
+
+    RefreshTokenRequest:
+      type: object
+      required:
+        - refresh_token
+      properties:
+        refresh_token:
+          type: string
+          description: Valid refresh token
+
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: User ID
+        email:
+          type: string
+          format: email
+          description: User email
+        username:
+          type: string
+          description: Username
+        first_name:
+          type: string
+          description: First name
+        last_name:
+          type: string
+          description: Last name
+        role:
+          type: string
+          enum: [user, admin]
+          description: User role
+        is_active:
+          type: boolean
+          description: Whether the user account is active
+        created_at:
+          type: string
+          format: date-time
+          description: Account creation timestamp
+        updated_at:
+          type: string
+          format: date-time
+          description: Last update timestamp
+
+    AuthResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/UserResponse'
+            token:
+              type: string
+              description: JWT access token
+            refresh_token:
+              type: string
+              description: JWT refresh token
+            expires_at:
+              type: string
+              format: date-time
+              description: Token expiration time
+            token_type:
+              type: string
+              default: Bearer
+              description: Token type
+
+    RefreshTokenResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            token:
+              type: string
+              description: New JWT access token
+            expires_at:
+              type: string
+              format: date-time
+              description: Token expiration time
+
+    UpdateUserRequest:
+      type: object
+      properties:
+        first_name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        last_name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        username:
+          type: string
+          minLength: 3
+          maxLength: 50
+          pattern: '^[a-zA-Z0-9_]+$'
+
+    ChangePasswordRequest:
+      type: object
+      required:
+        - current_password
+        - new_password
+      properties:
+        current_password:
+          type: string
+          description: Current password
+        new_password:
+          type: string
+          minLength: 8
+          maxLength: 100
+          description: New password
+
+    # Anomaly detection schemas
+    AnomalyDetectionRequest:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            type: string
+          description: Data to analyze for anomalies
+        algorithm:
+          type: string
+          enum: [isolation_forest, one_class_svm, local_outlier_factor]
+          description: Anomaly detection algorithm
+        threshold:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Anomaly threshold
+        options:
+          type: object
+          additionalProperties: true
+          description: Algorithm-specific options
+
+    AnomalyDetectionResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            result:
+              $ref: '#/components/schemas/DetectionResult'
+
+    DetectionResult:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Detection result ID
+        is_anomaly:
+          type: boolean
+          description: Whether an anomaly was detected
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Anomaly score
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Confidence in the result
+        threshold:
+          type: number
+          description: Threshold used for detection
+        algorithm:
+          type: string
+          description: Algorithm used
+        processing_time_ms:
+          type: integer
+          description: Processing time in milliseconds
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Additional detection metadata
+
+    TextAnalysisRequest:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          minLength: 1
+          maxLength: 10000
+          description: Text to analyze
+        language:
+          type: string
+          minLength: 2
+          maxLength: 2
+          description: Language code (ISO 639-1)
+        options:
+          type: object
+          additionalProperties:
+            type: string
+          description: Analysis options
+        priority:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: Analysis priority
+
+    TextAnalysisResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            result:
+              $ref: '#/components/schemas/AnomalyResult'
+            duration:
+              type: string
+              description: Analysis duration
+
+    AnomalyResult:
+      type: object
+      properties:
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Overall anomaly score
+        confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Confidence in the result
+        is_anomalous:
+          type: boolean
+          description: Whether the text is anomalous
+        details:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/AnalysisResult'
+          description: Detailed analysis results
+        timestamp:
+          type: string
+          format: date-time
+          description: Analysis timestamp
+
+    AnalysisResult:
+      type: object
+      properties:
+        score:
+          type: number
+          description: Analysis score
+        confidence:
+          type: number
+          description: Confidence level
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Analysis metadata
+
+    BatchAnalysisRequest:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          minItems: 1
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/TextAnalysisRequest'
+          description: List of texts to analyze
+
+    BatchAnalysisResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            results:
+              type: array
+              items:
+                $ref: '#/components/schemas/TextAnalysisResponse'
+            total:
+              type: integer
+              description: Total number of items processed
+            success:
+              type: integer
+              description: Number of successful analyses
+            failed:
+              type: integer
+              description: Number of failed analyses
+            duration:
+              type: string
+              description: Total processing duration
+
+    HealthResponse:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            status:
+              type: string
+              enum: [healthy, unhealthy, degraded]
+              description: Overall health status
+            version:
+              type: string
+              description: API version
+            uptime:
+              type: string
+              description: System uptime
+            services:
+              type: object
+              additionalProperties:
+                type: string
+              description: Status of individual services
+
+    PaginatedAnomalyHistory:
+      allOf:
+        - $ref: '#/components/schemas/BaseResponse'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/AnomalyRecord'
+            pagination:
+              $ref: '#/components/schemas/Pagination'
+
+    AnomalyRecord:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Record ID
+        user_id:
+          type: string
+          format: uuid
+          description: User ID
+        result:
+          $ref: '#/components/schemas/AnomalyResult'
+        input_data:
+          type: object
+          description: Original input data
+        created_at:
+          type: string
+          format: date-time
+          description: Creation timestamp
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Current page number
+        limit:
+          type: integer
+          description: Items per page
+        total:
+          type: integer
+          description: Total number of items
+        total_pages:
+          type: integer
+          description: Total number of pages
+        has_next:
+          type: boolean
+          description: Whether there is a next page
+        has_prev:
+          type: boolean
+          description: Whether there is a previous page
+
+tags:
+  - name: Health
+    description: Service health and status endpoints
+  - name: Authentication
+    description: User authentication and authorization
+  - name: Users
+    description: User management operations
+  - name: Anomaly Detection
+    description: Anomaly detection and analysis operations
+
+externalDocs:
+  description: VibeCast Documentation
+  url: https://docs.vibecast.com

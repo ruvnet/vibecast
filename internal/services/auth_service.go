@@ -8,9 +8,9 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/google/uuid"
-	"github.com/vibecast/anomaly-detector/internal/config"
-	"github.com/vibecast/anomaly-detector/internal/middleware"
-	"github.com/vibecast/anomaly-detector/internal/models"
+	"github.com/vibecast/vibecast/internal/config"
+	"github.com/vibecast/vibecast/internal/middleware"
+	"github.com/vibecast/vibecast/internal/models"
 	"go.uber.org/zap"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -72,7 +72,7 @@ func (s *AuthService) GenerateToken(user *models.User) (string, time.Time, error
 
 // ValidateToken validates a JWT token and returns claims
 func (s *AuthService) ValidateToken(tokenString string) (*middleware.Claims, error) {
-	token, err := jwt.ParseWithClaims(tokenString, &middleware.Claims{}, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(tokenString, &Claims{}, func(token *jwt.Token) (interface{}, error) {
 		// Verify the signing method
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])

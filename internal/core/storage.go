@@ -127,8 +127,24 @@ func (ms *MemoryStorage) Store(ctx context.Context, key string, data []byte, ttl
 	return nil
 }
 
-// Retrieve retrieves data by key
-func (ms *MemoryStorage) Retrieve(ctx context.Context, key string) ([]byte, error) {
+// Retrieve retrieves data by key (interface method)
+func (ms *MemoryStorage) Retrieve(ctx context.Context, key string, dest interface{}) error {
+	data, err := ms.RetrieveBytes(ctx, key)
+	if err != nil {
+		return err
+	}
+	
+	// For simplicity, we'll assume dest is *[]byte
+	if destBytes, ok := dest.(*[]byte); ok {
+		*destBytes = data
+		return nil
+	}
+	
+	return fmt.Errorf("unsupported destination type")
+}
+
+// RetrieveBytes retrieves raw bytes by key
+func (ms *MemoryStorage) RetrieveBytes(ctx context.Context, key string) ([]byte, error) {
 	if key == "" {
 		return nil, fmt.Errorf("key cannot be empty")
 	}

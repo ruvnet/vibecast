@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/vibecast/anomaly-detector/internal/models"
-	"github.com/vibecast/anomaly-detector/internal/repository"
+	"github.com/vibecast/vibecast/internal/models"
+	"github.com/vibecast/vibecast/internal/repository"
 	"go.uber.org/zap"
 )
 

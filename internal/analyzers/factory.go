@@ -3,11 +3,11 @@ package analyzers
 import (
 	"fmt"
 
-	"github.com/vibecast/internal/analyzers/alerts"
-	"github.com/vibecast/internal/analyzers/ml"
-	"github.com/vibecast/internal/analyzers/pattern"
-	"github.com/vibecast/internal/analyzers/statistical"
-	"github.com/vibecast/internal/analyzers/threshold"
+	"github.com/vibecast/vibecast/internal/analyzers/alerts"
+	"github.com/vibecast/vibecast/internal/analyzers/ml"
+	"github.com/vibecast/vibecast/internal/analyzers/pattern"
+	"github.com/vibecast/vibecast/internal/analyzers/statistical"
+	"github.com/vibecast/vibecast/internal/analyzers/threshold"
 )
 
 // AnalyzerType represents supported analyzer types
@@ -55,7 +55,7 @@ func (f *Factory) CreateAnalyzer(analyzerType AnalyzerType, config *Configuratio
 // CreateCompositeAnalyzer creates a composite analyzer that combines multiple analyzers
 func (f *Factory) CreateCompositeAnalyzer(types []AnalyzerType, config *Configuration) (*CompositeAnalyzer, error) {
 	analyzers := make([]Analyzer, 0, len(types))
-	
+
 	for _, analyzerType := range types {
 		analyzer, err := f.CreateAnalyzer(analyzerType, config)
 		if err != nil {
@@ -63,7 +63,7 @@ func (f *Factory) CreateCompositeAnalyzer(types []AnalyzerType, config *Configur
 		}
 		analyzers = append(analyzers, analyzer)
 	}
-	
+
 	return NewCompositeAnalyzer(analyzers, f.alertManager), nil
 }
 

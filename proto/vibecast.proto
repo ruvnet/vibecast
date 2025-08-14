@@ -1,0 +1,397 @@
+syntax = "proto3";
+
+package vibecast.v1;
+
+option go_package = "github.com/vibecast/anomaly-detector/proto/vibecast/v1";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+// ===== Common Types =====
+
+// Status represents operation status
+message Status {
+  int32 code = 1;
+  string message = 2;
+  string details = 3;
+}
+
+// User represents a user in the system
+message User {
+  string id = 1;
+  string email = 2;
+  string username = 3;
+  string first_name = 4;
+  string last_name = 5;
+  string role = 6;
+  bool is_active = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+// ===== Authentication Service =====
+
+service AuthService {
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
+  rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse);
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+  bool remember_me = 3;
+}
+
+message LoginResponse {
+  Status status = 1;
+  User user = 2;
+  string access_token = 3;
+  string refresh_token = 4;
+  google.protobuf.Timestamp expires_at = 5;
+  string token_type = 6;
+}
+
+message RegisterRequest {
+  string email = 1;
+  string username = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string password = 5;
+  string role = 6;
+}
+
+message RegisterResponse {
+  Status status = 1;
+  User user = 2;
+  string access_token = 3;
+  string refresh_token = 4;
+  google.protobuf.Timestamp expires_at = 5;
+  string token_type = 6;
+}
+
+message RefreshTokenRequest {
+  string refresh_token = 1;
+}
+
+message RefreshTokenResponse {
+  Status status = 1;
+  string access_token = 2;
+  google.protobuf.Timestamp expires_at = 3;
+}
+
+message ValidateTokenRequest {
+  string token = 1;
+}
+
+message ValidateTokenResponse {
+  Status status = 1;
+  bool valid = 2;
+  User user = 3;
+  google.protobuf.Timestamp expires_at = 4;
+}
+
+message LogoutRequest {
+  string token = 1;
+}
+
+message LogoutResponse {
+  Status status = 1;
+}
+
+// ===== Anomaly Detection Service =====
+
+service AnomalyService {
+  rpc DetectAnomaly(DetectAnomalyRequest) returns (DetectAnomalyResponse);
+  rpc AnalyzeText(AnalyzeTextRequest) returns (AnalyzeTextResponse);
+  rpc BatchAnalyze(BatchAnalyzeRequest) returns (BatchAnalyzeResponse);
+  rpc GetAnomalyHistory(GetAnomalyHistoryRequest) returns (GetAnomalyHistoryResponse);
+  rpc GetAnomalyDetails(GetAnomalyDetailsRequest) returns (GetAnomalyDetailsResponse);
+  rpc StreamAnomalies(StreamAnomaliesRequest) returns (stream AnomalyAlert);
+}
+
+message DetectAnomalyRequest {
+  map<string, string> data = 1;
+  string algorithm = 2;
+  double threshold = 3;
+  map<string, string> options = 4;
+}
+
+message DetectAnomalyResponse {
+  Status status = 1;
+  DetectionResult result = 2;
+}
+
+message DetectionResult {
+  string id = 1;
+  bool is_anomaly = 2;
+  double score = 3;
+  double confidence = 4;
+  double threshold = 5;
+  string algorithm = 6;
+  int64 processing_time_ms = 7;
+  map<string, string> metadata = 8;
+  google.protobuf.Timestamp timestamp = 9;
+}
+
+message AnalyzeTextRequest {
+  string text = 1;
+  string language = 2;
+  map<string, string> options = 3;
+  int32 priority = 4;
+}
+
+message AnalyzeTextResponse {
+  Status status = 1;
+  AnomalyResult result = 2;
+  int64 duration_ms = 3;
+}
+
+message AnomalyResult {
+  double score = 1;
+  double confidence = 2;
+  bool is_anomalous = 3;
+  map<string, AnalysisResult> details = 4;
+  google.protobuf.Timestamp timestamp = 5;
+}
+
+message AnalysisResult {
+  double score = 1;
+  double confidence = 2;
+  map<string, string> metadata = 3;
+}
+
+message BatchAnalyzeRequest {
+  repeated AnalyzeTextRequest items = 1;
+}
+
+message BatchAnalyzeResponse {
+  Status status = 1;
+  repeated AnalyzeTextResponse results = 2;
+  int32 total = 3;
+  int32 success = 4;
+  int32 failed = 5;
+  int64 duration_ms = 6;
+}
+
+message GetAnomalyHistoryRequest {
+  string user_id = 1;
+  google.protobuf.Timestamp date_from = 2;
+  google.protobuf.Timestamp date_to = 3;
+  int32 page = 4;
+  int32 limit = 5;
+  string sort = 6;
+  string order = 7;
+}
+
+message GetAnomalyHistoryResponse {
+  Status status = 1;
+  repeated AnomalyRecord records = 2;
+  int32 total = 3;
+  int32 page = 4;
+  int32 total_pages = 5;
+}
+
+message AnomalyRecord {
+  string id = 1;
+  string user_id = 2;
+  AnomalyResult result = 3;
+  string input_text = 4;
+  google.protobuf.Timestamp created_at = 5;
+}
+
+message GetAnomalyDetailsRequest {
+  string anomaly_id = 1;
+}
+
+message GetAnomalyDetailsResponse {
+  Status status = 1;
+  AnomalyRecord record = 2;
+}
+
+message StreamAnomaliesRequest {
+  string user_id = 1;
+  repeated string topics = 2;
+  map<string, string> filters = 3;
+}
+
+message AnomalyAlert {
+  string id = 1;
+  string user_id = 2;
+  string type = 3;
+  AnomalyResult result = 4;
+  string message = 5;
+  google.protobuf.Timestamp timestamp = 6;
+  map<string, string> metadata = 7;
+}
+
+// ===== User Management Service =====
+
+service UserService {
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+  rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+  rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+}
+
+message GetUserRequest {
+  string user_id = 1;
+}
+
+message GetUserResponse {
+  Status status = 1;
+  User user = 2;
+}
+
+message UpdateUserRequest {
+  string user_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  string username = 5;
+  string role = 6;
+  bool is_active = 7;
+}
+
+message UpdateUserResponse {
+  Status status = 1;
+  User user = 2;
+}
+
+message DeleteUserRequest {
+  string user_id = 1;
+}
+
+message DeleteUserResponse {
+  Status status = 1;
+}
+
+message ListUsersRequest {
+  int32 page = 1;
+  int32 limit = 2;
+  string sort = 3;
+  string order = 4;
+  string search = 5;
+  string role = 6;
+  bool active_only = 7;
+}
+
+message ListUsersResponse {
+  Status status = 1;
+  repeated User users = 2;
+  int32 total = 3;
+  int32 page = 4;
+  int32 total_pages = 5;
+}
+
+message ChangePasswordRequest {
+  string user_id = 1;
+  string current_password = 2;
+  string new_password = 3;
+}
+
+message ChangePasswordResponse {
+  Status status = 1;
+}
+
+// ===== Health Service =====
+
+service HealthService {
+  rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
+  rpc Watch(HealthCheckRequest) returns (stream HealthCheckResponse);
+}
+
+message HealthCheckRequest {
+  string service = 1;
+}
+
+message HealthCheckResponse {
+  enum ServingStatus {
+    UNKNOWN = 0;
+    SERVING = 1;
+    NOT_SERVING = 2;
+    SERVICE_UNKNOWN = 3;
+  }
+  ServingStatus status = 1;
+  map<string, string> metadata = 2;
+  google.protobuf.Timestamp timestamp = 3;
+}
+
+// ===== System Administration Service =====
+
+service AdminService {
+  rpc GetSystemInfo(google.protobuf.Empty) returns (SystemInfoResponse);
+  rpc GetMetrics(GetMetricsRequest) returns (GetMetricsResponse);
+  rpc ExecuteSystemAction(SystemActionRequest) returns (SystemActionResponse);
+  rpc GetSystemLogs(GetSystemLogsRequest) returns (GetSystemLogsResponse);
+}
+
+message SystemInfoResponse {
+  Status status = 1;
+  string version = 2;
+  string uptime = 3;
+  map<string, string> services = 4;
+  map<string, string> system_stats = 5;
+  google.protobuf.Timestamp timestamp = 6;
+}
+
+message GetMetricsRequest {
+  string timeframe = 1;
+  repeated string metrics = 2;
+}
+
+message GetMetricsResponse {
+  Status status = 1;
+  map<string, MetricValue> metrics = 2;
+  string period = 3;
+  google.protobuf.Timestamp timestamp = 4;
+}
+
+message MetricValue {
+  double value = 1;
+  string unit = 2;
+  repeated DataPoint history = 3;
+}
+
+message DataPoint {
+  double value = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}
+
+message SystemActionRequest {
+  string action = 1;
+  map<string, string> params = 2;
+  bool force = 3;
+}
+
+message SystemActionResponse {
+  Status status = 1;
+  string action = 2;
+  map<string, string> result = 3;
+  google.protobuf.Timestamp started_at = 4;
+  google.protobuf.Timestamp completed_at = 5;
+}
+
+message GetSystemLogsRequest {
+  string level = 1;
+  string service = 2;
+  google.protobuf.Timestamp date_from = 3;
+  google.protobuf.Timestamp date_to = 4;
+  int32 limit = 5;
+}
+
+message GetSystemLogsResponse {
+  Status status = 1;
+  repeated LogEntry logs = 2;
+}
+
+message LogEntry {
+  string level = 1;
+  string service = 2;
+  string message = 3;
+  map<string, string> fields = 4;
+  google.protobuf.Timestamp timestamp = 5;
+}

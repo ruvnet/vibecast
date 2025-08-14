@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/internal/analyzers"
+	"github.com/vibecast/vibecast/internal/analyzers"
 )
 
 // NeuralNetwork represents a simple feedforward neural network
@@ -130,9 +130,9 @@ func (d *NeuralDetector) Analyze(ctx context.Context, data *analyzers.TimeSeries
 			Anomalies: []analyzers.Anomaly{},
 			Score:     0.0,
 			Metadata: map[string]interface{}{
-				"error": "insufficient data points",
+				"error":    "insufficient data points",
 				"required": d.config.MinDataPoints,
-				"actual": len(data.DataPoints),
+				"actual":   len(data.DataPoints),
 			},
 			Duration: time.Since(start),
 		}, nil
@@ -166,14 +166,14 @@ func (d *NeuralDetector) Analyze(ctx context.Context, data *analyzers.TimeSeries
 	duration := time.Since(start)
 
 	metadata := map[string]interface{}{
-		"model_trained":        d.isTrained,
-		"training_samples":     len(d.trainingData),
-		"window_size":          d.windowSize,
-		"threshold":            d.threshold,
-		"windows_analyzed":     len(windows),
-		"network_input_size":   d.network.inputSize,
-		"network_hidden_size":  d.network.hiddenSize,
-		"processing_time_ms":   duration.Milliseconds(),
+		"model_trained":       d.isTrained,
+		"training_samples":    len(d.trainingData),
+		"window_size":         d.windowSize,
+		"threshold":           d.threshold,
+		"windows_analyzed":    len(windows),
+		"network_input_size":  d.network.inputSize,
+		"network_hidden_size": d.network.hiddenSize,
+		"processing_time_ms":  duration.Milliseconds(),
 	}
 
 	return &analyzers.AnalysisResult{
@@ -250,7 +250,7 @@ func (d *NeuralDetector) Train(ctx context.Context, data []*analyzers.TimeSeries
 	d.trainingData = make([]TrainingData, 0)
 	for i := 0; i <= len(scaledValues)-d.windowSize; i++ {
 		window := scaledValues[i : i+d.windowSize]
-		
+
 		// For autoencoder, input and output are the same (reconstruction)
 		// But we'll predict the next value instead for anomaly detection
 		if i < len(scaledValues)-d.windowSize {
@@ -274,11 +274,11 @@ func (d *NeuralDetector) Train(ctx context.Context, data []*analyzers.TimeSeries
 
 	for epoch := 0; epoch < epochs; epoch++ {
 		var totalLoss float64
-		
+
 		for _, sample := range d.trainingData {
 			// Forward pass
 			prediction := d.network.Forward(sample.Inputs)
-			
+
 			// Calculate loss (mean squared error)
 			loss := 0.0
 			for i, target := range sample.Outputs {
@@ -287,17 +287,17 @@ func (d *NeuralDetector) Train(ctx context.Context, data []*analyzers.TimeSeries
 			}
 			loss /= float64(len(sample.Outputs))
 			totalLoss += loss
-			
+
 			// Backward pass
 			d.network.Backward(sample.Inputs, sample.Outputs, prediction)
 		}
-		
+
 		// Optional: Log training progress
 		if epoch%20 == 0 {
 			avgLoss := totalLoss / float64(len(d.trainingData))
 			_ = avgLoss // Could log this in a real implementation
 		}
-		
+
 		// Check for context cancellation
 		select {
 		case <-ctx.Done():
@@ -329,7 +329,7 @@ func (d *NeuralDetector) autoTrain(data *analyzers.TimeSeries) error {
 // extractValues converts data points to float64 values
 func (d *NeuralDetector) extractValues(dataPoints []analyzers.DataPoint) ([]float64, error) {
 	values := make([]float64, len(dataPoints))
-	
+
 	for i, point := range dataPoints {
 		switch v := point.Value.(type) {
 		case float64:
@@ -346,7 +346,7 @@ func (d *NeuralDetector) extractValues(dataPoints []analyzers.DataPoint) ([]floa
 			return nil, fmt.Errorf("unsupported value type: %T", v)
 		}
 	}
-	
+
 	return values, nil
 }
 
@@ -373,7 +373,7 @@ func (d *NeuralDetector) detectAnomalies(dataPoints []analyzers.DataPoint, windo
 	for i, window := range windows {
 		// Predict next value
 		prediction := d.network.Forward(window)
-		
+
 		// Calculate reconstruction error / prediction error
 		if i+d.windowSize < len(dataPoints) {
 			actualIndex := i + d.windowSize
@@ -381,17 +381,17 @@ func (d *NeuralDetector) detectAnomalies(dataPoints []analyzers.DataPoint, windo
 			if err != nil {
 				continue
 			}
-			
+
 			// Scale the actual value for comparison
 			scaledActual := d.scaler.TransformSingle(actualValue)
-			
+
 			// Calculate error
 			predictionError := math.Abs(prediction[0] - scaledActual)
-			
+
 			// Classify as anomaly if error exceeds threshold
 			if predictionError > d.threshold {
 				severity := d.calculateSeverity(predictionError)
-				
+
 				anomaly := analyzers.Anomaly{
 					ID:        fmt.Sprintf("ml_%d_%d", dataPoints[actualIndex].Timestamp.Unix(), i),
 					Type:      analyzers.AnomalyTypeML,
@@ -574,7 +574,7 @@ func (s *MinMaxScaler) Transform(data []float64) []float64 {
 
 	scaled := make([]float64, len(data))
 	range_ := s.max[0] - s.min[0]
-	
+
 	if range_ == 0 {
 		// All values are the same
 		for i := range scaled {

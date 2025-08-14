@@ -1,0 +1,132 @@
+# Docker Compose configuration for VibeCast
+
+services:
+  # Redis for message queuing and caching
+  redis:
+    image: redis:7-alpine
+    container_name: vibecast-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - vibecast
+
+  # NATS for message brokering
+  nats:
+    image: nats:2.10-alpine
+    container_name: vibecast-nats
+    ports:
+      - "4222:4222"
+      - "8222:8222"  # HTTP monitoring
+    command: ["--http_port", "8222"]
+    networks:
+      - vibecast
+
+  # PostgreSQL database
+  postgres:
+    image: postgres:15-alpine
+    container_name: vibecast-postgres
+    environment:
+      POSTGRES_DB: vibecast
+      POSTGRES_USER: vibecast
+      POSTGRES_PASSWORD: vibecast123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - vibecast
+
+  # VibeCast API Server
+  api:
+    build:
+      context: .
+      dockerfile: deployments/docker/Dockerfile
+      target: api
+    container_name: vibecast-api
+    environment:
+      - SERVER_HOST=0.0.0.0
+      - SERVER_PORT=8080
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_DATABASE=vibecast
+      - DB_USERNAME=vibecast
+      - DB_PASSWORD=vibecast123
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - NATS_URL=nats://nats:4222
+      - LOG_LEVEL=info
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+      - nats
+    networks:
+      - vibecast
+    restart: unless-stopped
+
+  # VibeCast Worker
+  worker:
+    build:
+      context: .
+      dockerfile: deployments/docker/Dockerfile
+      target: worker
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_DATABASE=vibecast
+      - DB_USERNAME=vibecast
+      - DB_PASSWORD=vibecast123
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - NATS_URL=nats://nats:4222
+      - LOG_LEVEL=info
+    depends_on:
+      - postgres
+      - redis
+      - nats
+    networks:
+      - vibecast
+    restart: unless-stopped
+
+  # Prometheus for metrics
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: vibecast-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./deployments/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    networks:
+      - vibecast
+    restart: unless-stopped
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: vibecast-grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./deployments/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./deployments/grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - vibecast
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  vibecast:
+    driver: bridge

@@ -1,6 +1,198 @@
 // Package middleware provides HTTP middleware for the API server
 package middleware
 
-import (\n\t\"net/http\"\n\t\"strings\"\n\t\"time\"\n\n\t\"github.com/dgrijalva/jwt-go\"\n\t\"github.com/gin-gonic/gin\"\n\t\"github.com/google/uuid\"\n\t\"github.com/vibecast/anomaly-detector/internal/models\"\n\t\"github.com/vibecast/anomaly-detector/internal/services\"\n\t\"go.uber.org/zap\"\n)\n\n// Claims represents JWT claims\ntype Claims struct {\n\tUserID   uuid.UUID `json:"user_id"`\n\tEmail    string    `json:"email"`\n\tUsername string    `json:"username"`\n\tRole     string    `json:"role"`\n\tjwt.StandardClaims\n}\n\n// Auth middleware validates JWT tokens\nfunc Auth(authService *services.AuthService) gin.HandlerFunc {\n\treturn func(c *gin.Context) {\n\t\t// Skip authentication for certain paths\n\t\tif isPublicPath(c.Request.URL.Path) {\n\t\t\tc.Next()\n\t\t\treturn\n\t\t}\n\n\t\t// Get token from Authorization header\n\t\tauthHeader := c.GetHeader(\"Authorization\")\n\t\tif authHeader == \"\" {\n\t\t\tc.JSON(http.StatusUnauthorized, models.APIResponse{\n\t\t\t\tSuccess: false,\n\t\t\t\tError: &models.APIError{\n\t\t\t\t\tCode:    \"MISSING_TOKEN\",\n\t\t\t\t\tMessage: \"Authorization token is required\",\n\t\t\t\t},\n\t\t\t})\n\t\t\tc.Abort()\n\t\t\treturn\n\t\t}\n\n\t\t// Extract token from \"Bearer <token>\" format\n\t\ttokenParts := strings.Split(authHeader, \" \")\n\t\tif len(tokenParts) != 2 || tokenParts[0] != \"Bearer\" {\n\t\t\tc.JSON(http.StatusUnauthorized, models.APIResponse{\n\t\t\t\tSuccess: false,\n\t\t\t\tError: &models.APIError{\n\t\t\t\t\tCode:    \"INVALID_TOKEN_FORMAT\",\n\t\t\t\t\tMessage: \"Invalid authorization header format\",\n\t\t\t\t},\n\t\t\t})\n\t\t\tc.Abort()\n\t\t\treturn\n\t\t}\n\n\t\ttokenString := tokenParts[1]\n\n\t\t// Validate token\n\t\tclaims, err := authService.ValidateToken(tokenString)\n\t\tif err != nil {\n\t\t\tc.JSON(http.StatusUnauthorized, models.APIResponse{\n\t\t\t\tSuccess: false,\n\t\t\t\tError: &models.APIError{\n\t\t\t\t\tCode:    \"INVALID_TOKEN\",\n\t\t\t\t\tMessage: \"Invalid or expired token\",\n\t\t\t\t\tDetails: err.Error(),\n\t\t\t\t},\n\t\t\t})\n\t\t\tc.Abort()\n\t\t\treturn\n\t\t}\n\n\t\t// Set user information in context\n\t\tc.Set(\"user_id\", claims.UserID)\n\t\tc.Set(\"user_email\", claims.Email)\n\t\tc.Set(\"user_username\", claims.Username)\n\t\tc.Set(\"user_role\", claims.Role)\n\n\t\tc.Next()\n\t}\n}\n\n// AdminOnly middleware ensures only admin users can access the endpoint\nfunc AdminOnly() gin.HandlerFunc {\n\treturn func(c *gin.Context) {\n\t\tuserRole, exists := c.Get(\"user_role\")\n\t\tif !exists || userRole != \"admin\" {\n\t\t\tc.JSON(http.StatusForbidden, models.APIResponse{\n\t\t\t\tSuccess: false,\n\t\t\t\tError: &models.APIError{\n\t\t\t\t\tCode:    \"ACCESS_DENIED\",\n\t\t\t\t\tMessage: \"Admin access required\",\n\t\t\t\t},\n\t\t\t})\n\t\t\tc.Abort()\n\t\t\treturn\n\t\t}\n\t\tc.Next()\n\t}\n}\n\n// OptionalAuth middleware for endpoints that work with or without authentication\nfunc OptionalAuth(authService *services.AuthService) gin.HandlerFunc {\n\treturn func(c *gin.Context) {\n\t\tauthHeader := c.GetHeader(\"Authorization\")\n\t\tif authHeader == \"\" {\n\t\t\tc.Next()\n\t\t\treturn\n\t\t}\n\n\t\ttokenParts := strings.Split(authHeader, \" \")\n\t\tif len(tokenParts) != 2 || tokenParts[0] != \"Bearer\" {\n\t\t\tc.Next()\n\t\t\treturn\n\t\t}\n\n\t\ttokenString := tokenParts[1]\n\t\tclaims, err := authService.ValidateToken(tokenString)\n\t\tif err == nil {\n\t\t\tc.Set(\"user_id\", claims.UserID)\n\t\t\tc.Set(\"user_email\", claims.Email)\n\t\t\tc.Set(\"user_username\", claims.Username)\n\t\t\tc.Set(\"user_role\", claims.Role)\n\t\t}\n\n\t\tc.Next()\n\t}\n}\n\n// isPublicPath checks if the path should skip authentication\nfunc isPublicPath(path string) bool {\n\tpublicPaths := []string{\n\t\t\"/health\",\n\t\t\"/metrics\",\n\t\t\"/swagger\",\n\t\t\"/api/v1/auth/login\",\n\t\t\"/api/v1/auth/register\",\n\t\t\"/playground\",\n\t}\n\n\tfor _, publicPath := range publicPaths {\n\t\tif strings.HasPrefix(path, publicPath) {\n\t\t\treturn true\n\t\t}\n\t}\n\n\treturn false\n}\n\n// GetUserID extracts user ID from context\nfunc GetUserID(c *gin.Context) (uuid.UUID, bool) {\n\tuserID, exists := c.Get(\"user_id\")\n\tif !exists {\n\t\treturn uuid.Nil, false\n\t}\n\n\tid, ok := userID.(uuid.UUID)\n\treturn id, ok\n}\n\n// GetUserRole extracts user role from context\nfunc GetUserRole(c *gin.Context) (string, bool) {\n\tuserRole, exists := c.Get(\"user_role\")\n\tif !exists {\n\t\treturn \"\", false\n\t}\n\n\trole, ok := userRole.(string)\n\treturn role, ok\n}\n\n// RequireRole middleware ensures user has specific role\nfunc RequireRole(requiredRole string) gin.HandlerFunc {\n\treturn func(c *gin.Context) {\n\t\tuserRole, exists := GetUserRole(c)\n\t\tif !exists || userRole != requiredRole {\n\t\t\tc.JSON(http.StatusForbidden, models.APIResponse{\n\t\t\t\tSuccess: false,\n\t\t\t\tError: &models.APIError{\n\t\t\t\t\tCode:    \"INSUFFICIENT_PERMISSIONS\",\n\t\t\t\t\tMessage: \"Insufficient permissions for this operation\",\n\t\t\t\t},\n\t\t\t})\n\t\t\tc.Abort()\n\t\t\treturn\n\t\t}\n\t\tc.Next()\n\t}\n}"
-  }
-]
+import (
+	"net/http"
+	"strings"
+
+	"github.com/dgrijalva/jwt-go"
+	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
+	"github.com/vibecast/vibecast/internal/models"
+)
+
+// Claims represents JWT claims
+type Claims struct {
+	UserID   uuid.UUID `json:"user_id"`
+	Email    string    `json:"email"`
+	Username string    `json:"username"`
+	Role     string    `json:"role"`
+	jwt.StandardClaims
+}
+
+// AuthService interface for dependency injection
+type AuthService interface {
+	ValidateToken(tokenString string) (*Claims, error)
+}
+
+// Auth middleware validates JWT tokens
+func Auth(authService AuthService) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// Skip authentication for certain paths
+		if isPublicPath(c.Request.URL.Path) {
+			c.Next()
+			return
+		}
+
+		// Get token from Authorization header
+		authHeader := c.GetHeader("Authorization")
+		if authHeader == "" {
+			c.JSON(http.StatusUnauthorized, models.APIResponse{
+				Success: false,
+				Error: &models.APIError{
+					Code:    "MISSING_TOKEN",
+					Message: "Authorization token is required",
+				},
+			})
+			c.Abort()
+			return
+		}
+
+		// Extract token from "Bearer <token>" format
+		tokenParts := strings.Split(authHeader, " ")
+		if len(tokenParts) != 2 || tokenParts[0] != "Bearer" {
+			c.JSON(http.StatusUnauthorized, models.APIResponse{
+				Success: false,
+				Error: &models.APIError{
+					Code:    "INVALID_TOKEN_FORMAT",
+					Message: "Invalid authorization header format",
+				},
+			})
+			c.Abort()
+			return
+		}
+
+		tokenString := tokenParts[1]
+
+		// Validate token
+		claims, err := authService.ValidateToken(tokenString)
+		if err != nil {
+			c.JSON(http.StatusUnauthorized, models.APIResponse{
+				Success: false,
+				Error: &models.APIError{
+					Code:    "INVALID_TOKEN",
+					Message: "Invalid or expired token",
+					Details: err.Error(),
+				},
+			})
+			c.Abort()
+			return
+		}
+
+		// Set user information in context
+		c.Set("user_id", claims.UserID)
+		c.Set("user_email", claims.Email)
+		c.Set("user_username", claims.Username)
+		c.Set("user_role", claims.Role)
+
+		c.Next()
+	}
+}
+
+// AdminOnly middleware ensures only admin users can access the endpoint
+func AdminOnly() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		userRole, exists := c.Get("user_role")
+		if !exists || userRole != "admin" {
+			c.JSON(http.StatusForbidden, models.APIResponse{
+				Success: false,
+				Error: &models.APIError{
+					Code:    "ACCESS_DENIED",
+					Message: "Admin access required",
+				},
+			})
+			c.Abort()
+			return
+		}
+		c.Next()
+	}
+}
+
+// OptionalAuth middleware for endpoints that work with or without authentication
+func OptionalAuth(authService AuthService) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		authHeader := c.GetHeader("Authorization")
+		if authHeader == "" {
+			c.Next()
+			return
+		}
+
+		tokenParts := strings.Split(authHeader, " ")
+		if len(tokenParts) != 2 || tokenParts[0] != "Bearer" {
+			c.Next()
+			return
+		}
+
+		tokenString := tokenParts[1]
+		claims, err := authService.ValidateToken(tokenString)
+		if err == nil {
+			c.Set("user_id", claims.UserID)
+			c.Set("user_email", claims.Email)
+			c.Set("user_username", claims.Username)
+			c.Set("user_role", claims.Role)
+		}
+
+		c.Next()
+	}
+}
+
+// isPublicPath checks if the path should skip authentication
+func isPublicPath(path string) bool {
+	publicPaths := []string{
+		"/health",
+		"/metrics",
+		"/swagger",
+		"/api/v1/auth/login",
+		"/api/v1/auth/register",
+		"/playground",
+	}
+
+	for _, publicPath := range publicPaths {
+		if strings.HasPrefix(path, publicPath) {
+			return true
+		}
+	}
+
+	return false
+}
+
+// GetUserID extracts user ID from context
+func GetUserID(c *gin.Context) (uuid.UUID, bool) {
+	userID, exists := c.Get("user_id")
+	if !exists {
+		return uuid.Nil, false
+	}
+
+	id, ok := userID.(uuid.UUID)
+	return id, ok
+}
+
+// GetUserRole extracts user role from context
+func GetUserRole(c *gin.Context) (string, bool) {
+	userRole, exists := c.Get("user_role")
+	if !exists {
+		return "", false
+	}
+
+	role, ok := userRole.(string)
+	return role, ok
+}
+
+// RequireRole middleware ensures user has specific role
+func RequireRole(requiredRole string) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		userRole, exists := GetUserRole(c)
+		if !exists || userRole != requiredRole {
+			c.JSON(http.StatusForbidden, models.APIResponse{
+				Success: false,
+				Error: &models.APIError{
+					Code:    "INSUFFICIENT_PERMISSIONS",
+					Message: "Insufficient permissions for this operation",
+				},
+			})
+			c.Abort()
+			return
+		}
+		c.Next()
+	}
+}

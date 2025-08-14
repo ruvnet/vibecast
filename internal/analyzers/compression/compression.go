@@ -9,7 +9,7 @@ import (
 	"math"
 
 	"github.com/andybalholm/brotli"
-	"github.com/vibecast/anomaly-detector/internal/models"
+	"github.com/vibecast/vibecast/internal/models"
 )
 
 // CompressionAnalyzer analyzes text compressibility patterns
