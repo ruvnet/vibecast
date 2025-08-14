@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/core"
-	"github.com/vibecast/vibecast/internal/models/proto"
+	"github.com/ruvnet/alienator/internal/core"
+	"github.com/ruvnet/alienator/internal/models/proto"
 	"go.uber.org/zap"
 )
 
@@ -135,7 +135,7 @@ func (bs *BroadcastService) ListChannels(ctx context.Context) ([]*proto.Channel,
 func (bs *BroadcastService) Subscribe(ctx context.Context, userID, channelID string) (*proto.Subscription, error) {
 	// Check if channel exists
 	bs.channelsMu.RLock()
-	channel, exists := bs.channels[channelID]
+	_, exists := bs.channels[channelID]
 	if !exists {
 		bs.channelsMu.RUnlock()
 		return nil, fmt.Errorf("channel %s not found", channelID)
@@ -268,12 +268,13 @@ func (bs *BroadcastService) Broadcast(ctx context.Context, channelID string, mes
 	}
 	bs.channelsMu.RUnlock()
 
-	// Set channel and timestamp if not provided
-	if message.Channel == "" {
-		message.Channel = channelID
+	// Set topic and timestamp if not provided
+	if message.Topic == "" {
+		message.Topic = channelID
 	}
-	if message.Timestamp == 0 {
-		message.Timestamp = time.Now().Unix()
+	if message.Timestamp == nil {
+		now := time.Now()
+		message.Timestamp = &now
 	}
 
 	// Publish message to channel topic

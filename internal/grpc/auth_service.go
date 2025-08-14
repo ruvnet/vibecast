@@ -8,8 +8,8 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"go.uber.org/zap"
 
-	pb "github.com/vibecast/vibecast/proto/vibecast/v1"
-	"github.com/vibecast/vibecast/internal/services"
+	pb "github.com/ruvnet/alienator/proto/vibecast/v1"
+	"github.com/ruvnet/alienator/internal/services"
 )
 
 // AuthServiceServer implements the gRPC AuthService

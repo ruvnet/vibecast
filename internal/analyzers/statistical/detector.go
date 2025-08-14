@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/analyzers"
+	"github.com/ruvnet/alienator/internal/analyzers"
 )
 
 // Detector implements statistical anomaly detection using z-score and IQR methods

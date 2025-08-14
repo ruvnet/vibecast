@@ -22,8 +22,8 @@ import (
 	"google.golang.org/grpc/reflection"
 	"google.golang.org/grpc/status"
 
-	pb "github.com/vibecast/vibecast/proto/vibecast/v1"
-	"github.com/vibecast/vibecast/internal/services"
+	pb "github.com/ruvnet/alienator/proto/vibecast/v1"
+	"github.com/ruvnet/alienator/internal/services"
 )
 
 // Server wraps the gRPC server and its dependencies

@@ -12,11 +12,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
-	"github.com/vibecast/vibecast/internal/core"
-	"github.com/vibecast/vibecast/internal/dto"
-	"github.com/vibecast/vibecast/internal/errors"
-	"github.com/vibecast/vibecast/internal/models"
-	"github.com/vibecast/vibecast/internal/services"
+	"github.com/ruvnet/alienator/internal/core"
+	"github.com/ruvnet/alienator/internal/dto"
+	"github.com/ruvnet/alienator/internal/errors"
+	"github.com/ruvnet/alienator/internal/models"
+	"github.com/ruvnet/alienator/internal/services"
 	"go.uber.org/zap"
 )
 

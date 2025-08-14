@@ -12,7 +12,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/vibecast/vibecast/internal/models"
+	"github.com/ruvnet/alienator/internal/models"
 	"golang.org/x/crypto/blake2b"
 	"golang.org/x/crypto/blake2s"
 	"golang.org/x/crypto/sha3"

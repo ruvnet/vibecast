@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/vibecast/vibecast/internal/core"
-	"github.com/vibecast/vibecast/pkg/metrics"
+	"github.com/ruvnet/alienator/internal/core"
+	"github.com/ruvnet/alienator/pkg/metrics"
 	"go.uber.org/zap/zaptest"
 )
 

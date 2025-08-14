@@ -14,6 +14,7 @@ type Config struct {
 	NATS      NATSConfig      `json:"nats"`
 	Detector  DetectorConfig  `json:"detector"`
 	Auth      AuthConfig      `json:"auth"`
+	JWT       JWTConfig       `json:"jwt"`
 	Logging   LoggingConfig   `json:"logging"`
 	RateLimit RateLimitConfig `json:"rate_limit"`
 }
@@ -59,6 +60,13 @@ type DetectorConfig struct {
 type AuthConfig struct {
 	JWTSecret string        `json:"jwt_secret"`
 	TokenTTL  time.Duration `json:"token_ttl"`
+}
+
+// JWTConfig contains JWT configuration
+type JWTConfig struct {
+	Secret         string        `json:"secret"`
+	ExpirationTime time.Duration `json:"expiration_time"`
+	Issuer         string        `json:"issuer"`
 }
 
 // LoggingConfig contains logging configuration
@@ -117,6 +125,11 @@ func Load() *Config {
 		Auth: AuthConfig{
 			JWTSecret: getEnv("JWT_SECRET", "your-secret-key"),
 			TokenTTL:  time.Duration(getEnvInt("TOKEN_TTL", 24)) * time.Hour,
+		},
+		JWT: JWTConfig{
+			Secret:         getEnv("JWT_SECRET", "your-secret-key"),
+			ExpirationTime: time.Duration(getEnvInt("JWT_EXPIRATION_HOURS", 24)) * time.Hour,
+			Issuer:         getEnv("JWT_ISSUER", "alienator-system"),
 		},
 		Logging: LoggingConfig{
 			Level: getEnv("LOG_LEVEL", "info"),

@@ -2,8 +2,9 @@ package core
 
 import (
 	"context"
+	"time"
 
-	"github.com/vibecast/vibecast/internal/models/proto"
+	"github.com/ruvnet/alienator/internal/models/proto"
 )
 
 // MessageHandler handles incoming messages
@@ -16,15 +17,18 @@ type EventHandler func(ctx context.Context, event *proto.Event) error
 type MessageBroker interface {
 	Publish(ctx context.Context, topic string, message *proto.Message) error
 	Subscribe(ctx context.Context, topic string, handler MessageHandler) (string, error)
-	Unsubscribe(subscriptionID string) error
-	GetStats() (*proto.BrokerStats, error)
+	Unsubscribe(ctx context.Context, subscriptionID string) error
+	GetStats(ctx context.Context) (*proto.BrokerStats, error)
 	Close() error
 }
 
 // MessageQueue interface for message queuing
 type MessageQueue interface {
-	Enqueue(ctx context.Context, queueName string, message *proto.QueueMessage) error
-	Dequeue(ctx context.Context, queueName string) (*proto.QueueMessage, error)
+	Enqueue(ctx context.Context, queueName string, message interface{}) error
+	Dequeue(ctx context.Context, queueName string, timeout time.Duration) (*proto.QueueMessage, error)
+	Ack(ctx context.Context, messageID string) error
+	Nack(ctx context.Context, messageID string, requeue bool) error
+	PurgeQueue(ctx context.Context, queueName string) error
 	GetStats(queueName string) (*proto.QueueStats, error)
 	Close() error
 }
@@ -32,6 +36,7 @@ type MessageQueue interface {
 // EventBus interface for event handling
 type EventBus interface {
 	Publish(ctx context.Context, event *proto.Event) error
+	Emit(ctx context.Context, event *proto.Event) error
 	Subscribe(eventType string, handler EventHandler) (string, error)
 	Unsubscribe(subscriptionID string) error
 	GetHistory(eventType string, limit int) ([]*proto.Event, error)
@@ -42,6 +47,7 @@ type EventBus interface {
 type RateLimiter interface {
 	Allow(key string) bool
 	GetStats(key string) (*proto.RateLimitInfo, error)
+	Close() error
 }
 
 // Storage interface for data persistence

@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/vibecast/vibecast/internal/analyzers/entropy"
+	"github.com/ruvnet/alienator/internal/analyzers/entropy"
 )
 
 var sampleTexts = []string{

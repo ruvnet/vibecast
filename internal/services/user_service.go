@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/vibecast/vibecast/internal/models"
-	"github.com/vibecast/vibecast/internal/repository"
+	"github.com/ruvnet/alienator/internal/models"
+	"github.com/ruvnet/alienator/internal/repository"
 	"go.uber.org/zap"
 )
 
@@ -212,14 +212,14 @@ func (s *UserService) ValidateUserPermissions(userID uuid.UUID, action string, r
 
 // ChangePassword changes user password
 func (s *UserService) ChangePassword(userID uuid.UUID, oldPassword, newHashedPassword string) error {
-	user, err := s.repo.GetUserByEmail("")
+	_, err := s.repo.GetUserByEmail("")
 	if err != nil {
 		// Get user by ID first to get email
 		userFromID, err := s.repo.GetUserByID(userID)
 		if err != nil {
 			return fmt.Errorf("user not found")
 		}
-		user, err = s.repo.GetUserByEmail(userFromID.Email)
+		_, err = s.repo.GetUserByEmail(userFromID.Email)
 		if err != nil {
 			return fmt.Errorf("user not found")
 		}

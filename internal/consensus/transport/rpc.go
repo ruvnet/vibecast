@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/consensus"
+	"github.com/ruvnet/alienator/internal/consensus"
 )
 
 // RPCTransport implements the Transport interface using Go RPC

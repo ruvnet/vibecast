@@ -8,7 +8,7 @@ import (
 
 	"go.uber.org/zap"
 
-	"github.com/vibecast/vibecast/pkg/models"
+	"github.com/ruvnet/alienator/pkg/models"
 )
 
 // Detector represents an anomaly detection engine

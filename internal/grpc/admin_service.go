@@ -10,7 +10,7 @@ import (
 	"google.golang.org/protobuf/types/known/emptypb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	pb "github.com/vibecast/vibecast/proto/vibecast/v1"
+	pb "github.com/ruvnet/alienator/proto/vibecast/v1"
 )
 
 // AdminServiceServer implements the gRPC AdminService

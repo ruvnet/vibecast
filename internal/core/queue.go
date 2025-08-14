@@ -6,9 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/models/proto"
+	"github.com/ruvnet/alienator/internal/models/proto"
 	"go.uber.org/zap"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // QueueConfig holds configuration for the message queue
@@ -87,13 +86,34 @@ func NewQueue(config *QueueConfig, storage Storage, backpressureHandler Backpres
 }
 
 // Enqueue adds a message to the queue
-func (q *Queue) Enqueue(ctx context.Context, queueName string, msg *proto.Message) error {
-	if msg == nil {
+func (q *Queue) Enqueue(ctx context.Context, queueName string, message interface{}) error {
+	if message == nil {
 		return fmt.Errorf("message cannot be nil")
 	}
 	
 	if queueName == "" {
 		return fmt.Errorf("queue name cannot be empty")
+	}
+	
+	// Convert message to the appropriate type
+	var queueMsg *proto.QueueMessage
+	
+	switch msg := message.(type) {
+	case *proto.QueueMessage:
+		queueMsg = msg
+	case *proto.Message:
+		// Convert Message to QueueMessage
+		queueMsg = &proto.QueueMessage{
+			Id:          fmt.Sprintf("qm_%d", time.Now().UnixNano()),
+			QueueName:   queueName,
+			Message:     msg,
+			EnqueuedAt:  time.Now().Unix(),
+			Attempts:    0,
+			MaxAttempts: int32(q.config.DeadLetterThreshold),
+			Status:      "pending",
+		}
+	default:
+		return fmt.Errorf("unsupported message type: %T", message)
 	}
 	
 	q.mu.Lock()
@@ -104,21 +124,11 @@ func (q *Queue) Enqueue(ctx context.Context, queueName string, msg *proto.Messag
 	if currentSize >= q.config.MaxQueueSize {
 		// Handle backpressure
 		if q.backpressureHandler != nil {
-			if err := q.backpressureHandler(currentSize); err != nil {
-				return fmt.Errorf("backpressure handler error: %w", err)
+			if shouldApplyBackpressure := q.backpressureHandler(ctx, currentSize, 0); shouldApplyBackpressure {
+				return fmt.Errorf("backpressure applied, queue is full")
 			}
 		}
 		return fmt.Errorf("queue size limit exceeded: %d", q.config.MaxQueueSize)
-	}
-	
-	// Create queue message
-	queueMsg := &proto.QueueMessage{
-		QueueName:        queueName,
-		Message:          msg,
-		DeliveryCount:    0,
-		EnqueuedAt:       time.Now(),
-		NextDeliveryAt:   time.Now(),
-		DeadLetter:       false,
 	}
 	
 	// Create queue item
@@ -131,10 +141,16 @@ func (q *Queue) Enqueue(ctx context.Context, queueName string, msg *proto.Messag
 	// Add to queue
 	q.queues[queueName] = append(q.queues[queueName], item)
 	
-	q.logger.Debug("message enqueued",
-		zap.String("queue", queueName),
-		zap.String("message_id", msg.ID),
-		zap.Int64("queue_size", currentSize+1))
+	if queueMsg.Message != nil {
+		q.logger.Debug("message enqueued",
+			zap.String("queue", queueName),
+			zap.String("message_id", queueMsg.Message.ID),
+			zap.Int64("queue_size", currentSize+1))
+	} else {
+		q.logger.Debug("message enqueued",
+			zap.String("queue", queueName),
+			zap.Int64("queue_size", currentSize+1))
+	}
 	
 	return nil
 }
@@ -156,7 +172,7 @@ func (q *Queue) Dequeue(ctx context.Context, queueName string, timeout time.Dura
 		var itemIndex int
 		
 		for i, item := range queue {
-			if !item.InFlight && time.Now().After(item.QueueMessage.NextDeliveryAt.AsTime()) {
+			if !item.InFlight {
 				availableItem = item
 				itemIndex = i
 				break
@@ -168,7 +184,9 @@ func (q *Queue) Dequeue(ctx context.Context, queueName string, timeout time.Dura
 			availableItem.InFlight = true
 			availableItem.LastDelivery = time.Now()
 			availableItem.AckDeadline = time.Now().Add(timeout)
-			availableItem.QueueMessage.DeliveryCount++
+			availableItem.QueueMessage.Attempts++
+			availableItem.QueueMessage.DequeuedAt = time.Now().Unix()
+			availableItem.QueueMessage.Status = "in_flight"
 			
 			// Remove from queue and add to in-flight
 			q.queues[queueName] = append(queue[:itemIndex], queue[itemIndex+1:]...)
@@ -180,7 +198,7 @@ func (q *Queue) Dequeue(ctx context.Context, queueName string, timeout time.Dura
 			q.logger.Debug("message dequeued",
 				zap.String("queue", queueName),
 				zap.String("message_id", result.Message.ID),
-				zap.Int32("delivery_count", result.DeliveryCount))
+				zap.Int32("delivery_count", result.Attempts))
 			
 			return result, nil
 		}
@@ -245,25 +263,26 @@ func (q *Queue) Nack(ctx context.Context, messageID string, requeue bool) error 
 	
 	if requeue {
 		// Check if should go to dead letter queue
-		if item.QueueMessage.DeliveryCount >= int32(q.config.DeadLetterThreshold) {
-			item.QueueMessage.DeadLetter = true
+		if item.QueueMessage.Attempts >= int32(q.config.DeadLetterThreshold) {
+			item.QueueMessage.Status = "dead_letter"
 			dlqName := fmt.Sprintf("dlq_%s", item.QueueMessage.QueueName)
 			q.deadLetterQueue[dlqName] = append(q.deadLetterQueue[dlqName], item)
 			
 			q.logger.Warn("message moved to dead letter queue",
 				zap.String("message_id", messageID),
 				zap.String("original_queue", item.QueueMessage.QueueName),
-				zap.Int32("delivery_count", item.QueueMessage.DeliveryCount))
+				zap.Int32("delivery_count", item.QueueMessage.Attempts))
 		} else {
 			// Requeue with delay
 			item.InFlight = false
-			item.QueueMessage.NextDeliveryAt = timestamppb.New(time.Now().Add(q.config.RetryDelay))
+			item.QueueMessage.RequeuedAt = time.Now().Unix()
+			item.QueueMessage.Status = "pending"
 			q.queues[item.QueueMessage.QueueName] = append(q.queues[item.QueueMessage.QueueName], item)
 			
 			q.logger.Debug("message requeued",
 				zap.String("message_id", messageID),
 				zap.String("queue", item.QueueMessage.QueueName),
-				zap.Int32("delivery_count", item.QueueMessage.DeliveryCount))
+				zap.Int32("delivery_count", item.QueueMessage.Attempts))
 		}
 	}
 	
@@ -281,6 +300,36 @@ func (q *Queue) GetQueueSize(ctx context.Context, queueName string) (int64, erro
 	
 	size := int64(len(q.queues[queueName]))
 	return size, nil
+}
+
+// GetStats returns queue statistics
+func (q *Queue) GetStats(queueName string) (*proto.QueueStats, error) {
+	if queueName == "" {
+		return nil, fmt.Errorf("queue name cannot be empty")
+	}
+	
+	q.mu.RLock()
+	defer q.mu.RUnlock()
+	
+	queue := q.queues[queueName]
+	dlq := q.deadLetterQueue[fmt.Sprintf("dlq_%s", queueName)]
+	
+	stats := &proto.QueueStats{
+		Name:            queueName,
+		Size:            int64(len(queue)),
+		DlqSize:         int64(len(dlq)),
+		ProcessingCount: 0,
+		Timestamp:       time.Now().Unix(),
+	}
+	
+	// Count in-flight messages
+	for _, item := range queue {
+		if item.InFlight {
+			stats.ProcessingCount++
+		}
+	}
+	
+	return stats, nil
 }
 
 // PurgeQueue removes all messages from a queue
@@ -379,8 +428,8 @@ func (q *Queue) performCleanup() {
 			// Timeout - requeue or move to dead letter
 			delete(q.inFlightMessages, messageID)
 			
-			if item.QueueMessage.DeliveryCount >= int32(q.config.DeadLetterThreshold) {
-				item.QueueMessage.DeadLetter = true
+			if item.QueueMessage.Attempts >= int32(q.config.DeadLetterThreshold) {
+				item.QueueMessage.Status = "dead_letter"
 				dlqName := fmt.Sprintf("dlq_%s", item.QueueMessage.QueueName)
 				q.deadLetterQueue[dlqName] = append(q.deadLetterQueue[dlqName], item)
 				
@@ -390,7 +439,7 @@ func (q *Queue) performCleanup() {
 			} else {
 				// Requeue with delay
 				item.InFlight = false
-				item.QueueMessage.NextDeliveryAt = timestamppb.New(now.Add(q.config.RetryDelay))
+				item.QueueMessage.Status = "pending"
 				q.queues[item.QueueMessage.QueueName] = append(q.queues[item.QueueMessage.QueueName], item)
 				
 				q.logger.Debug("in-flight message timed out and requeued",
@@ -407,7 +456,7 @@ func (q *Queue) performCleanup() {
 		removedCount := 0
 		
 		for _, item := range queue {
-			if item.QueueMessage.EnqueuedAt.AsTime().After(maxAge) {
+			if time.Unix(item.QueueMessage.EnqueuedAt, 0).After(maxAge) {
 				filteredQueue = append(filteredQueue, item)
 			} else {
 				removedCount++
@@ -439,7 +488,7 @@ func (q *Queue) flushToPersistence() error {
 	for queueName := range q.queues {
 		key := fmt.Sprintf("queue_state:%s", queueName)
 		// In a real implementation, you'd serialize the queue state
-		if err := q.storage.Store(q.ctx, key, []byte("queue_state"), q.config.FlushInterval*2); err != nil {
+		if err := q.storage.Store(q.ctx, key, "queue_state"); err != nil {
 			return fmt.Errorf("failed to store queue state for %s: %w", queueName, err)
 		}
 	}

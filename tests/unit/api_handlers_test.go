@@ -15,9 +15,9 @@ import (
 	"github.com/stretchr/testify/suite"
 	"go.uber.org/zap/zaptest"
 
-	"github.com/vibecast/vibecast/internal/api"
-	"github.com/vibecast/vibecast/internal/core"
-	"github.com/vibecast/vibecast/internal/models"
+	"github.com/ruvnet/alienator/internal/api"
+	"github.com/ruvnet/alienator/internal/core"
+	"github.com/ruvnet/alienator/internal/models"
 )
 
 // MockAnomalyDetector is a mock implementation of AnomalyDetector

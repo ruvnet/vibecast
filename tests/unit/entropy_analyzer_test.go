@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/vibecast/vibecast/internal/analyzers/entropy"
+	"github.com/ruvnet/alienator/internal/analyzers/entropy"
 )
 
 // EntropyAnalyzerTestSuite provides comprehensive test coverage for EntropyAnalyzer

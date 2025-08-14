@@ -6,9 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/models/proto"
+	"github.com/ruvnet/alienator/internal/models/proto"
 	"go.uber.org/zap"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // BrokerConfig holds configuration for the message broker
@@ -239,7 +238,7 @@ func (b *Broker) Unsubscribe(ctx context.Context, subscriptionID string) error {
 }
 
 // GetStats returns broker statistics (interface method)
-func (b *Broker) GetStats() (*proto.BrokerStats, error) {
+func (b *Broker) GetStats(ctx context.Context) (*proto.BrokerStats, error) {
 	b.mu.RLock()
 	defer b.mu.RUnlock()
 	

@@ -7,7 +7,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/vibecast/vibecast/internal/models"
+	"github.com/ruvnet/alienator/internal/models"
 )
 
 // EmbeddingAnalyzer analyzes text using embedding-based techniques

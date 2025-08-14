@@ -2,6 +2,7 @@ package core
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"path/filepath"
 	"strings"
@@ -74,14 +75,20 @@ func NewMemoryStorage(config *StorageConfig, logger *zap.Logger) *MemoryStorage 
 	return storage
 }
 
-// Store stores data with the given key and TTL
-func (ms *MemoryStorage) Store(ctx context.Context, key string, data []byte, ttl time.Duration) error {
+// Store stores data with the given key
+func (ms *MemoryStorage) Store(ctx context.Context, key string, value interface{}) error {
 	if key == "" {
 		return fmt.Errorf("key cannot be empty")
 	}
 	
-	if data == nil {
-		return fmt.Errorf("data cannot be nil")
+	if value == nil {
+		return fmt.Errorf("value cannot be nil")
+	}
+	
+	// Marshal value to bytes
+	data, err := json.Marshal(value)
+	if err != nil {
+		return fmt.Errorf("failed to marshal value: %w", err)
 	}
 	
 	ms.mu.Lock()
@@ -97,10 +104,8 @@ func (ms *MemoryStorage) Store(ctx context.Context, key string, data []byte, ttl
 		}
 	}
 	
-	// Use default TTL if not specified
-	if ttl <= 0 {
-		ttl = ms.config.DefaultTTL
-	}
+	// Use default TTL
+	ttl := ms.config.DefaultTTL
 	
 	now := time.Now()
 	expiresAt := now.Add(ttl)
@@ -134,13 +139,12 @@ func (ms *MemoryStorage) Retrieve(ctx context.Context, key string, dest interfac
 		return err
 	}
 	
-	// For simplicity, we'll assume dest is *[]byte
-	if destBytes, ok := dest.(*[]byte); ok {
-		*destBytes = data
-		return nil
+	// Unmarshal data into dest
+	if err := json.Unmarshal(data, dest); err != nil {
+		return fmt.Errorf("failed to unmarshal data: %w", err)
 	}
 	
-	return fmt.Errorf("unsupported destination type")
+	return nil
 }
 
 // RetrieveBytes retrieves raw bytes by key
@@ -308,8 +312,8 @@ func (ms *MemoryStorage) performCleanup() {
 	}
 }
 
-// GetStats returns storage statistics
-func (ms *MemoryStorage) GetStats() map[string]interface{} {
+// GetAllStats returns storage statistics
+func (ms *MemoryStorage) GetAllStats() map[string]interface{} {
 	ms.mu.RLock()
 	defer ms.mu.RUnlock()
 	

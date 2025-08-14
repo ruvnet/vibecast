@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/analyzers/alerts"
+	"github.com/ruvnet/alienator/internal/analyzers/alerts"
 )
 
 // CompositeAnalyzer combines multiple analyzers to provide comprehensive anomaly detection

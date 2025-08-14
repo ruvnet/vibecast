@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/vibecast/vibecast/internal/models"
-	"github.com/vibecast/vibecast/pkg/metrics"
+	"github.com/ruvnet/alienator/internal/models"
+	"github.com/ruvnet/alienator/pkg/metrics"
 	"go.uber.org/zap"
 )
 

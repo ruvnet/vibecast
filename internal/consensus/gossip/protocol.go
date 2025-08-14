@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/consensus"
+	"github.com/ruvnet/alienator/internal/consensus"
 )
 
 // GossipProtocol implements a gossip-based consensus protocol

@@ -8,7 +8,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/vibecast/vibecast/internal/models"
+	"github.com/ruvnet/alienator/internal/models"
 )
 
 // Claims represents JWT claims

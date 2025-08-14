@@ -6,7 +6,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/vibecast/vibecast/internal/models"
+	"github.com/ruvnet/alienator/internal/models"
 )
 
 // EntropyAnalyzer analyzes text entropy patterns

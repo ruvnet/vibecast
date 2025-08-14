@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/vibecast/vibecast/internal/config"
-	"github.com/vibecast/vibecast/internal/models"
+	"github.com/ruvnet/alienator/internal/config"
+	"github.com/ruvnet/alienator/internal/models"
 	"golang.org/x/time/rate"
 )
 

@@ -20,11 +20,11 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zaptest"
 
-	"github.com/vibecast/vibecast/internal/api/rest"
-	"github.com/vibecast/vibecast/internal/api/ws"
-	"github.com/vibecast/vibecast/internal/dto"
-	"github.com/vibecast/vibecast/internal/gateway"
-	"github.com/vibecast/vibecast/internal/middleware"
+	"github.com/ruvnet/alienator/internal/api/rest"
+	"github.com/ruvnet/alienator/internal/api/ws"
+	"github.com/ruvnet/alienator/internal/dto"
+	"github.com/ruvnet/alienator/internal/gateway"
+	"github.com/ruvnet/alienator/internal/middleware"
 )
 
 // APITestSuite provides comprehensive API testing

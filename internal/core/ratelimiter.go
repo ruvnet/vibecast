@@ -6,9 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/models/proto"
+	"github.com/ruvnet/alienator/internal/models/proto"
 	"go.uber.org/zap"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // RateLimiterConfig holds configuration for the rate limiter
@@ -144,11 +143,10 @@ func (tbl *TokenBucketLimiter) AllowWithDetails(ctx context.Context, key string)
 	resetTime := bucket.WindowStart.Add(bucket.Window)
 	
 	rateLimitInfo := &proto.RateLimitInfo{
-		Key:        key,
-		Limit:      int32(bucket.Limit),
-		Remaining:  int32(remaining),
-		ResetTime:  timestamppb.New(resetTime),
-		WindowSize: int64(bucket.Window.Seconds()),
+		Key:       key,
+		Limit:     int64(bucket.Limit),
+		Remaining: int64(remaining),
+		ResetTime: resetTime.Unix(),
 	}
 	
 	if !allowed {
@@ -198,11 +196,10 @@ func (tbl *TokenBucketLimiter) GetInfo(ctx context.Context, key string) (*proto.
 		// Return default info for non-existent key
 		limit := tbl.getLimitForKey(key)
 		return &proto.RateLimitInfo{
-			Key:        key,
-			Limit:      int32(limit),
-			Remaining:  int32(limit),
-			ResetTime:  timestamppb.New(time.Now().Add(tbl.config.DefaultWindow)),
-			WindowSize: int64(tbl.config.DefaultWindow.Seconds()),
+			Key:       key,
+			Limit:     int64(limit),
+			Remaining: int64(limit),
+			ResetTime: time.Now().Add(tbl.config.DefaultWindow).Unix(),
 		}, nil
 	}
 	
@@ -221,11 +218,10 @@ func (tbl *TokenBucketLimiter) GetInfo(ctx context.Context, key string) (*proto.
 	resetTime := bucket.WindowStart.Add(bucket.Window)
 	
 	return &proto.RateLimitInfo{
-		Key:        key,
-		Limit:      int32(bucket.Limit),
-		Remaining:  int32(remaining),
-		ResetTime:  timestamppb.New(resetTime),
-		WindowSize: int64(bucket.Window.Seconds()),
+		Key:       key,
+		Limit:     int64(bucket.Limit),
+		Remaining: int64(remaining),
+		ResetTime: resetTime.Unix(),
 	}, nil
 }
 
@@ -321,8 +317,32 @@ func (tbl *TokenBucketLimiter) performCleanup() {
 	}
 }
 
-// GetStats returns rate limiter statistics
-func (tbl *TokenBucketLimiter) GetStats() map[string]interface{} {
+// GetStats returns rate limiter statistics for a specific key
+func (tbl *TokenBucketLimiter) GetStats(key string) (*proto.RateLimitInfo, error) {
+	tbl.mu.RLock()
+	defer tbl.mu.RUnlock()
+	
+	bucket, exists := tbl.buckets[key]
+	if !exists {
+		// Return default limits info
+		return &proto.RateLimitInfo{
+			Key:       key,
+			Limit:     int64(tbl.config.DefaultLimit),
+			Remaining: int64(tbl.config.DefaultLimit),
+			ResetTime: time.Now().Add(tbl.config.DefaultWindow).Unix(),
+		}, nil
+	}
+	
+	return &proto.RateLimitInfo{
+		Key:       key,
+		Limit:     int64(bucket.Limit),
+		Remaining: int64(bucket.Limit - bucket.Count),
+		ResetTime: bucket.WindowStart.Add(bucket.Window).Unix(),
+	}, nil
+}
+
+// GetAllStats returns overall rate limiter statistics
+func (tbl *TokenBucketLimiter) GetAllStats() map[string]interface{} {
 	tbl.mu.RLock()
 	defer tbl.mu.RUnlock()
 	

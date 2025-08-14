@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/analyzers"
+	"github.com/ruvnet/alienator/internal/analyzers"
 )
 
 // NeuralNetwork represents a simple feedforward neural network

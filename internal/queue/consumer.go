@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/core"
-	"github.com/vibecast/vibecast/internal/models"
+	"github.com/ruvnet/alienator/internal/core"
+	"github.com/ruvnet/alienator/internal/models"
 	"go.uber.org/zap"
 )
 

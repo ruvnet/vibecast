@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/go-playground/validator/v10"
-	"github.com/vibecast/vibecast/internal/dto"
+	"github.com/ruvnet/alienator/internal/dto"
 )
 
 // Validator wraps the validator instance

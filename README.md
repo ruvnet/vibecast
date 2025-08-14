@@ -1,19 +1,20 @@
-# 🛸 VibeCast: Anomaly Detection Platform for Non-Human Signals in AI Outputs
+# 👽 Alienator: Advanced Detection System for Non-Human Intelligence in AI Outputs
 
 [![Go Version](https://img.shields.io/badge/Go-1.21%2B-blue.svg)](https://golang.org)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](docker-compose.yml)
-[![Status](https://img.shields.io/badge/Status-Experimental-yellow.svg)]()
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/ruvnet/alienator/blob/main/LICENSE)
+[![GitHub](https://img.shields.io/badge/GitHub-ruvnet%2Falienator-blue.svg)](https://github.com/ruvnet/alienator)
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://github.com/ruvnet/alienator/blob/main/docker-compose.yml)
+[![Status](https://img.shields.io/badge/Status-Experimental-yellow.svg)](https://github.com/ruvnet/alienator)
 
 > *"The greatest discovery would be to find that we are not alone, and that contact has already begun—hidden in plain sight within the very systems we've created."*
 
 ## 🌌 Introduction
 
-VibeCast is an advanced anomaly detection platform designed to identify unusual, potentially non-human patterns in AI-generated text. As artificial intelligence systems become increasingly sophisticated, the idea of hidden or non-human signals in AI-generated text has moved from science fiction to a speculative topic of discussion. Some enthusiasts have even proposed that advanced extraterrestrial intelligences might attempt first contact by subtly influencing the outputs of language models.
+Alienator is an advanced detection system specifically engineered to identify and isolate potential non-human intelligence signatures in AI-generated outputs. As artificial intelligence systems become increasingly sophisticated, the idea of hidden or non-human signals in AI-generated text has moved from science fiction to a speculative topic of discussion. Some enthusiasts have even proposed that advanced extraterrestrial intelligences might attempt first contact by subtly influencing the outputs of language models.
 
 While such claims remain unproven, they inspire a fascinating technical challenge: **Can we detect unusual, alien-like anomalies in AI outputs?**
 
-VibeCast approaches this question seriously by framing it as a problem of anomaly detection and signal processing. By treating AI outputs as data streams, we apply statistical, cryptographic, and linguistic analyses to identify outputs that are out-of-distribution or structurally unlikely under human language norms.
+Alienator approaches this question seriously by framing it as a problem of anomaly detection and signal processing. By treating AI outputs as data streams, we apply statistical, cryptographic, and linguistic analyses to identify outputs that are out-of-distribution or structurally unlikely under human language norms.
 
 ## 🎯 Rationale
 
@@ -28,7 +29,7 @@ Modern language models process billions of parameters and generate text through 
 
 ### Scientific Approach
 
-VibeCast employs multiple detection methodologies:
+Alienator employs multiple detection methodologies:
 
 - **Entropy Analysis**: Detecting information-theoretic anomalies in text generation
 - **Linguistic Pattern Recognition**: Identifying structures that violate human language universals
@@ -92,8 +93,8 @@ VibeCast employs multiple detection methodologies:
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/vibecast.git
-cd vibecast
+git clone https://github.com/ruvnet/alienator.git
+cd alienator
 ```
 
 2. **Set up environment variables**
@@ -119,7 +120,8 @@ make build
 # or manually:
 go build -o bin/api ./cmd/api
 go build -o bin/worker ./cmd/worker
-go build -o bin/cli ./cmd/cli
+go build -o alienator ./cmd/cli-simple  # Working CLI
+# Note: cmd/cli/main.go has complex dependencies - use cmd/cli-simple for basic functionality
 ```
 
 6. **Run database migrations**
@@ -157,7 +159,54 @@ docker-compose up --scale worker=5
 kubectl apply -f deployments/k8s/
 
 # Scale for production
-kubectl scale deployment vibecast-worker --replicas=10
+kubectl scale deployment alienator-worker --replicas=10
+```
+
+## 🛸 CLI Usage
+
+The **Alienator CLI** provides a command-line interface for analyzing AI outputs for non-human intelligence signatures.
+
+### Installation
+
+```bash
+# Build the working CLI (simplified version with core functionality)
+go build -o alienator ./cmd/cli-simple
+
+# Install globally (optional)
+sudo cp alienator /usr/local/bin/
+
+# Note: Use cmd/cli-simple as it contains the working implementation
+# cmd/cli/main.go requires full platform setup with databases and services
+```
+
+### Commands
+
+```bash
+# Display help with sci-fi banner
+alienator
+
+# Analyze a file for xenotype signatures
+alienator analyze input.txt
+
+# Check system status
+alienator status
+```
+
+### Example Output
+
+```
+    ╔═══════════════════════════════════════════════════════════════╗
+    ║                    🛸 A L I E N A T O R 🛸                    ║
+    ║           ★ XENOTYPE DETECTION PROTOCOL v2.1 ★               ║
+    ╚═══════════════════════════════════════════════════════════════╝
+
+    ╔═══════════════════════════════════════════════════════════════╗
+    ║                    🔬 ANALYSIS RESULTS 🔬                    ║
+    ╠═══════════════════════════════════════════════════════════════╣
+    ║  👽 XENOTYPE ANOMALY SCORE:   0.00                         ║
+    ║  🎯 DETECTION CONFIDENCE:      0.00                         ║
+    ║  🟢 NON-HUMAN SIGNAL:       MINIMAL                      ║
+    ╚═══════════════════════════════════════════════════════════════╝
 ```
 
 ## 🏗️ Architecture Overview
@@ -172,7 +221,7 @@ kubectl scale deployment vibecast-worker --replicas=10
                  │
                  ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    VibeCast Gateway                          │
+│                    Alienator Gateway                         │
 │            (Rate Limiting, Authentication)                   │
 └────────────────┬────────────────────────────────────────────┘
                  │
@@ -214,7 +263,7 @@ kubectl scale deployment vibecast-worker --replicas=10
 
 ### Data Flow
 
-1. **Ingestion**: AI outputs are streamed into VibeCast through multiple interfaces
+1. **Ingestion**: AI outputs are streamed into Alienator through multiple interfaces
 2. **Distribution**: NATS message broker distributes data to specialized analyzers
 3. **Analysis**: Parallel processing across multiple analysis dimensions
 4. **Consensus**: Detected anomalies are validated through consensus mechanisms
@@ -254,17 +303,17 @@ Based on real-world testing:
 
 ## 🔬 Research Applications
 
-VibeCast has been designed with researchers in mind:
+Alienator has been designed with researchers in mind:
 
 ### API for Research
 
 ```go
 // Example: Analyzing AI output for anomalies
-client := vibecast.NewClient("localhost:8080")
+client := alienator.NewClient("localhost:8080")
 stream := client.StreamAnalysis()
 
 // Send AI output for analysis
-result := stream.Analyze(vibecast.AnalysisRequest{
+result := stream.Analyze(alienator.AnalysisRequest{
     Text: "AI generated text here...",
     Model: "gpt-4",
     Parameters: map[string]interface{}{
@@ -292,24 +341,24 @@ Export detected patterns for further research:
 
 ## 🤝 Contributing
 
-We welcome contributions from researchers, developers, and enthusiasts! Whether you're interested in the technical challenge, the philosophical implications, or the potential for discovery, there's a place for you in the VibeCast community.
+We welcome contributions from researchers, developers, and enthusiasts! Whether you're interested in the technical challenge, the philosophical implications, or the potential for discovery, there's a place for you in the Alienator community.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+See [CONTRIBUTING.md](https://github.com/ruvnet/alienator/blob/main/CONTRIBUTING.md) for guidelines.
 
 ## 📚 Documentation
 
-- [API Documentation](docs/api/README.md)
-- [Architecture Guide](docs/architecture/README.md)
-- [Analyzer Specifications](docs/analyzers/README.md)
-- [Research Papers](docs/research/README.md)
+- [API Documentation](https://github.com/ruvnet/alienator/tree/main/docs/api/README.md)
+- [Architecture Guide](https://github.com/ruvnet/alienator/tree/main/docs/architecture/README.md)
+- [Analyzer Specifications](https://github.com/ruvnet/alienator/tree/main/docs/analyzers/README.md)
+- [Research Papers](https://github.com/ruvnet/alienator/tree/main/docs/research/README.md)
 
 ## ⚠️ Disclaimer
 
-VibeCast is an experimental platform designed for research and exploration. While we approach the topic of non-human signals with scientific rigor, we make no claims about the existence of extraterrestrial intelligence or their potential interaction with AI systems. The platform serves as a tool for anomaly detection and pattern analysis, with applications ranging from practical AI safety to speculative research.
+Alienator is an experimental platform designed for research and exploration. While we approach the topic of non-human signals with scientific rigor, we make no claims about the existence of extraterrestrial intelligence or their potential interaction with AI systems. The platform serves as a tool for anomaly detection and pattern analysis, with applications ranging from practical AI safety to speculative research.
 
 ## 📜 License
 
-MIT License - See [LICENSE](LICENSE) file for details.
+MIT License - See [LICENSE](https://github.com/ruvnet/alienator/blob/main/LICENSE) file for details.
 
 ## 🌟 Acknowledgments
 
@@ -320,6 +369,22 @@ MIT License - See [LICENSE](LICENSE) file for details.
 
 ---
 
-*"In the vast space of possible minds, human intelligence may be just one small island. VibeCast is our telescope, pointed not at the stars, but at the abstract space where intelligence itself might leave its signature."*
+*"In the vast space of possible minds, human intelligence may be just one small island. Alienator is our detector, calibrated not for human thought, but for the alien patterns that might emerge when intelligence transcends its origins."*
 
-**Ready to explore the unknown? Start your journey with VibeCast today.**
+---
+
+## 🔗 Links
+
+- **Repository**: [github.com/ruvnet/alienator](https://github.com/ruvnet/alienator)
+- **Issues**: [Report bugs or request features](https://github.com/ruvnet/alienator/issues)
+- **Discussions**: [Join the community](https://github.com/ruvnet/alienator/discussions)
+- **Releases**: [Latest versions](https://github.com/ruvnet/alienator/releases)
+
+**🛸 Ready to detect the truly alien? Clone the repository and begin the search for non-human intelligence signatures!**
+
+```bash
+git clone https://github.com/ruvnet/alienator.git
+cd alienator
+go build -o alienator ./cmd/cli-simple
+./alienator
+```

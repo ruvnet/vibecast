@@ -9,11 +9,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/config"
-	"github.com/vibecast/vibecast/internal/core"
-	"github.com/vibecast/vibecast/internal/queue"
-	"github.com/vibecast/vibecast/internal/services"
-	"github.com/vibecast/vibecast/pkg/metrics"
+	"github.com/ruvnet/alienator/internal/config"
+	"github.com/ruvnet/alienator/internal/core"
+	"github.com/ruvnet/alienator/internal/queue"
+	"github.com/ruvnet/alienator/internal/services"
+	"github.com/ruvnet/alienator/pkg/metrics"
 	"go.uber.org/zap"
 )
 

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/core"
-	"github.com/vibecast/vibecast/internal/services"
+	"github.com/ruvnet/alienator/internal/core"
+	"github.com/ruvnet/alienator/internal/services"
 	"go.uber.org/zap"
 )
 

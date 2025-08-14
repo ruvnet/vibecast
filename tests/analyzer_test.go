@@ -4,12 +4,12 @@ import (
 	"context"
 	"testing"
 
-	"github.com/vibecast/vibecast/internal/analyzers/compression"
-	"github.com/vibecast/vibecast/internal/analyzers/cryptographic"
-	"github.com/vibecast/vibecast/internal/analyzers/embedding"
-	"github.com/vibecast/vibecast/internal/analyzers/entropy"
-	"github.com/vibecast/vibecast/internal/analyzers/linguistic"
-	"github.com/vibecast/vibecast/internal/models"
+	"github.com/ruvnet/alienator/internal/analyzers/compression"
+	"github.com/ruvnet/alienator/internal/analyzers/cryptographic"
+	"github.com/ruvnet/alienator/internal/analyzers/embedding"
+	"github.com/ruvnet/alienator/internal/analyzers/entropy"
+	"github.com/ruvnet/alienator/internal/analyzers/linguistic"
+	"github.com/ruvnet/alienator/internal/models"
 )
 
 func TestEntropyAnalyzer(t *testing.T) {

@@ -1,4 +1,4 @@
-module github.com/vibecast/vibecast
+module github.com/ruvnet/alienator
 
 go 1.23.0
 

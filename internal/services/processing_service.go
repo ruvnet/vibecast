@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/core"
-	"github.com/vibecast/vibecast/internal/models/proto"
+	"github.com/ruvnet/alienator/internal/core"
+	"github.com/ruvnet/alienator/internal/models/proto"
 	"go.uber.org/zap"
 )
 
@@ -157,15 +157,15 @@ func (ps *ProcessingService) ProcessQueue(ctx context.Context, queueName string,
 			processedMsg, err := ps.ProcessMessage(ctx, queueMsg.Message)
 			if err != nil {
 				ps.logger.Error("Failed to process message",
-					zap.String("queue_message_id", queueMsg.ID),
+					zap.String("queue_message_id", queueMsg.Id),
 					zap.String("message_id", queueMsg.Message.ID),
 					zap.Error(err),
 				)
 
 				// Negative acknowledge for requeuing
-				if nackErr := ps.messageQueue.Nack(ctx, queueMsg.ID, true); nackErr != nil {
+				if nackErr := ps.messageQueue.Nack(ctx, queueMsg.Id, true); nackErr != nil {
 					ps.logger.Error("Failed to nack message",
-						zap.String("queue_message_id", queueMsg.ID),
+						zap.String("queue_message_id", queueMsg.Id),
 						zap.Error(nackErr),
 					)
 				}
@@ -190,9 +190,9 @@ func (ps *ProcessingService) ProcessQueue(ctx context.Context, queueName string,
 			}
 
 			// Acknowledge successful processing
-			if err := ps.messageQueue.Ack(ctx, queueMsg.ID); err != nil {
+			if err := ps.messageQueue.Ack(ctx, queueMsg.Id); err != nil {
 				ps.logger.Error("Failed to acknowledge message",
-					zap.String("queue_message_id", queueMsg.ID),
+					zap.String("queue_message_id", queueMsg.Id),
 					zap.Error(err),
 				)
 			}
@@ -360,12 +360,13 @@ func (vp *ValidationProcessor) Process(ctx context.Context, msg *proto.Message) 
 		return nil, fmt.Errorf("message ID is required")
 	}
 	
-	if msg.Content == "" {
-		return nil, fmt.Errorf("message content is required")
+	if len(msg.Data) == 0 {
+		return nil, fmt.Errorf("message data is required")
 	}
 	
-	if msg.Timestamp == 0 {
-		msg.Timestamp = time.Now().Unix()
+	if msg.Timestamp == nil {
+		now := time.Now()
+		msg.Timestamp = &now
 	}
 	
 	return msg, nil
@@ -395,7 +396,7 @@ func (ep *EnrichmentProcessor) Process(ctx context.Context, msg *proto.Message) 
 	msg.Headers["processor_version"] = "1.0.0"
 	
 	// Add content hash for integrity
-	msg.Headers["content_hash"] = fmt.Sprintf("%x", len(msg.Content))
+	msg.Headers["content_hash"] = fmt.Sprintf("%x", len(msg.Data))
 	
 	return msg, nil
 }

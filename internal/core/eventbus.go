@@ -6,9 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/models/proto"
+	"github.com/ruvnet/alienator/internal/models/proto"
 	"go.uber.org/zap"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // EventBusConfig holds configuration for the event bus
@@ -119,6 +118,11 @@ func (eb *InMemoryEventBus) Publish(ctx context.Context, event *proto.Event) err
 	}
 
 	return nil
+}
+
+// Emit is an alias for Publish to satisfy the interface
+func (eb *InMemoryEventBus) Emit(ctx context.Context, event *proto.Event) error {
+	return eb.Publish(ctx, event)
 }
 
 // Subscribe subscribes to events of a specific type
@@ -252,8 +256,8 @@ func (eb *InMemoryEventBus) addToHistory(event *proto.Event) {
 	history := eb.history[event.Type]
 	
 	// Add timestamp if not set
-	if event.Timestamp == nil {
-		event.Timestamp = timestamppb.Now()
+	if event.Timestamp == 0 {
+		event.Timestamp = time.Now().Unix()
 	}
 
 	history = append(history, event)
@@ -294,7 +298,7 @@ func (eb *InMemoryEventBus) cleanupExpiredHistory() {
 		var filtered []*proto.Event
 		
 		for _, event := range history {
-			if event.Timestamp != nil && event.Timestamp.AsTime().After(cutoff) {
+			if event.Timestamp > 0 && time.Unix(event.Timestamp, 0).After(cutoff) {
 				filtered = append(filtered, event)
 			}
 		}

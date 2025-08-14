@@ -3,7 +3,7 @@ package dto
 import (
 	"time"
 	"github.com/google/uuid"
-	"github.com/vibecast/vibecast/internal/models"
+	"github.com/ruvnet/alienator/internal/models"
 )
 
 // BaseResponse contains common response fields

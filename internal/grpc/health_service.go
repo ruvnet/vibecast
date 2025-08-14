@@ -7,7 +7,7 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	pb "github.com/vibecast/vibecast/proto/vibecast/v1"
+	pb "github.com/ruvnet/alienator/proto/vibecast/v1"
 )
 
 // HealthServiceServer implements the gRPC HealthService

@@ -3,11 +3,11 @@ package analyzers
 import (
 	"fmt"
 
-	"github.com/vibecast/vibecast/internal/analyzers/alerts"
-	"github.com/vibecast/vibecast/internal/analyzers/ml"
-	"github.com/vibecast/vibecast/internal/analyzers/pattern"
-	"github.com/vibecast/vibecast/internal/analyzers/statistical"
-	"github.com/vibecast/vibecast/internal/analyzers/threshold"
+	"github.com/ruvnet/alienator/internal/analyzers/alerts"
+	"github.com/ruvnet/alienator/internal/analyzers/ml"
+	"github.com/ruvnet/alienator/internal/analyzers/pattern"
+	"github.com/ruvnet/alienator/internal/analyzers/statistical"
+	"github.com/ruvnet/alienator/internal/analyzers/threshold"
 )
 
 // AnalyzerType represents supported analyzer types

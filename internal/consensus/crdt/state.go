@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/consensus"
+	"github.com/ruvnet/alienator/internal/consensus"
 )
 
 // CRDTSynchronizer implements CRDT-based synchronization for consensus

@@ -8,23 +8,23 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/vibecast/vibecast/internal/config"
-	"github.com/vibecast/vibecast/internal/core"
-	"github.com/vibecast/vibecast/internal/models/proto"
-	"github.com/vibecast/vibecast/internal/services"
-	"github.com/vibecast/vibecast/pkg/metrics"
+	"github.com/ruvnet/alienator/internal/config"
+	"github.com/ruvnet/alienator/internal/core"
+	"github.com/ruvnet/alienator/internal/models/proto"
+	"github.com/ruvnet/alienator/internal/services"
+	"github.com/ruvnet/alienator/pkg/metrics"
 	"go.uber.org/zap"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "vibecast",
-	Short: "VibeCast distributed broadcasting platform CLI",
-	Long:  "A command-line interface for the VibeCast distributed broadcasting platform with messaging, streaming, and pub/sub capabilities.",
+	Use:   "alienator",
+	Short: "Alienator detection system for non-human intelligence in AI outputs",
+	Long:  "A command-line interface for the Alienator advanced detection system that identifies potential non-human intelligence signatures in AI-generated outputs.",
 }
 
 var analyzeCmd = &cobra.Command{
 	Use:   "analyze [file]",
-	Short: "Analyze text for anomalies",
+	Short: "Analyze AI output for non-human intelligence signatures",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		filename := args[0]
@@ -45,14 +45,14 @@ var analyzeCmd = &cobra.Command{
 			logger.Fatal("Analysis failed", zap.Error(err))
 		}
 
-		fmt.Printf("Anomaly Score: %.2f\n", result.Score)
-		fmt.Printf("Confidence: %.2f\n", result.Confidence)
-		fmt.Printf("Is Anomalous: %t\n", result.IsAnomalous)
+		fmt.Printf("👽 Anomaly Score: %.2f\n", result.Score)
+		fmt.Printf("🎯 Confidence: %.2f\n", result.Confidence)
+		fmt.Printf("🚨 Non-Human Signal Detected: %t\n", result.IsAnomalous)
 
 		if len(result.Details) > 0 {
-			fmt.Println("\nDetailed Analysis:")
+			fmt.Println("\n🔬 Detailed Analysis:")
 			for analyzer, detail := range result.Details {
-				fmt.Printf("  %s: %.2f\n", analyzer, detail.Score)
+				fmt.Printf("  • %s: %.2f\n", analyzer, detail.Score)
 			}
 		}
 	},
@@ -60,7 +60,7 @@ var analyzeCmd = &cobra.Command{
 
 var broadcastCmd = &cobra.Command{
 	Use:   "broadcast [channel] [message]",
-	Short: "Broadcast a message to a channel",
+	Short: "Broadcast detected anomaly alerts to a channel",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		channel := args[0]
@@ -88,25 +88,26 @@ var broadcastCmd = &cobra.Command{
 		broadcastService := services.NewBroadcastService(messageBroker, eventBus, logger)
 
 		ctx := context.Background()
+		now := time.Now()
 		msg := &proto.Message{
-			Id:        fmt.Sprintf("msg_%d", time.Now().UnixNano()),
-			Channel:   channel,
-			Content:   messageText,
-			Timestamp: time.Now().Unix(),
-			Sender:    "cli",
+			ID:        fmt.Sprintf("msg_%d", time.Now().UnixNano()),
+			Topic:     channel,
+			Data:      []byte(messageText),
+			Timestamp: &now,
+			Headers:   map[string]string{"sender": "cli"},
 		}
 
 		if err := broadcastService.Broadcast(ctx, channel, msg); err != nil {
 			logger.Fatal("Failed to broadcast message", zap.Error(err))
 		}
 
-		fmt.Printf("Message broadcast to channel '%s' successfully\n", channel)
+		fmt.Printf("🛸 Anomaly alert broadcast to channel '%s' successfully\n", channel)
 	},
 }
 
 var streamCmd = &cobra.Command{
 	Use:   "stream [action] [streamId]",
-	Short: "Stream management operations (create, start, stop, status)",
+	Short: "Manage AI output analysis streams (create, start, stop, status)",
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
 		action := args[0]
@@ -145,24 +146,24 @@ var streamCmd = &cobra.Command{
 			if err := streamService.CreateStream(ctx, stream); err != nil {
 				logger.Fatal("Failed to create stream", zap.Error(err))
 			}
-			fmt.Printf("Stream '%s' created successfully\n", streamId)
+			fmt.Printf("📡 Analysis stream '%s' created successfully\n", streamId)
 		case "start":
 			if err := streamService.StartStream(ctx, streamId); err != nil {
 				logger.Fatal("Failed to start stream", zap.Error(err))
 			}
-			fmt.Printf("Stream '%s' started successfully\n", streamId)
+			fmt.Printf("▶️ Analysis stream '%s' started successfully\n", streamId)
 		case "stop":
 			if err := streamService.StopStream(ctx, streamId); err != nil {
 				logger.Fatal("Failed to stop stream", zap.Error(err))
 			}
-			fmt.Printf("Stream '%s' stopped successfully\n", streamId)
+			fmt.Printf("⏹️ Analysis stream '%s' stopped successfully\n", streamId)
 		case "status":
 			status, err := streamService.GetStreamStatus(ctx, streamId)
 			if err != nil {
 				logger.Fatal("Failed to get stream status", zap.Error(err))
 			}
 			statusJSON, _ := json.MarshalIndent(status, "", "  ")
-			fmt.Printf("Stream '%s' status:\n%s\n", streamId, statusJSON)
+			fmt.Printf("📊 Analysis stream '%s' status:\n%s\n", streamId, statusJSON)
 		default:
 			fmt.Printf("Unknown action: %s. Use: create, start, stop, or status\n", action)
 			os.Exit(1)
@@ -172,7 +173,7 @@ var streamCmd = &cobra.Command{
 
 var statusCmd = &cobra.Command{
 	Use:   "status",
-	Short: "Get VibeCast system status",
+	Short: "Get Alienator system status",
 	Run: func(cmd *cobra.Command, args []string) {
 		cfg, err := config.Load()
 		if err != nil {
@@ -186,23 +187,23 @@ var statusCmd = &cobra.Command{
 		// Initialize components
 		messageBroker, err := core.NewNATSBroker(cfg.NATS, logger)
 		if err != nil {
-			fmt.Printf("Message Broker: OFFLINE (%v)\n", err)
+			fmt.Printf("❌ Message Broker: OFFLINE (%v)\n", err)
 		} else {
-			fmt.Println("Message Broker: ONLINE")
+			fmt.Println("✅ Message Broker: ONLINE")
 			messageBroker.Close()
 		}
 
 		messageQueue, err := core.NewRedisQueue(cfg.Redis, logger)
 		if err != nil {
-			fmt.Printf("Message Queue: OFFLINE (%v)\n", err)
+			fmt.Printf("❌ Message Queue: OFFLINE (%v)\n", err)
 		} else {
-			fmt.Println("Message Queue: ONLINE")
+			fmt.Println("✅ Message Queue: ONLINE")
 			messageQueue.Close()
 		}
 
-		fmt.Printf("Configuration loaded successfully\n")
-		fmt.Printf("API Server: %s:%d\n", cfg.Server.Host, cfg.Server.Port)
-		fmt.Printf("Environment: %s\n", cfg.Logging.Level)
+		fmt.Printf("🌌 Alienator configuration loaded successfully\n")
+		fmt.Printf("🔗 API Server: %s:%d\n", cfg.Server.Host, cfg.Server.Port)
+		fmt.Printf("🔧 Environment: %s\n", cfg.Logging.Level)
 	},
 }
 

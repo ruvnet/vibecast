@@ -8,7 +8,7 @@ import (
 	"unicode"
 
 	"github.com/abadojack/whatlanggo"
-	"github.com/vibecast/vibecast/internal/models"
+	"github.com/ruvnet/alienator/internal/models"
 )
 
 // LinguisticAnalyzer analyzes linguistic patterns in text

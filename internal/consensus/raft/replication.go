@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/consensus"
+	"github.com/ruvnet/alienator/internal/consensus"
 )
 
 // AppendEntriesRequest represents an AppendEntries RPC request

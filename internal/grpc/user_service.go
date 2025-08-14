@@ -8,8 +8,8 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	pb "github.com/vibecast/vibecast/proto/vibecast/v1"
-	"github.com/vibecast/vibecast/internal/services"
+	pb "github.com/ruvnet/alienator/proto/vibecast/v1"
+	"github.com/ruvnet/alienator/internal/services"
 )
 
 // UserServiceServer implements the gRPC UserService

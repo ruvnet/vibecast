@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/vibecast/vibecast/internal/core"
-	"github.com/vibecast/vibecast/internal/models/proto"
+	"github.com/ruvnet/alienator/internal/core"
+	"github.com/ruvnet/alienator/internal/models/proto"
 	"go.uber.org/zap"
 )
 
@@ -52,8 +52,8 @@ func (ss *StreamService) CreateStream(ctx context.Context, stream *proto.Stream)
 	defer ss.streamsMu.Unlock()
 
 	// Check if stream already exists
-	if _, exists := ss.streams[stream.ID]; exists {
-		return fmt.Errorf("stream %s already exists", stream.ID)
+	if _, exists := ss.streams[stream.Id]; exists {
+		return fmt.Errorf("stream %s already exists", stream.Id)
 	}
 
 	// Initialize stream
@@ -70,7 +70,7 @@ func (ss *StreamService) CreateStream(ctx context.Context, stream *proto.Stream)
 		LastActivity:    time.Now().Unix(),
 	}
 
-	ss.streams[stream.ID] = stream
+	ss.streams[stream.Id] = stream
 
 	ss.metricsMu.Lock()
 	ss.metrics.TotalStreams++
@@ -82,7 +82,7 @@ func (ss *StreamService) CreateStream(ctx context.Context, stream *proto.Stream)
 		Type:   "stream.created",
 		Source: "stream_service",
 		Data: map[string]interface{}{
-			"stream_id":   stream.ID,
+			"stream_id":   stream.Id,
 			"stream_name": stream.Name,
 		},
 	}); err != nil {
@@ -90,7 +90,7 @@ func (ss *StreamService) CreateStream(ctx context.Context, stream *proto.Stream)
 	}
 
 	ss.logger.Info("Stream created",
-		zap.String("stream_id", stream.ID),
+		zap.String("stream_id", stream.Id),
 		zap.String("name", stream.Name),
 	)
 
@@ -238,14 +238,15 @@ func (ss *StreamService) PushData(ctx context.Context, streamID string, data *pr
 	}
 
 	// Convert stream data to message for queuing
+	timestamp := time.Unix(data.Timestamp, 0)
 	message := &proto.Message{
-		Id:        fmt.Sprintf("stream_data_%d", time.Now().UnixNano()),
-		Channel:   fmt.Sprintf("stream.%s", streamID),
-		Content:   string(data.Data),
-		Timestamp: data.Timestamp,
-		Sender:    "stream_service",
-		Type:      "stream_data",
+		ID:        fmt.Sprintf("stream_data_%d", time.Now().UnixNano()),
+		Topic:     fmt.Sprintf("stream.%s", streamID),
+		Data:      data.Data,
+		Timestamp: &timestamp,
 		Headers: map[string]string{
+			"sender":    "stream_service",
+			"type":      "stream_data",
 			"stream_id": streamID,
 			"sequence":  fmt.Sprintf("%d", data.Sequence),
 		},
@@ -320,8 +321,8 @@ func (ss *StreamService) ConsumeData(ctx context.Context, streamID string, timeo
 	// Convert message back to stream data
 	streamData := &proto.StreamData{
 		StreamId:  streamID,
-		Timestamp: queueMsg.Message.Timestamp,
-		Data:      []byte(queueMsg.Message.Content),
+		Timestamp: queueMsg.Message.Timestamp.Unix(),
+		Data:      []byte(string(queueMsg.Message.Data)),
 		Metadata:  make(map[string]interface{}),
 	}
 
@@ -331,9 +332,9 @@ func (ss *StreamService) ConsumeData(ctx context.Context, streamID string, timeo
 	}
 
 	// Acknowledge message
-	if err := ss.messageQueue.Ack(ctx, queueMsg.ID); err != nil {
+	if err := ss.messageQueue.Ack(ctx, queueMsg.Id); err != nil {
 		ss.logger.Error("Failed to acknowledge stream message",
-			zap.String("queue_message_id", queueMsg.ID),
+			zap.String("queue_message_id", queueMsg.Id),
 			zap.Error(err),
 		)
 	}
