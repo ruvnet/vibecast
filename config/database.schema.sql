@@ -459,6 +459,181 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- ============================================================================
+-- SOTA ENTERPRISE TABLES (Router 2.0, Policies, Observability, Privacy)
+-- ============================================================================
+
+-- Router State: Thompson Sampling bandit state
+CREATE TABLE IF NOT EXISTS router_state (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  bandits JSONB NOT NULL,
+  daily_spend DECIMAL(10,2) DEFAULT 0,
+  last_reset_date DATE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Router Decisions: Routing decision log
+CREATE TABLE IF NOT EXISTS router_decisions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  lane VARCHAR(50) NOT NULL,
+  cost DECIMAL(10,4),
+  features JSONB,
+  reasoning TEXT,
+  context_id VARCHAR(255),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_router_decisions_lane ON router_decisions(lane);
+CREATE INDEX idx_router_decisions_created ON router_decisions(created_at DESC);
+
+-- Router Feedback: Success/failure feedback for learning
+CREATE TABLE IF NOT EXISTS router_feedback (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  decision_id UUID REFERENCES router_decisions(id),
+  lane VARCHAR(50),
+  success BOOLEAN,
+  metrics JSONB,
+  bandit_state JSONB,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Rule Proposals: Auto-generated rule proposals from reflexion
+CREATE TABLE IF NOT EXISTS rule_proposals (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  pattern_id VARCHAR(50),
+  rule_spec JSONB NOT NULL,
+  rationale TEXT,
+  expected_impact JSONB,
+  confidence DECIMAL(3,2),
+  tests_passed BOOLEAN,
+  test_results JSONB,
+  status VARCHAR(50),
+  approved_by VARCHAR(255),
+  approved_at TIMESTAMPTZ,
+  rejected_by VARCHAR(255),
+  rejected_at TIMESTAMPTZ,
+  rejection_reason TEXT,
+  deployed_rule_id UUID,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_rule_proposals_status ON rule_proposals(status);
+
+-- Verifiable Log Trees: Sealed Merkle trees
+CREATE TABLE IF NOT EXISTS verifiable_log_trees (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  sequence INTEGER NOT NULL UNIQUE,
+  root_hash VARCHAR(64) NOT NULL,
+  size INTEGER NOT NULL,
+  sealed_at TIMESTAMPTZ,
+  status VARCHAR(50)
+);
+
+-- Verifiable Log Entries: Individual log entries with proofs
+CREATE TABLE IF NOT EXISTS verifiable_log_entries (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  tree_sequence INTEGER,
+  leaf_index INTEGER NOT NULL,
+  leaf_hash VARCHAR(64) NOT NULL,
+  entry_data JSONB NOT NULL,
+  tree_root VARCHAR(64),
+  inclusion_proof JSONB,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_verifiable_entries_tree ON verifiable_log_entries(tree_sequence, leaf_index);
+
+-- Verifiable Log State: Current tree state
+CREATE TABLE IF NOT EXISTS verifiable_log_state (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  tree_sequence INTEGER,
+  tree_size INTEGER,
+  root_hash VARCHAR(64),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Signed Tree Heads: STH for transparency
+CREATE TABLE IF NOT EXISTS signed_tree_heads (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  tree_sequence INTEGER,
+  root_hash VARCHAR(64),
+  tree_size INTEGER,
+  timestamp TIMESTAMPTZ,
+  signature TEXT,
+  signature_algorithm VARCHAR(50)
+);
+
+-- Policies: Policy-as-code definitions
+CREATE TABLE IF NOT EXISTS policies (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name VARCHAR(255) NOT NULL UNIQUE,
+  description TEXT,
+  policy_type VARCHAR(50) NOT NULL,  -- 'routing', 'egress'
+  rules JSONB NOT NULL,
+  priority INTEGER DEFAULT 100,
+  active BOOLEAN DEFAULT true,
+  version VARCHAR(20),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_policies_type ON policies(policy_type);
+CREATE INDEX idx_policies_active ON policies(active);
+
+-- Policy Decisions: Policy evaluation log
+CREATE TABLE IF NOT EXISTS policy_decisions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  policy_type VARCHAR(50),
+  allowed BOOLEAN,
+  denied_by VARCHAR(255),
+  reasoning JSONB,
+  context_id VARCHAR(255),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_policy_decisions_type ON policy_decisions(policy_type);
+CREATE INDEX idx_policy_decisions_allowed ON policy_decisions(allowed);
+
+-- Telemetry Traces: OpenTelemetry-style traces
+CREATE TABLE IF NOT EXISTS telemetry_traces (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  span_id VARCHAR(255),
+  trace_id VARCHAR(255),
+  name VARCHAR(255),
+  start_time BIGINT,
+  end_time BIGINT,
+  duration INTEGER,
+  status VARCHAR(50),
+  attributes JSONB,
+  events JSONB
+);
+
+CREATE INDEX idx_telemetry_traces_name ON telemetry_traces(name);
+CREATE INDEX idx_telemetry_traces_start ON telemetry_traces(start_time DESC);
+
+-- Telemetry Metrics: OpenTelemetry-style metrics
+CREATE TABLE IF NOT EXISTS telemetry_metrics (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name VARCHAR(255),
+  value DECIMAL(15,4),
+  unit VARCHAR(50),
+  timestamp BIGINT,
+  attributes JSONB
+);
+
+CREATE INDEX idx_telemetry_metrics_name ON telemetry_metrics(name);
+CREATE INDEX idx_telemetry_metrics_timestamp ON telemetry_metrics(timestamp DESC);
+
+-- Redaction Log: PII redaction events
+CREATE TABLE IF NOT EXISTS redaction_log (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  redactions INTEGER,
+  types JSONB,
+  confidence DECIMAL(3,2),
+  timestamp TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX idx_redaction_log_timestamp ON redaction_log(timestamp DESC);
+
 -- Grant appropriate permissions (adjust based on your setup)
 -- GRANT SELECT, INSERT, UPDATE ON ALL TABLES IN SCHEMA public TO authenticated;
 -- GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO authenticated;
