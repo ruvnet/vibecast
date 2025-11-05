@@ -1,9 +1,12 @@
 {
   "name": "vibecast-agentic-data-entry",
   "version": "1.0.0",
-  "description": "Agentic Data Entry Automation System with Human-in-Loop Exception Handling",
+  "description": "Agentic Data Entry Automation System with Human-in-Loop Exception Handling - 20 Years Ahead™",
   "main": "src/index.js",
   "type": "module",
+  "bin": {
+    "vibecast": "./bin/vibecast.js"
+  },
   "scripts": {
     "start": "node src/index.js",
     "process": "node src/dataProcessor.js",
@@ -11,7 +14,12 @@
     "review": "node src/reviewExceptions.js",
     "metrics": "node src/metrics.js",
     "setup": "node src/setup/initDatabase.js",
-    "test": "node --test src/**/*.test.js",
+    "test": "node tests/run-all-tests.js",
+    "test:validate": "node tests/validate.js",
+    "test:router": "node tests/router2.test.js",
+    "test:audit": "node tests/verifiable-audit.test.js",
+    "test:pii": "node tests/pii-redactor.test.js",
+    "test:integration": "node tests/integration.test.js",
     "sandbox:create": "flow-nexus sandbox_create template=node name=data-entry-runner",
     "sandbox:execute": "flow-nexus sandbox_execute id=data-entry-runner cmd='node src/dataProcessor.js'",
     "sandbox:logs": "flow-nexus sandbox_logs id=data-entry-runner",
@@ -38,6 +46,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.27.0",
     "@supabase/supabase-js": "^2.39.0",
+    "commander": "^12.0.0",
     "dotenv": "^16.4.5",
     "uuid": "^10.0.0",
     "nanoid": "^5.0.7",

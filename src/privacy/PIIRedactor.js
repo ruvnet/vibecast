@@ -38,7 +38,7 @@ const PII_PATTERNS = {
   },
 
   phone: {
-    pattern: /\b(\+?1[-.]?)?\(?\d{3}\)?[-.]?\d{3}[-.]?\d{4}\b/g,
+    pattern: /\b(\+?1[-. ]?)?\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}\b/g,
     replacement: '[PHONE_REDACTED]',
     confidence: 0.85
   },
