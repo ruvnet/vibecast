@@ -9,8 +9,22 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 class AgentDB {
-  constructor(url, key) {
+  constructor(url, key, options = {}) {
+    this.mockMode = options.mockMode || false;
+
     if (!url || !key) {
+      if (process.env.USE_MOCK_MODE === 'true') {
+        console.warn('⚠️  AgentDB: Missing credentials, using mock mode for testing');
+        this.mockMode = true;
+        this.mockData = {
+          rules: [],
+          pending_exceptions: [],
+          audit_trail: [],
+          agent_memory: [],
+          processing_metrics: []
+        };
+        return;
+      }
       throw new Error('AgentDB requires AGENTDB_URL and AGENTDB_KEY environment variables');
     }
 
@@ -32,6 +46,36 @@ class AgentDB {
    * @returns {Promise<Array>}
    */
   async query(table, options = {}) {
+    if (this.mockMode) {
+      let data = this.mockData[table] || [];
+
+      // Apply where filter
+      if (options.where) {
+        data = data.filter(row => {
+          return Object.entries(options.where).every(([column, value]) => {
+            if (typeof value === 'object' && value.operator) {
+              const rowValue = row[column];
+              switch (value.operator) {
+                case 'gt': return rowValue > value.value;
+                case 'lt': return rowValue < value.value;
+                case 'gte': return rowValue >= value.value;
+                case 'lte': return rowValue <= value.value;
+                default: return rowValue === value.value;
+              }
+            }
+            return row[column] === value;
+          });
+        });
+      }
+
+      // Apply limit
+      if (options.limit) {
+        data = data.slice(0, options.limit);
+      }
+
+      return data;
+    }
+
     try {
       let query = this.client.from(table).select(options.select || '*');
 
@@ -75,6 +119,20 @@ class AgentDB {
    * @returns {Promise<object>}
    */
   async insert(table, data) {
+    if (this.mockMode) {
+      if (!this.mockData[table]) {
+        this.mockData[table] = [];
+      }
+      const items = Array.isArray(data) ? data : [data];
+      const inserted = items.map(item => ({
+        id: Math.random().toString(36).substr(2, 9),
+        created_at: new Date().toISOString(),
+        ...item
+      }));
+      this.mockData[table].push(...inserted);
+      return Array.isArray(data) ? inserted : inserted[0];
+    }
+
     try {
       const { data: result, error } = await this.client
         .from(table)
@@ -100,6 +158,19 @@ class AgentDB {
    * @returns {Promise<object>}
    */
   async update(table, where, data) {
+    if (this.mockMode) {
+      const items = this.mockData[table] || [];
+      const updated = [];
+      for (const item of items) {
+        const matches = Object.entries(where).every(([col, val]) => item[col] === val);
+        if (matches) {
+          Object.assign(item, data);
+          updated.push(item);
+        }
+      }
+      return updated;
+    }
+
     try {
       let query = this.client.from(table).update(data);
 
@@ -127,6 +198,20 @@ class AgentDB {
    * @returns {Promise<object>}
    */
   async delete(table, where) {
+    if (this.mockMode) {
+      const items = this.mockData[table] || [];
+      const deleted = [];
+      this.mockData[table] = items.filter(item => {
+        const matches = Object.entries(where).every(([col, val]) => item[col] === val);
+        if (matches) {
+          deleted.push(item);
+          return false;
+        }
+        return true;
+      });
+      return deleted;
+    }
+
     try {
       let query = this.client.from(table).delete();
 
@@ -154,6 +239,11 @@ class AgentDB {
    * @returns {Promise<Array>}
    */
   async raw(sql, params = []) {
+    if (this.mockMode) {
+      console.warn('⚠️  Raw SQL queries not supported in mock mode');
+      return [];
+    }
+
     try {
       const { data, error } = await this.client.rpc('exec_sql', {
         query: sql,

@@ -29,7 +29,7 @@ const LANES = {
     privacyScore: 1.0,          // Perfect privacy (on-device)
     qualityScore: 0.7,          // Good for simple tasks
     maxTokens: 2048,
-    supports: ['validation', 'simple_enrichment', 'classification']
+    supports: ['validation', 'simple_enrichment', 'classification', 'data_entry', 'test']
   },
 
   economy: {
@@ -40,7 +40,7 @@ const LANES = {
     privacyScore: 0.5,          // External API
     qualityScore: 0.85,         // Very good
     maxTokens: 4096,
-    supports: ['validation', 'enrichment', 'transformation', 'reasoning']
+    supports: ['validation', 'enrichment', 'transformation', 'reasoning', 'data_entry', 'test']
   },
 
   premium: {
@@ -51,7 +51,7 @@ const LANES = {
     privacyScore: 0.5,          // External API
     qualityScore: 0.95,         // Excellent
     maxTokens: 8192,
-    supports: ['validation', 'enrichment', 'transformation', 'complex_reasoning', 'generation']
+    supports: ['validation', 'enrichment', 'transformation', 'complex_reasoning', 'generation', 'data_entry', 'test']
   }
 };
 
@@ -60,9 +60,11 @@ const LANES = {
  */
 export class Router2 {
   constructor(config = {}) {
-    this.db = connectAgentDB();
+    this.db = config.db || connectAgentDB();
+    this.lanes = Object.values(LANES); // Expose lanes for testing
     this.config = {
       budgetCap: config.budgetCap || 100.0,        // Daily budget cap in USD
+      dailyBudgetCap: config.dailyBudgetCap || 100.0, // Alias for compatibility
       rollbackThreshold: config.rollbackThreshold || 0.15, // 15% quality drop triggers rollback
       explorationRate: config.explorationRate || 0.1,      // 10% exploration
       windowSize: config.windowSize || 1000,      // Learning window size
@@ -79,6 +81,8 @@ export class Router2 {
     // Cost tracking
     this.dailySpend = 0.0;
     this.lastResetDate = new Date().toISOString().split('T')[0];
+    this.totalSpend = 0.0; // Track total spend for testing
+    this.decisions = {}; // Track decisions for feedback
 
     // Load state from database
     this._loadState();
@@ -134,10 +138,11 @@ export class Router2 {
    * Extract features from request context
    */
   _extractFeatures(context) {
+    const input = context.input || context.data; // Support both input and data fields
     const features = {
       taskType: context.taskType || 'validation',
-      hasPII: this._detectPII(context.input),
-      complexity: this._estimateComplexity(context.input),
+      hasPII: this._detectPII(input),
+      complexity: this._estimateComplexity(input),
       deadline: context.deadline || 5000,  // Default 5s deadline
       requiresReasoning: context.requiresReasoning || false
     };
@@ -202,8 +207,9 @@ export class Router2 {
 
     // Budget constraint
     this._checkDailyReset();
-    if (this.dailySpend >= this.config.budgetCap) {
-      console.warn(`⚠️  Budget cap reached: $${this.dailySpend.toFixed(2)}/$${this.config.budgetCap}`);
+    const budgetCap = this.config.dailyBudgetCap || this.config.budgetCap;
+    if (this.dailySpend >= budgetCap) {
+      console.warn(`⚠️  Budget cap reached: $${this.dailySpend.toFixed(2)}/$${budgetCap}`);
       candidates = candidates.filter(lane => lane.costPerRequest === 0);
     }
 
@@ -328,8 +334,12 @@ export class Router2 {
     // Track request
     this.bandits[selectedLane.id].requests++;
 
+    // Generate decision ID
+    const decisionId = `decision_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
     // Prepare routing decision
     const decision = {
+      decisionId,
       lane: selectedLane.id,
       laneName: selectedLane.name,
       costPerRequest: selectedLane.costPerRequest,
@@ -350,8 +360,12 @@ export class Router2 {
 
     // Update spend
     this.dailySpend += selectedLane.costPerRequest;
+    this.totalSpend += selectedLane.costPerRequest;
 
-    // Log decision
+    // Store decision for feedback (in-memory)
+    this.decisions[decisionId] = decision;
+
+    // Log decision to database
     await this._logDecision(decision, context);
 
     return decision;
@@ -404,18 +418,24 @@ export class Router2 {
    * @param {object} metrics - Quality metrics (accuracy, latency, etc.)
    */
   async feedback(decisionId, success, metrics = {}) {
-    // Get decision
-    const decisions = await this.db.query('router_decisions', {
-      where: { id: decisionId },
-      limit: 1
-    });
+    // Try to get decision from memory first (for testing)
+    let decision = this.decisions[decisionId];
 
-    if (decisions.length === 0) {
-      console.warn(`Decision ${decisionId} not found`);
-      return;
+    // If not in memory, try database
+    if (!decision) {
+      const decisions = await this.db.query('router_decisions', {
+        where: { id: decisionId },
+        limit: 1
+      });
+
+      if (decisions.length === 0) {
+        console.warn(`Decision ${decisionId} not found`);
+        return;
+      }
+
+      decision = decisions[0];
     }
 
-    const decision = decisions[0];
     const lane = decision.lane;
 
     // Update bandit state
@@ -455,24 +475,31 @@ export class Router2 {
    * Get router statistics
    */
   async getStats() {
+    const budgetCap = this.config.dailyBudgetCap || this.config.budgetCap;
     const stats = {
       dailySpend: this.dailySpend,
-      budgetCap: this.config.budgetCap,
-      budgetUtilization: (this.dailySpend / this.config.budgetCap) * 100,
-      lanes: {}
+      totalSpend: this.totalSpend,
+      budgetCap: budgetCap,
+      budgetUtilization: (this.dailySpend / budgetCap) * 100,
+      lanes: {},
+      byLane: {} // Alias for test compatibility
     };
 
     for (const [laneId, bandit] of Object.entries(this.bandits)) {
       const total = bandit.successes + bandit.failures;
       const winRate = total > 0 ? bandit.successes / total : 0;
 
-      stats.lanes[laneId] = {
+      const laneStats = {
         requests: bandit.requests,
         successes: bandit.successes,
         failures: bandit.failures,
-        winRate: parseFloat((winRate * 100).toFixed(2)),
+        winRate: winRate, // Decimal format
+        winRatePercent: parseFloat((winRate * 100).toFixed(2)),
         confidence: this._betaConfidence(bandit.alpha, bandit.beta)
       };
+
+      stats.lanes[laneId] = laneStats;
+      stats.byLane[laneId] = laneStats; // Alias
     }
 
     return stats;

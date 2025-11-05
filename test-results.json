@@ -1,0 +1,147 @@
+{
+  "timestamp": "2025-11-05T23:03:51.818Z",
+  "totalPassed": 19,
+  "totalFailed": 7,
+  "success": false,
+  "suites": [
+    {
+      "name": "Router 2.0",
+      "passed": 5,
+      "failed": 0,
+      "tests": [
+        {
+          "name": "PII Routing",
+          "status": "PASS"
+        },
+        {
+          "name": "Thompson Sampling Learning",
+          "status": "PASS"
+        },
+        {
+          "name": "Budget Guard",
+          "status": "PASS"
+        },
+        {
+          "name": "Quality Monitoring",
+          "status": "PASS"
+        },
+        {
+          "name": "Cost Tracking",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "name": "Verifiable Audit Log",
+      "passed": 3,
+      "failed": 4,
+      "tests": [
+        {
+          "name": "Merkle Tree Construction",
+          "status": "PASS"
+        },
+        {
+          "name": "Inclusion Proof",
+          "status": "FAIL",
+          "error": "Verification failed"
+        },
+        {
+          "name": "Tamper Detection",
+          "status": "PASS"
+        },
+        {
+          "name": "Signed Tree Head",
+          "status": "FAIL",
+          "error": "auditLog.getSignedTreeHead is not a function"
+        },
+        {
+          "name": "Consistency Proof",
+          "status": "FAIL",
+          "error": "auditLog.getSignedTreeHead is not a function"
+        },
+        {
+          "name": "Full Audit Verification",
+          "status": "FAIL",
+          "error": "testLog.verifyAuditTrail is not a function"
+        },
+        {
+          "name": "Performance Test",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "name": "PII Redactor",
+      "passed": 7,
+      "failed": 2,
+      "tests": [
+        {
+          "name": "Email Redaction",
+          "status": "FAIL",
+          "error": "Incomplete redaction"
+        },
+        {
+          "name": "SSN Redaction",
+          "status": "PASS"
+        },
+        {
+          "name": "Credit Card Redaction",
+          "status": "PASS"
+        },
+        {
+          "name": "Phone Redaction",
+          "status": "FAIL",
+          "error": "Incomplete detection"
+        },
+        {
+          "name": "IP Address Redaction",
+          "status": "PASS"
+        },
+        {
+          "name": "Hash Redaction Mode",
+          "status": "PASS"
+        },
+        {
+          "name": "Mask Redaction Mode",
+          "status": "PASS"
+        },
+        {
+          "name": "Confidence Scoring",
+          "status": "PASS"
+        },
+        {
+          "name": "Clean Data Handling",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "name": "Integration Tests",
+      "passed": 4,
+      "failed": 1,
+      "tests": [
+        {
+          "name": "PII Data Entry Workflow",
+          "status": "PASS"
+        },
+        {
+          "name": "Exception to Rule Synthesis",
+          "status": "PASS"
+        },
+        {
+          "name": "End-to-End Cost Tracking",
+          "status": "PASS"
+        },
+        {
+          "name": "Audit Trail Integrity",
+          "status": "FAIL",
+          "error": "auditLog.verifyAuditTrail is not a function"
+        },
+        {
+          "name": "Policy Enforcement Chain",
+          "status": "PASS"
+        }
+      ]
+    }
+  ]
+}
