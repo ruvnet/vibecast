@@ -1,0 +1,97 @@
+# Agentic-Flow Policy Configuration
+# Defines model routing, cost optimization, and security constraints
+
+lanes:
+  # Strict lane: Privacy-first, low-latency for sensitive operations
+  strict:
+    order:
+      - onnx_local      # Local ONNX models first for privacy
+      - anthropic       # Fallback to Anthropic Claude
+      - openrouter      # Last resort external routing
+    price_cap: 0.05     # Maximum cost per request (USD)
+    latency_target: 200 # Target latency in milliseconds
+    privacy_mode: true  # Enable privacy protections
+    models:
+      onnx_local: "phi-3-mini"
+      anthropic: "claude-3-5-sonnet-20241022"
+      openrouter: "anthropic/claude-3.5-sonnet"
+
+  # Economy lane: Cost-optimized for batch processing
+  economy:
+    order:
+      - onnx_local      # Local models for cost savings
+      - openrouter      # Cheaper external routing
+      - anthropic       # Premium fallback
+    price_cap: 0.02     # Lower cost threshold
+    latency_target: 400 # More relaxed latency
+    privacy_mode: false # Allow external routing
+    models:
+      onnx_local: "phi-3-mini"
+      openrouter: "meta-llama/llama-3.2-3b-instruct"
+      anthropic: "claude-3-5-haiku-20241022"
+
+  # Premium lane: Maximum quality for complex validation
+  premium:
+    order:
+      - anthropic       # Best model first
+      - openrouter      # Premium alternatives
+      - onnx_local      # Local fallback
+    price_cap: 0.15     # Higher cost allowance
+    latency_target: 500 # Quality over speed
+    privacy_mode: true
+    models:
+      anthropic: "claude-3-5-sonnet-20241022"
+      openrouter: "anthropic/claude-3.5-sonnet"
+      onnx_local: "phi-3-mini"
+
+# Global settings
+settingSources:
+  - project           # Load from project config
+  - environment       # Load from environment variables
+
+# Security and compliance
+allowlist:
+  tools:
+    - fetch           # HTTP requests
+    - parse_csv       # CSV parsing
+    - parse_json      # JSON parsing
+    - update_agentdb  # Database updates
+    - send_email      # Email notifications
+    - validate_schema # Schema validation
+    - enrich_data     # Data enrichment
+    - compute_hash    # Cryptographic operations
+    - sign_proof      # Lean proof signing
+
+blocklist:
+  domains:
+    - "*.internal"    # Block internal domains
+    - "localhost"     # Block localhost in production
+
+strict: true          # Enable strict security mode
+
+# Rate limiting and quotas
+rate_limits:
+  requests_per_minute: 60
+  requests_per_hour: 1000
+  max_concurrent: 10
+
+# Retry and fallback configuration
+retry:
+  max_attempts: 3
+  backoff_multiplier: 2
+  initial_delay_ms: 1000
+
+# Logging and monitoring
+logging:
+  level: info
+  include_prompts: false  # Privacy: don't log prompts
+  include_responses: false # Privacy: don't log responses
+  include_metadata: true   # Log metadata for auditing
+
+# Audit trail configuration
+audit:
+  enabled: true
+  store_in_agentdb: true
+  cryptographic_proofs: true
+  include_timestamps: true
+  include_user_context: true

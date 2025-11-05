@@ -1,0 +1,44 @@
+{
+  "name": "vibecast-agentic-data-entry",
+  "version": "1.0.0",
+  "description": "Agentic Data Entry Automation System with Human-in-Loop Exception Handling",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "process": "node src/dataProcessor.js",
+    "reprocess": "node src/reprocess.js",
+    "review": "node src/reviewExceptions.js",
+    "metrics": "node src/metrics.js",
+    "setup": "node src/setup/initDatabase.js",
+    "test": "node --test src/**/*.test.js",
+    "sandbox:create": "flow-nexus sandbox_create template=node name=data-entry-runner",
+    "sandbox:execute": "flow-nexus sandbox_execute id=data-entry-runner cmd='node src/dataProcessor.js'",
+    "sandbox:logs": "flow-nexus sandbox_logs id=data-entry-runner"
+  },
+  "keywords": [
+    "agentic",
+    "automation",
+    "claude",
+    "agentdb",
+    "flow-nexus",
+    "data-entry",
+    "human-in-loop"
+  ],
+  "author": "rUv",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.27.0",
+    "@supabase/supabase-js": "^2.39.0",
+    "dotenv": "^16.4.5",
+    "uuid": "^10.0.0",
+    "nanoid": "^5.0.7",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
