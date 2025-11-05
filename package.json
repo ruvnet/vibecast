@@ -14,7 +14,15 @@
     "test": "node --test src/**/*.test.js",
     "sandbox:create": "flow-nexus sandbox_create template=node name=data-entry-runner",
     "sandbox:execute": "flow-nexus sandbox_execute id=data-entry-runner cmd='node src/dataProcessor.js'",
-    "sandbox:logs": "flow-nexus sandbox_logs id=data-entry-runner"
+    "sandbox:logs": "flow-nexus sandbox_logs id=data-entry-runner",
+    "platform": "node src/platform-cli.js",
+    "platform:interactive": "node src/platform-cli.js interactive",
+    "platform:create": "node src/platform-cli.js create",
+    "platform:collaborate": "node src/platform-cli.js collaborate",
+    "platform:prototype": "node src/platform-cli.js prototype",
+    "platform:list": "node src/platform-cli.js list",
+    "platform:templates": "node src/platform-cli.js templates",
+    "platform:examples": "node src/platform-cli.js examples"
   },
   "keywords": [
     "agentic",
@@ -33,7 +41,8 @@
     "dotenv": "^16.4.5",
     "uuid": "^10.0.0",
     "nanoid": "^5.0.7",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "eslint": "^9.0.0"

@@ -286,6 +286,179 @@ INSERT INTO rules (name, description, rule_type, condition, action, priority) VA
     40
   );
 
+-- ============================================================================
+-- AI-NATIVE PLATFORM TABLES
+-- ============================================================================
+
+-- Agent Specifications: Stores generated agent specifications
+CREATE TABLE IF NOT EXISTS agent_specifications (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name VARCHAR(255) NOT NULL UNIQUE,
+  description TEXT,
+  specification JSONB NOT NULL,     -- Complete agent spec
+  template_id VARCHAR(100),         -- Template used (if any)
+  created_by VARCHAR(255),
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  version VARCHAR(20) DEFAULT '1.0.0',
+  metadata JSONB DEFAULT '{}'::JSONB
+);
+
+CREATE INDEX idx_agent_specs_name ON agent_specifications(name);
+CREATE INDEX idx_agent_specs_template ON agent_specifications(template_id);
+CREATE INDEX idx_agent_specs_created_at ON agent_specifications(created_at DESC);
+
+-- Workflows: Stores workflow definitions
+CREATE TABLE IF NOT EXISTS workflows (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name VARCHAR(255) NOT NULL UNIQUE,
+  description TEXT,
+  definition JSONB NOT NULL,        -- Compiled workflow definition
+  source_file TEXT,                 -- Original YAML/JSON file
+  compiled_at TIMESTAMPTZ DEFAULT NOW(),
+  compiled_by VARCHAR(255),
+  active BOOLEAN DEFAULT true,
+  version VARCHAR(20) DEFAULT '1.0.0',
+  metadata JSONB DEFAULT '{}'::JSONB
+);
+
+CREATE INDEX idx_workflows_name ON workflows(name);
+CREATE INDEX idx_workflows_active ON workflows(active);
+CREATE INDEX idx_workflows_compiled_at ON workflows(compiled_at DESC);
+
+-- Workflow Executions: Stores workflow execution history
+CREATE TABLE IF NOT EXISTS workflow_executions (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  workflow_name VARCHAR(255) NOT NULL,
+  status VARCHAR(50) NOT NULL,      -- 'running', 'completed', 'failed'
+  started_at TIMESTAMPTZ DEFAULT NOW(),
+  completed_at TIMESTAMPTZ,
+  duration INTEGER,                 -- Duration in milliseconds
+  context JSONB DEFAULT '{}'::JSONB, -- Execution context
+  result JSONB,                     -- Final result
+  error TEXT,                       -- Error message if failed
+  metadata JSONB DEFAULT '{}'::JSONB
+);
+
+CREATE INDEX idx_workflow_executions_workflow ON workflow_executions(workflow_name);
+CREATE INDEX idx_workflow_executions_status ON workflow_executions(status);
+CREATE INDEX idx_workflow_executions_started ON workflow_executions(started_at DESC);
+
+-- ============================================================================
+-- VIEWS FOR AI-NATIVE PLATFORM
+-- ============================================================================
+
+-- View: Agent creation metrics
+CREATE OR REPLACE VIEW agent_creation_metrics AS
+SELECT
+  DATE(created_at) as date,
+  COUNT(*) as agents_created,
+  COUNT(DISTINCT created_by) as unique_creators,
+  COUNT(DISTINCT template_id) as templates_used
+FROM agent_specifications
+GROUP BY DATE(created_at)
+ORDER BY date DESC;
+
+-- View: Workflow execution summary
+CREATE OR REPLACE VIEW workflow_execution_summary AS
+SELECT
+  workflow_name,
+  COUNT(*) as total_executions,
+  SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) as successful,
+  SUM(CASE WHEN status = 'failed' THEN 1 ELSE 0 END) as failed,
+  AVG(duration) as avg_duration_ms,
+  MAX(started_at) as last_execution
+FROM workflow_executions
+GROUP BY workflow_name
+ORDER BY total_executions DESC;
+
+-- View: Platform productivity metrics
+CREATE OR REPLACE VIEW platform_productivity AS
+SELECT
+  COUNT(DISTINCT a.name) as total_agents,
+  COUNT(DISTINCT w.name) as total_workflows,
+  COUNT(DISTINCT we.id) as total_executions,
+  COUNT(DISTINCT a.created_by) as unique_developers,
+  AVG(we.duration) as avg_workflow_duration,
+  SUM(CASE WHEN we.status = 'completed' THEN 1 ELSE 0 END)::FLOAT / NULLIF(COUNT(we.id), 0) * 100 as success_rate
+FROM agent_specifications a
+CROSS JOIN workflows w
+CROSS JOIN workflow_executions we;
+
+-- ============================================================================
+-- FUNCTIONS FOR AI-NATIVE PLATFORM
+-- ============================================================================
+
+-- Function: Get agent specification by name
+CREATE OR REPLACE FUNCTION get_agent_specification(
+  agent_name VARCHAR
+)
+RETURNS JSONB AS $$
+BEGIN
+  RETURN (
+    SELECT specification
+    FROM agent_specifications
+    WHERE name = agent_name
+    AND active = true
+    LIMIT 1
+  );
+END;
+$$ LANGUAGE plpgsql;
+
+-- Function: Get workflow execution history
+CREATE OR REPLACE FUNCTION get_workflow_history(
+  workflow_name_param VARCHAR,
+  limit_param INTEGER DEFAULT 10
+)
+RETURNS TABLE(
+  execution_id UUID,
+  status VARCHAR,
+  started_at TIMESTAMPTZ,
+  duration INTEGER,
+  error TEXT
+) AS $$
+BEGIN
+  RETURN QUERY
+  SELECT
+    id as execution_id,
+    status,
+    started_at,
+    duration,
+    error
+  FROM workflow_executions
+  WHERE workflow_name = workflow_name_param
+  ORDER BY started_at DESC
+  LIMIT limit_param;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Function: Calculate platform ROI
+CREATE OR REPLACE FUNCTION calculate_platform_roi(
+  start_date TIMESTAMPTZ DEFAULT NOW() - INTERVAL '30 days'
+)
+RETURNS TABLE(
+  agents_created BIGINT,
+  workflows_created BIGINT,
+  executions_completed BIGINT,
+  avg_execution_time_ms DECIMAL,
+  estimated_time_saved_hours DECIMAL
+) AS $$
+BEGIN
+  RETURN QUERY
+  SELECT
+    COUNT(DISTINCT a.id)::BIGINT as agents_created,
+    COUNT(DISTINCT w.id)::BIGINT as workflows_created,
+    COUNT(DISTINCT we.id)::BIGINT as executions_completed,
+    AVG(we.duration)::DECIMAL as avg_execution_time_ms,
+    -- Estimate: Each agent saves 2 hours of dev time, each workflow saves 4 hours
+    (COUNT(DISTINCT a.id) * 2 + COUNT(DISTINCT w.id) * 4)::DECIMAL as estimated_time_saved_hours
+  FROM agent_specifications a
+  CROSS JOIN workflows w
+  CROSS JOIN workflow_executions we
+  WHERE a.created_at >= start_date;
+END;
+$$ LANGUAGE plpgsql;
+
 -- Grant appropriate permissions (adjust based on your setup)
 -- GRANT SELECT, INSERT, UPDATE ON ALL TABLES IN SCHEMA public TO authenticated;
 -- GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO authenticated;

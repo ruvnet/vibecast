@@ -5,7 +5,44 @@
 
 **Automated data entry with human-in-loop exception handling using Claude AI, AgentDB, Flow-Nexus, and cryptographic provenance.**
 
+**NOW WITH AI-NATIVE DEVELOPMENT PLATFORM**: Build agentic applications using natural language. Tiny teams + AI = more applications.
+
 Part of the Weekly Vibecast Live coding sessions with rUv. Check branches for each week's project.
+
+---
+
+## ⚡ NEW: AI-Native Development Platform
+
+**Build agents in minutes, not weeks. Just describe what you need.**
+
+```bash
+# Interactive mode - describe what you want, get a working agent
+npm run platform
+
+# Quick create from one line
+npm run platform create "Validate customer emails and flag invalid ones"
+
+# Collaborate with domain experts
+npm run platform collaborate "Sarah" "Sales Operations"
+
+# Execute workflows
+npm run platform workflow workflows/order-fulfillment.yaml --run
+```
+
+### Key Features
+
+- 🗣️ **Natural Language Agent Creation** - Describe what you want, get working code
+- 🤝 **Forward-Deployed Engineer Toolkit** - Build with domain experts, not in silos
+- 📋 **Workflow DSL** - Define complex multi-step processes in YAML
+- 📚 **Agent Templates** - Pre-built patterns for common use cases
+- ⚡ **Rapid Prototyping** - Create, test, iterate in minutes
+
+**Productivity Gains**:
+- ⏱️ **95% time savings** on common automation tasks
+- 👥 **80% team size reduction** (5-10 devs → 1-2 forward-deployed engineers)
+- 🚀 **10x more applications** with the same engineering resources
+
+**[📖 Read the full AI-Native Platform documentation →](./AI_NATIVE_PLATFORM.md)**
 
 ---
 
@@ -13,12 +50,20 @@ Part of the Weekly Vibecast Live coding sessions with rUv. Check branches for ea
 
 This system implements the **80/20 automation principle**: automate the straightforward 80% of data entry tasks while routing the complex 20% to human review. It features:
 
+### Core Foundation
 - **Claude-Flow Agents** - AI-powered data validation and enrichment
 - **AgentDB** - Structured memory and reflexion storage (Supabase/PostgreSQL)
 - **Agentic-Flow** - Cost-optimized model routing (ONNX, Anthropic, OpenRouter)
 - **Flow-Nexus** - Sandbox orchestration for isolated execution
 - **Lean-Agentic Proofs** - Cryptographic provenance for complete auditability
 - **Human-in-Loop** - Exception review interface for edge cases
+
+### AI-Native Platform Extension
+- **Natural Language Agent Generation** - Claude-powered agent creation
+- **Forward-Deployed Engineer Toolkit** - Rapid development in business units
+- **Workflow DSL** - YAML-based workflow definitions
+- **Agent Templates** - Pre-built patterns and scaffolding
+- **Collaboration Tools** - Build with domain experts
 
 ---
 

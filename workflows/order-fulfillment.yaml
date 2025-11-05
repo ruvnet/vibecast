@@ -1,0 +1,112 @@
+# Example Workflow: Order Fulfillment
+# Demonstrates the Workflow DSL for multi-step business processes
+
+workflow: order-fulfillment
+description: Process customer orders from submission to shipping
+
+metadata:
+  version: "1.0.0"
+  owner: "Sales Operations"
+  created_by: "Forward-Deployed Engineer"
+
+steps:
+  # Step 1: Validate the order data
+  - name: validate-order
+    description: Validate order data structure and required fields
+    agent: data-validator
+    input: order_data
+    timeout: 5000  # 5 seconds
+    retries: 2
+    on_success: check-inventory
+    on_failure: notify-customer-invalid
+    on_timeout: notify-ops-team
+
+  # Step 2: Check inventory availability
+  - name: check-inventory
+    description: Verify all items are in stock
+    agent: inventory-checker
+    input: order_data.items
+    condition: "order_data.total > 0"
+    on_success: process-payment
+    on_failure: backorder-items
+
+  # Step 3: Process payment
+  - name: process-payment
+    description: Charge customer payment method
+    agent: payment-processor
+    input: order_data.payment
+    retries: 3
+    on_success: generate-invoice
+    on_failure: notify-customer-payment-failed
+
+  # Step 4: Generate invoice
+  - name: generate-invoice
+    description: Create invoice document
+    agent: invoice-generator
+    input: order_data
+    on_success: ship-order
+    on_failure: notify-accounting
+
+  # Step 5: Ship the order
+  - name: ship-order
+    description: Create shipping label and schedule pickup
+    agent: shipping-coordinator
+    input: order_data
+    on_success: notify-customer-shipped
+    on_failure: notify-ops-team
+
+  # Success path: Notify customer of shipment
+  - name: notify-customer-shipped
+    description: Send shipment notification to customer
+    action: send_email
+    parameters:
+      template: "order_shipped"
+      to: "order_data.customer.email"
+      data:
+        order_id: "order_data.id"
+        tracking_number: "ship-order.result.tracking"
+
+  # Failure paths
+  - name: notify-customer-invalid
+    description: Notify customer of invalid order
+    action: send_email
+    parameters:
+      template: "order_invalid"
+      to: "order_data.customer.email"
+      data:
+        order_id: "order_data.id"
+        errors: "validate-order.result.errors"
+
+  - name: backorder-items
+    description: Create backorder for out-of-stock items
+    agent: backorder-manager
+    input: check-inventory.result.unavailable_items
+    on_success: notify-customer-backorder
+
+  - name: notify-customer-backorder
+    description: Notify customer of backorder
+    action: send_email
+    parameters:
+      template: "order_backorder"
+      to: "order_data.customer.email"
+
+  - name: notify-customer-payment-failed
+    description: Notify customer of payment failure
+    action: send_email
+    parameters:
+      template: "payment_failed"
+      to: "order_data.customer.email"
+
+  - name: notify-ops-team
+    description: Alert operations team of processing issue
+    action: send_email
+    parameters:
+      template: "ops_alert"
+      to: "ops@company.com"
+
+  - name: notify-accounting
+    description: Alert accounting team of invoice generation failure
+    action: send_email
+    parameters:
+      template: "accounting_alert"
+      to: "accounting@company.com"

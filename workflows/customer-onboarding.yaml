@@ -1,0 +1,97 @@
+# Example Workflow: Customer Onboarding
+# Demonstrates conditional branching and sequential steps
+
+workflow: customer-onboarding
+description: Automated customer onboarding workflow
+
+metadata:
+  version: "1.0.0"
+  owner: "Customer Success"
+
+steps:
+  # Step 1: Validate customer data
+  - name: validate-customer-data
+    description: Validate required customer information
+    agent: data-validator
+    input: customer_data
+    on_success: check-duplicate
+    on_failure: request-correction
+
+  # Step 2: Check for duplicate accounts
+  - name: check-duplicate
+    description: Check if customer already exists
+    agent: duplicate-checker
+    input: customer_data.email
+    on_success: create-account
+    on_failure: merge-accounts
+
+  # Step 3: Create customer account
+  - name: create-account
+    description: Create new customer account in CRM
+    agent: crm-integrator
+    input: customer_data
+    on_success: determine-tier
+
+  # Step 4: Determine customer tier
+  - name: determine-tier
+    description: Assign customer tier based on criteria
+    action: branch
+    parameters:
+      condition: "customer_data.annual_revenue > 100000"
+    on_success: enterprise-onboarding  # High value customer
+    on_failure: standard-onboarding     # Standard customer
+
+  # Enterprise customer path
+  - name: enterprise-onboarding
+    description: Assign dedicated account manager
+    agent: account-manager-assigner
+    input: create-account.result
+    on_success: schedule-kickoff-call
+
+  - name: schedule-kickoff-call
+    description: Schedule kickoff call with customer
+    agent: calendar-integrator
+    input: enterprise-onboarding.result
+    on_success: welcome-enterprise
+
+  - name: welcome-enterprise
+    description: Send enterprise welcome package
+    action: send_email
+    parameters:
+      template: "enterprise_welcome"
+      to: "customer_data.email"
+
+  # Standard customer path
+  - name: standard-onboarding
+    description: Assign to customer success team
+    agent: team-assigner
+    input: create-account.result
+    on_success: welcome-standard
+
+  - name: welcome-standard
+    description: Send standard welcome email
+    action: send_email
+    parameters:
+      template: "standard_welcome"
+      to: "customer_data.email"
+
+  # Alternative paths
+  - name: request-correction
+    description: Request customer to correct data
+    action: send_email
+    parameters:
+      template: "data_correction_needed"
+      to: "customer_data.email"
+
+  - name: merge-accounts
+    description: Merge with existing account
+    agent: account-merger
+    input: customer_data
+    on_success: welcome-returning
+
+  - name: welcome-returning
+    description: Welcome returning customer
+    action: send_email
+    parameters:
+      template: "welcome_back"
+      to: "customer_data.email"
