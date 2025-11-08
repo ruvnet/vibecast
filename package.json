@@ -83,6 +83,7 @@
     "commander": "^11.1.0",
     "dotenv": "^17.2.3",
     "express": "^4.21.2",
+    "https-proxy-agent": "^7.0.6",
     "inquirer": "^8.2.5",
     "node-fetch": "^3.3.2",
     "openai": "^6.8.1",

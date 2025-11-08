@@ -8,6 +8,7 @@
 import express from 'express';
 import fetch from 'node-fetch';
 import { createServer } from 'http';
+import { HttpsProxyAgent } from 'https-proxy-agent';
 
 const app = express();
 const PORT = process.env.PROXY_PORT || 8080;
@@ -28,6 +29,13 @@ app.use((req, res, next) => {
 const ALLOWED_HOSTS = (process.env.ALLOWED_HOSTS ||
   'api.openrouter.ai,api.anthropic.com,api.perplexity.ai,generativelanguage.googleapis.com,api-inference.huggingface.co'
 ).split(',');
+
+// Create proxy agent if HTTP_PROXY is set (for sandbox outbound access)
+const proxyAgent = process.env.HTTP_PROXY ? new HttpsProxyAgent(process.env.HTTP_PROXY) : null;
+
+if (proxyAgent) {
+  console.log('✅ Using HTTP_PROXY:', process.env.HTTP_PROXY.substring(0, 30) + '...');
+}
 
 // Request logging
 const logRequest = (method, url, status, duration) => {
@@ -96,6 +104,11 @@ app.post('/route', async (req, res) => {
       fetchOptions.body = typeof body === 'string' ? body : JSON.stringify(body);
     }
 
+    // Add proxy agent if available (for sandbox outbound access)
+    if (proxyAgent) {
+      fetchOptions.agent = proxyAgent;
+    }
+
     const response = await fetch(url, fetchOptions);
     const duration = Date.now() - startTime;
 
@@ -159,7 +172,8 @@ app.post('/batch', async (req, res) => {
           const response = await fetch(url, {
             method,
             headers,
-            body: body ? JSON.stringify(body) : undefined
+            body: body ? JSON.stringify(body) : undefined,
+            agent: proxyAgent // Add proxy agent for sandbox outbound access
           });
 
           const data = await response.json();
