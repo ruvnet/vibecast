@@ -1,0 +1,1 @@
+export { FranchiseDatabase } from './FranchiseDatabase';

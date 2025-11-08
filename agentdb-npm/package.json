@@ -1,0 +1,55 @@
+{
+  "name": "agentdb",
+  "version": "0.1.0",
+  "description": "High-performance WASM database layer for franchise platform agent management",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "wasm",
+    "README.md"
+  ],
+  "scripts": {
+    "build:wasm": "cd ../agentdb-wasm && wasm-pack build --target bundler --out-dir ../agentdb-npm/wasm",
+    "build:wasm:dev": "cd ../agentdb-wasm && wasm-pack build --dev --target bundler --out-dir ../agentdb-npm/wasm",
+    "build:ts": "tsc && tsc -p tsconfig.esm.json",
+    "build": "npm run build:wasm && npm run build:ts",
+    "test:rust": "cd ../agentdb-wasm && cargo test",
+    "test:wasm": "cd ../agentdb-wasm && wasm-pack test --headless --firefox",
+    "test": "npm run test:rust && npm run test:wasm && jest",
+    "bench": "cd ../agentdb-wasm && cargo bench",
+    "prepublishOnly": "npm run build",
+    "example": "ts-node examples/basic-usage.ts"
+  },
+  "keywords": [
+    "wasm",
+    "database",
+    "agent",
+    "franchise",
+    "in-memory",
+    "event-sourcing",
+    "rust"
+  ],
+  "author": "Agent Swarm <agent@vibecast.io>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vibecast/agentdb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vibecast/agentdb/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

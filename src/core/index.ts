@@ -1,0 +1,1 @@
+export { FranchiseManager } from './FranchiseManager';
