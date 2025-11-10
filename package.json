@@ -1,0 +1,50 @@
+{
+  "name": "vibecast",
+  "version": "1.0.0",
+  "description": "Self-learning research system powered by Kimi K2 and agentic-flow - Weekly Vibecast Live coding sessions with rUv",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "vibecast-research": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/cli.ts",
+    "dev": "ts-node src/cli.ts interactive",
+    "research": "ts-node src/cli.ts research",
+    "stats": "ts-node src/cli.ts stats",
+    "clean": "rm -rf dist",
+    "prepublish": "npm run build",
+    "test": "echo \"Tests coming soon\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:20937/git/ruvnet/vibecast"
+  },
+  "keywords": [
+    "ai",
+    "research",
+    "agents",
+    "multi-agent",
+    "kimi-k2",
+    "openrouter",
+    "agentic-flow",
+    "self-learning",
+    "swarm",
+    "llm"
+  ],
+  "author": "rUv",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^24.10.0",
+    "@types/uuid": "^10.0.0",
+    "agentic-flow": "^1.10.2",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.2",
+    "dotenv": "^17.2.3",
+    "openai": "^6.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "uuid": "^13.0.0"
+  }
+}

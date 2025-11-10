@@ -134,3 +134,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Vibecast Research System
+data/agentdb/*.json
+data/results/*.json
+data/results/*.md
+.DS_Store
