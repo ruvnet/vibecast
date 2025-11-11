@@ -138,3 +138,5 @@ node_modules/
 *.log
 *-report-*.json
 *-report-*.md
+*.db
+test-*.js

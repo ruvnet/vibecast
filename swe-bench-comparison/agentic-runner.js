@@ -14,6 +14,7 @@
 import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
+import { HttpsProxyAgent } from 'https-proxy-agent';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 
@@ -21,6 +22,9 @@ const execAsync = promisify(exec);
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const OPENROUTER_BASE_URL = 'https://openrouter.ai/api/v1';
+
+// Configure proxy if environment variable is set
+const httpsAgent = process.env.https_proxy ? new HttpsProxyAgent(process.env.https_proxy) : undefined;
 
 class AgenticRunner {
   constructor(modelId) {
@@ -207,7 +211,9 @@ Please provide the fixed code with explanations.`;
             'Content-Type': 'application/json',
             'HTTP-Referer': 'https://github.com/ruvnet/vibecast',
             'X-Title': 'SWE-Bench Agentic'
-          }
+          },
+          httpsAgent,
+          timeout: 30000
         }
       );
 
@@ -325,8 +331,12 @@ Provide an improved, complete solution.`;
         {
           headers: {
             'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
-            'Content-Type': 'application/json'
-          }
+            'Content-Type': 'application/json',
+            'HTTP-Referer': 'https://github.com/ruvnet/vibecast',
+            'X-Title': 'SWE-Bench Reflexion'
+          },
+          httpsAgent,
+          timeout: 30000
         }
       );
 

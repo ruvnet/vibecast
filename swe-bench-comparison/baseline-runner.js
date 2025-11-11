@@ -13,9 +13,13 @@
 import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
+import { HttpsProxyAgent } from 'https-proxy-agent';
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const OPENROUTER_BASE_URL = 'https://openrouter.ai/api/v1';
+
+// Configure proxy if environment variable is set
+const httpsAgent = process.env.https_proxy ? new HttpsProxyAgent(process.env.https_proxy) : undefined;
 
 class BaselineRunner {
   constructor(modelId) {
@@ -56,7 +60,9 @@ class BaselineRunner {
             'Content-Type': 'application/json',
             'HTTP-Referer': 'https://github.com/ruvnet/vibecast',
             'X-Title': 'SWE-Bench Baseline'
-          }
+          },
+          httpsAgent,
+          timeout: 30000
         }
       );
 
