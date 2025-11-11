@@ -137,3 +137,8 @@ dist
 
 # Benchmark results
 benchmark-results-*.json
+swe-bench-results-*.json
+swe-bench-simulated-*.json
+
+# AgentDB storage
+agentdb.json

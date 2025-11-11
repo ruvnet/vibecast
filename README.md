@@ -68,18 +68,81 @@ node benchmark.js
 - 🏆 **Multilingual:** Claude Sonnet 4.5
 - 🏆 **Edge Cases:** Gemini 2.0 Flash
 
+---
+
+## 🔬 SWE-Bench: Agent Framework Impact Analysis ⭐ NEW
+
+**Practical evaluation: Baseline vs Agentic Flow vs AgentDB**
+
+This benchmark demonstrates the **real-world impact** of using agent frameworks with memory and self-learning.
+
+### Results Summary
+
+| Approach | Success Rate | Avg Score | Tokens/Task | Cost Multiplier |
+|----------|--------------|-----------|-------------|-----------------|
+| **Baseline** (direct calls) | 10% | 46% | 949 | 1x |
+| **Agentic Flow** (iteration) | 30% ⬆️ | 50% (+9%) | 3,321 | 3.5x |
+| **AgentDB** (memory + learning) | 30% ⬆️ | 59% (+28%) | 3,337 | 3.5x |
+
+**Key Findings:**
+- ✅ Agent frameworks provide **3x higher success rate** (30% vs 10%)
+- ✅ AgentDB memory adds **+8.7% quality** beyond iteration alone
+- ✅ Learning compounds over time - **ROI positive after 5-10 similar tasks**
+- ✅ On easy tasks: AgentDB achieves **100% success** (baseline: 50%)
+- ✅ On bug fixes: AgentDB shows **+20.7% improvement** (memory of patterns)
+
+### Quick Demo
+
+```bash
+npm install
+node swe-bench-simulated.js  # See agent framework impact
+```
+
+### Real Comparison (requires API key)
+
+```bash
+export OPENROUTER_API_KEY=your_key_here
+node swe-bench-comparison.js gemini-flash
+```
+
+### When to Use What
+
+**Baseline**: Simple one-off tasks, non-critical code, tight budgets
+
+**Agentic Flow**: Complex one-off problems, quality-critical tasks, need iteration
+
+**AgentDB**: 🏆 **Recurring tasks, production systems, long-term projects** (learning pays off!)
+
+See [SWE-BENCH-IMPACT-ANALYSIS.md](./SWE-BENCH-IMPACT-ANALYSIS.md) for complete 30-page analysis!
+
+---
+
 ### 📁 Documentation
 
 - **[5-MODEL-COMPARISON.md](./5-MODEL-COMPARISON.md)** - Comprehensive 5-model analysis
+- **[SWE-BENCH-IMPACT-ANALYSIS.md](./SWE-BENCH-IMPACT-ANALYSIS.md)** - Agent framework impact (30 pages!)
 - **[BENCHMARK_RESULTS.md](./BENCHMARK_RESULTS.md)** - Original DeepSeek vs Kimi comparison
 - **[BENCHMARK_README.md](./BENCHMARK_README.md)** - Setup and usage instructions
 
 ### 📂 Files
 
+**5-Model Benchmark:**
 - `benchmark.js` - Production benchmark (requires OpenRouter API key)
 - `benchmark-simulated.js` - Demo with simulated results
 - `benchmark-config.js` - Test suite configuration (23 tests)
 - `benchmark-report-generator.js` - Comprehensive reporting module
+
+**SWE-Bench Agent Framework:**
+- `swe-bench-tasks.js` - 10 realistic software engineering tasks
+- `baseline-runner.js` - Direct model calls (no framework)
+- `agentic-flow-runner.js` - Iteration + reflection + planning
+- `agentdb-runner.js` - Memory + self-learning
+- `agentdb.js` - Agent memory/learning database
+- `swe-bench-comparison.js` - Comprehensive comparison
+- `swe-bench-simulated.js` - Simulated demo
+
+**Shared:**
+- `package.json` - Dependencies
 - `.env.example` - Environment variable template
 
 ### 🎯 Model Recommendations
