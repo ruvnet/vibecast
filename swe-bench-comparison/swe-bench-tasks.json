@@ -1,0 +1,114 @@
+{
+  "tasks": [
+    {
+      "id": "task_001",
+      "title": "Fix string concatenation bug",
+      "difficulty": "easy",
+      "description": "Fix a bug where string concatenation is not working properly in the user greeting function",
+      "code": "function greetUser(name) {\n  return 'Hello, ' name;\n}",
+      "expected_fix": "function greetUser(name) {\n  return 'Hello, ' + name;\n}",
+      "test_case": "greetUser('Alice') === 'Hello, Alice'",
+      "category": "syntax_error",
+      "estimated_tokens": 50
+    },
+    {
+      "id": "task_002",
+      "title": "Implement missing error handling",
+      "difficulty": "medium",
+      "description": "Add proper error handling to a function that parses JSON data",
+      "code": "function parseConfig(jsonString) {\n  const config = JSON.parse(jsonString);\n  return config;\n}",
+      "expected_fix": "function parseConfig(jsonString) {\n  try {\n    const config = JSON.parse(jsonString);\n    return config;\n  } catch (error) {\n    console.error('Failed to parse config:', error.message);\n    return null;\n  }\n}",
+      "test_case": "parseConfig('invalid json') === null",
+      "category": "error_handling",
+      "estimated_tokens": 100
+    },
+    {
+      "id": "task_003",
+      "title": "Optimize array filtering performance",
+      "difficulty": "hard",
+      "description": "Optimize a function that filters and processes large arrays",
+      "code": "function processData(items) {\n  const result = [];\n  for (let i = 0; i < items.length; i++) {\n    if (items[i].active) {\n      for (let j = 0; j < items.length; j++) {\n        if (items[j].id === items[i].relatedId) {\n          result.push({...items[i], related: items[j]});\n        }\n      }\n    }\n  }\n  return result;\n}",
+      "expected_fix": "function processData(items) {\n  const idMap = new Map(items.map(item => [item.id, item]));\n  return items\n    .filter(item => item.active)\n    .map(item => ({\n      ...item,\n      related: idMap.get(item.relatedId)\n    }))\n    .filter(item => item.related);\n}",
+      "test_case": "processData([{id: 1, active: true, relatedId: 2}, {id: 2, active: false}]).length === 1",
+      "category": "performance",
+      "estimated_tokens": 200
+    },
+    {
+      "id": "task_004",
+      "title": "Fix async/await race condition",
+      "difficulty": "hard",
+      "description": "Fix a race condition in async data fetching",
+      "code": "async function fetchUserData(userId) {\n  const user = await fetch(`/api/users/${userId}`);\n  const posts = await fetch(`/api/posts?userId=${userId}`);\n  return { user, posts };\n}",
+      "expected_fix": "async function fetchUserData(userId) {\n  const [user, posts] = await Promise.all([\n    fetch(`/api/users/${userId}`).then(r => r.json()),\n    fetch(`/api/posts?userId=${userId}`).then(r => r.json())\n  ]);\n  return { user, posts };\n}",
+      "test_case": "fetchUserData(1) returns both user and posts concurrently",
+      "category": "async_optimization",
+      "estimated_tokens": 150
+    },
+    {
+      "id": "task_005",
+      "title": "Add input validation",
+      "difficulty": "medium",
+      "description": "Add comprehensive input validation to a user registration function",
+      "code": "function registerUser(email, password) {\n  return createUser(email, password);\n}",
+      "expected_fix": "function registerUser(email, password) {\n  if (!email || typeof email !== 'string') {\n    throw new Error('Invalid email');\n  }\n  if (!password || password.length < 8) {\n    throw new Error('Password must be at least 8 characters');\n  }\n  const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\n  if (!emailRegex.test(email)) {\n    throw new Error('Invalid email format');\n  }\n  return createUser(email, password);\n}",
+      "test_case": "registerUser('invalid', 'short') throws error",
+      "category": "validation",
+      "estimated_tokens": 120
+    },
+    {
+      "id": "task_006",
+      "title": "Fix memory leak in event listeners",
+      "difficulty": "hard",
+      "description": "Fix memory leak caused by not removing event listeners",
+      "code": "class DataFetcher {\n  constructor() {\n    this.listeners = [];\n  }\n  \n  start() {\n    window.addEventListener('resize', this.handleResize.bind(this));\n  }\n  \n  handleResize() {\n    console.log('Resized');\n  }\n}",
+      "expected_fix": "class DataFetcher {\n  constructor() {\n    this.listeners = [];\n    this.handleResize = this.handleResize.bind(this);\n  }\n  \n  start() {\n    window.addEventListener('resize', this.handleResize);\n  }\n  \n  stop() {\n    window.removeEventListener('resize', this.handleResize);\n  }\n  \n  handleResize() {\n    console.log('Resized');\n  }\n}",
+      "test_case": "DataFetcher properly removes event listeners",
+      "category": "memory_management",
+      "estimated_tokens": 180
+    },
+    {
+      "id": "task_007",
+      "title": "Implement caching mechanism",
+      "difficulty": "medium",
+      "description": "Add a simple caching mechanism to avoid redundant API calls",
+      "code": "async function getProductDetails(productId) {\n  const response = await fetch(`/api/products/${productId}`);\n  return response.json();\n}",
+      "expected_fix": "const productCache = new Map();\n\nasync function getProductDetails(productId) {\n  if (productCache.has(productId)) {\n    return productCache.get(productId);\n  }\n  const response = await fetch(`/api/products/${productId}`);\n  const data = await response.json();\n  productCache.set(productId, data);\n  return data;\n}",
+      "test_case": "getProductDetails(1) uses cache on subsequent calls",
+      "category": "caching",
+      "estimated_tokens": 130
+    },
+    {
+      "id": "task_008",
+      "title": "Fix SQL injection vulnerability",
+      "difficulty": "hard",
+      "description": "Fix SQL injection vulnerability in database query",
+      "code": "function getUserByEmail(email) {\n  const query = `SELECT * FROM users WHERE email = '${email}'`;\n  return db.execute(query);\n}",
+      "expected_fix": "function getUserByEmail(email) {\n  const query = 'SELECT * FROM users WHERE email = ?';\n  return db.execute(query, [email]);\n}",
+      "test_case": "getUserByEmail properly escapes input",
+      "category": "security",
+      "estimated_tokens": 100
+    },
+    {
+      "id": "task_009",
+      "title": "Refactor nested callbacks to async/await",
+      "difficulty": "medium",
+      "description": "Refactor callback hell to modern async/await syntax",
+      "code": "function loadUserData(userId, callback) {\n  db.getUser(userId, (err, user) => {\n    if (err) return callback(err);\n    db.getPosts(userId, (err, posts) => {\n      if (err) return callback(err);\n      callback(null, { user, posts });\n    });\n  });\n}",
+      "expected_fix": "async function loadUserData(userId) {\n  const user = await db.getUser(userId);\n  const posts = await db.getPosts(userId);\n  return { user, posts };\n}",
+      "test_case": "loadUserData returns Promise",
+      "category": "refactoring",
+      "estimated_tokens": 140
+    },
+    {
+      "id": "task_010",
+      "title": "Add TypeScript type definitions",
+      "difficulty": "easy",
+      "description": "Add TypeScript type definitions to improve type safety",
+      "code": "function calculateTotal(items) {\n  return items.reduce((sum, item) => sum + item.price * item.quantity, 0);\n}",
+      "expected_fix": "interface CartItem {\n  price: number;\n  quantity: number;\n}\n\nfunction calculateTotal(items: CartItem[]): number {\n  return items.reduce((sum, item) => sum + item.price * item.quantity, 0);\n}",
+      "test_case": "calculateTotal has proper TypeScript types",
+      "category": "types",
+      "estimated_tokens": 80
+    }
+  ]
+}
