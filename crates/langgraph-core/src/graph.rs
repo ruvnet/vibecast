@@ -237,12 +237,6 @@ impl Graph for StateGraph {
                 ));
             }
 
-            // Check if we've reached an exit
-            if self.exits.contains(&current_node) {
-                debug!("Reached exit node: {}", current_node);
-                break;
-            }
-
             // Execute current node
             let node = self
                 .nodes
@@ -255,6 +249,12 @@ impl Graph for StateGraph {
             current_state = node.execute(current_state).await?;
 
             trace!("State after execution: {:?}", current_state);
+
+            // Check if we've reached an exit (after executing the node)
+            if self.exits.contains(&current_node) {
+                debug!("Reached exit node: {}", current_node);
+                break;
+            }
 
             // Find next node
             let outgoing = self.get_outgoing_edges(&current_node);

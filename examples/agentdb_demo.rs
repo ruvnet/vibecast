@@ -1,11 +1,11 @@
 //! AgentDB pattern storage and reflexion demo
 
-use langgraph_core::prelude::*;
-use langgraph_agentdb::prelude::*;
+use langgraph_core::State;
+use langgraph_agentdb::{SqlitePatternStore, MockEmbeddingModel, ReflexionMemory};
 use std::sync::Arc;
 
 #[tokio::main]
-async fn main() -> Result<()> {
+async fn main() -> anyhow::Result<()> {
     println!("=== AgentDB Pattern Storage Demo ===\n");
 
     // Create pattern store

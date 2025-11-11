@@ -1,9 +1,9 @@
 //! Simple graph execution example
 
-use langgraph_core::prelude::*;
+use langgraph_core::{StateGraph, NodeExecutor, State, Graph};
 
 #[tokio::main]
-async fn main() -> Result<()> {
+async fn main() -> anyhow::Result<()> {
     println!("=== Simple Graph Example ===\n");
 
     // Create a graph

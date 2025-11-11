@@ -1,10 +1,10 @@
 //! Checkpoint demonstration
 
-use langgraph_core::prelude::*;
-use langgraph_checkpoint::prelude::*;
+use langgraph_core::State;
+use langgraph_checkpoint::{MemoryCheckpointer, Checkpointer, Checkpoint, CheckpointConfig};
 
 #[tokio::main]
-async fn main() -> Result<()> {
+async fn main() -> anyhow::Result<()> {
     println!("=== Checkpoint Demo ===\n");
 
     // Create checkpointer

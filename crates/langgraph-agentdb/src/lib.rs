@@ -11,17 +11,17 @@ pub mod embeddings;
 
 pub use error::{Error, Result};
 pub use agentdb::AgentDbCheckpointer;
-pub use patterns::{Pattern, PatternStore};
+pub use patterns::{Pattern, PatternStore, SqlitePatternStore};
 pub use reflexion::ReflexionMemory;
-pub use embeddings::EmbeddingModel;
+pub use embeddings::{EmbeddingModel, MockEmbeddingModel};
 
 /// Prelude module for convenient imports
 pub mod prelude {
     pub use crate::{
         Error, Result,
         AgentDbCheckpointer,
-        Pattern, PatternStore,
+        Pattern, PatternStore, SqlitePatternStore,
         ReflexionMemory,
-        EmbeddingModel,
+        EmbeddingModel, MockEmbeddingModel,
     };
 }

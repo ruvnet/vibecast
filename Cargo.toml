@@ -73,6 +73,8 @@ langgraph-checkpoint = { path = "crates/langgraph-checkpoint" }
 langgraph-agentdb = { path = "crates/langgraph-agentdb" }
 serde_json = { workspace = true }
 tokio = { workspace = true }
+anyhow = { workspace = true }
+chrono = { workspace = true }
 
 [dev-dependencies]
 criterion = { workspace = true, features = ["html_reports"] }

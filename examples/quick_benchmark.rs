@@ -1,10 +1,10 @@
 //! Quick benchmark for comparison with Python
 
-use langgraph_core::prelude::*;
+use langgraph_core::{StateGraph, NodeExecutor, State, Graph};
 use std::time::Instant;
 
 #[tokio::main]
-async fn main() -> Result<()> {
+async fn main() -> anyhow::Result<()> {
     println!("======================================================================");
     println!("Rust LangGraph Benchmark Results");
     println!("======================================================================");
