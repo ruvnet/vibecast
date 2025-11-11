@@ -1,0 +1,24 @@
+{
+  "name": "vibecast-llm-benchmark",
+  "version": "1.0.0",
+  "description": "Comprehensive benchmark comparing DeepSeek and Kimi K2 models",
+  "type": "module",
+  "scripts": {
+    "benchmark": "node benchmark.js",
+    "test": "node benchmark.js"
+  },
+  "keywords": [
+    "llm",
+    "benchmark",
+    "deepseek",
+    "kimi",
+    "openrouter"
+  ],
+  "author": "rUv",
+  "license": "MIT",
+  "dependencies": {
+    "@agentic/core": "^8.4.4",
+    "dotenv": "^16.4.5",
+    "openai": "^6.8.1"
+  }
+}
