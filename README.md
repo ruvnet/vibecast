@@ -1,6 +1,20 @@
 # vibecast
 Weekly Vibecast Live coding sessions with rUv. Check branches for each week.
 
+## ⚡ Quick Start
+
+```bash
+git clone https://github.com/ruvnet/vibecast.git
+cd vibecast
+git checkout claude/benchmark-deepseek-kimi-k2-011CV2BLmJ9HBeLFuNnp8Z1r
+export OPENROUTER_API_KEY=your_key
+./quick-start.sh gemini-flash
+```
+
+**📊 See [STATUS.md](./STATUS.md) for complete implementation details**
+
+---
+
 ## 🚀 5-Model LLM Benchmark: Comprehensive Comparison
 
 This branch contains a comprehensive benchmark comparing **5 leading LLM models** using OpenRouter API:
