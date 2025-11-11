@@ -1,5 +1,5 @@
 /**
- * Agentic Flow - Ultra-fast LangGraph-compatible workflow engine
+ * Agentic Graph - Ultra-fast LangGraph-compatible workflow engine
  * Powered by Rust/WASM for 2500x performance improvement
  */
 
@@ -50,7 +50,7 @@ export const PERFORMANCE_METRICS = {
 export async function init(): Promise<void> {
   // WASM module initialization if needed
   // Currently auto-initialized on first use
-  console.log('Agentic Flow initialized');
+  console.log('Agentic Graph initialized');
 }
 
 /**
@@ -58,7 +58,7 @@ export async function init(): Promise<void> {
  */
 export function getInfo() {
   return {
-    name: 'agentic-flow',
+    name: 'agentic-graph',
     version: VERSION,
     description: 'Ultra-fast LangGraph-compatible workflow engine',
     performance: PERFORMANCE_METRICS,

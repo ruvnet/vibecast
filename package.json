@@ -1,23 +1,27 @@
 {
-  "name": "agentic-flow",
+  "name": "agentic-graph",
   "version": "0.1.0",
   "description": "Ultra-fast LangGraph-compatible agentic workflow engine powered by Rust/WASM - 2500x faster than Python",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
     "agent-graph": "./dist/cli.js",
-    "agentdb": "./dist/agentdb-cli.js"
+    "agentdb": "./dist/agentdb-cli.js",
+    "agentic-optimize": "./dist/optimize-cli.js"
   },
   "scripts": {
     "build": "npm run build:ts",
     "build:wasm": "cd crates/langgraph-wasm && wasm-pack build --target nodejs --out-dir ../../pkg",
     "build:napi": "cd crates/langgraph-napi && cargo build --release && napi build --platform --release",
     "build:full": "npm run build:wasm && npm run build:napi && npm run build:ts",
-    "build:ts": "tsc && chmod +x dist/cli.js dist/agentdb-cli.js",
+    "build:ts": "tsc && chmod +x dist/cli.js dist/agentdb-cli.js dist/optimize-cli.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "benchmark": "node dist/benchmark-runner.js",
     "benchmark:compare": "node dist/benchmark-compare.js",
+    "swe-bench": "node dist/swe-bench.js",
+    "optimize": "node dist/optimize-cli.js optimize",
+    "optimize:models": "node dist/optimize-cli.js models",
     "lint": "eslint src --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "prepublishOnly": "npm run build && npm test",

@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![npm version](https://badge.fury.io/js/agentic-flow.svg)](https://www.npmjs.com/package/agentic-flow)
+[![npm version](https://badge.fury.io/js/agentic-graph.svg)](https://www.npmjs.com/package/agentic-graph)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
 [![Rust](https://img.shields.io/badge/Rust-1.83-orange.svg)](https://www.rust-lang.org/)
@@ -47,7 +47,7 @@ npx agentdb stats
 ### Install Globally
 
 ```bash
-npm install -g agentic-flow
+npm install -g agentic-graph
 
 # Now use directly
 agent-graph --help
@@ -57,11 +57,11 @@ agentdb --help
 ### Use as Library
 
 ```bash
-npm install agentic-flow
+npm install agentic-graph
 ```
 
 ```typescript
-import { StateGraph } from 'agentic-flow';
+import { StateGraph } from 'agentic-graph';
 
 const workflow = new StateGraph({ name: 'MyWorkflow' });
 
@@ -90,7 +90,7 @@ Agentic Flow offers **three implementation backends** with different performance
 - **Best for**: Development, prototyping, cross-platform deployment
 
 ```bash
-npm install agentic-flow
+npm install agentic-graph
 ```
 
 ### 2. WASM (High Performance) 🚀
@@ -100,7 +100,7 @@ npm install agentic-flow
 - **Best for**: Production deployments, browser/edge use cases
 
 ```bash
-npm install agentic-flow
+npm install agentic-graph
 npm run build:wasm  # Requires Rust toolchain
 ```
 
@@ -111,7 +111,7 @@ npm run build:wasm  # Requires Rust toolchain
 - **Best for**: High-performance server deployments, maximum throughput
 
 ```bash
-npm install agentic-flow
+npm install agentic-graph
 npm run build:napi  # Requires Rust toolchain + napi-rs
 ```
 
@@ -201,7 +201,7 @@ See [FULL-DOCS.md](FULL-DOCS.md) for:
 ### Core Example
 
 ```typescript
-import { StateGraph } from 'agentic-flow';
+import { StateGraph } from 'agentic-graph';
 
 // Conditional workflow
 const workflow = new StateGraph();
@@ -297,7 +297,7 @@ MIT License - see [LICENSE](LICENSE)
 
 ## 🔗 Links
 
-- **NPM:** https://www.npmjs.com/package/agentic-flow
+- **NPM:** https://www.npmjs.com/package/agentic-graph
 - **GitHub:** https://github.com/ruvnet/vibecast
 - **Issues:** https://github.com/ruvnet/vibecast/issues
 - **Benchmarks:** [BENCHMARK_RESULTS.md](BENCHMARK_RESULTS.md)
