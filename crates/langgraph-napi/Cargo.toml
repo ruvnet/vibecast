@@ -1,0 +1,28 @@
+[package]
+name = "langgraph-napi"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "Native Node.js bindings for LangGraph via napi-rs"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+langgraph-core = { path = "../langgraph-core" }
+napi = { version = "2.16", features = ["async", "napi8"] }
+napi-derive = "2.16"
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+anyhow = { workspace = true }
+
+[build-dependencies]
+napi-build = "2.1"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true

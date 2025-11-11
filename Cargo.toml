@@ -4,7 +4,7 @@ members = [
     "crates/langgraph-core",
     "crates/langgraph-checkpoint",
     "crates/langgraph-agentdb",
-    "crates/langgraph-wasm",
+    "crates/langgraph-wasm", "crates/langgraph-napi",
 ]
 default-members = ["crates/langgraph-core"]
 
