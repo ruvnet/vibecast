@@ -1,0 +1,101 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/langgraph-core",
+    "crates/langgraph-checkpoint",
+    "crates/langgraph-agentdb",
+    "crates/langgraph-wasm",
+]
+default-members = ["crates/langgraph-core"]
+
+[package]
+name = "langgraph"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "High-performance LangGraph implementation in Rust/WASM"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+authors = ["ruv.io"]
+repository = "https://github.com/ruvnet/vibecast"
+
+[workspace.dependencies]
+# Core dependencies
+tokio = { version = "1.35", features = ["full"] }
+async-trait = "0.1"
+futures = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Database
+rusqlite = { version = "0.30", features = ["bundled"] }
+sqlx = { version = "0.7", features = ["sqlite", "runtime-tokio-native-tls"] }
+
+# WASM
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+js-sys = "0.3"
+web-sys = "0.3"
+serde-wasm-bindgen = "0.6"
+
+# Testing and benchmarking
+criterion = "0.5"
+proptest = "1.4"
+
+# Utilities
+uuid = { version = "1.6", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
+
+[profile.release-wasm]
+inherits = "release"
+opt-level = "z"
+lto = true
+codegen-units = 1
+
+[dependencies]
+langgraph-core = { path = "crates/langgraph-core" }
+langgraph-checkpoint = { path = "crates/langgraph-checkpoint" }
+langgraph-agentdb = { path = "crates/langgraph-agentdb" }
+
+[dev-dependencies]
+criterion = { workspace = true, features = ["html_reports"] }
+tokio = { workspace = true }
+
+# Examples
+[[example]]
+name = "simple_graph"
+path = "examples/simple_graph.rs"
+
+[[example]]
+name = "checkpoint_demo"
+path = "examples/checkpoint_demo.rs"
+
+[[example]]
+name = "agentdb_demo"
+path = "examples/agentdb_demo.rs"
+
+# Benchmarks
+[[bench]]
+name = "graph_benchmark"
+path = "benches/graph_benchmark.rs"
+harness = false
+
+[[bench]]
+name = "checkpoint_benchmark"
+path = "benches/checkpoint_benchmark.rs"
+harness = false
