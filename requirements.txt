@@ -1,0 +1,7 @@
+# OpenRouter Demo Dependencies
+
+# HTTP library for API requests
+requests>=2.31.0
+
+# Optional: For better JSON handling
+# python-dotenv>=1.0.0  # Uncomment if you want to load .env files automatically
