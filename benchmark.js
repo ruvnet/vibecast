@@ -8,12 +8,32 @@ const MODELS = {
   deepseek: {
     name: 'deepseek/deepseek-chat',
     displayName: 'DeepSeek Chat',
-    provider: 'OpenRouter'
+    provider: 'OpenRouter',
+    vendor: 'DeepSeek'
   },
   kimi: {
     name: 'moonshot/moonshot-v1-128k',
-    displayName: 'Kimi K2 (Moonshot)',
-    provider: 'OpenRouter'
+    displayName: 'Kimi K2',
+    provider: 'OpenRouter',
+    vendor: 'Moonshot AI'
+  },
+  gpt4o: {
+    name: 'openai/gpt-4o',
+    displayName: 'GPT-4o',
+    provider: 'OpenRouter',
+    vendor: 'OpenAI'
+  },
+  claude: {
+    name: 'anthropic/claude-sonnet-4-20250514',
+    displayName: 'Claude Sonnet 4.5',
+    provider: 'OpenRouter',
+    vendor: 'Anthropic'
+  },
+  gemini: {
+    name: 'google/gemini-2.0-flash-exp:free',
+    displayName: 'Gemini 2.0 Flash',
+    provider: 'OpenRouter',
+    vendor: 'Google'
   }
 };
 

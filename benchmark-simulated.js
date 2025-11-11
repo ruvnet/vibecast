@@ -1,4 +1,5 @@
 import { benchmarkTests, evaluationMetrics } from './benchmark-config.js';
+import { generateComprehensiveReport } from './benchmark-report-generator.js';
 import * as fs from 'fs';
 
 // Model configurations
@@ -6,12 +7,32 @@ const MODELS = {
   deepseek: {
     name: 'deepseek/deepseek-chat',
     displayName: 'DeepSeek Chat',
-    provider: 'OpenRouter'
+    provider: 'OpenRouter',
+    vendor: 'DeepSeek'
   },
   kimi: {
     name: 'moonshot/moonshot-v1-128k',
-    displayName: 'Kimi K2 (Moonshot)',
-    provider: 'OpenRouter'
+    displayName: 'Kimi K2',
+    provider: 'OpenRouter',
+    vendor: 'Moonshot AI'
+  },
+  gpt4o: {
+    name: 'openai/gpt-4o',
+    displayName: 'GPT-4o',
+    provider: 'OpenRouter',
+    vendor: 'OpenAI'
+  },
+  claude: {
+    name: 'anthropic/claude-sonnet-4-20250514',
+    displayName: 'Claude Sonnet 4.5',
+    provider: 'OpenRouter',
+    vendor: 'Anthropic'
+  },
+  gemini: {
+    name: 'google/gemini-2.0-flash-exp:free',
+    displayName: 'Gemini 2.0 Flash',
+    provider: 'OpenRouter',
+    vendor: 'Google'
   }
 };
 
@@ -21,15 +42,33 @@ function generateSimulatedResponse(modelKey, test, categoryName) {
   const modelCharacteristics = {
     deepseek: {
       speedMultiplier: 1.0,  // Baseline speed
-      lengthMultiplier: 1.1, // Slightly longer responses
+      lengthMultiplier: 1.15, // Detailed responses
       successRate: 0.98,     // 98% success rate
-      tokenMultiplier: 1.05
+      tokenMultiplier: 1.08
     },
     kimi: {
-      speedMultiplier: 0.85, // 15% faster
+      speedMultiplier: 0.82, // Fast (18% faster than baseline)
       lengthMultiplier: 1.0, // Standard length
       successRate: 0.96,     // 96% success rate
-      tokenMultiplier: 1.0
+      tokenMultiplier: 0.95
+    },
+    gpt4o: {
+      speedMultiplier: 0.75, // Very fast
+      lengthMultiplier: 1.2, // Comprehensive responses
+      successRate: 0.99,     // 99% success rate (very reliable)
+      tokenMultiplier: 1.15  // More tokens (premium model)
+    },
+    claude: {
+      speedMultiplier: 0.78, // Fast and efficient
+      lengthMultiplier: 1.25, // Most detailed responses
+      successRate: 0.99,     // 99% success rate
+      tokenMultiplier: 1.1   // Balanced token usage
+    },
+    gemini: {
+      speedMultiplier: 0.65, // Fastest (Flash model)
+      lengthMultiplier: 1.05, // Concise but complete
+      successRate: 0.97,     // 97% success rate
+      tokenMultiplier: 0.90  // Most token-efficient
     }
   };
 
@@ -87,13 +126,16 @@ function generateSimulatedResponse(modelKey, test, categoryName) {
 
 // Function to run all benchmarks
 async function runBenchmarks() {
-  console.log('🚀 Starting LLM Benchmark: DeepSeek vs Kimi K2 (SIMULATED)');
+  console.log('🚀 5-Model LLM Benchmark: DeepSeek | Kimi K2 | GPT-4o | Claude 4.5 | Gemini 2.0 (SIMULATED)');
   console.log('Note: This is a simulated run demonstrating the benchmark structure\n');
   console.log('=' .repeat(70));
 
   const results = {
     deepseek: [],
-    kimi: []
+    kimi: [],
+    gpt4o: [],
+    claude: [],
+    gemini: []
   };
 
   // Run benchmarks for each model
@@ -327,7 +369,7 @@ function saveResults(results, stats) {
 async function main() {
   try {
     const results = await runBenchmarks();
-    const stats = generateReport(results);
+    const stats = generateComprehensiveReport(results, MODELS);
     const filename = saveResults(results, stats);
 
     console.log('\n✨ Benchmark completed successfully!');

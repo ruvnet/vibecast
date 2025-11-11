@@ -1,7 +1,7 @@
 {
   "name": "vibecast-llm-benchmark",
-  "version": "1.0.0",
-  "description": "Comprehensive benchmark comparing DeepSeek and Kimi K2 models",
+  "version": "2.0.0",
+  "description": "Comprehensive 5-model LLM benchmark: DeepSeek, Kimi K2, GPT-4o, Claude Sonnet 4.5, Gemini 2.0 Flash",
   "type": "module",
   "scripts": {
     "benchmark": "node benchmark.js",
@@ -12,7 +12,11 @@
     "benchmark",
     "deepseek",
     "kimi",
-    "openrouter"
+    "gpt-4o",
+    "claude",
+    "gemini",
+    "openrouter",
+    "comparison"
   ],
   "author": "rUv",
   "license": "MIT",
