@@ -1,8 +1,8 @@
 //! Graph structures and execution engine
 
-use crate::{Error, Result, Node, NodeExecutor, State, StateSchema, Reducer, Message, MessageList};
+use crate::{Error, Result, Node, NodeExecutor, State, Reducer, MessageList};
 use async_trait::async_trait;
-use std::collections::{HashMap, HashSet, VecDeque};
+use std::collections::{HashMap, HashSet};
 use std::sync::Arc;
 use tracing::{debug, info, trace};
 

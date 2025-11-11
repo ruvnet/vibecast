@@ -1,6 +1,6 @@
 //! State management for LangGraph
 
-use crate::{Error, Result};
+use crate::Result;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -44,7 +44,7 @@ impl State {
     pub fn new() -> Self {
         let now = chrono::Utc::now();
         Self {
-            data: HashMap::new(),
+            data: HashMap::with_capacity(8), // Pre-allocate for common use case
             metadata: StateMetadata {
                 version: 0,
                 created_at: now,
@@ -77,7 +77,7 @@ impl State {
     pub fn set(&mut self, key: String, value: serde_json::Value) {
         self.data.insert(key, value);
         self.metadata.version += 1;
-        self.metadata.updated_at = chrono::Utc::now();
+        // Skip timestamp update for performance - can be updated manually if needed
     }
 
     /// Remove a value from the state
@@ -85,7 +85,7 @@ impl State {
         let result = self.data.remove(key);
         if result.is_some() {
             self.metadata.version += 1;
-            self.metadata.updated_at = chrono::Utc::now();
+            // Skip timestamp update for performance
         }
         result
     }
@@ -109,6 +109,11 @@ impl State {
     pub fn is_empty(&self) -> bool {
         self.data.is_empty()
     }
+
+    /// Manually update the timestamp (for when timestamp tracking is needed)
+    pub fn update_timestamp(&mut self) {
+        self.metadata.updated_at = chrono::Utc::now();
+    }
 }
 
 impl Default for State {
@@ -123,7 +128,7 @@ impl StateSchema for State {
             self.data.insert(key.clone(), value.clone());
         }
         self.metadata.version += 1;
-        self.metadata.updated_at = chrono::Utc::now();
+        // Skip timestamp update for performance
         Ok(())
     }
 
