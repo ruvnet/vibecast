@@ -71,6 +71,8 @@ codegen-units = 1
 langgraph-core = { path = "crates/langgraph-core" }
 langgraph-checkpoint = { path = "crates/langgraph-checkpoint" }
 langgraph-agentdb = { path = "crates/langgraph-agentdb" }
+serde_json = { workspace = true }
+tokio = { workspace = true }
 
 [dev-dependencies]
 criterion = { workspace = true, features = ["html_reports"] }
@@ -89,6 +91,10 @@ path = "examples/checkpoint_demo.rs"
 name = "agentdb_demo"
 path = "examples/agentdb_demo.rs"
 
+[[example]]
+name = "quick_benchmark"
+path = "examples/quick_benchmark.rs"
+
 # Benchmarks
 [[bench]]
 name = "graph_benchmark"
@@ -98,4 +104,9 @@ harness = false
 [[bench]]
 name = "checkpoint_benchmark"
 path = "benches/checkpoint_benchmark.rs"
+harness = false
+
+[[bench]]
+name = "comparison_benchmark"
+path = "benches/comparison_benchmark.rs"
 harness = false
