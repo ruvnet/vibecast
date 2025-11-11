@@ -1,0 +1,80 @@
+{
+  "name": "agentic-flow",
+  "version": "0.1.0",
+  "description": "Ultra-fast LangGraph-compatible agentic workflow engine powered by Rust/WASM - 2500x faster than Python",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "agent-graph": "./dist/cli.js",
+    "agentdb": "./dist/agentdb-cli.js"
+  },
+  "scripts": {
+    "build": "npm run build:ts",
+    "build:wasm": "cd crates/langgraph-wasm && wasm-pack build --target nodejs --out-dir ../../pkg",
+    "build:full": "npm run build:wasm && npm run build:ts",
+    "build:ts": "tsc && chmod +x dist/cli.js dist/agentdb-cli.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "benchmark": "node dist/benchmark.js",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build && npm test",
+    "mcp:stdio": "node dist/mcp-server.js stdio",
+    "mcp:sse": "node dist/mcp-server.js sse"
+  },
+  "keywords": [
+    "langgraph",
+    "workflow",
+    "agent",
+    "agentic",
+    "graph",
+    "rust",
+    "wasm",
+    "performance",
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "llm",
+    "state-machine"
+  ],
+  "author": "LangGraph Rust Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/vibecast.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ruvnet/vibecast/issues"
+  },
+  "homepage": "https://github.com/ruvnet/vibecast#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "dist",
+    "pkg",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1",
+    "table": "^6.8.1",
+    "express": "^4.18.2",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/express": "^4.17.21",
+    "@types/ws": "^8.5.9",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.8",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.3.2",
+    "prettier": "^3.1.0"
+  }
+}
