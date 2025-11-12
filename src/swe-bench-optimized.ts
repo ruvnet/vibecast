@@ -68,6 +68,17 @@ const LATEST_MODELS: ModelCapability[] = [
     releaseDate: '2025-02'
   },
   {
+    name: 'moonshot/kimi-k2',
+    provider: 'Moonshot AI',
+    version: '2025-07',
+    humanEvalPass: 73.2,           // Open-source leader
+    sweBenchVerified: 65.8,        // Beats Claude 3.7 on SWE-bench!
+    liveCodeBench: 53.7,
+    costPer1M: 0.30,               // Very cost-effective
+    contextWindow: 128000,
+    releaseDate: '2025-07'
+  },
+  {
     name: 'anthropic/claude-3.5-sonnet',
     provider: 'Anthropic',
     version: '2024-10-22',
@@ -131,9 +142,12 @@ const LATEST_MODELS: ModelCapability[] = [
 const INDUSTRY_BENCHMARKS_2025 = [
   { name: 'TRAE (Multi-model)', score: 75.2, company: 'TRAE AI', year: 2025, source: 'SWE-bench Verified' },
   { name: 'GPT-5 (with thinking)', score: 74.9, company: 'OpenAI', year: 2025, source: 'SWE-bench Verified' },
+  { name: 'Kimi K2 Thinking', score: 71.3, company: 'Moonshot AI', year: 2025, source: 'SWE-bench Verified' },
+  { name: 'Kimi K2', score: 65.8, company: 'Moonshot AI', year: 2025, source: 'SWE-bench Verified' },
   { name: 'Claude 4 Sonnet', score: 65.0, company: 'Anthropic', year: 2025, source: 'SWE-bench Verified' },
   { name: 'Amazon Q Developer', score: 55.3, company: 'Amazon', year: 2024, source: 'SWE-bench Verified' },
   { name: 'Claude 3.5 Sonnet', score: 49.0, company: 'Anthropic', year: 2024, source: 'SWE-bench Verified' },
+  { name: 'Gemini 2.0 Flash Thinking', score: 42.3, company: 'Google', year: 2024, source: 'SWE-bench Verified' },
   { name: 'Devin AI', score: 43.8, company: 'Cognition Labs', year: 2024, source: 'SWE-bench' },
   { name: 'GPT-4o', score: 33.2, company: 'OpenAI', year: 2024, source: 'SWE-bench Verified' },
   { name: 'SWE-agent + GPT-4', score: 31.5, company: 'Princeton', year: 2024, source: 'SWE-bench' },
@@ -683,7 +697,7 @@ Format:
     // Test top models
     console.log(chalk.bold.cyan('\n🤖 Testing Latest Coding Models:\n'));
 
-    for (const model of LATEST_MODELS.slice(0, 4)) {
+    for (const model of LATEST_MODELS.slice(0, 6)) {
       console.log(chalk.cyan(`\nTesting ${model.name} (${model.releaseDate})...`));
 
       const tests = [
