@@ -1,0 +1,32 @@
+{
+  "name": "@vibecast/neural-merge",
+  "version": "1.0.0",
+  "description": "AI-powered conflict resolution that learns from past merges using semantic understanding and intent prediction",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "neural-merge": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "node --test tests/*.test.js",
+    "train": "node src/trainer.js",
+    "benchmark": "node benchmarks/merge-accuracy.js"
+  },
+  "keywords": [
+    "merge",
+    "conflict-resolution",
+    "ai",
+    "neural",
+    "semantic",
+    "intent",
+    "git",
+    "jujutsu",
+    "version-control"
+  ],
+  "author": "Vibecast Future Labs",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
