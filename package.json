@@ -21,6 +21,7 @@
     "benchmark:compare": "node dist/benchmark-compare.js",
     "swe-bench": "node dist/swe-bench.js",
     "swe-bench:advanced": "node dist/swe-bench-advanced.js",
+    "swe-bench:industry": "node dist/swe-bench-industry.js",
     "optimize": "node dist/optimize-cli.js optimize",
     "optimize:models": "node dist/optimize-cli.js models",
     "lint": "eslint src --ext .ts",
