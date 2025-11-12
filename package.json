@@ -24,6 +24,7 @@
     "swe-bench:industry": "node dist/swe-bench-industry.js",
     "swe-bench:real": "node dist/swe-bench-real.js",
     "swe-bench:final": "node dist/swe-bench-final.js",
+    "swe-bench:optimized": "node dist/swe-bench-optimized.js",
     "optimize": "node dist/optimize-cli.js optimize",
     "optimize:models": "node dist/optimize-cli.js models",
     "lint": "eslint src --ext .ts",
