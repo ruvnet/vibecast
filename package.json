@@ -28,6 +28,7 @@
     "test-model": "node dist/model-tester.js",
     "optimize": "node dist/optimize-cli.js optimize",
     "optimize:orchestrator": "node dist/optimized-orchestrator.js",
+    "review": "node dist/comprehensive-benchmark.js",
     "optimize:models": "node dist/optimize-cli.js models",
     "lint": "eslint src --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
