@@ -1,0 +1,35 @@
+{
+  "name": "change-management-expert-system",
+  "version": "1.0.0",
+  "description": "Enterprise Change Management Expert System powered by AgentDB - intelligent decision support for IT change management with machine learning",
+  "main": "cli.js",
+  "bin": {
+    "cmexpert": "./cli.js"
+  },
+  "scripts": {
+    "start": "node cli.js",
+    "demo": "node examples/demo.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:47463/git/ruvnet/vibecast"
+  },
+  "keywords": [
+    "change-management",
+    "expert-system",
+    "agentdb",
+    "itil",
+    "enterprise",
+    "ai",
+    "machine-learning",
+    "decision-support",
+    "risk-assessment",
+    "compliance"
+  ],
+  "author": "rUv",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
