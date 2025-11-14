@@ -1,0 +1,45 @@
+{
+  "id": "calculator",
+  "name": "Calculator",
+  "description": "Performs basic arithmetic operations (add, subtract, multiply, divide)",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "operation": {
+        "type": "string",
+        "description": "The operation to perform: add, subtract, multiply, or divide"
+      },
+      "a": {
+        "type": "number",
+        "description": "The first operand"
+      },
+      "b": {
+        "type": "number",
+        "description": "The second operand"
+      }
+    },
+    "required": ["operation", "a", "b"],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "result": {
+        "type": "number",
+        "description": "The result of the calculation"
+      },
+      "operation": {
+        "type": "string",
+        "description": "The operation that was performed"
+      }
+    },
+    "required": ["result", "operation"]
+  },
+  "metadata": {
+    "costEstimate": 0.001,
+    "latencyTarget": 10,
+    "version": "1.0.0",
+    "author": "rUv",
+    "tags": ["math", "calculator", "arithmetic"]
+  }
+}

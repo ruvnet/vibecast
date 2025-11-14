@@ -1,0 +1,39 @@
+{
+  "id": "uuid-generator",
+  "name": "UUID Generator",
+  "description": "Generates one or more UUIDs (version 4)",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "count": {
+        "type": "integer",
+        "description": "Number of UUIDs to generate (default: 1, max: 100)"
+      }
+    },
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "uuids": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Array of generated UUIDs"
+      },
+      "count": {
+        "type": "integer",
+        "description": "Number of UUIDs generated"
+      }
+    },
+    "required": ["uuids", "count"]
+  },
+  "metadata": {
+    "costEstimate": 0.0005,
+    "latencyTarget": 5,
+    "version": "1.0.0",
+    "author": "rUv",
+    "tags": ["utility", "uuid", "generator"]
+  }
+}

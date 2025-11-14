@@ -1,0 +1,45 @@
+{
+  "id": "text-analyzer",
+  "name": "Text Analyzer",
+  "description": "Analyzes text and returns statistics including word count, character count, and sentence count",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "text": {
+        "type": "string",
+        "description": "The text to analyze"
+      }
+    },
+    "required": ["text"],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "wordCount": {
+        "type": "integer",
+        "description": "Number of words in the text"
+      },
+      "characterCount": {
+        "type": "integer",
+        "description": "Number of characters in the text"
+      },
+      "sentenceCount": {
+        "type": "integer",
+        "description": "Number of sentences in the text"
+      },
+      "averageWordLength": {
+        "type": "number",
+        "description": "Average length of words"
+      }
+    },
+    "required": ["wordCount", "characterCount", "sentenceCount", "averageWordLength"]
+  },
+  "metadata": {
+    "costEstimate": 0.002,
+    "latencyTarget": 50,
+    "version": "1.0.0",
+    "author": "rUv",
+    "tags": ["text", "analysis", "nlp"]
+  }
+}
