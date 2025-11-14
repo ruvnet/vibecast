@@ -7,15 +7,27 @@
 import { v4 as uuidv4 } from 'uuid';
 import { MCPServer } from './core/mcp-server.js';
 import { STDIOTransport } from './transport/stdio.js';
+import { HttpSSETransport } from './transport/http-sse.js';
 import { ServerConfig, AuthType } from './types/protocol.js';
 
 // Server configuration
+const transportMode = (process.env.TRANSPORT || 'stdio') as 'stdio' | 'http';
+const httpPort = parseInt(process.env.PORT || '3000', 10);
+const httpHost = process.env.HOST || 'localhost';
+
 const config: ServerConfig = {
   name: 'Vibecast MCP Server',
   version: '1.0.0',
-  description: 'Model Context Protocol Server for Vibecast - Supporting tool discovery and invocation',
+  description: 'Model Context Protocol Server for Vibecast - Supporting tool discovery, invocation, and resources',
   toolsDirectory: './tools',
-  transport: 'stdio',
+  resourcesDirectory: './resources',
+  transport: transportMode,
+  http: {
+    port: httpPort,
+    host: httpHost,
+    corsEnabled: true,
+    corsOrigins: ['*'],
+  },
   auth: {
     type: AuthType.NONE, // Set to BEARER, MTLS, or KEYPAIR for authentication
   },
@@ -36,8 +48,9 @@ const config: ServerConfig = {
 // Create server instance
 const server = new MCPServer(config);
 
-// Register tool handlers
+// Register tool and resource handlers
 registerToolHandlers(server);
+registerResourceHandlers(server);
 
 // Initialize and start server
 async function main() {
@@ -45,9 +58,14 @@ async function main() {
     // Initialize server
     await server.initialize();
 
-    // Start STDIO transport
-    const transport = new STDIOTransport(server);
-    transport.start();
+    // Start appropriate transport
+    if (config.transport === 'http' && config.http) {
+      const transport = new HttpSSETransport(server, config.http);
+      await transport.start();
+    } else {
+      const transport = new STDIOTransport(server);
+      transport.start();
+    }
   } catch (error) {
     console.error('[MCP Server] Failed to start:', error);
     process.exit(1);
@@ -120,6 +138,59 @@ function registerToolHandlers(server: MCPServer) {
     return {
       uuids,
       count: uuids.length,
+    };
+  });
+}
+
+/**
+ * Register handlers for all resources
+ */
+function registerResourceHandlers(server: MCPServer) {
+  // Server config resource
+  server.registerResource('server-config', async () => {
+    return {
+      config: server.getConfig(),
+      info: server.getInfo(),
+      capabilities: {
+        tools: true,
+        resources: true,
+        stdio: true,
+        http: true,
+        authentication: ['none', 'bearer', 'mtls', 'keypair'],
+      },
+    };
+  });
+
+  // Server status resource
+  server.registerResource('server-status', async () => {
+    const memUsage = process.memoryUsage();
+    return {
+      status: 'online',
+      uptime: process.uptime(),
+      memory: {
+        rss: Math.round(memUsage.rss / 1024 / 1024),
+        heapTotal: Math.round(memUsage.heapTotal / 1024 / 1024),
+        heapUsed: Math.round(memUsage.heapUsed / 1024 / 1024),
+        external: Math.round(memUsage.external / 1024 / 1024),
+        unit: 'MB',
+      },
+      process: {
+        pid: process.pid,
+        platform: process.platform,
+        nodeVersion: process.version,
+      },
+      timestamp: new Date().toISOString(),
+    };
+  });
+
+  // Audit logs resource
+  server.registerResource('audit-logs', async (parameters) => {
+    const limit = parameters?.limit || 100;
+    const auditLogger = server.getAuditLogger();
+    const logs = await auditLogger.readLogs(limit);
+    return {
+      count: logs.length,
+      logs,
     };
   });
 }

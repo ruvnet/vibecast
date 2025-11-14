@@ -133,6 +133,18 @@ export const AuthConfigSchema = z.object({
 export type AuthConfig = z.infer<typeof AuthConfigSchema>;
 
 /**
+ * HTTP transport configuration
+ */
+export const HttpConfigSchema = z.object({
+  port: z.number().default(3000),
+  host: z.string().default('localhost'),
+  corsEnabled: z.boolean().default(true),
+  corsOrigins: z.array(z.string()).default(['*']),
+});
+
+export type HttpConfig = z.infer<typeof HttpConfigSchema>;
+
+/**
  * Server configuration
  */
 export const ServerConfigSchema = z.object({
@@ -140,7 +152,9 @@ export const ServerConfigSchema = z.object({
   version: z.string(),
   description: z.string().optional(),
   toolsDirectory: z.string().default('./tools'),
+  resourcesDirectory: z.string().default('./resources'),
   transport: z.enum(['stdio', 'http', 'websocket']).default('stdio'),
+  http: HttpConfigSchema.optional(),
   auth: AuthConfigSchema.optional(),
   logging: z
     .object({
@@ -165,6 +179,72 @@ export const ServerConfigSchema = z.object({
 export type ServerConfig = z.infer<typeof ServerConfigSchema>;
 
 /**
+ * Resource metadata
+ */
+export const ResourceMetadataSchema = z.object({
+  mimeType: z.string().optional(),
+  size: z.number().optional(),
+  version: z.string().optional(),
+  author: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  cacheable: z.boolean().optional(),
+  ttl: z.number().optional(),
+});
+
+export type ResourceMetadata = z.infer<typeof ResourceMetadataSchema>;
+
+/**
+ * Resource descriptor
+ */
+export const ResourceDescriptorSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  description: z.string(),
+  uri: z.string(),
+  mimeType: z.string().optional(),
+  metadata: ResourceMetadataSchema.optional(),
+});
+
+export type ResourceDescriptor = z.infer<typeof ResourceDescriptorSchema>;
+
+/**
+ * Resource request
+ */
+export const ResourceRequestSchema = z.object({
+  requestId: z.string().uuid(),
+  resourceId: z.string(),
+  parameters: z.record(z.any()).optional(),
+  sessionId: z.string().optional(),
+});
+
+export type ResourceRequest = z.infer<typeof ResourceRequestSchema>;
+
+/**
+ * Resource response
+ */
+export const ResourceResponseSchema = z.object({
+  requestId: z.string().uuid(),
+  status: z.nativeEnum(ResponseStatus),
+  content: z.any().optional(),
+  mimeType: z.string().optional(),
+  error: z
+    .object({
+      code: z.string(),
+      message: z.string(),
+      details: z.any().optional(),
+    })
+    .optional(),
+  metadata: z
+    .object({
+      executionDuration: z.number(),
+      size: z.number().optional(),
+    })
+    .optional(),
+});
+
+export type ResourceResponse = z.infer<typeof ResourceResponseSchema>;
+
+/**
  * Audit log entry
  */
 export interface AuditLogEntry {
@@ -172,7 +252,7 @@ export interface AuditLogEntry {
   requestId: string;
   toolId: string;
   userId?: string;
-  action: 'invoke' | 'discover' | 'authenticate';
+  action: 'invoke' | 'discover' | 'authenticate' | 'resource';
   status: ResponseStatus;
   duration: number;
   metadata?: Record<string, any>;

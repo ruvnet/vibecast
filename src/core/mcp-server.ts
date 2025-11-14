@@ -9,10 +9,15 @@ import {
   ToolRequest,
   ToolResponse,
   ToolRequestSchema,
+  ResourceRequest,
+  ResourceResponse,
+  ResourceRequestSchema,
   ResponseStatus,
 } from '../types/protocol.js';
 import { ToolDiscovery } from './tool-discovery.js';
 import { ToolExecutor, ToolHandler } from './tool-executor.js';
+import { ResourceDiscovery } from './resource-discovery.js';
+import { ResourceExecutor, ResourceHandler } from './resource-executor.js';
 import { AuthManager } from '../security/auth.js';
 import { AuditLogger } from '../security/audit-log.js';
 
@@ -20,6 +25,8 @@ export class MCPServer {
   private config: ServerConfig;
   private toolDiscovery: ToolDiscovery;
   private toolExecutor: ToolExecutor;
+  private resourceDiscovery: ResourceDiscovery;
+  private resourceExecutor: ResourceExecutor;
   private authManager: AuthManager;
   private auditLogger: AuditLogger;
   private initialized: boolean = false;
@@ -28,6 +35,8 @@ export class MCPServer {
     this.config = config;
     this.toolDiscovery = new ToolDiscovery(config.toolsDirectory);
     this.toolExecutor = new ToolExecutor(this.toolDiscovery);
+    this.resourceDiscovery = new ResourceDiscovery(config.resourcesDirectory);
+    this.resourceExecutor = new ResourceExecutor(this.resourceDiscovery);
     this.authManager = new AuthManager(config.auth);
     this.auditLogger = new AuditLogger(
       './logs',
@@ -51,6 +60,9 @@ export class MCPServer {
     // Discover tools
     await this.toolDiscovery.discoverTools();
 
+    // Discover resources
+    await this.resourceDiscovery.discoverResources();
+
     this.initialized = true;
     console.log('[MCP Server] Server initialized successfully');
   }
@@ -60,6 +72,13 @@ export class MCPServer {
    */
   registerTool(toolId: string, handler: ToolHandler): void {
     this.toolExecutor.registerHandler(toolId, handler);
+  }
+
+  /**
+   * Register a resource handler
+   */
+  registerResource(resourceId: string, handler: ResourceHandler): void {
+    this.resourceExecutor.registerHandler(resourceId, handler);
   }
 
   /**
@@ -180,6 +199,114 @@ export class MCPServer {
   }
 
   /**
+   * Handle a resource request
+   */
+  async handleResourceRequest(
+    requestData: any,
+    headers: Record<string, string> = {}
+  ): Promise<ResourceResponse> {
+    const startTime = Date.now();
+    let requestId: string;
+
+    try {
+      // Parse and validate request
+      const request = ResourceRequestSchema.parse(requestData);
+      requestId = request.requestId;
+
+      // Authenticate
+      const authResult = await this.authManager.authenticate(headers);
+      if (!authResult.authenticated) {
+        const response: ResourceResponse = {
+          requestId,
+          status: ResponseStatus.ERROR,
+          error: {
+            code: 'AUTHENTICATION_FAILED',
+            message: authResult.error || 'Authentication failed',
+          },
+          metadata: {
+            executionDuration: Date.now() - startTime,
+          },
+        };
+
+        await this.auditLogger.logAuthentication(
+          requestId,
+          ResponseStatus.ERROR,
+          undefined,
+          { error: authResult.error }
+        );
+
+        return response;
+      }
+
+      // Fetch resource
+      const response = await this.resourceExecutor.fetch(request);
+
+      // Log execution
+      await this.auditLogger.log({
+        timestamp: new Date().toISOString(),
+        requestId,
+        toolId: request.resourceId,
+        userId: authResult.userId,
+        action: 'resource',
+        status: response.status,
+        duration: response.metadata?.executionDuration || 0,
+      });
+
+      return response;
+    } catch (error) {
+      requestId = uuidv4();
+      const response: ResourceResponse = {
+        requestId,
+        status: ResponseStatus.ERROR,
+        error: {
+          code: 'REQUEST_ERROR',
+          message: error instanceof Error ? error.message : 'Unknown error',
+        },
+        metadata: {
+          executionDuration: Date.now() - startTime,
+        },
+      };
+
+      return response;
+    }
+  }
+
+  /**
+   * Get all available resources
+   */
+  getResources() {
+    return this.resourceDiscovery.getAllResources();
+  }
+
+  /**
+   * Get a specific resource
+   */
+  getResource(resourceId: string) {
+    return this.resourceDiscovery.getResource(resourceId);
+  }
+
+  /**
+   * Search resources
+   */
+  searchResources(keyword: string) {
+    return this.resourceDiscovery.searchResources(keyword);
+  }
+
+  /**
+   * Get resources by tag
+   */
+  getResourcesByTag(tag: string) {
+    return this.resourceDiscovery.getResourcesByTag(tag);
+  }
+
+  /**
+   * Reload resources from disk
+   */
+  async reloadResources() {
+    await this.resourceDiscovery.reload();
+  }
+
+  /**
    * Get server info
    */
   getInfo() {
@@ -189,6 +316,7 @@ export class MCPServer {
       description: this.config.description,
       transport: this.config.transport,
       toolCount: this.toolDiscovery.getAllTools().length,
+      resourceCount: this.resourceDiscovery.getAllResources().length,
       authType: this.config.auth?.type || 'none',
     };
   }

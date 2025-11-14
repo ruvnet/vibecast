@@ -1,0 +1,13 @@
+{
+  "id": "audit-logs",
+  "name": "Audit Logs",
+  "description": "Returns recent audit log entries with optional filtering by action, user, or time range",
+  "uri": "logs://audit",
+  "mimeType": "application/json",
+  "metadata": {
+    "version": "1.0.0",
+    "author": "rUv",
+    "tags": ["logs", "audit", "security"],
+    "cacheable": false
+  }
+}

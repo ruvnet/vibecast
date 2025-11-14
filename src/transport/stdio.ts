@@ -24,8 +24,8 @@ export class STDIOTransport {
    */
   start(): void {
     console.log('[STDIO Transport] Listening for requests on STDIN...');
-    console.log('[STDIO Transport] Send JSON-formatted tool requests');
-    console.log('[STDIO Transport] Special commands: /help, /tools, /info, /exit');
+    console.log('[STDIO Transport] Send JSON-formatted tool/resource requests');
+    console.log('[STDIO Transport] Special commands: /help, /tools, /resources, /info, /exit');
     console.log('---');
 
     this.rl.on('line', async (line) => {
@@ -56,8 +56,15 @@ export class STDIOTransport {
       // Parse JSON request
       const request = JSON.parse(line);
 
-      // Handle request
-      const response = await this.server.handleRequest(request);
+      // Determine if it's a tool or resource request
+      let response;
+      if ('toolId' in request) {
+        response = await this.server.handleRequest(request);
+      } else if ('resourceId' in request) {
+        response = await this.server.handleResourceRequest(request);
+      } else {
+        throw new Error('Invalid request: must specify either toolId or resourceId');
+      }
 
       // Send response
       this.sendResponse(response);
@@ -81,17 +88,23 @@ export class STDIOTransport {
           commands: {
             '/help': 'Show this help message',
             '/tools': 'List all available tools',
+            '/resources': 'List all available resources',
             '/info': 'Show server information',
             '/search <keyword>': 'Search tools by keyword',
-            '/reload': 'Reload tools from disk',
+            '/reload': 'Reload tools and resources from disk',
             '/exit': 'Exit the server',
           },
           format: {
-            request: {
+            toolRequest: {
               requestId: 'uuid-v4',
               toolId: 'tool-id',
               arguments: {},
               executionMode: 'sync|async',
+            },
+            resourceRequest: {
+              requestId: 'uuid-v4',
+              resourceId: 'resource-id',
+              parameters: {},
             },
           },
         });
@@ -107,6 +120,22 @@ export class STDIOTransport {
             name: t.name,
             description: t.description,
             tags: t.metadata?.tags,
+          })),
+        });
+        break;
+
+      case 'resources':
+        const resources = this.server.getResources();
+        this.sendMessage({
+          type: 'resources',
+          count: resources.length,
+          resources: resources.map((r) => ({
+            id: r.id,
+            name: r.name,
+            description: r.description,
+            uri: r.uri,
+            mimeType: r.mimeType,
+            tags: r.metadata?.tags,
           })),
         });
         break;
@@ -139,10 +168,12 @@ export class STDIOTransport {
 
       case 'reload':
         await this.server.reloadTools();
+        await this.server.reloadResources();
         this.sendMessage({
           type: 'reload',
-          message: 'Tools reloaded successfully',
-          count: this.server.getTools().length,
+          message: 'Tools and resources reloaded successfully',
+          toolCount: this.server.getTools().length,
+          resourceCount: this.server.getResources().length,
         });
         break;
 

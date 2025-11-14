@@ -1,0 +1,14 @@
+{
+  "id": "server-config",
+  "name": "Server Configuration",
+  "description": "Returns the current server configuration and capabilities",
+  "uri": "config://server",
+  "mimeType": "application/json",
+  "metadata": {
+    "version": "1.0.0",
+    "author": "rUv",
+    "tags": ["config", "server", "meta"],
+    "cacheable": true,
+    "ttl": 300
+  }
+}

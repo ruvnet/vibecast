@@ -1,0 +1,13 @@
+{
+  "id": "server-status",
+  "name": "Server Status",
+  "description": "Returns real-time server status including uptime, memory usage, and active connections",
+  "uri": "status://server",
+  "mimeType": "application/json",
+  "metadata": {
+    "version": "1.0.0",
+    "author": "rUv",
+    "tags": ["status", "monitoring", "health"],
+    "cacheable": false
+  }
+}
