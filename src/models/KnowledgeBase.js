@@ -1,15 +1,26 @@
 /**
- * Knowledge Base for Change Management Expert System
+ * Knowledge Base for Change Management Expert System (Optimized with Singleton)
  * Contains enterprise best practices, patterns, and decision rules
  */
 
 class KnowledgeBase {
+  // Singleton instance
+  static instance = null;
+
   constructor() {
+    // Return existing instance if available (singleton pattern)
+    if (KnowledgeBase.instance) {
+      return KnowledgeBase.instance;
+    }
+
     this.rules = this.initializeRules();
     this.patterns = this.initializePatterns();
     this.bestPractices = this.initializeBestPractices();
     this.riskFactors = this.initializeRiskFactors();
     this.approvalMatrix = this.initializeApprovalMatrix();
+
+    // Store instance
+    KnowledgeBase.instance = this;
   }
 
   initializeRules() {
