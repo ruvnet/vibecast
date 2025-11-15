@@ -1,0 +1,34 @@
+{
+  "name": "claude-code-proxy",
+  "version": "1.0.0",
+  "description": "Secure proxy for Claude Code Web API calls",
+  "main": "node-proxy.js",
+  "type": "module",
+  "scripts": {
+    "start": "node node-proxy.js",
+    "dev": "nodemon node-proxy.js",
+    "test": "node test-proxy.js"
+  },
+  "keywords": [
+    "claude",
+    "proxy",
+    "api",
+    "openrouter",
+    "anthropic"
+  ],
+  "author": "rUv <ruv@vibecast.io>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2",
+    "cors": "^2.8.5",
+    "express-rate-limit": "^7.1.5",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
