@@ -296,3 +296,43 @@ export function verifyRealism(data) {
     totalReturn: ((data[data.length - 1].price - data[0].price) / data[0].price * 100).toFixed(2) + '%'
   };
 }
+
+/**
+ * Detect market regime based on recent volatility
+ */
+export function detectRegime(data, index) {
+  // If data point has regime already, use it
+  if (data[index] && data[index].regime !== undefined) {
+    const regimeNum = data[index].regime;
+    // Map regime number to volatility regime
+    if (regimeNum === 0) return 'extreme_vol';  // COVID crash
+    if (regimeNum === 1) return 'high_vol';     // Recovery
+    if (regimeNum === 2) return 'medium_vol';   // Bull market
+    if (regimeNum === 3) return 'medium_vol';   // Inflation fears
+    if (regimeNum === 4) return 'high_vol';     // Bear market
+    if (regimeNum === 5) return 'low_vol';      // AI rally
+    return 'medium_vol';
+  }
+
+  // Calculate volatility from recent data
+  const lookback = Math.min(20, index);
+  if (lookback < 5) return 'medium_vol';
+
+  const recentData = data.slice(Math.max(0, index - lookback), index + 1);
+  const returns = [];
+
+  for (let i = 1; i < recentData.length; i++) {
+    const ret = (recentData[i].price - recentData[i - 1].price) / recentData[i - 1].price;
+    returns.push(ret);
+  }
+
+  const mean = returns.reduce((a, b) => a + b, 0) / returns.length;
+  const variance = returns.reduce((sum, r) => sum + Math.pow(r - mean, 2), 0) / returns.length;
+  const volatility = Math.sqrt(variance) * Math.sqrt(252); // Annualized
+
+  // Classify regime based on volatility thresholds
+  if (volatility > 0.5) return 'extreme_vol';      // > 50% annual vol
+  if (volatility > 0.3) return 'high_vol';         // > 30% annual vol
+  if (volatility > 0.15) return 'medium_vol';      // > 15% annual vol
+  return 'low_vol';                                 // < 15% annual vol
+}

@@ -14,6 +14,8 @@
     "validate": "node benchmarks/run-realistic-validation.js",
     "optimize": "node benchmarks/run-optimization-comparison.js",
     "ensemble": "node benchmarks/run-ensemble-test.js",
+    "hyperparam": "node benchmarks/run-hyperparam-optimization.js",
+    "regime": "node benchmarks/run-regime-optimization.js",
     "test": "node benchmarks/run-core.js"
   },
   "keywords": [
