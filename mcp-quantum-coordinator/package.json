@@ -1,0 +1,33 @@
+{
+  "name": "@vibecast/mcp-quantum-coordinator",
+  "version": "1.0.0",
+  "description": "Quantum-inspired agent coordination using MCP protocol with superposition-based task allocation",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "quantum-coordinator": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test tests/*.test.js",
+    "benchmark": "node benchmarks/quantum-vs-classical.js"
+  },
+  "keywords": [
+    "mcp",
+    "quantum",
+    "agent",
+    "coordination",
+    "superposition",
+    "consensus",
+    "ai",
+    "orchestration"
+  ],
+  "author": "Vibecast Future Labs",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

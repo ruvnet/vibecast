@@ -1,0 +1,28 @@
+{
+  "name": "@vibecast/temporal-agent-versioning",
+  "version": "1.0.0",
+  "description": "Version agents themselves with time-travel debugging, parallel timelines, and agent DNA tracking",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "tav": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": [
+    "temporal",
+    "versioning",
+    "agent",
+    "time-travel",
+    "debugging",
+    "dna",
+    "evolution"
+  ],
+  "author": "Vibecast Future Labs",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
