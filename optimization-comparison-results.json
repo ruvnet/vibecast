@@ -1,0 +1,281 @@
+{
+  "timestamp": "2025-11-15T20:24:55.866Z",
+  "datasets": {
+    "SPY - Full Cycle (2020-2024)": {
+      "key": "SPY_FULL_CYCLE",
+      "metadata": {
+        "based_on": "Real SPY statistics 2020-2024",
+        "total_return": "-10.19%",
+        "regimes": [
+          "COVID Crash",
+          "Recovery",
+          "Bull Market",
+          "Inflation Fears",
+          "2022 Bear",
+          "AI Rally"
+        ],
+        "note": "Generated with actual historical drift, volatility, and regime patterns"
+      },
+      "stats": {
+        "dataPoints": 1000,
+        "avgDailyReturn": "-0.0084%",
+        "dailyVolatility": "1.0176%",
+        "annualizedReturn": "-2.11%",
+        "annualizedVolatility": "16.15%",
+        "sharpeRatio": "-0.131",
+        "maxDrawdown": "53.39%",
+        "totalReturn": "-10.19%"
+      },
+      "results": {
+        "Naive": {
+          "metrics": {
+            "mape": 0.696335887652155,
+            "medianAPE": 0.6167940701930229,
+            "rmse": 1.9143768803799872,
+            "mae": 1.5855640828184512,
+            "maxError": 2.260890363028764,
+            "coverage": null,
+            "avgIntervalWidth": null,
+            "medianIntervalWidth": null,
+            "directionalAccuracy": 0.48414023372287146,
+            "sharpeRatio": 3.721328636123328,
+            "regimePerformance": {
+              "regime_2": {
+                "mape": 0.3969683388962666,
+                "medianAPE": 0.3681473572932555,
+                "count": 140
+              },
+              "regime_3": {
+                "mape": 0.7546990859774483,
+                "medianAPE": 0.8060697616250485,
+                "count": 120
+              },
+              "regime_4": {
+                "mape": 0.9410951985889858,
+                "medianAPE": 0.8906551678367963,
+                "count": 200
+              },
+              "regime_5": {
+                "mape": 0.5960216793623188,
+                "medianAPE": 0.5871931169581331,
+                "count": 140
+              }
+            }
+          },
+          "performance": {
+            "avgTrainingTime": 0.0038013333333305845,
+            "avgPredictionTime": 0.0009092616666661494,
+            "totalTime": 0.5911729999996567
+          }
+        },
+        "AdaptiveConformal": {
+          "metrics": {
+            "mape": 0.7085447580712205,
+            "medianAPE": 0.6342047198032399,
+            "rmse": 1.9261779223416136,
+            "mae": 1.6155342121396556,
+            "maxError": 2.172474221517242,
+            "coverage": 0.9733333333333334,
+            "avgIntervalWidth": 833.2835191754516,
+            "medianIntervalWidth": 858.248292150904,
+            "directionalAccuracy": 0.5125208681135225,
+            "sharpeRatio": 3.721328636123328,
+            "regimePerformance": {
+              "regime_2": {
+                "mape": 0.4171952147200573,
+                "medianAPE": 0.39968361778673545,
+                "count": 140
+              },
+              "regime_3": {
+                "mape": 0.7657696926958131,
+                "medianAPE": 0.7960058097996929,
+                "count": 120
+              },
+              "regime_4": {
+                "mape": 0.9660972564788576,
+                "medianAPE": 0.9440518959169866,
+                "count": 200
+              },
+              "regime_5": {
+                "mape": 0.5829122168761084,
+                "medianAPE": 0.5935209107197722,
+                "count": 140
+              }
+            }
+          },
+          "performance": {
+            "avgTrainingTime": 1.6465015833333396,
+            "avgPredictionTime": 0.004891276666666708,
+            "totalTime": 22.6927850000001
+          }
+        },
+        "AgentDB-Original": {
+          "metrics": {
+            "mape": 0.7462374052869762,
+            "medianAPE": 0.6180763619281638,
+            "rmse": 2.080066285813014,
+            "mae": 1.7040069817274373,
+            "maxError": 2.557801263439521,
+            "coverage": 0.9383333333333334,
+            "avgIntervalWidth": 796.3206270918373,
+            "medianIntervalWidth": 800.1000804342652,
+            "directionalAccuracy": 0.48914858096828046,
+            "sharpeRatio": 3.721328636123328,
+            "regimePerformance": {
+              "regime_2": {
+                "mape": 0.42337993346007574,
+                "medianAPE": 0.41523539325298303,
+                "count": 140
+              },
+              "regime_3": {
+                "mape": 0.8530626890731231,
+                "medianAPE": 0.7906583200709602,
+                "count": 120
+              },
+              "regime_4": {
+                "mape": 0.9734844482555506,
+                "medianAPE": 0.8780715319513385,
+                "count": 200
+              },
+              "regime_5": {
+                "mape": 0.6528917153420711,
+                "medianAPE": 0.6150899575094672,
+                "count": 140
+              }
+            }
+          },
+          "performance": {
+            "avgTrainingTime": 48.437404333333326,
+            "avgPredictionTime": 0.1227151033333334,
+            "totalTime": 654.8779139999999
+          }
+        },
+        "AgentDB-Optimized": {
+          "metrics": {
+            "mape": 1.8968249772161563,
+            "medianAPE": 1.5797534690654174,
+            "rmse": 5.331950133762765,
+            "mae": 4.404220735881644,
+            "maxError": 6.058263405034702,
+            "coverage": 0.8183333333333334,
+            "avgIntervalWidth": 1632.4873667880595,
+            "medianIntervalWidth": 1617.34278438596,
+            "directionalAccuracy": 0.6176961602671118,
+            "sharpeRatio": 3.721328636123328,
+            "regimePerformance": {
+              "regime_2": {
+                "mape": 1.345070623546036,
+                "medianAPE": 1.3422820155032051,
+                "count": 140
+              },
+              "regime_3": {
+                "mape": 2.2842823059715403,
+                "medianAPE": 2.19407242249525,
+                "count": 120
+              },
+              "regime_4": {
+                "mape": 1.5916750761153602,
+                "medianAPE": 1.13092608183464,
+                "count": 200
+              },
+              "regime_5": {
+                "mape": 2.552401479239941,
+                "medianAPE": 2.987983709437227,
+                "count": 140
+              }
+            }
+          },
+          "performance": {
+            "avgTrainingTime": 4.645018416666687,
+            "avgPredictionTime": 0.06510710666666664,
+            "totalTime": 94.80448500000023
+          }
+        }
+      },
+      "rankings": {
+        "mape": [
+          {
+            "model": "Naive",
+            "value": 0.696335887652155
+          },
+          {
+            "model": "AdaptiveConformal",
+            "value": 0.7085447580712205
+          },
+          {
+            "model": "AgentDB-Original",
+            "value": 0.7462374052869762
+          },
+          {
+            "model": "AgentDB-Optimized",
+            "value": 1.8968249772161563
+          }
+        ],
+        "coverage": [
+          {
+            "model": "AdaptiveConformal",
+            "value": 0.9733333333333334
+          },
+          {
+            "model": "AgentDB-Original",
+            "value": 0.9383333333333334
+          },
+          {
+            "model": "AgentDB-Optimized",
+            "value": 0.8183333333333334
+          }
+        ],
+        "directionalAccuracy": [
+          {
+            "model": "AgentDB-Optimized",
+            "value": 0.6176961602671118
+          },
+          {
+            "model": "AdaptiveConformal",
+            "value": 0.5125208681135225
+          },
+          {
+            "model": "AgentDB-Original",
+            "value": 0.48914858096828046
+          },
+          {
+            "model": "Naive",
+            "value": 0.48414023372287146
+          }
+        ],
+        "sharpeRatio": [
+          {
+            "model": "Naive",
+            "value": 3.721328636123328
+          },
+          {
+            "model": "AdaptiveConformal",
+            "value": 3.721328636123328
+          },
+          {
+            "model": "AgentDB-Original",
+            "value": 3.721328636123328
+          },
+          {
+            "model": "AgentDB-Optimized",
+            "value": 3.721328636123328
+          }
+        ]
+      },
+      "improvements": {
+        "AdaptiveConformal": {
+          "mape": -1.7533019101213205,
+          "directionalAccuracy": 2.8380634390651025
+        },
+        "AgentDB-Original": {
+          "mape": -7.16629984461591,
+          "directionalAccuracy": 0.5008347245408995
+        },
+        "AgentDB-Optimized": {
+          "mape": -172.40086441784672,
+          "directionalAccuracy": 13.355592654424036
+        }
+      }
+    }
+  }
+}

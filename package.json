@@ -1,0 +1,37 @@
+{
+  "name": "neural-trader-benchmark",
+  "version": "1.0.0",
+  "description": "Comprehensive benchmark suite for @neural-trader/predictor with agentdb integration",
+  "type": "module",
+  "scripts": {
+    "benchmark": "node benchmarks/run-core.js",
+    "benchmark:all": "node benchmarks/run-all.js",
+    "benchmark:basic": "node benchmarks/basic-predictions.js",
+    "benchmark:stress": "node benchmarks/stress-test.js",
+    "benchmark:impl": "node benchmarks/implementation-comparison.js",
+    "benchmark:agentdb": "node benchmarks/agentdb-integration.js",
+    "backtest": "node benchmarks/run-backtesting-comparison.js",
+    "validate": "node benchmarks/run-realistic-validation.js",
+    "optimize": "node benchmarks/run-optimization-comparison.js",
+    "ensemble": "node benchmarks/run-ensemble-test.js",
+    "hyperparam": "node benchmarks/run-hyperparam-optimization.js",
+    "regime": "node benchmarks/run-regime-optimization.js",
+    "test": "node benchmarks/run-core.js"
+  },
+  "keywords": [
+    "neural-trader",
+    "predictor",
+    "benchmark",
+    "conformal-prediction",
+    "agentdb"
+  ],
+  "author": "ruvnet",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@neural-trader/predictor": "^0.1.0",
+    "agentdb": "^1.6.1"
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "metadata": {
+    "timestamp": "2025-11-15T19:29:21.714Z",
+    "nodeVersion": "v22.21.1",
+    "platform": "linux",
+    "arch": "x64",
+    "cpus": 16
+  },
+  "benchmarks": {
+    "basic": {
+      "results": {
+        "alpha_0.05": {
+          "implementation": "pure",
+          "createTime": 0.26451899999999995,
+          "calibrationTime": 0.5789770000000019,
+          "predictionTime": 1.5147429999999957,
+          "avgPredictionTime": 0.0030294859999999914,
+          "throughput": 330088.99859580235,
+          "coverage": 0.784,
+          "targetCoverage": 0.95,
+          "coverageError": 0.16599999999999993,
+          "widthStats": {
+            "min": 4.03215878734818,
+            "max": 4.032158787348237,
+            "mean": 4.032158787348184,
+            "median": 4.032158787348209,
+            "stdDev": 3.308261339459732e-14,
+            "p25": 4.03215878734818,
+            "p75": 4.032158787348237,
+            "p95": 4.032158787348237,
+            "p99": 4.032158787348237
+          },
+          "relativeWidthStats": {
+            "min": 2.6223375845301873,
+            "max": 3.8569203333220345,
+            "mean": 3.1073850864720876,
+            "median": 2.9991541660836547,
+            "stdDev": 0.36036590753262726,
+            "p25": 2.8027562150178627,
+            "p75": 3.3695851545228908,
+            "p95": 3.7687237825401185,
+            "p99": 3.8216301468786558
+          },
+          "stats": {
+            "nCalibration": 500,
+            "alpha": 0.05,
+            "quantile": 2.0160793936741044,
+            "predictionCount": 500,
+            "minScore": 0.0008316721136765182,
+            "maxScore": 2.1910462047144676
+          }
+        },
+        "alpha_0.1": {
+          "implementation": "pure",
+          "createTime": 0.03480300000000369,
+          "calibrationTime": 0.2402930000000012,
+          "predictionTime": 0.7229300000000052,
+          "avgPredictionTime": 0.0014458600000000104,
+          "throughput": 691629.8950105769,
+          "coverage": 0.748,
+          "targetCoverage": 0.9,
+          "coverageError": 0.15200000000000002,
+          "widthStats": {
+            "min": 3.823803836522643,
+            "max": 3.8238038365227,
+            "mean": 3.8238038365226683,
+            "median": 3.8238038365226714,
+            "stdDev": 2.225644689107922e-14,
+            "p25": 3.823803836522643,
+            "p75": 3.8238038365227,
+            "p95": 3.8238038365227,
+            "p99": 3.8238038365227
+          },
+          "relativeWidthStats": {
+            "min": 2.486832747719909,
+            "max": 3.6576205317098487,
+            "mean": 2.9468162445605572,
+            "median": 2.8441779729949084,
+            "stdDev": 0.34174461186868854,
+            "p25": 2.6579285521816813,
+            "p75": 3.195467569824596,
+            "p95": 3.573981387758936,
+            "p99": 3.624153905659009
+          },
+          "stats": {
+            "nCalibration": 500,
+            "alpha": 0.1,
+            "quantile": 1.9119019182613357,
+            "predictionCount": 500,
+            "minScore": 0.0008316721136765182,
+            "maxScore": 2.1910462047144676
+          }
+        },
+        "alpha_0.2": {
+          "implementation": "pure",
+          "createTime": 0.035562999999996237,
+          "calibrationTime": 0.13368100000000993,
+          "predictionTime": 0.20120800000000827,
+          "avgPredictionTime": 0.00040241600000001654,
+          "throughput": 2484990.6564350296,
+          "coverage": 0.664,
+          "targetCoverage": 0.8,
+          "coverageError": 0.136,
+          "widthStats": {
+            "min": 3.4922610244391166,
+            "max": 3.492261024439131,
+            "mean": 3.492261024439131,
+            "median": 3.492261024439131,
+            "stdDev": 8.987733679556354e-16,
+            "p25": 3.492261024439131,
+            "p75": 3.492261024439131,
+            "p95": 3.492261024439131,
+            "p99": 3.492261024439131
+          },
+          "relativeWidthStats": {
+            "min": 2.271211979079691,
+            "max": 3.340486638743112,
+            "mean": 2.69131261880356,
+            "median": 2.597573595901549,
+            "stdDev": 0.3121136541947764,
+            "p25": 2.4274729262704717,
+            "p75": 2.9184046373848282,
+            "p95": 3.2640994245907113,
+            "p99": 3.309921735632624
+          },
+          "stats": {
+            "nCalibration": 500,
+            "alpha": 0.2,
+            "quantile": 1.7461305122195654,
+            "predictionCount": 500,
+            "minScore": 0.0008316721136765182,
+            "maxScore": 2.1910462047144676
+          }
+        }
+      },
+      "scoreResults": {
+        "Absolute": {
+          "implementation": "pure",
+          "calibrationTime": 0.16663300000000447,
+          "predictionTime": 0.3617500000000007,
+          "coverage": 0.748,
+          "avgWidth": 3.8238038365226683,
+          "medianWidth": 3.8238038365226714
+        },
+        "Normalized": {
+          "implementation": "pure",
+          "calibrationTime": 0.19515400000000227,
+          "predictionTime": 0.6007689999999997,
+          "coverage": 0.748,
+          "avgWidth": 3.8238038365226683,
+          "medianWidth": 3.8238038365226714
+        }
+      },
+      "_duration": 14
+    },
+    "implementation": {
+      "pure": {
+        "implementation": "pure",
+        "createTime": 0.014731999999995082,
+        "calibrationTime": 2.129926999999995,
+        "calibrationThroughput": 1173749.1472712473,
+        "batchSize": 2500,
+        "batchTime": 2.6537659999999903,
+        "batchThroughput": 942057.43837249,
+        "individualStats": {
+          "min": 0.00042799999999942884,
+          "max": 0.009113999999996736,
+          "mean": 0.0005684980000001048,
+          "median": 0.0004619999999988522,
+          "stdDev": 0.0004883721531740337,
+          "p25": 0.0004409999999950287,
+          "p75": 0.0005750000000119826,
+          "p95": 0.0008460000000098944,
+          "p99": 0.0016509999999954061
+        },
+        "coverage": 0.354,
+        "targetCoverage": 0.9,
+        "avgWidth": 11.17337277650504,
+        "medianWidth": 11.17337277650472,
+        "stats": {
+          "nCalibration": 2500,
+          "alpha": 0.1,
+          "quantile": 5.58668638825236,
+          "predictionCount": 3500,
+          "minScore": 0.0047726491468012,
+          "maxScore": 9.567515243891535
+        }
+      },
+      "_duration": 12
+    },
+    "stress": {
+      "calibrationScaling": {
+        "size_1000": {
+          "calibrationTime": 0.2799660000000017,
+          "avgPredictionTime": 0.000380699999999905,
+          "throughput": 2626740.2153933533,
+          "memoryUsage": 6.6079559326171875
+        },
+        "size_5000": {
+          "calibrationTime": 1.5839830000000035,
+          "avgPredictionTime": 0.0003655699999998774,
+          "throughput": 2735454.2221745094,
+          "memoryUsage": 7.968620300292969
+        },
+        "size_10000": {
+          "calibrationTime": 7.452970000000008,
+          "avgPredictionTime": 0.00033770000000004073,
+          "throughput": 2961208.1729341997,
+          "memoryUsage": 7.7592926025390625
+        },
+        "size_50000": {
+          "calibrationTime": 39.94916300000001,
+          "avgPredictionTime": 0.00017595999999997503,
+          "throughput": 5683109.797682098,
+          "memoryUsage": 12.01885986328125
+        }
+      },
+      "streamingUpdates": {
+        "totalUpdates": 9500,
+        "totalTime": 10.728739999999192,
+        "throughput": 885472.1057645833,
+        "updateStats": {
+          "min": 0.0005040000000064992,
+          "max": 0.09785800000000222,
+          "mean": 0.0011293410526314939,
+          "median": 0.000916999999986956,
+          "stdDev": 0.002179162890532142,
+          "p25": 0.0007059999999796673,
+          "p75": 0.0010989999999821976,
+          "p95": 0.00221700000000169,
+          "p99": 0.003784999999993488
+        }
+      },
+      "adaptivePredictor": {
+        "calibrationTime": 0.1847789999999918,
+        "totalPredictions": 4500,
+        "totalTime": 17.50970100000049,
+        "avgPredictionTime": 0.0038910446666667754,
+        "throughput": 257000.3908119204,
+        "empiricalCoverage": 0.49777777777777776,
+        "targetCoverage": 0.9,
+        "finalAlpha": 0.01
+      },
+      "concurrentBatches": {
+        "batch_10": {
+          "batchSize": 10,
+          "totalTime": 0.0373209999999915,
+          "avgTime": 0.00373209999999915,
+          "throughput": 267945.6606200873
+        },
+        "batch_100": {
+          "batchSize": 100,
+          "totalTime": 0.030092999999993708,
+          "avgTime": 0.0003009299999999371,
+          "throughput": 3323031.9343375834
+        },
+        "batch_1000": {
+          "batchSize": 1000,
+          "totalTime": 0.27086200000002236,
+          "avgTime": 0.00027086200000002236,
+          "throughput": 3691916.917101393
+        },
+        "batch_5000": {
+          "batchSize": 5000,
+          "totalTime": 1.5698260000000062,
+          "avgTime": 0.00031396520000000124,
+          "throughput": 3185066.370413014
+        }
+      },
+      "memoryProfile": {
+        "heapUsed": "24.34 MB",
+        "heapTotal": "46.05 MB",
+        "external": "1.63 MB",
+        "rss": "171.20 MB"
+      },
+      "_duration": 124
+    }
+  }
+}
