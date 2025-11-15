@@ -140,6 +140,21 @@ function registerToolHandlers(server: MCPServer) {
       count: uuids.length,
     };
   });
+
+  // Async processor tool (demonstrates async execution with progress)
+  server.registerTool('async-processor', async (args) => {
+    const items = Math.min(Math.max(args.items || 10, 1), 100);
+    const delay = args.delay || 100;
+    const startTime = Date.now();
+
+    // Simulate processing with delay
+    await new Promise((resolve) => setTimeout(resolve, items * delay));
+
+    return {
+      processed: items,
+      duration: Date.now() - startTime,
+    };
+  });
 }
 
 /**
@@ -191,6 +206,52 @@ function registerResourceHandlers(server: MCPServer) {
     return {
       count: logs.length,
       logs,
+    };
+  });
+
+  // Metrics resource
+  server.registerResource('metrics', async () => {
+    const auditLogger = server.getAuditLogger();
+    const logs = await auditLogger.readLogs(1000);
+
+    // Calculate metrics from audit logs
+    const totalRequests = logs.length;
+    const successCount = logs.filter((l) => l.status === 'success').length;
+    const errorCount = logs.filter((l) => l.status === 'error').length;
+    const avgDuration =
+      logs.length > 0
+        ? logs.reduce((sum, l) => sum + l.duration, 0) / logs.length
+        : 0;
+
+    // Group by tool
+    const toolStats: Record<string, any> = {};
+    logs.forEach((log) => {
+      if (!toolStats[log.toolId]) {
+        toolStats[log.toolId] = { count: 0, errors: 0, totalDuration: 0 };
+      }
+      toolStats[log.toolId].count++;
+      if (log.status === 'error') toolStats[log.toolId].errors++;
+      toolStats[log.toolId].totalDuration += log.duration;
+    });
+
+    // Calculate average duration per tool
+    Object.keys(toolStats).forEach((toolId) => {
+      toolStats[toolId].avgDuration = Math.round(
+        toolStats[toolId].totalDuration / toolStats[toolId].count
+      );
+      delete toolStats[toolId].totalDuration;
+    });
+
+    return {
+      summary: {
+        totalRequests,
+        successCount,
+        errorCount,
+        successRate: totalRequests > 0 ? (successCount / totalRequests) * 100 : 0,
+        avgDuration: Math.round(avgDuration * 100) / 100,
+      },
+      toolStats,
+      timestamp: new Date().toISOString(),
     };
   });
 }

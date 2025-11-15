@@ -1,0 +1,41 @@
+{
+  "id": "async-processor",
+  "name": "Async Processor",
+  "description": "Demonstrates async execution with progress tracking. Simulates a long-running task that processes items in batches.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "items": {
+        "type": "integer",
+        "description": "Number of items to process (1-100)"
+      },
+      "delay": {
+        "type": "integer",
+        "description": "Delay in milliseconds per item (default: 100)"
+      }
+    },
+    "required": ["items"],
+    "additionalProperties": false
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "processed": {
+        "type": "integer",
+        "description": "Number of items processed"
+      },
+      "duration": {
+        "type": "integer",
+        "description": "Total processing duration in milliseconds"
+      }
+    },
+    "required": ["processed", "duration"]
+  },
+  "metadata": {
+    "costEstimate": 0.01,
+    "latencyTarget": 5000,
+    "version": "1.0.0",
+    "author": "rUv",
+    "tags": ["async", "demo", "processing"]
+  }
+}

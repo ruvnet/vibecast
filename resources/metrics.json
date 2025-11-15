@@ -1,0 +1,14 @@
+{
+  "id": "metrics",
+  "name": "Server Metrics",
+  "description": "Returns comprehensive server metrics including request counts, error rates, and performance statistics",
+  "uri": "metrics://server",
+  "mimeType": "application/json",
+  "metadata": {
+    "version": "1.0.0",
+    "author": "rUv",
+    "tags": ["metrics", "monitoring", "performance"],
+    "cacheable": true,
+    "ttl": 60
+  }
+}
