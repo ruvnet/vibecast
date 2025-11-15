@@ -11,6 +11,7 @@
     "benchmark:impl": "node benchmarks/implementation-comparison.js",
     "benchmark:agentdb": "node benchmarks/agentdb-integration.js",
     "backtest": "node benchmarks/run-backtesting-comparison.js",
+    "validate": "node benchmarks/run-realistic-validation.js",
     "test": "node benchmarks/run-core.js"
   },
   "keywords": [
