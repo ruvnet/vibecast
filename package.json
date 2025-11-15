@@ -10,6 +10,7 @@
     "benchmark:stress": "node benchmarks/stress-test.js",
     "benchmark:impl": "node benchmarks/implementation-comparison.js",
     "benchmark:agentdb": "node benchmarks/agentdb-integration.js",
+    "backtest": "node benchmarks/run-backtesting-comparison.js",
     "test": "node benchmarks/run-core.js"
   },
   "keywords": [
