@@ -134,3 +134,17 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Rust build artifacts
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# AgentDB databases
+*.db
+
+# TypeScript build output
+packages/*/dist/
+
+# Package lock files (workspace uses package-lock.json at root)
+package-lock.json

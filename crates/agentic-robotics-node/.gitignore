@@ -1,0 +1,20 @@
+# Native bindings
+*.node
+
+# NPM config with tokens
+.npmrc
+
+# Node modules
+node_modules/
+
+# Build artifacts
+target/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store

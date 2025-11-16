@@ -1,0 +1,33 @@
+{
+  "name": "@ros3/workspace",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build:rust && npm run build:packages",
+    "build:rust": "cargo build --release",
+    "build:packages": "npm run build --workspaces",
+    "test": "npm run test:rust && npm run test:packages",
+    "test:rust": "cargo test",
+    "test:packages": "npm run test --workspaces",
+    "bench": "cargo bench",
+    "dev": "npm run dev --workspace=@ros3/mcp-server"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "tsx": "^4.19.0",
+    "vitest": "^2.1.0"
+  },
+  "dependencies": {
+    "agentdb": "^1.6.1",
+    "agentic-flow": "^1.9.0",
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

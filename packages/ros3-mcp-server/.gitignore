@@ -1,0 +1,38 @@
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+
+# Benchmark results
+benchmark-*.json
+*-benchmark-results.json
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Node modules
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

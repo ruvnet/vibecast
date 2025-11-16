@@ -1,0 +1,24 @@
+{
+  "name": "@agentic-robotics/linux-x64-gnu",
+  "version": "0.1.3",
+  "description": "agentic-robotics native bindings for Linux x64 (GNU)",
+  "main": "agentic-robotics.linux-x64-gnu.node",
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruvnet/vibecast.git"
+  },
+  "license": "MIT OR Apache-2.0",
+  "engines": {
+    "node": ">= 14"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://ruv.io"
+}

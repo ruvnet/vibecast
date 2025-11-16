@@ -1,0 +1,6 @@
+# Native bindings (binary files)
+*.node
+
+# Test artifacts
+node_modules/
+*.log

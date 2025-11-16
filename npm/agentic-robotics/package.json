@@ -1,0 +1,35 @@
+{
+  "name": "agentic-robotics",
+  "version": "0.1.5",
+  "description": "High-performance agentic robotics framework with ROS2 compatibility - Complete toolkit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruvnet/vibecast.git"
+  },
+  "homepage": "https://ruv.io",
+  "license": "MIT OR Apache-2.0",
+  "keywords": [
+    "robotics",
+    "ros",
+    "ros2",
+    "middleware",
+    "agents",
+    "mcp",
+    "cli"
+  ],
+  "engines": {
+    "node": ">= 14"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "agentic-robotics": "./node_modules/@agentic-robotics/cli/bin/cli.js",
+    "agentic-robotics-mcp": "./node_modules/@agentic-robotics/mcp/dist/cli.js"
+  },
+  "dependencies": {
+    "@agentic-robotics/core": "^0.1.3",
+    "@agentic-robotics/cli": "^0.1.3",
+    "@agentic-robotics/mcp": "^0.1.3"
+  }
+}
