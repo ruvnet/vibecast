@@ -1,0 +1,39 @@
+{
+  "name": "neural-trader",
+  "version": "1.0.0",
+  "description": "AI-powered neural trading system with E2B swarm testing and Alpaca API integration",
+  "main": "src/index.js",
+  "bin": {
+    "neural-trader": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "node tests/run-tests.js",
+    "test:e2b": "node tests/e2b-swarm-test.js",
+    "test:alpaca": "node tests/alpaca-integration-test.js"
+  },
+  "keywords": [
+    "trading",
+    "neural",
+    "ai",
+    "alpaca",
+    "e2b",
+    "machine-learning"
+  ],
+  "author": "rUv",
+  "license": "MIT",
+  "dependencies": {
+    "@alpacahq/alpaca-trade-api": "^3.0.0",
+    "@e2b/code-interpreter": "^0.0.7",
+    "axios": "^1.6.0",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

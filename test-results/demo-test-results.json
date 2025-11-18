@@ -1,0 +1,40 @@
+{
+  "summary": {
+    "total": 18,
+    "passed": 17,
+    "failed": 1,
+    "passRate": "94.44",
+    "duration": 1221
+  },
+  "suites": {
+    "cli": {
+      "passed": 2,
+      "failed": 0
+    },
+    "modules": {
+      "passed": 4,
+      "failed": 0
+    },
+    "strategies": {
+      "passed": 2,
+      "failed": 1
+    },
+    "indicators": {
+      "passed": 3,
+      "failed": 0
+    },
+    "risk": {
+      "passed": 2,
+      "failed": 0
+    },
+    "e2b": {
+      "passed": 3,
+      "failed": 0
+    },
+    "alpaca": {
+      "passed": 1,
+      "failed": 0
+    }
+  },
+  "timestamp": "2025-11-18T17:51:05.158Z"
+}
