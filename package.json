@@ -8,7 +8,9 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "demo": "tsx src/demo.ts"
+    "demo": "tsx src/demo.ts",
+    "validate": "npm run build && npm run demo",
+    "test": "npm run validate"
   },
   "keywords": [
     "hyperdimensional-computing",
