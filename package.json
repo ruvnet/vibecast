@@ -1,0 +1,32 @@
+{
+  "name": "vibecast-xenosphere",
+  "version": "2075.0.0",
+  "description": "Hyperdimensional, stigmergic, chrono-adaptive, biodata-driven streaming platform",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "demo": "tsx src/demo.ts"
+  },
+  "keywords": [
+    "hyperdimensional-computing",
+    "stigmergy",
+    "chronobiology",
+    "biometric-streaming",
+    "swarm-intelligence",
+    "future-tech"
+  ],
+  "author": "rUv",
+  "license": "MIT",
+  "dependencies": {
+    "suncalc": "^1.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/suncalc": "^1.9.2",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
+  }
+}
