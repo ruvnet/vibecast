@@ -1,0 +1,40 @@
+{
+  "name": "vibecast-pubnub",
+  "version": "1.0.0",
+  "description": "PubNub implementation using ruv.io projects for Vibecast live coding sessions",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "example:basic": "ts-node examples/basic-messaging.ts",
+    "example:agent": "ts-node examples/agent-orchestration.ts",
+    "example:swarm": "ts-node examples/swarm-coordination.ts"
+  },
+  "keywords": [
+    "pubnub",
+    "ruv",
+    "agent-orchestration",
+    "realtime",
+    "messaging",
+    "mcp",
+    "claude"
+  ],
+  "author": "rUv",
+  "license": "MIT",
+  "dependencies": {
+    "pubnub": "^8.2.6",
+    "dotenv": "^16.4.5",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "@types/uuid": "^9.0.8",
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.11"
+  }
+}
