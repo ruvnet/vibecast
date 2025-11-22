@@ -1,0 +1,126 @@
+{
+  "name": "Traditional vs Swarm Coding Benchmark",
+  "version": "1.0.0",
+  "description": "Comprehensive benchmark comparing sequential coding with swarm-based concurrent development",
+  "scenarios": [
+    {
+      "id": "crud-api",
+      "name": "CRUD API Implementation",
+      "description": "Build a REST API with CRUD operations for a user management system",
+      "complexity": "medium",
+      "estimatedLines": 500,
+      "tasks": [
+        "Create User model/schema",
+        "Implement POST /users endpoint",
+        "Implement GET /users endpoint",
+        "Implement GET /users/:id endpoint",
+        "Implement PUT /users/:id endpoint",
+        "Implement DELETE /users/:id endpoint",
+        "Add input validation",
+        "Add error handling",
+        "Write unit tests"
+      ]
+    },
+    {
+      "id": "data-processing",
+      "name": "Data Processing Pipeline",
+      "description": "Build a data transformation and aggregation pipeline",
+      "complexity": "medium",
+      "estimatedLines": 400,
+      "tasks": [
+        "Create data reader module",
+        "Implement data validation",
+        "Create transformation functions",
+        "Implement aggregation logic",
+        "Add filtering capabilities",
+        "Create output formatter",
+        "Add error handling",
+        "Write unit tests"
+      ]
+    },
+    {
+      "id": "auth-system",
+      "name": "Authentication System",
+      "description": "Implement JWT-based authentication with refresh tokens",
+      "complexity": "high",
+      "estimatedLines": 600,
+      "tasks": [
+        "Set up JWT configuration",
+        "Implement user registration",
+        "Implement login endpoint",
+        "Implement token generation",
+        "Implement token refresh",
+        "Add password hashing",
+        "Create authentication middleware",
+        "Add rate limiting",
+        "Write unit tests"
+      ]
+    },
+    {
+      "id": "task-scheduler",
+      "name": "Task Scheduler",
+      "description": "Build a cron-like task scheduler with priority queues",
+      "complexity": "high",
+      "estimatedLines": 550,
+      "tasks": [
+        "Create task queue data structure",
+        "Implement priority queue",
+        "Add cron parser",
+        "Create scheduler engine",
+        "Implement task execution",
+        "Add retry mechanism",
+        "Create monitoring interface",
+        "Add logging",
+        "Write unit tests"
+      ]
+    },
+    {
+      "id": "cache-layer",
+      "name": "Caching Layer",
+      "description": "Implement a multi-tier caching system with TTL and eviction",
+      "complexity": "medium",
+      "estimatedLines": 450,
+      "tasks": [
+        "Create cache interface",
+        "Implement in-memory cache",
+        "Add TTL support",
+        "Implement LRU eviction",
+        "Add cache statistics",
+        "Create cache warming",
+        "Add serialization support",
+        "Write unit tests"
+      ]
+    }
+  ],
+  "metrics": {
+    "time": {
+      "unit": "seconds",
+      "description": "Total time to complete all tasks"
+    },
+    "throughput": {
+      "unit": "tasks/second",
+      "description": "Number of tasks completed per second"
+    },
+    "memoryUsage": {
+      "unit": "MB",
+      "description": "Peak memory usage during execution"
+    },
+    "concurrency": {
+      "unit": "number",
+      "description": "Average number of concurrent operations"
+    },
+    "errorRate": {
+      "unit": "percentage",
+      "description": "Percentage of tasks that encountered errors"
+    },
+    "codeQuality": {
+      "unit": "score",
+      "description": "Code quality score based on complexity and maintainability"
+    }
+  },
+  "databases": {
+    "swarm": ".swarm/memory.db",
+    "hiveMind": ".hive-mind/hive.db",
+    "agentDb": ".claude-flow/agent.db"
+  }
+}

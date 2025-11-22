@@ -1,0 +1,1236 @@
+{
+  "timestamp": "2025-11-22T14:15:34.498Z",
+  "scenarios": [
+    {
+      "scenario": "CRUD API Implementation",
+      "id": "crud-api",
+      "complexity": "medium",
+      "taskCount": 9,
+      "traditional": {
+        "name": "Traditional Sequential: CRUD API Implementation",
+        "totalDuration": 5552,
+        "totalDurationSec": "5.55",
+        "totalTasks": 9,
+        "completedTasks": 9,
+        "successfulTasks": 9,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "1.62",
+        "avgTaskDuration": "616.22",
+        "maxConcurrency": 1,
+        "memoryUsedMB": "0.84",
+        "peakMemoryMB": "6.52",
+        "taskTimings": [
+          {
+            "taskId": "crud-api_Create_User_model/schema",
+            "startTime": 1763820934506,
+            "endTime": 1763820935107,
+            "duration": 601,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_POST_/users_endpoint",
+            "startTime": 1763820935107,
+            "endTime": 1763820935706,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_GET_/users_endpoint",
+            "startTime": 1763820935707,
+            "endTime": 1763820936306,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_GET_/users/:id_endpoint",
+            "startTime": 1763820936307,
+            "endTime": 1763820936907,
+            "duration": 600,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_PUT_/users/:id_endpoint",
+            "startTime": 1763820936908,
+            "endTime": 1763820937508,
+            "duration": 600,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_DELETE_/users/:id_endpoint",
+            "startTime": 1763820937508,
+            "endTime": 1763820938107,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Add_input_validation",
+            "startTime": 1763820938108,
+            "endTime": 1763820938858,
+            "duration": 750,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Add_error_handling",
+            "startTime": 1763820938858,
+            "endTime": 1763820939307,
+            "duration": 449,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Write_unit_tests",
+            "startTime": 1763820939308,
+            "endTime": 1763820940057,
+            "duration": 749,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": [
+          {
+            "label": "Create User model/schema",
+            "timestamp": 1763820935107,
+            "heapUsed": 5230360,
+            "heapTotal": 7442432,
+            "rss": 146259968,
+            "external": 1626213
+          },
+          {
+            "label": "Implement POST /users endpoint",
+            "timestamp": 1763820935707,
+            "heapUsed": 5596848,
+            "heapTotal": 9539584,
+            "rss": 148357120,
+            "external": 1626213
+          },
+          {
+            "label": "Implement GET /users endpoint",
+            "timestamp": 1763820936307,
+            "heapUsed": 5055152,
+            "heapTotal": 9801728,
+            "rss": 148619264,
+            "external": 1626213
+          },
+          {
+            "label": "Implement GET /users/:id endpoint",
+            "timestamp": 1763820936907,
+            "heapUsed": 6015696,
+            "heapTotal": 9801728,
+            "rss": 148713472,
+            "external": 1626213
+          },
+          {
+            "label": "Implement PUT /users/:id endpoint",
+            "timestamp": 1763820937508,
+            "heapUsed": 5626992,
+            "heapTotal": 10063872,
+            "rss": 148975616,
+            "external": 1626213
+          },
+          {
+            "label": "Implement DELETE /users/:id endpoint",
+            "timestamp": 1763820938108,
+            "heapUsed": 6150104,
+            "heapTotal": 10063872,
+            "rss": 148975616,
+            "external": 1626213
+          },
+          {
+            "label": "Add input validation",
+            "timestamp": 1763820938858,
+            "heapUsed": 5514864,
+            "heapTotal": 10326016,
+            "rss": 149237760,
+            "external": 1626213
+          },
+          {
+            "label": "Add error handling",
+            "timestamp": 1763820939308,
+            "heapUsed": 6832752,
+            "heapTotal": 10326016,
+            "rss": 149237760,
+            "external": 1626213
+          },
+          {
+            "label": "Write unit tests",
+            "timestamp": 1763820940058,
+            "heapUsed": 5931120,
+            "heapTotal": 10588160,
+            "rss": 149499904,
+            "external": 1626213
+          }
+        ]
+      },
+      "swarm": {
+        "name": "Swarm Concurrent: CRUD API Implementation",
+        "totalDuration": 1064,
+        "totalDurationSec": "1.06",
+        "totalTasks": 9,
+        "completedTasks": 9,
+        "successfulTasks": 9,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "8.46",
+        "avgTaskDuration": "590.11",
+        "maxConcurrency": 5,
+        "memoryUsedMB": "1.33",
+        "peakMemoryMB": "1.33",
+        "taskTimings": [
+          {
+            "taskId": "crud-api_Create_User_model/schema",
+            "startTime": 1763820942064,
+            "endTime": 1763820942668,
+            "duration": 604,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_POST_/users_endpoint",
+            "startTime": 1763820942064,
+            "endTime": 1763820942905,
+            "duration": 841,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_GET_/users_endpoint",
+            "startTime": 1763820942064,
+            "endTime": 1763820942754,
+            "duration": 690,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_GET_/users/:id_endpoint",
+            "startTime": 1763820942064,
+            "endTime": 1763820943126,
+            "duration": 1062,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_PUT_/users/:id_endpoint",
+            "startTime": 1763820942064,
+            "endTime": 1763820942975,
+            "duration": 911,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_DELETE_/users/:id_endpoint",
+            "startTime": 1763820942669,
+            "endTime": 1763820943126,
+            "duration": 457,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Add_input_validation",
+            "startTime": 1763820942754,
+            "endTime": 1763820943126,
+            "duration": 372,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Add_error_handling",
+            "startTime": 1763820942905,
+            "endTime": 1763820943127,
+            "duration": 222,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Write_unit_tests",
+            "startTime": 1763820942975,
+            "endTime": 1763820943127,
+            "duration": 152,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": []
+      },
+      "comparison": {
+        "speedImprovement": "80.84%",
+        "speedImprovementValue": 80.84,
+        "throughputImprovement": "422.22%",
+        "throughputImprovementValue": 422.22,
+        "timeSaved": "4.49s",
+        "timeSavedMs": 4488,
+        "memoryDifference": "-5.19MB",
+        "memoryDifferenceValue": -5.1899999999999995,
+        "concurrencyAdvantage": 5,
+        "winner": "swarm"
+      }
+    },
+    {
+      "scenario": "Data Processing Pipeline",
+      "id": "data-processing",
+      "complexity": "medium",
+      "taskCount": 8,
+      "traditional": {
+        "name": "Traditional Sequential: Data Processing Pipeline",
+        "totalDuration": 4801,
+        "totalDurationSec": "4.80",
+        "totalTasks": 8,
+        "completedTasks": 8,
+        "successfulTasks": 8,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "1.67",
+        "avgTaskDuration": "599.63",
+        "maxConcurrency": 1,
+        "memoryUsedMB": "1.27",
+        "peakMemoryMB": "10.25",
+        "taskTimings": [
+          {
+            "taskId": "data-processing_Create_data_reader_module",
+            "startTime": 1763820943147,
+            "endTime": 1763820943747,
+            "duration": 600,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Implement_data_validation",
+            "startTime": 1763820943748,
+            "endTime": 1763820944498,
+            "duration": 750,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Create_transformation_functions",
+            "startTime": 1763820944498,
+            "endTime": 1763820945097,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Implement_aggregation_logic",
+            "startTime": 1763820945097,
+            "endTime": 1763820945696,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Add_filtering_capabilities",
+            "startTime": 1763820945697,
+            "endTime": 1763820946147,
+            "duration": 450,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Create_output_formatter",
+            "startTime": 1763820946147,
+            "endTime": 1763820946747,
+            "duration": 600,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Add_error_handling",
+            "startTime": 1763820946747,
+            "endTime": 1763820947197,
+            "duration": 450,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Write_unit_tests",
+            "startTime": 1763820947197,
+            "endTime": 1763820947946,
+            "duration": 749,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": [
+          {
+            "label": "Create data reader module",
+            "timestamp": 1763820943748,
+            "heapUsed": 9352816,
+            "heapTotal": 16879616,
+            "rss": 156868608,
+            "external": 1626213
+          },
+          {
+            "label": "Implement data validation",
+            "timestamp": 1763820944498,
+            "heapUsed": 9910080,
+            "heapTotal": 17141760,
+            "rss": 157130752,
+            "external": 1626213
+          },
+          {
+            "label": "Create transformation functions",
+            "timestamp": 1763820945097,
+            "heapUsed": 7968184,
+            "heapTotal": 17403904,
+            "rss": 157392896,
+            "external": 1626213
+          },
+          {
+            "label": "Implement aggregation logic",
+            "timestamp": 1763820945697,
+            "heapUsed": 9625376,
+            "heapTotal": 17403904,
+            "rss": 157392896,
+            "external": 1626213
+          },
+          {
+            "label": "Add filtering capabilities",
+            "timestamp": 1763820946147,
+            "heapUsed": 9408160,
+            "heapTotal": 17666048,
+            "rss": 157655040,
+            "external": 1626213
+          },
+          {
+            "label": "Create output formatter",
+            "timestamp": 1763820946747,
+            "heapUsed": 7985672,
+            "heapTotal": 17666048,
+            "rss": 157655040,
+            "external": 1626213
+          },
+          {
+            "label": "Add error handling",
+            "timestamp": 1763820947197,
+            "heapUsed": 10748432,
+            "heapTotal": 17928192,
+            "rss": 157917184,
+            "external": 1626213
+          },
+          {
+            "label": "Write unit tests",
+            "timestamp": 1763820947947,
+            "heapUsed": 8911968,
+            "heapTotal": 26316800,
+            "rss": 166305792,
+            "external": 1626213
+          }
+        ]
+      },
+      "swarm": {
+        "name": "Swarm Concurrent: Data Processing Pipeline",
+        "totalDuration": 920,
+        "totalDurationSec": "0.92",
+        "totalTasks": 8,
+        "completedTasks": 8,
+        "successfulTasks": 8,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "8.70",
+        "avgTaskDuration": "574.25",
+        "maxConcurrency": 5,
+        "memoryUsedMB": "-0.07",
+        "peakMemoryMB": "-0.07",
+        "taskTimings": [
+          {
+            "taskId": "data-processing_Create_data_reader_module",
+            "startTime": 1763820949950,
+            "endTime": 1763820950564,
+            "duration": 614,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Implement_data_validation",
+            "startTime": 1763820949951,
+            "endTime": 1763820950649,
+            "duration": 698,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Create_transformation_functions",
+            "startTime": 1763820949951,
+            "endTime": 1763820950719,
+            "duration": 768,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Implement_aggregation_logic",
+            "startTime": 1763820949951,
+            "endTime": 1763820950870,
+            "duration": 919,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Add_filtering_capabilities",
+            "startTime": 1763820949951,
+            "endTime": 1763820950869,
+            "duration": 918,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Create_output_formatter",
+            "startTime": 1763820950565,
+            "endTime": 1763820950870,
+            "duration": 305,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Add_error_handling",
+            "startTime": 1763820950649,
+            "endTime": 1763820950870,
+            "duration": 221,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Write_unit_tests",
+            "startTime": 1763820950719,
+            "endTime": 1763820950870,
+            "duration": 151,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": []
+      },
+      "comparison": {
+        "speedImprovement": "80.84%",
+        "speedImprovementValue": 80.84,
+        "throughputImprovement": "420.96%",
+        "throughputImprovementValue": 420.96,
+        "timeSaved": "3.88s",
+        "timeSavedMs": 3881,
+        "memoryDifference": "-10.32MB",
+        "memoryDifferenceValue": -10.32,
+        "concurrencyAdvantage": 5,
+        "winner": "swarm"
+      }
+    },
+    {
+      "scenario": "Authentication System",
+      "id": "auth-system",
+      "complexity": "high",
+      "taskCount": 9,
+      "traditional": {
+        "name": "Traditional Sequential: Authentication System",
+        "totalDuration": 4952,
+        "totalDurationSec": "4.95",
+        "totalTasks": 9,
+        "completedTasks": 9,
+        "successfulTasks": 9,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "1.82",
+        "avgTaskDuration": "549.67",
+        "maxConcurrency": 1,
+        "memoryUsedMB": "3.04",
+        "peakMemoryMB": "11.66",
+        "taskTimings": [
+          {
+            "taskId": "auth-system_Set_up_JWT_configuration",
+            "startTime": 1763820950887,
+            "endTime": 1763820951187,
+            "duration": 300,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Implement_user_registration",
+            "startTime": 1763820951187,
+            "endTime": 1763820951787,
+            "duration": 600,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Implement_login_endpoint",
+            "startTime": 1763820951787,
+            "endTime": 1763820952387,
+            "duration": 600,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Implement_token_generation",
+            "startTime": 1763820952388,
+            "endTime": 1763820952987,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Implement_token_refresh",
+            "startTime": 1763820952987,
+            "endTime": 1763820953587,
+            "duration": 600,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Add_password_hashing",
+            "startTime": 1763820953587,
+            "endTime": 1763820954037,
+            "duration": 450,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Create_authentication_middleware",
+            "startTime": 1763820954037,
+            "endTime": 1763820954637,
+            "duration": 600,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Add_rate_limiting",
+            "startTime": 1763820954638,
+            "endTime": 1763820955087,
+            "duration": 449,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Write_unit_tests",
+            "startTime": 1763820955088,
+            "endTime": 1763820955837,
+            "duration": 749,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": [
+          {
+            "label": "Set up JWT configuration",
+            "timestamp": 1763820951187,
+            "heapUsed": 10138240,
+            "heapTotal": 27365376,
+            "rss": 167473152,
+            "external": 1626173
+          },
+          {
+            "label": "Implement user registration",
+            "timestamp": 1763820951787,
+            "heapUsed": 6632784,
+            "heapTotal": 27627520,
+            "rss": 167735296,
+            "external": 1626173
+          },
+          {
+            "label": "Implement login endpoint",
+            "timestamp": 1763820952388,
+            "heapUsed": 5548928,
+            "heapTotal": 27627520,
+            "rss": 167735296,
+            "external": 1626173
+          },
+          {
+            "label": "Implement token generation",
+            "timestamp": 1763820952987,
+            "heapUsed": 9507448,
+            "heapTotal": 27889664,
+            "rss": 167997440,
+            "external": 1626173
+          },
+          {
+            "label": "Implement token refresh",
+            "timestamp": 1763820953587,
+            "heapUsed": 10460848,
+            "heapTotal": 27889664,
+            "rss": 167997440,
+            "external": 1626173
+          },
+          {
+            "label": "Add password hashing",
+            "timestamp": 1763820954037,
+            "heapUsed": 11846504,
+            "heapTotal": 28151808,
+            "rss": 168259584,
+            "external": 1626173
+          },
+          {
+            "label": "Create authentication middleware",
+            "timestamp": 1763820954637,
+            "heapUsed": 12106376,
+            "heapTotal": 28151808,
+            "rss": 168259584,
+            "external": 1626173
+          },
+          {
+            "label": "Add rate limiting",
+            "timestamp": 1763820955088,
+            "heapUsed": 6169136,
+            "heapTotal": 28413952,
+            "rss": 168521728,
+            "external": 1626173
+          },
+          {
+            "label": "Write unit tests",
+            "timestamp": 1763820955838,
+            "heapUsed": 12223088,
+            "heapTotal": 28413952,
+            "rss": 168521728,
+            "external": 1626173
+          }
+        ]
+      },
+      "swarm": {
+        "name": "Swarm Concurrent: Authentication System",
+        "totalDuration": 1059,
+        "totalDurationSec": "1.06",
+        "totalTasks": 9,
+        "completedTasks": 9,
+        "successfulTasks": 9,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "8.50",
+        "avgTaskDuration": "582.67",
+        "maxConcurrency": 5,
+        "memoryUsedMB": "-2.73",
+        "peakMemoryMB": "-2.73",
+        "taskTimings": [
+          {
+            "taskId": "auth-system_Set_up_JWT_configuration",
+            "startTime": 1763820957845,
+            "endTime": 1763820958439,
+            "duration": 594,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Implement_user_registration",
+            "startTime": 1763820957845,
+            "endTime": 1763820958659,
+            "duration": 814,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Implement_login_endpoint",
+            "startTime": 1763820957845,
+            "endTime": 1763820958729,
+            "duration": 884,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Implement_token_generation",
+            "startTime": 1763820957845,
+            "endTime": 1763820958879,
+            "duration": 1034,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Implement_token_refresh",
+            "startTime": 1763820957845,
+            "endTime": 1763820958539,
+            "duration": 694,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Add_password_hashing",
+            "startTime": 1763820958439,
+            "endTime": 1763820958899,
+            "duration": 460,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Create_authentication_middleware",
+            "startTime": 1763820958539,
+            "endTime": 1763820958900,
+            "duration": 361,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Add_rate_limiting",
+            "startTime": 1763820958659,
+            "endTime": 1763820958900,
+            "duration": 241,
+            "success": true
+          },
+          {
+            "taskId": "auth-system_Write_unit_tests",
+            "startTime": 1763820958729,
+            "endTime": 1763820958891,
+            "duration": 162,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": []
+      },
+      "comparison": {
+        "speedImprovement": "78.61%",
+        "speedImprovementValue": 78.61,
+        "throughputImprovement": "367.03%",
+        "throughputImprovementValue": 367.03,
+        "timeSaved": "3.89s",
+        "timeSavedMs": 3893,
+        "memoryDifference": "-14.39MB",
+        "memoryDifferenceValue": -14.39,
+        "concurrencyAdvantage": 5,
+        "winner": "swarm"
+      }
+    },
+    {
+      "scenario": "Task Scheduler",
+      "id": "task-scheduler",
+      "complexity": "high",
+      "taskCount": 9,
+      "traditional": {
+        "name": "Traditional Sequential: Task Scheduler",
+        "totalDuration": 5101,
+        "totalDurationSec": "5.10",
+        "totalTasks": 9,
+        "completedTasks": 9,
+        "successfulTasks": 9,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "1.76",
+        "avgTaskDuration": "566.00",
+        "maxConcurrency": 1,
+        "memoryUsedMB": "0.82",
+        "peakMemoryMB": "18.70",
+        "taskTimings": [
+          {
+            "taskId": "task-scheduler_Create_task_queue_data_structure",
+            "startTime": 1763820958921,
+            "endTime": 1763820959520,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Implement_priority_queue",
+            "startTime": 1763820959520,
+            "endTime": 1763820960119,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Add_cron_parser",
+            "startTime": 1763820960120,
+            "endTime": 1763820960569,
+            "duration": 449,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Create_scheduler_engine",
+            "startTime": 1763820960570,
+            "endTime": 1763820961170,
+            "duration": 600,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Implement_task_execution",
+            "startTime": 1763820961170,
+            "endTime": 1763820961769,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Add_retry_mechanism",
+            "startTime": 1763820961770,
+            "endTime": 1763820962219,
+            "duration": 449,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Create_monitoring_interface",
+            "startTime": 1763820962220,
+            "endTime": 1763820962819,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Add_logging",
+            "startTime": 1763820962820,
+            "endTime": 1763820963271,
+            "duration": 451,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Write_unit_tests",
+            "startTime": 1763820963271,
+            "endTime": 1763820964020,
+            "duration": 749,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": [
+          {
+            "label": "Create task queue data structure",
+            "timestamp": 1763820959520,
+            "heapUsed": 14156408,
+            "heapTotal": 29724672,
+            "rss": 169918464,
+            "external": 1626173
+          },
+          {
+            "label": "Implement priority queue",
+            "timestamp": 1763820960119,
+            "heapUsed": 8461784,
+            "heapTotal": 29986816,
+            "rss": 170180608,
+            "external": 1626173
+          },
+          {
+            "label": "Add cron parser",
+            "timestamp": 1763820960570,
+            "heapUsed": 11107032,
+            "heapTotal": 29986816,
+            "rss": 170180608,
+            "external": 1626173
+          },
+          {
+            "label": "Create scheduler engine",
+            "timestamp": 1763820961170,
+            "heapUsed": 10000752,
+            "heapTotal": 30248960,
+            "rss": 170442752,
+            "external": 1626173
+          },
+          {
+            "label": "Implement task execution",
+            "timestamp": 1763820961770,
+            "heapUsed": 10322656,
+            "heapTotal": 30248960,
+            "rss": 170442752,
+            "external": 1626173
+          },
+          {
+            "label": "Add retry mechanism",
+            "timestamp": 1763820962220,
+            "heapUsed": 11474320,
+            "heapTotal": 30511104,
+            "rss": 170704896,
+            "external": 1626173
+          },
+          {
+            "label": "Create monitoring interface",
+            "timestamp": 1763820962820,
+            "heapUsed": 19612144,
+            "heapTotal": 47288320,
+            "rss": 187482112,
+            "external": 1626173
+          },
+          {
+            "label": "Add logging",
+            "timestamp": 1763820963271,
+            "heapUsed": 9959024,
+            "heapTotal": 47550464,
+            "rss": 187744256,
+            "external": 1626173
+          },
+          {
+            "label": "Write unit tests",
+            "timestamp": 1763820964021,
+            "heapUsed": 10411048,
+            "heapTotal": 47550464,
+            "rss": 187744256,
+            "external": 1626173
+          }
+        ]
+      },
+      "swarm": {
+        "name": "Swarm Concurrent: Task Scheduler",
+        "totalDuration": 1007,
+        "totalDurationSec": "1.01",
+        "totalTasks": 9,
+        "completedTasks": 9,
+        "successfulTasks": 9,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "8.94",
+        "avgTaskDuration": "556.33",
+        "maxConcurrency": 5,
+        "memoryUsedMB": "8.56",
+        "peakMemoryMB": "8.56",
+        "taskTimings": [
+          {
+            "taskId": "task-scheduler_Create_task_queue_data_structure",
+            "startTime": 1763820966025,
+            "endTime": 1763820966709,
+            "duration": 684,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Implement_priority_queue",
+            "startTime": 1763820966025,
+            "endTime": 1763820966793,
+            "duration": 768,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Add_cron_parser",
+            "startTime": 1763820966025,
+            "endTime": 1763820966863,
+            "duration": 838,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Create_scheduler_engine",
+            "startTime": 1763820966025,
+            "endTime": 1763820967013,
+            "duration": 988,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Implement_task_execution",
+            "startTime": 1763820966025,
+            "endTime": 1763820966639,
+            "duration": 614,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Add_retry_mechanism",
+            "startTime": 1763820966639,
+            "endTime": 1763820967032,
+            "duration": 393,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Create_monitoring_interface",
+            "startTime": 1763820966709,
+            "endTime": 1763820967032,
+            "duration": 323,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Add_logging",
+            "startTime": 1763820966793,
+            "endTime": 1763820967032,
+            "duration": 239,
+            "success": true
+          },
+          {
+            "taskId": "task-scheduler_Write_unit_tests",
+            "startTime": 1763820966863,
+            "endTime": 1763820967023,
+            "duration": 160,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": []
+      },
+      "comparison": {
+        "speedImprovement": "80.26%",
+        "speedImprovementValue": 80.26,
+        "throughputImprovement": "407.95%",
+        "throughputImprovementValue": 407.95,
+        "timeSaved": "4.09s",
+        "timeSavedMs": 4094,
+        "memoryDifference": "-10.14MB",
+        "memoryDifferenceValue": -10.139999999999999,
+        "concurrencyAdvantage": 5,
+        "winner": "swarm"
+      }
+    },
+    {
+      "scenario": "Caching Layer",
+      "id": "cache-layer",
+      "complexity": "medium",
+      "taskCount": 8,
+      "traditional": {
+        "name": "Traditional Sequential: Caching Layer",
+        "totalDuration": 4497,
+        "totalDurationSec": "4.50",
+        "totalTasks": 8,
+        "completedTasks": 8,
+        "successfulTasks": 8,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "1.78",
+        "avgTaskDuration": "561.75",
+        "maxConcurrency": 1,
+        "memoryUsedMB": "-3.13",
+        "peakMemoryMB": "19.74",
+        "taskTimings": [
+          {
+            "taskId": "cache-layer_Create_cache_interface",
+            "startTime": 1763820967050,
+            "endTime": 1763820967649,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Implement_in-memory_cache",
+            "startTime": 1763820967649,
+            "endTime": 1763820968248,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Add_TTL_support",
+            "startTime": 1763820968248,
+            "endTime": 1763820968697,
+            "duration": 449,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Implement_LRU_eviction",
+            "startTime": 1763820968698,
+            "endTime": 1763820969297,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Add_cache_statistics",
+            "startTime": 1763820969297,
+            "endTime": 1763820969746,
+            "duration": 449,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Create_cache_warming",
+            "startTime": 1763820969747,
+            "endTime": 1763820970347,
+            "duration": 600,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Add_serialization_support",
+            "startTime": 1763820970347,
+            "endTime": 1763820970797,
+            "duration": 450,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Write_unit_tests",
+            "startTime": 1763820970797,
+            "endTime": 1763820971546,
+            "duration": 749,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": [
+          {
+            "label": "Create cache interface",
+            "timestamp": 1763820967649,
+            "heapUsed": 16270872,
+            "heapTotal": 48599040,
+            "rss": 188854272,
+            "external": 1626173
+          },
+          {
+            "label": "Implement in-memory cache",
+            "timestamp": 1763820968248,
+            "heapUsed": 15930912,
+            "heapTotal": 48861184,
+            "rss": 189116416,
+            "external": 1626173
+          },
+          {
+            "label": "Add TTL support",
+            "timestamp": 1763820968698,
+            "heapUsed": 19807752,
+            "heapTotal": 48861184,
+            "rss": 189116416,
+            "external": 1626173
+          },
+          {
+            "label": "Implement LRU eviction",
+            "timestamp": 1763820969297,
+            "heapUsed": 20697568,
+            "heapTotal": 49123328,
+            "rss": 189378560,
+            "external": 1626173
+          },
+          {
+            "label": "Add cache statistics",
+            "timestamp": 1763820969747,
+            "heapUsed": 20684960,
+            "heapTotal": 49123328,
+            "rss": 189378560,
+            "external": 1626173
+          },
+          {
+            "label": "Create cache warming",
+            "timestamp": 1763820970347,
+            "heapUsed": 10557296,
+            "heapTotal": 49385472,
+            "rss": 189640704,
+            "external": 1626173
+          },
+          {
+            "label": "Add serialization support",
+            "timestamp": 1763820970797,
+            "heapUsed": 10679880,
+            "heapTotal": 49385472,
+            "rss": 189640704,
+            "external": 1626173
+          },
+          {
+            "label": "Write unit tests",
+            "timestamp": 1763820971547,
+            "heapUsed": 16297344,
+            "heapTotal": 49647616,
+            "rss": 189902848,
+            "external": 1626173
+          }
+        ]
+      },
+      "swarm": {
+        "name": "Swarm Concurrent: Caching Layer",
+        "totalDuration": 941,
+        "totalDurationSec": "0.94",
+        "totalTasks": 8,
+        "completedTasks": 8,
+        "successfulTasks": 8,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "8.50",
+        "avgTaskDuration": "584.50",
+        "maxConcurrency": 5,
+        "memoryUsedMB": "-0.84",
+        "peakMemoryMB": "-0.84",
+        "taskTimings": [
+          {
+            "taskId": "cache-layer_Create_cache_interface",
+            "startTime": 1763820973551,
+            "endTime": 1763820974258,
+            "duration": 707,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Implement_in-memory_cache",
+            "startTime": 1763820973551,
+            "endTime": 1763820974170,
+            "duration": 619,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Add_TTL_support",
+            "startTime": 1763820973551,
+            "endTime": 1763820974328,
+            "duration": 777,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Implement_LRU_eviction",
+            "startTime": 1763820973551,
+            "endTime": 1763820974478,
+            "duration": 927,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Add_cache_statistics",
+            "startTime": 1763820973551,
+            "endTime": 1763820974483,
+            "duration": 932,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Create_cache_warming",
+            "startTime": 1763820974170,
+            "endTime": 1763820974492,
+            "duration": 322,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Add_serialization_support",
+            "startTime": 1763820974258,
+            "endTime": 1763820974492,
+            "duration": 234,
+            "success": true
+          },
+          {
+            "taskId": "cache-layer_Write_unit_tests",
+            "startTime": 1763820974328,
+            "endTime": 1763820974486,
+            "duration": 158,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": []
+      },
+      "comparison": {
+        "speedImprovement": "79.07%",
+        "speedImprovementValue": 79.07,
+        "throughputImprovement": "377.53%",
+        "throughputImprovementValue": 377.53,
+        "timeSaved": "3.56s",
+        "timeSavedMs": 3556,
+        "memoryDifference": "-20.58MB",
+        "memoryDifferenceValue": -20.58,
+        "concurrencyAdvantage": 5,
+        "winner": "swarm"
+      }
+    }
+  ]
+}
