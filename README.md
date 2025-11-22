@@ -16,6 +16,9 @@ npm run benchmark:quick
 
 # Run full benchmark (5 scenarios, ~60 seconds)
 npm run benchmark
+
+# Run scalability benchmark (9 configurations, ~3 minutes)
+npm run benchmark:scalability
 ```
 
 ### Results Summary
@@ -28,9 +31,18 @@ npm run benchmark
 - 🔄 **5x concurrency** (5 agents vs sequential)
 - ✅ **100% success rate** across all scenarios
 
+**Scalability Analysis (2-50 agents tested):**
+
+- 🏆 **Optimal: 5 agents** - Fastest execution (1.48s), highest throughput (10.14 t/s)
+- 🎯 **Sweet Spot: 2-5 agents** - 100% utilization, best efficiency score
+- ⚠️ **Diminishing Returns: 10+ agents** - Performance plateaus, throughput drops
+- 🚫 **System Bottleneck: ~15 concurrent tasks** - Hard limit detected
+- 📉 **20+ agents: No benefit** - Same performance, 60-70% agents idle
+
 ### Documentation
 
 - **[ANALYSIS.md](./ANALYSIS.md)** - Comprehensive analysis of benchmark results
+- **[SCALABILITY-ANALYSIS.md](./SCALABILITY-ANALYSIS.md)** - Swarm scalability study (2-50 agents)
 - **[benchmark/README.md](./benchmark/README.md)** - Benchmark framework documentation
 - **[benchmark/results/](./benchmark/results/)** - Detailed results and reports
 

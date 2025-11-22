@@ -1,0 +1,447 @@
+{
+  "timestamp": "2025-11-22T14:25:28.784Z",
+  "system": {
+    "platform": "linux",
+    "cpus": 16,
+    "totalMemory": 13312,
+    "freeMemory": 12914,
+    "nodeVersion": "v22.21.1"
+  },
+  "tests": [
+    {
+      "config": {
+        "agents": 2,
+        "maxConcurrent": 4,
+        "description": "Minimal (2 agents)"
+      },
+      "performance": {
+        "totalDuration": 1540,
+        "totalDurationSec": "1.54",
+        "throughput": 9.74,
+        "avgTaskDuration": 306.47,
+        "maxConcurrency": 3,
+        "completedTasks": 15,
+        "successfulTasks": 15,
+        "failedTasks": 0
+      },
+      "resources": {
+        "memoryUsed": "1.88",
+        "heapTotal": "9.75",
+        "rss": "19.52",
+        "peakMemory": "1.70"
+      },
+      "efficiency": {
+        "agentUtilization": "100.00",
+        "tasksPerAgent": "5.00",
+        "speedVsBaseline": "-4.12"
+      },
+      "systemState": {
+        "freeMemoryBefore": 12893,
+        "freeMemoryAfter": 12893,
+        "loadAverage": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "config": {
+        "agents": 5,
+        "maxConcurrent": 6,
+        "description": "Baseline (5 agents)"
+      },
+      "performance": {
+        "totalDuration": 1479,
+        "totalDurationSec": "1.48",
+        "throughput": 10.14,
+        "avgTaskDuration": 591.13,
+        "maxConcurrency": 6,
+        "completedTasks": 15,
+        "successfulTasks": 15,
+        "failedTasks": 0
+      },
+      "resources": {
+        "memoryUsed": "-0.41",
+        "heapTotal": "9.75",
+        "rss": "9.83",
+        "peakMemory": "-0.54"
+      },
+      "efficiency": {
+        "agentUtilization": "100.00",
+        "tasksPerAgent": "2.50",
+        "speedVsBaseline": "0.00"
+      },
+      "systemState": {
+        "freeMemoryBefore": 12887,
+        "freeMemoryAfter": 12887,
+        "loadAverage": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "config": {
+        "agents": 10,
+        "maxConcurrent": 12,
+        "description": "Small Swarm (10 agents)"
+      },
+      "performance": {
+        "totalDuration": 1626,
+        "totalDurationSec": "1.63",
+        "throughput": 9.23,
+        "avgTaskDuration": 1190.53,
+        "maxConcurrency": 11,
+        "completedTasks": 15,
+        "successfulTasks": 15,
+        "failedTasks": 0
+      },
+      "resources": {
+        "memoryUsed": "7.04",
+        "heapTotal": "1.00",
+        "rss": "1.00",
+        "peakMemory": "6.91"
+      },
+      "efficiency": {
+        "agentUtilization": "100.00",
+        "tasksPerAgent": "1.36",
+        "speedVsBaseline": "-9.94"
+      },
+      "systemState": {
+        "freeMemoryBefore": 12888,
+        "freeMemoryAfter": 12888,
+        "loadAverage": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "config": {
+        "agents": 15,
+        "maxConcurrent": 18,
+        "description": "Medium Swarm (15 agents)"
+      },
+      "performance": {
+        "totalDuration": 1755,
+        "totalDurationSec": "1.75",
+        "throughput": 8.55,
+        "avgTaskDuration": 1754.13,
+        "maxConcurrency": 15,
+        "completedTasks": 15,
+        "successfulTasks": 15,
+        "failedTasks": 0
+      },
+      "resources": {
+        "memoryUsed": "7.36",
+        "heapTotal": "17.75",
+        "rss": "17.86",
+        "peakMemory": "7.23"
+      },
+      "efficiency": {
+        "agentUtilization": "93.75",
+        "tasksPerAgent": "0.94",
+        "speedVsBaseline": "-18.66"
+      },
+      "systemState": {
+        "freeMemoryBefore": 12873,
+        "freeMemoryAfter": 12873,
+        "loadAverage": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "config": {
+        "agents": 20,
+        "maxConcurrent": 24,
+        "description": "Large Swarm (20 agents)"
+      },
+      "performance": {
+        "totalDuration": 1757,
+        "totalDurationSec": "1.76",
+        "throughput": 8.54,
+        "avgTaskDuration": 1755.4,
+        "maxConcurrency": 15,
+        "completedTasks": 15,
+        "successfulTasks": 15,
+        "failedTasks": 0
+      },
+      "resources": {
+        "memoryUsed": "1.27",
+        "heapTotal": "2.25",
+        "rss": "2.31",
+        "peakMemory": "1.14"
+      },
+      "efficiency": {
+        "agentUtilization": "71.43",
+        "tasksPerAgent": "0.71",
+        "speedVsBaseline": "-18.80"
+      },
+      "systemState": {
+        "freeMemoryBefore": 12872,
+        "freeMemoryAfter": 12872,
+        "loadAverage": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "config": {
+        "agents": 25,
+        "maxConcurrent": 30,
+        "description": "Very Large Swarm (25 agents)"
+      },
+      "performance": {
+        "totalDuration": 1761,
+        "totalDurationSec": "1.76",
+        "throughput": 8.52,
+        "avgTaskDuration": 1756.93,
+        "maxConcurrency": 15,
+        "completedTasks": 15,
+        "successfulTasks": 15,
+        "failedTasks": 0
+      },
+      "resources": {
+        "memoryUsed": "-17.05",
+        "heapTotal": "-5.00",
+        "rss": "2.19",
+        "peakMemory": "-17.20"
+      },
+      "efficiency": {
+        "agentUtilization": "57.69",
+        "tasksPerAgent": "0.58",
+        "speedVsBaseline": "-19.07"
+      },
+      "systemState": {
+        "freeMemoryBefore": 12872,
+        "freeMemoryAfter": 12872,
+        "loadAverage": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "config": {
+        "agents": 30,
+        "maxConcurrent": 36,
+        "description": "Massive Swarm (30 agents)"
+      },
+      "performance": {
+        "totalDuration": 1756,
+        "totalDurationSec": "1.76",
+        "throughput": 8.54,
+        "avgTaskDuration": 1754.53,
+        "maxConcurrency": 15,
+        "completedTasks": 15,
+        "successfulTasks": 15,
+        "failedTasks": 0
+      },
+      "resources": {
+        "memoryUsed": "10.09",
+        "heapTotal": "1.75",
+        "rss": "0.00",
+        "peakMemory": "9.96"
+      },
+      "efficiency": {
+        "agentUtilization": "48.39",
+        "tasksPerAgent": "0.48",
+        "speedVsBaseline": "-18.73"
+      },
+      "systemState": {
+        "freeMemoryBefore": 12867,
+        "freeMemoryAfter": 12867,
+        "loadAverage": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "config": {
+        "agents": 40,
+        "maxConcurrent": 48,
+        "description": "Extreme Swarm (40 agents)"
+      },
+      "performance": {
+        "totalDuration": 1757,
+        "totalDurationSec": "1.76",
+        "throughput": 8.54,
+        "avgTaskDuration": 1755,
+        "maxConcurrency": 15,
+        "completedTasks": 15,
+        "successfulTasks": 15,
+        "failedTasks": 0
+      },
+      "resources": {
+        "memoryUsed": "2.42",
+        "heapTotal": "2.00",
+        "rss": "0.00",
+        "peakMemory": "2.28"
+      },
+      "efficiency": {
+        "agentUtilization": "36.59",
+        "tasksPerAgent": "0.37",
+        "speedVsBaseline": "-18.80"
+      },
+      "systemState": {
+        "freeMemoryBefore": 12867,
+        "freeMemoryAfter": 12867,
+        "loadAverage": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "config": {
+        "agents": 50,
+        "maxConcurrent": 60,
+        "description": "Maximum Test (50 agents)"
+      },
+      "performance": {
+        "totalDuration": 1756,
+        "totalDurationSec": "1.76",
+        "throughput": 8.54,
+        "avgTaskDuration": 1754.2,
+        "maxConcurrency": 15,
+        "completedTasks": 15,
+        "successfulTasks": 15,
+        "failedTasks": 0
+      },
+      "resources": {
+        "memoryUsed": "2.91",
+        "heapTotal": "2.00",
+        "rss": "0.02",
+        "peakMemory": "2.73"
+      },
+      "efficiency": {
+        "agentUtilization": "29.41",
+        "tasksPerAgent": "0.29",
+        "speedVsBaseline": "-18.73"
+      },
+      "systemState": {
+        "freeMemoryBefore": 12866,
+        "freeMemoryAfter": 12866,
+        "loadAverage": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "analysis": {
+    "optimal": {
+      "bestThroughput": {
+        "agents": 5,
+        "throughput": 10.14,
+        "duration": "1.48"
+      },
+      "fastest": {
+        "agents": 5,
+        "throughput": 10.14,
+        "duration": "1.48"
+      },
+      "mostEfficient": {
+        "agents": 2,
+        "efficiency": "3.25",
+        "throughput": 9.74
+      }
+    },
+    "sweetSpot": {
+      "agents": 2,
+      "throughput": 9.74,
+      "memoryUsed": "1.88",
+      "efficiencyScore": "1.7270",
+      "utilization": "100.00"
+    },
+    "limits": {
+      "diminishingReturns": {
+        "agentCount": 5,
+        "improvement": "4.11",
+        "message": "Adding more agents beyond 2 shows diminishing returns"
+      },
+      "bottleneck": {
+        "agentCount": 10,
+        "degradation": "-8.97",
+        "message": "Performance degrades with 10+ agents"
+      },
+      "lowUtilization": {
+        "agents": 30,
+        "utilization": "48.39",
+        "message": "Agent utilization drops below 50% at 30 agents"
+      },
+      "maxTested": 50,
+      "maxSuccessful": 50
+    },
+    "recommendations": [
+      {
+        "type": "optimal",
+        "priority": "high",
+        "title": "Optimal Configuration for Maximum Speed",
+        "config": {
+          "agents": 5,
+          "throughput": 10.14,
+          "duration": "1.48"
+        },
+        "reason": "Provides fastest execution time at 1.48s"
+      },
+      {
+        "type": "efficiency",
+        "priority": "high",
+        "title": "Efficiency Sweet Spot",
+        "config": {
+          "agents": 2,
+          "throughput": 9.74,
+          "memoryUsed": "1.88",
+          "efficiencyScore": "1.7270",
+          "utilization": "100.00"
+        },
+        "reason": "Best balance of speed, resource usage, and agent utilization at 100.00%"
+      },
+      {
+        "type": "warning",
+        "priority": "medium",
+        "title": "Diminishing Returns Threshold",
+        "config": {
+          "agentCount": 5,
+          "improvement": "4.11",
+          "message": "Adding more agents beyond 2 shows diminishing returns"
+        },
+        "reason": "Adding more agents beyond 2 shows diminishing returns"
+      },
+      {
+        "type": "critical",
+        "priority": "high",
+        "title": "Performance Bottleneck Detected",
+        "config": {
+          "agentCount": 10,
+          "degradation": "-8.97",
+          "message": "Performance degrades with 10+ agents"
+        },
+        "reason": "Performance degrades with 10+ agents"
+      },
+      {
+        "type": "general",
+        "priority": "medium",
+        "title": "Recommended for Most Use Cases",
+        "config": {
+          "agents": 2
+        },
+        "reason": "Provides excellent performance with reasonable resource usage"
+      }
+    ]
+  }
+}
