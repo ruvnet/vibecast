@@ -7,6 +7,8 @@ This branch contains a comprehensive benchmark comparing traditional sequential 
 
 ### Quick Start
 
+#### Running Benchmarks
+
 ```bash
 # Install dependencies
 npm install
@@ -19,6 +21,25 @@ npm run benchmark
 
 # Run scalability benchmark (9 configurations, ~3 minutes)
 npm run benchmark:scalability
+
+# Run enhanced features benchmark
+npm run benchmark:enhanced
+```
+
+#### Using Swarm Development (Claude Code Web)
+
+```bash
+# 1. Initialize swarm with optimal configuration
+npx claude-flow@alpha init --force
+
+# 2. Enable advanced features
+npx claude-flow@alpha agent booster enable
+npx claude-flow@alpha agent memory init
+
+# 3. Use the workflow templates:
+# - See docs/SWARM-DEVELOPMENT-PROMPT.md for complete guide
+# - See docs/SWARM-PROMPT-BRIEF.md for quick copy-paste
+# - See docs/SWARM-QUICK-REFERENCE.md for commands reference
 ```
 
 ### Results Summary
@@ -41,10 +62,17 @@ npm run benchmark:scalability
 
 ### Documentation
 
+#### Analysis & Research
 - **[ANALYSIS.md](./ANALYSIS.md)** - Comprehensive analysis of benchmark results
 - **[SCALABILITY-ANALYSIS.md](./SCALABILITY-ANALYSIS.md)** - Swarm scalability study (2-50 agents)
+- **[ADVANCED-FEATURES-ANALYSIS.md](./ADVANCED-FEATURES-ANALYSIS.md)** - Agent Booster, ReasoningBank, AgentDB analysis
 - **[benchmark/README.md](./benchmark/README.md)** - Benchmark framework documentation
 - **[benchmark/results/](./benchmark/results/)** - Detailed results and reports
+
+#### Practical Usage Guides
+- **[docs/SWARM-DEVELOPMENT-PROMPT.md](./docs/SWARM-DEVELOPMENT-PROMPT.md)** - Complete workflow template for Claude Code Web
+- **[docs/SWARM-PROMPT-BRIEF.md](./docs/SWARM-PROMPT-BRIEF.md)** - Copy-paste ready brief version
+- **[docs/SWARM-QUICK-REFERENCE.md](./docs/SWARM-QUICK-REFERENCE.md)** - Quick reference card
 
 ### Technologies
 
