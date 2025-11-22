@@ -1,0 +1,3833 @@
+
+> vibecast@1.0.0 benchmark:scalability
+> node benchmark/scalability-benchmark.js
+
+╔═══════════════════════════════════════════════════════════════╗
+║          SWARM SCALABILITY BENCHMARK                          ║
+║          Finding Optimal Agent Configuration                  ║
+╚═══════════════════════════════════════════════════════════════╝
+
+System Information:
+  • Platform: linux
+  • CPUs: 16 cores
+  • Total Memory: 13312 MB
+  • Free Memory: 12914 MB
+  • Node.js: v22.21.1
+
+Test Scenario: Scalability Test Scenario
+Tasks: 15
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TESTING: Minimal (2 agents)
+  Agents: 2 | Max Concurrent: 4
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+🚀 Starting Swarm Concurrent Execution: Scalability Test Scenario
+Tasks: 15
+Agents: 0
+Max Concurrent: 4
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 3 agents (1 queen, 2 workers)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking started
+⚡ [queen] Starting: Initialize core module
+⚡ [worker_0] Starting: Set up configuration
+⚡ [worker_1] Starting: Create data models
+✅ [queen] Completed: Initialize core module (280ms)
+⚡ [queen] Starting: Implement business logic
+✅ [worker_0] Completed: Set up configuration (200ms)
+⚡ [worker_0] Starting: Add validation layer
+✅ [worker_1] Completed: Create data models (120ms)
+⚡ [worker_1] Starting: Create API endpoints
+✅ [queen] Completed: Implement business logic (120ms)
+⚡ [queen] Starting: Add error handling
+✅ [worker_1] Completed: Create API endpoints (84ms)
+⚡ [worker_1] Starting: Implement logging
+✅ [worker_0] Completed: Add validation layer (150ms)
+⚡ [worker_0] Starting: Write unit tests
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add error handling',
+  '{"taskName":"Add error handling","agentId":"queen","duration":70,"knowledgeUsed":1,"linesOfCode":56}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add error handling","timestamp":1763821529551}',
+  1763821529551,
+  1763821529551,
+  1763821529551,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at async ConcurrentExecutor.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:265:22) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Add error handling (70ms)
+⚡ [queen] Starting: Add integration tests
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_0","duration":150,"knowledgeUsed":0,"linesOfCode":73}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763821529785}',
+  1763821529785,
+  1763821529785,
+  1763821529785,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at async ConcurrentExecutor.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:265:22) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Write unit tests (150ms)
+⚡ [worker_0] Starting: Create documentation
+✅ [worker_1] Completed: Implement logging (84ms)
+⚡ [worker_1] Starting: Add performance monitoring
+✅ [queen] Completed: Add integration tests (105ms)
+⚡ [queen] Starting: Implement caching
+✅ [worker_0] Completed: Create documentation (84ms)
+⚡ [worker_0] Starting: Add rate limiting
+✅ [worker_1] Completed: Add performance monitoring (70ms)
+⚡ [worker_1] Starting: Create health checks
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add rate limiting',
+  '{"taskName":"Add rate limiting","agentId":"worker_0","duration":70,"knowledgeUsed":4,"linesOfCode":56}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add rate limiting","timestamp":1763821530234}',
+  1763821530234,
+  1763821530234,
+  1763821530234,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at async ConcurrentExecutor.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:265:22) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Add rate limiting (70ms)
+✅ [queen] Completed: Implement caching (84ms)
+✅ [worker_1] Completed: Create health checks (84ms)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 50
+  - Reasoning Entries: 50
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 13
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 15
+  - Cache Size: 15
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: Scalability Test Scenario
+============================================================
+Total Duration: 1.54s
+Total Tasks: 15
+Completed: 15
+Successful: 15
+Failed: 0
+Error Rate: 0.00%
+Throughput: 9.74 tasks/sec
+Avg Task Duration: 306.47ms
+Max Concurrency: 3
+Memory Used: 1.70MB
+Peak Memory: 1.70MB
+============================================================
+
+
+📊 Test Results:
+  ⚡ Duration: 1.54s
+  🚀 Throughput: 9.74 tasks/sec
+  🔄 Max Concurrency: 3
+  📈 Agent Utilization: 100.00%
+  💾 Memory Used: 1.88 MB
+  📊 Tasks/Agent: 5.00
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TESTING: Baseline (5 agents)
+  Agents: 5 | Max Concurrent: 6
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+🚀 Starting Swarm Concurrent Execution: Scalability Test Scenario
+Tasks: 15
+Agents: 0
+Max Concurrent: 6
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 6 agents (1 queen, 5 workers)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking started
+⚡ [queen] Starting: Initialize core module
+⚡ [worker_0] Starting: Set up configuration
+⚡ [worker_1] Starting: Create data models
+⚡ [worker_2] Starting: Implement business logic
+⚡ [worker_3] Starting: Add validation layer
+⚡ [worker_4] Starting: Create API endpoints
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Initialize core module',
+  '{"taskName":"Initialize core module","agentId":"queen","duration":670,"knowledgeUsed":0,"linesOfCode":124}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Initialize core module","timestamp":1763821534038}',
+  1763821534038,
+  1763821534038,
+  1763821534038,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Initialize core module (670ms)
+⚡ [queen] Starting: Add error handling
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add validation layer',
+  '{"taskName":"Add validation layer","agentId":"worker_3","duration":270,"knowledgeUsed":0,"linesOfCode":57}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add validation layer","timestamp":1763821534039}',
+  1763821534039,
+  1763821534039,
+  1763821534039,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Add validation layer (270ms)
+⚡ [worker_3] Starting: Implement logging
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create API endpoints',
+  '{"taskName":"Create API endpoints","agentId":"worker_4","duration":120,"knowledgeUsed":0,"linesOfCode":141}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create API endpoints","timestamp":1763821534039}',
+  1763821534039,
+  1763821534039,
+  1763821534039,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_4] Completed: Create API endpoints (120ms)
+⚡ [worker_4] Starting: Write unit tests
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Set up configuration',
+  '{"taskName":"Set up configuration","agentId":"worker_0","duration":590,"knowledgeUsed":0,"linesOfCode":143}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Set up configuration","timestamp":1763821534038}',
+  1763821534038,
+  1763821534038,
+  1763821534038,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Set up configuration (590ms)
+⚡ [worker_0] Starting: Add integration tests
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create data models',
+  '{"taskName":"Create data models","agentId":"worker_1","duration":510,"knowledgeUsed":0,"linesOfCode":113}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create data models","timestamp":1763821534038}',
+  1763821534038,
+  1763821534038,
+  1763821534038,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Create data models (510ms)
+⚡ [worker_1] Starting: Create documentation
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement business logic',
+  '{"taskName":"Implement business logic","agentId":"worker_2","duration":390,"knowledgeUsed":0,"linesOfCode":55}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement business logic","timestamp":1763821534038}',
+  1763821534038,
+  1763821534038,
+  1763821534038,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_2] Completed: Implement business logic (390ms)
+⚡ [worker_2] Starting: Add performance monitoring
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add error handling',
+  '{"taskName":"Add error handling","agentId":"queen","duration":70,"knowledgeUsed":1,"linesOfCode":58}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add error handling","timestamp":1763821534110}',
+  1763821534110,
+  1763821534110,
+  1763821534110,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Add error handling (70ms)
+⚡ [queen] Starting: Implement caching
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement logging',
+  '{"taskName":"Implement logging","agentId":"worker_3","duration":84,"knowledgeUsed":1,"linesOfCode":136}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement logging","timestamp":1763821534195}',
+  1763821534195,
+  1763821534195,
+  1763821534195,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Implement logging (84ms)
+⚡ [worker_3] Starting: Add rate limiting
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_4","duration":150,"knowledgeUsed":0,"linesOfCode":126}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763821534345}',
+  1763821534345,
+  1763821534345,
+  1763821534345,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_4] Completed: Write unit tests (150ms)
+⚡ [worker_4] Starting: Create health checks
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add performance monitoring',
+  '{"taskName":"Add performance monitoring","agentId":"worker_2","duration":70,"knowledgeUsed":3,"linesOfCode":102}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add performance monitoring","timestamp":1763821534605}',
+  1763821534605,
+  1763821534605,
+  1763821534605,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_2] Completed: Add performance monitoring (70ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create documentation',
+  '{"taskName":"Create documentation","agentId":"worker_1","duration":84,"knowledgeUsed":2,"linesOfCode":126}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create documentation","timestamp":1763821534534}',
+  1763821534534,
+  1763821534534,
+  1763821534534,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Create documentation (84ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add integration tests',
+  '{"taskName":"Add integration tests","agentId":"worker_0","duration":105,"knowledgeUsed":2,"linesOfCode":149}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add integration tests","timestamp":1763821534450}',
+  1763821534450,
+  1763821534450,
+  1763821534450,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Add integration tests (105ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement caching',
+  '{"taskName":"Implement caching","agentId":"queen","duration":84,"knowledgeUsed":2,"linesOfCode":101}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement caching","timestamp":1763821534691}',
+  1763821534691,
+  1763821534691,
+  1763821534691,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Implement caching (84ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add rate limiting',
+  '{"taskName":"Add rate limiting","agentId":"worker_3","duration":70,"knowledgeUsed":4,"linesOfCode":126}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add rate limiting","timestamp":1763821534761}',
+  1763821534761,
+  1763821534761,
+  1763821534761,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Add rate limiting (70ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create health checks',
+  '{"taskName":"Create health checks","agentId":"worker_4","duration":84,"knowledgeUsed":3,"linesOfCode":112}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create health checks","timestamp":1763821534845}',
+  1763821534845,
+  1763821534845,
+  1763821534845,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_4] Completed: Create health checks (84ms)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 50
+  - Reasoning Entries: 50
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 14
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 15
+  - Cache Size: 15
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: Scalability Test Scenario
+============================================================
+Total Duration: 1.48s
+Total Tasks: 15
+Completed: 15
+Successful: 15
+Failed: 0
+Error Rate: 0.00%
+Throughput: 10.14 tasks/sec
+Avg Task Duration: 591.13ms
+Max Concurrency: 6
+Memory Used: -0.54MB
+Peak Memory: -0.54MB
+============================================================
+
+
+📊 Test Results:
+  ⚡ Duration: 1.48s
+  🚀 Throughput: 10.14 tasks/sec
+  🔄 Max Concurrency: 6
+  📈 Agent Utilization: 100.00%
+  💾 Memory Used: -0.41 MB
+  📊 Tasks/Agent: 2.50
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TESTING: Small Swarm (10 agents)
+  Agents: 10 | Max Concurrent: 12
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+🚀 Starting Swarm Concurrent Execution: Scalability Test Scenario
+Tasks: 15
+Agents: 0
+Max Concurrent: 12
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 11 agents (1 queen, 10 workers)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking started
+⚡ [queen] Starting: Initialize core module
+⚡ [worker_0] Starting: Set up configuration
+⚡ [worker_1] Starting: Create data models
+⚡ [worker_2] Starting: Implement business logic
+⚡ [worker_3] Starting: Add validation layer
+⚡ [worker_4] Starting: Create API endpoints
+⚡ [worker_5] Starting: Add error handling
+⚡ [worker_6] Starting: Implement logging
+⚡ [worker_7] Starting: Write unit tests
+⚡ [worker_8] Starting: Add integration tests
+⚡ [worker_9] Starting: Create documentation
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Initialize core module',
+  '{"taskName":"Initialize core module","agentId":"queen","duration":1310,"knowledgeUsed":0,"linesOfCode":119}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Initialize core module","timestamp":1763821539184}',
+  1763821539184,
+  1763821539184,
+  1763821539184,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Initialize core module (1310ms)
+⚡ [queen] Starting: Add performance monitoring
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add validation layer',
+  '{"taskName":"Add validation layer","agentId":"worker_3","duration":910,"knowledgeUsed":0,"linesOfCode":79}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add validation layer","timestamp":1763821539185}',
+  1763821539185,
+  1763821539185,
+  1763821539185,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Add validation layer (910ms)
+⚡ [worker_3] Starting: Implement caching
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_7","duration":420,"knowledgeUsed":0,"linesOfCode":133}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763821539185}',
+  1763821539185,
+  1763821539185,
+  1763821539185,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_7] Completed: Write unit tests (420ms)
+⚡ [worker_7] Starting: Add rate limiting
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add integration tests',
+  '{"taskName":"Add integration tests","agentId":"worker_8","duration":270,"knowledgeUsed":0,"linesOfCode":83}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add integration tests","timestamp":1763821539185}',
+  1763821539185,
+  1763821539185,
+  1763821539185,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_8] Completed: Add integration tests (270ms)
+⚡ [worker_8] Starting: Create health checks
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create documentation',
+  '{"taskName":"Create documentation","agentId":"worker_9","duration":120,"knowledgeUsed":0,"linesOfCode":102}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create documentation","timestamp":1763821539185}',
+  1763821539185,
+  1763821539185,
+  1763821539185,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_9] Completed: Create documentation (120ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Set up configuration',
+  '{"taskName":"Set up configuration","agentId":"worker_0","duration":1230,"knowledgeUsed":0,"linesOfCode":79}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Set up configuration","timestamp":1763821539184}',
+  1763821539184,
+  1763821539184,
+  1763821539184,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Set up configuration (1230ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create data models',
+  '{"taskName":"Create data models","agentId":"worker_1","duration":1150,"knowledgeUsed":0,"linesOfCode":68}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create data models","timestamp":1763821539184}',
+  1763821539184,
+  1763821539184,
+  1763821539184,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Create data models (1150ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement business logic',
+  '{"taskName":"Implement business logic","agentId":"worker_2","duration":1030,"knowledgeUsed":0,"linesOfCode":91}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement business logic","timestamp":1763821539184}',
+  1763821539184,
+  1763821539184,
+  1763821539184,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_2] Completed: Implement business logic (1030ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create API endpoints',
+  '{"taskName":"Create API endpoints","agentId":"worker_4","duration":760,"knowledgeUsed":0,"linesOfCode":56}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create API endpoints","timestamp":1763821539185}',
+  1763821539185,
+  1763821539185,
+  1763821539185,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_4] Completed: Create API endpoints (760ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add error handling',
+  '{"taskName":"Add error handling","agentId":"worker_5","duration":640,"knowledgeUsed":0,"linesOfCode":93}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add error handling","timestamp":1763821539185}',
+  1763821539185,
+  1763821539185,
+  1763821539185,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_5] Completed: Add error handling (640ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement logging',
+  '{"taskName":"Implement logging","agentId":"worker_6","duration":540,"knowledgeUsed":0,"linesOfCode":63}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement logging","timestamp":1763821539185}',
+  1763821539185,
+  1763821539185,
+  1763821539185,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_6] Completed: Implement logging (540ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add performance monitoring',
+  '{"taskName":"Add performance monitoring","agentId":"queen","duration":70,"knowledgeUsed":3,"linesOfCode":78}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add performance monitoring","timestamp":1763821539257}',
+  1763821539257,
+  1763821539257,
+  1763821539257,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Add performance monitoring (70ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement caching',
+  '{"taskName":"Implement caching","agentId":"worker_3","duration":84,"knowledgeUsed":2,"linesOfCode":148}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement caching","timestamp":1763821539342}',
+  1763821539342,
+  1763821539342,
+  1763821539342,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Implement caching (84ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create health checks',
+  '{"taskName":"Create health checks","agentId":"worker_8","duration":84,"knowledgeUsed":3,"linesOfCode":86}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create health checks","timestamp":1763821539496}',
+  1763821539496,
+  1763821539496,
+  1763821539496,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_8] Completed: Create health checks (84ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add rate limiting',
+  '{"taskName":"Add rate limiting","agentId":"worker_7","duration":70,"knowledgeUsed":4,"linesOfCode":119}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add rate limiting","timestamp":1763821539412}',
+  1763821539412,
+  1763821539412,
+  1763821539412,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_7] Completed: Add rate limiting (70ms)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 50
+  - Reasoning Entries: 50
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 15
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 15
+  - Cache Size: 15
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: Scalability Test Scenario
+============================================================
+Total Duration: 1.63s
+Total Tasks: 15
+Completed: 15
+Successful: 15
+Failed: 0
+Error Rate: 0.00%
+Throughput: 9.23 tasks/sec
+Avg Task Duration: 1190.53ms
+Max Concurrency: 11
+Memory Used: 6.91MB
+Peak Memory: 6.91MB
+============================================================
+
+
+📊 Test Results:
+  ⚡ Duration: 1.63s
+  🚀 Throughput: 9.23 tasks/sec
+  🔄 Max Concurrency: 11
+  📈 Agent Utilization: 100.00%
+  💾 Memory Used: 7.04 MB
+  📊 Tasks/Agent: 1.36
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TESTING: Medium Swarm (15 agents)
+  Agents: 15 | Max Concurrent: 18
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+🚀 Starting Swarm Concurrent Execution: Scalability Test Scenario
+Tasks: 15
+Agents: 0
+Max Concurrent: 18
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 16 agents (1 queen, 15 workers)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking started
+⚡ [queen] Starting: Initialize core module
+⚡ [worker_0] Starting: Set up configuration
+⚡ [worker_1] Starting: Create data models
+⚡ [worker_2] Starting: Implement business logic
+⚡ [worker_3] Starting: Add validation layer
+⚡ [worker_4] Starting: Create API endpoints
+⚡ [worker_5] Starting: Add error handling
+⚡ [worker_6] Starting: Implement logging
+⚡ [worker_7] Starting: Write unit tests
+⚡ [worker_8] Starting: Add integration tests
+⚡ [worker_9] Starting: Create documentation
+⚡ [worker_10] Starting: Add performance monitoring
+⚡ [worker_11] Starting: Implement caching
+⚡ [worker_12] Starting: Add rate limiting
+⚡ [worker_13] Starting: Create health checks
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add validation layer',
+  '{"taskName":"Add validation layer","agentId":"worker_3","duration":1350,"knowledgeUsed":0,"linesOfCode":133}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add validation layer","timestamp":1763821544272}',
+  1763821544272,
+  1763821544272,
+  1763821544272,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Add validation layer (1350ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add error handling',
+  '{"taskName":"Add error handling","agentId":"worker_5","duration":1080,"knowledgeUsed":0,"linesOfCode":79}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add error handling","timestamp":1763821544272}',
+  1763821544272,
+  1763821544272,
+  1763821544272,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_5] Completed: Add error handling (1080ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement logging',
+  '{"taskName":"Implement logging","agentId":"worker_6","duration":980,"knowledgeUsed":0,"linesOfCode":51}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement logging","timestamp":1763821544273}',
+  1763821544273,
+  1763821544273,
+  1763821544273,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_6] Completed: Implement logging (980ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement business logic',
+  '{"taskName":"Implement business logic","agentId":"worker_2","duration":1470,"knowledgeUsed":0,"linesOfCode":74}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement business logic","timestamp":1763821544272}',
+  1763821544272,
+  1763821544272,
+  1763821544272,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_2] Completed: Implement business logic (1470ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create documentation',
+  '{"taskName":"Create documentation","agentId":"worker_9","duration":560,"knowledgeUsed":0,"linesOfCode":88}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create documentation","timestamp":1763821544273}',
+  1763821544273,
+  1763821544273,
+  1763821544273,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_9] Completed: Create documentation (560ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add performance monitoring',
+  '{"taskName":"Add performance monitoring","agentId":"worker_10","duration":440,"knowledgeUsed":0,"linesOfCode":148}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add performance monitoring","timestamp":1763821544273}',
+  1763821544273,
+  1763821544273,
+  1763821544273,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_10] Completed: Add performance monitoring (440ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement caching',
+  '{"taskName":"Implement caching","agentId":"worker_11","duration":340,"knowledgeUsed":0,"linesOfCode":95}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement caching","timestamp":1763821544273}',
+  1763821544273,
+  1763821544273,
+  1763821544273,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_11] Completed: Implement caching (340ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add rate limiting',
+  '{"taskName":"Add rate limiting","agentId":"worker_12","duration":220,"knowledgeUsed":0,"linesOfCode":95}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add rate limiting","timestamp":1763821544273}',
+  1763821544273,
+  1763821544273,
+  1763821544273,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_12] Completed: Add rate limiting (220ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create health checks',
+  '{"taskName":"Create health checks","agentId":"worker_13","duration":120,"knowledgeUsed":0,"linesOfCode":53}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create health checks","timestamp":1763821544273}',
+  1763821544273,
+  1763821544273,
+  1763821544273,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_13] Completed: Create health checks (120ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add integration tests',
+  '{"taskName":"Add integration tests","agentId":"worker_8","duration":710,"knowledgeUsed":0,"linesOfCode":97}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add integration tests","timestamp":1763821544273}',
+  1763821544273,
+  1763821544273,
+  1763821544273,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_8] Completed: Add integration tests (710ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Set up configuration',
+  '{"taskName":"Set up configuration","agentId":"worker_0","duration":1670,"knowledgeUsed":0,"linesOfCode":56}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Set up configuration","timestamp":1763821544272}',
+  1763821544272,
+  1763821544272,
+  1763821544272,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Set up configuration (1670ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create API endpoints',
+  '{"taskName":"Create API endpoints","agentId":"worker_4","duration":1200,"knowledgeUsed":0,"linesOfCode":137}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create API endpoints","timestamp":1763821544272}',
+  1763821544272,
+  1763821544272,
+  1763821544272,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_4] Completed: Create API endpoints (1200ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Initialize core module',
+  '{"taskName":"Initialize core module","agentId":"queen","duration":1750,"knowledgeUsed":0,"linesOfCode":126}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Initialize core module","timestamp":1763821544272}',
+  1763821544272,
+  1763821544272,
+  1763821544272,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Initialize core module (1750ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_7","duration":860,"knowledgeUsed":0,"linesOfCode":96}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763821544273}',
+  1763821544273,
+  1763821544273,
+  1763821544273,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_7] Completed: Write unit tests (860ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create data models',
+  '{"taskName":"Create data models","agentId":"worker_1","duration":1590,"knowledgeUsed":0,"linesOfCode":112}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create data models","timestamp":1763821544272}',
+  1763821544272,
+  1763821544272,
+  1763821544272,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Create data models (1590ms)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 50
+  - Reasoning Entries: 50
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 16
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 15
+  - Cache Size: 15
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: Scalability Test Scenario
+============================================================
+Total Duration: 1.75s
+Total Tasks: 15
+Completed: 15
+Successful: 15
+Failed: 0
+Error Rate: 0.00%
+Throughput: 8.55 tasks/sec
+Avg Task Duration: 1754.13ms
+Max Concurrency: 15
+Memory Used: 7.23MB
+Peak Memory: 7.23MB
+============================================================
+
+
+📊 Test Results:
+  ⚡ Duration: 1.75s
+  🚀 Throughput: 8.55 tasks/sec
+  🔄 Max Concurrency: 15
+  📈 Agent Utilization: 93.75%
+  💾 Memory Used: 7.36 MB
+  📊 Tasks/Agent: 0.94
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TESTING: Large Swarm (20 agents)
+  Agents: 20 | Max Concurrent: 24
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+🚀 Starting Swarm Concurrent Execution: Scalability Test Scenario
+Tasks: 15
+Agents: 0
+Max Concurrent: 24
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 21 agents (1 queen, 20 workers)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking started
+⚡ [queen] Starting: Initialize core module
+⚡ [worker_0] Starting: Set up configuration
+⚡ [worker_1] Starting: Create data models
+⚡ [worker_2] Starting: Implement business logic
+⚡ [worker_3] Starting: Add validation layer
+⚡ [worker_4] Starting: Create API endpoints
+⚡ [worker_5] Starting: Add error handling
+⚡ [worker_6] Starting: Implement logging
+⚡ [worker_7] Starting: Write unit tests
+⚡ [worker_8] Starting: Add integration tests
+⚡ [worker_9] Starting: Create documentation
+⚡ [worker_10] Starting: Add performance monitoring
+⚡ [worker_11] Starting: Implement caching
+⚡ [worker_12] Starting: Add rate limiting
+⚡ [worker_13] Starting: Create health checks
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Initialize core module',
+  '{"taskName":"Initialize core module","agentId":"queen","duration":1750,"knowledgeUsed":0,"linesOfCode":95}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Initialize core module","timestamp":1763821549053}',
+  1763821549053,
+  1763821549053,
+  1763821549053,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Initialize core module (1750ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add error handling',
+  '{"taskName":"Add error handling","agentId":"worker_5","duration":1080,"knowledgeUsed":0,"linesOfCode":121}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add error handling","timestamp":1763821549054}',
+  1763821549054,
+  1763821549054,
+  1763821549054,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_5] Completed: Add error handling (1080ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement logging',
+  '{"taskName":"Implement logging","agentId":"worker_6","duration":980,"knowledgeUsed":0,"linesOfCode":53}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement logging","timestamp":1763821549054}',
+  1763821549054,
+  1763821549054,
+  1763821549054,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_6] Completed: Implement logging (980ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create data models',
+  '{"taskName":"Create data models","agentId":"worker_1","duration":1590,"knowledgeUsed":0,"linesOfCode":68}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create data models","timestamp":1763821549053}',
+  1763821549053,
+  1763821549053,
+  1763821549053,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Create data models (1590ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create documentation',
+  '{"taskName":"Create documentation","agentId":"worker_9","duration":560,"knowledgeUsed":0,"linesOfCode":91}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create documentation","timestamp":1763821549054}',
+  1763821549054,
+  1763821549054,
+  1763821549054,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_9] Completed: Create documentation (560ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement business logic',
+  '{"taskName":"Implement business logic","agentId":"worker_2","duration":1470,"knowledgeUsed":0,"linesOfCode":138}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement business logic","timestamp":1763821549053}',
+  1763821549053,
+  1763821549053,
+  1763821549053,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_2] Completed: Implement business logic (1470ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add performance monitoring',
+  '{"taskName":"Add performance monitoring","agentId":"worker_10","duration":440,"knowledgeUsed":0,"linesOfCode":105}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add performance monitoring","timestamp":1763821549054}',
+  1763821549054,
+  1763821549054,
+  1763821549054,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_10] Completed: Add performance monitoring (440ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add integration tests',
+  '{"taskName":"Add integration tests","agentId":"worker_8","duration":710,"knowledgeUsed":0,"linesOfCode":120}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add integration tests","timestamp":1763821549054}',
+  1763821549054,
+  1763821549054,
+  1763821549054,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_8] Completed: Add integration tests (710ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_7","duration":860,"knowledgeUsed":0,"linesOfCode":69}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763821549054}',
+  1763821549054,
+  1763821549054,
+  1763821549054,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_7] Completed: Write unit tests (860ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create health checks',
+  '{"taskName":"Create health checks","agentId":"worker_13","duration":120,"knowledgeUsed":0,"linesOfCode":118}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create health checks","timestamp":1763821549054}',
+  1763821549054,
+  1763821549054,
+  1763821549054,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_13] Completed: Create health checks (120ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add rate limiting',
+  '{"taskName":"Add rate limiting","agentId":"worker_12","duration":220,"knowledgeUsed":0,"linesOfCode":94}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add rate limiting","timestamp":1763821549054}',
+  1763821549054,
+  1763821549054,
+  1763821549054,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_12] Completed: Add rate limiting (220ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create API endpoints',
+  '{"taskName":"Create API endpoints","agentId":"worker_4","duration":1200,"knowledgeUsed":0,"linesOfCode":73}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create API endpoints","timestamp":1763821549054}',
+  1763821549054,
+  1763821549054,
+  1763821549054,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_4] Completed: Create API endpoints (1200ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add validation layer',
+  '{"taskName":"Add validation layer","agentId":"worker_3","duration":1350,"knowledgeUsed":0,"linesOfCode":75}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add validation layer","timestamp":1763821549053}',
+  1763821549053,
+  1763821549053,
+  1763821549053,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Add validation layer (1350ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Set up configuration',
+  '{"taskName":"Set up configuration","agentId":"worker_0","duration":1670,"knowledgeUsed":0,"linesOfCode":133}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Set up configuration","timestamp":1763821549053}',
+  1763821549053,
+  1763821549053,
+  1763821549053,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Set up configuration (1670ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement caching',
+  '{"taskName":"Implement caching","agentId":"worker_11","duration":340,"knowledgeUsed":0,"linesOfCode":105}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement caching","timestamp":1763821549054}',
+  1763821549054,
+  1763821549054,
+  1763821549054,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_11] Completed: Implement caching (340ms)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 50
+  - Reasoning Entries: 50
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 17
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 15
+  - Cache Size: 15
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: Scalability Test Scenario
+============================================================
+Total Duration: 1.76s
+Total Tasks: 15
+Completed: 15
+Successful: 15
+Failed: 0
+Error Rate: 0.00%
+Throughput: 8.54 tasks/sec
+Avg Task Duration: 1755.40ms
+Max Concurrency: 15
+Memory Used: 1.14MB
+Peak Memory: 1.14MB
+============================================================
+
+
+📊 Test Results:
+  ⚡ Duration: 1.76s
+  🚀 Throughput: 8.54 tasks/sec
+  🔄 Max Concurrency: 15
+  📈 Agent Utilization: 71.43%
+  💾 Memory Used: 1.27 MB
+  📊 Tasks/Agent: 0.71
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TESTING: Very Large Swarm (25 agents)
+  Agents: 25 | Max Concurrent: 30
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+🚀 Starting Swarm Concurrent Execution: Scalability Test Scenario
+Tasks: 15
+Agents: 0
+Max Concurrent: 30
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 26 agents (1 queen, 25 workers)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking started
+⚡ [queen] Starting: Initialize core module
+⚡ [worker_0] Starting: Set up configuration
+⚡ [worker_1] Starting: Create data models
+⚡ [worker_2] Starting: Implement business logic
+⚡ [worker_3] Starting: Add validation layer
+⚡ [worker_4] Starting: Create API endpoints
+⚡ [worker_5] Starting: Add error handling
+⚡ [worker_6] Starting: Implement logging
+⚡ [worker_7] Starting: Write unit tests
+⚡ [worker_8] Starting: Add integration tests
+⚡ [worker_9] Starting: Create documentation
+⚡ [worker_10] Starting: Add performance monitoring
+⚡ [worker_11] Starting: Implement caching
+⚡ [worker_12] Starting: Add rate limiting
+⚡ [worker_13] Starting: Create health checks
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Initialize core module',
+  '{"taskName":"Initialize core module","agentId":"queen","duration":1750,"knowledgeUsed":0,"linesOfCode":124}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Initialize core module","timestamp":1763821553831}',
+  1763821553831,
+  1763821553831,
+  1763821553831,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Initialize core module (1750ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create API endpoints',
+  '{"taskName":"Create API endpoints","agentId":"worker_4","duration":1200,"knowledgeUsed":0,"linesOfCode":138}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create API endpoints","timestamp":1763821553832}',
+  1763821553832,
+  1763821553832,
+  1763821553832,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_4] Completed: Create API endpoints (1200ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add validation layer',
+  '{"taskName":"Add validation layer","agentId":"worker_3","duration":1350,"knowledgeUsed":0,"linesOfCode":66}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add validation layer","timestamp":1763821553832}',
+  1763821553832,
+  1763821553832,
+  1763821553832,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Add validation layer (1350ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create data models',
+  '{"taskName":"Create data models","agentId":"worker_1","duration":1590,"knowledgeUsed":0,"linesOfCode":149}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create data models","timestamp":1763821553831}',
+  1763821553831,
+  1763821553831,
+  1763821553831,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Create data models (1590ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_7","duration":860,"knowledgeUsed":0,"linesOfCode":72}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763821553832}',
+  1763821553832,
+  1763821553832,
+  1763821553832,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_7] Completed: Write unit tests (860ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement business logic',
+  '{"taskName":"Implement business logic","agentId":"worker_2","duration":1470,"knowledgeUsed":0,"linesOfCode":66}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement business logic","timestamp":1763821553831}',
+  1763821553831,
+  1763821553831,
+  1763821553831,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_2] Completed: Implement business logic (1470ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add performance monitoring',
+  '{"taskName":"Add performance monitoring","agentId":"worker_10","duration":440,"knowledgeUsed":0,"linesOfCode":133}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add performance monitoring","timestamp":1763821553832}',
+  1763821553832,
+  1763821553832,
+  1763821553832,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_10] Completed: Add performance monitoring (440ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement caching',
+  '{"taskName":"Implement caching","agentId":"worker_11","duration":340,"knowledgeUsed":0,"linesOfCode":71}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement caching","timestamp":1763821553832}',
+  1763821553832,
+  1763821553832,
+  1763821553832,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_11] Completed: Implement caching (340ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add rate limiting',
+  '{"taskName":"Add rate limiting","agentId":"worker_12","duration":220,"knowledgeUsed":0,"linesOfCode":77}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add rate limiting","timestamp":1763821553832}',
+  1763821553832,
+  1763821553832,
+  1763821553832,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_12] Completed: Add rate limiting (220ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add error handling',
+  '{"taskName":"Add error handling","agentId":"worker_5","duration":1080,"knowledgeUsed":0,"linesOfCode":117}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add error handling","timestamp":1763821553832}',
+  1763821553832,
+  1763821553832,
+  1763821553832,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_5] Completed: Add error handling (1080ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement logging',
+  '{"taskName":"Implement logging","agentId":"worker_6","duration":980,"knowledgeUsed":0,"linesOfCode":75}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement logging","timestamp":1763821553832}',
+  1763821553832,
+  1763821553832,
+  1763821553832,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_6] Completed: Implement logging (980ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create health checks',
+  '{"taskName":"Create health checks","agentId":"worker_13","duration":120,"knowledgeUsed":0,"linesOfCode":85}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create health checks","timestamp":1763821553832}',
+  1763821553832,
+  1763821553832,
+  1763821553832,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_13] Completed: Create health checks (120ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add integration tests',
+  '{"taskName":"Add integration tests","agentId":"worker_8","duration":710,"knowledgeUsed":0,"linesOfCode":104}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add integration tests","timestamp":1763821553832}',
+  1763821553832,
+  1763821553832,
+  1763821553832,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_8] Completed: Add integration tests (710ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create documentation',
+  '{"taskName":"Create documentation","agentId":"worker_9","duration":560,"knowledgeUsed":0,"linesOfCode":122}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create documentation","timestamp":1763821553832}',
+  1763821553832,
+  1763821553832,
+  1763821553832,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_9] Completed: Create documentation (560ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Set up configuration',
+  '{"taskName":"Set up configuration","agentId":"worker_0","duration":1670,"knowledgeUsed":0,"linesOfCode":128}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Set up configuration","timestamp":1763821553831}',
+  1763821553831,
+  1763821553831,
+  1763821553831,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Set up configuration (1670ms)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 50
+  - Reasoning Entries: 50
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 18
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 15
+  - Cache Size: 15
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: Scalability Test Scenario
+============================================================
+Total Duration: 1.76s
+Total Tasks: 15
+Completed: 15
+Successful: 15
+Failed: 0
+Error Rate: 0.00%
+Throughput: 8.52 tasks/sec
+Avg Task Duration: 1756.93ms
+Max Concurrency: 15
+Memory Used: -17.20MB
+Peak Memory: -17.20MB
+============================================================
+
+
+📊 Test Results:
+  ⚡ Duration: 1.76s
+  🚀 Throughput: 8.52 tasks/sec
+  🔄 Max Concurrency: 15
+  📈 Agent Utilization: 57.69%
+  💾 Memory Used: -17.05 MB
+  📊 Tasks/Agent: 0.58
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TESTING: Massive Swarm (30 agents)
+  Agents: 30 | Max Concurrent: 36
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+🚀 Starting Swarm Concurrent Execution: Scalability Test Scenario
+Tasks: 15
+Agents: 0
+Max Concurrent: 36
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 31 agents (1 queen, 30 workers)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking started
+⚡ [queen] Starting: Initialize core module
+⚡ [worker_0] Starting: Set up configuration
+⚡ [worker_1] Starting: Create data models
+⚡ [worker_2] Starting: Implement business logic
+⚡ [worker_3] Starting: Add validation layer
+⚡ [worker_4] Starting: Create API endpoints
+⚡ [worker_5] Starting: Add error handling
+⚡ [worker_6] Starting: Implement logging
+⚡ [worker_7] Starting: Write unit tests
+⚡ [worker_8] Starting: Add integration tests
+⚡ [worker_9] Starting: Create documentation
+⚡ [worker_10] Starting: Add performance monitoring
+⚡ [worker_11] Starting: Implement caching
+⚡ [worker_12] Starting: Add rate limiting
+⚡ [worker_13] Starting: Create health checks
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create API endpoints',
+  '{"taskName":"Create API endpoints","agentId":"worker_4","duration":1200,"knowledgeUsed":0,"linesOfCode":64}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create API endpoints","timestamp":1763821558614}',
+  1763821558614,
+  1763821558614,
+  1763821558614,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_4] Completed: Create API endpoints (1200ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Initialize core module',
+  '{"taskName":"Initialize core module","agentId":"queen","duration":1750,"knowledgeUsed":0,"linesOfCode":141}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Initialize core module","timestamp":1763821558613}',
+  1763821558613,
+  1763821558613,
+  1763821558613,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Initialize core module (1750ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_7","duration":860,"knowledgeUsed":0,"linesOfCode":119}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763821558614}',
+  1763821558614,
+  1763821558614,
+  1763821558614,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_7] Completed: Write unit tests (860ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Set up configuration',
+  '{"taskName":"Set up configuration","agentId":"worker_0","duration":1670,"knowledgeUsed":0,"linesOfCode":133}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Set up configuration","timestamp":1763821558613}',
+  1763821558613,
+  1763821558613,
+  1763821558613,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Set up configuration (1670ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add integration tests',
+  '{"taskName":"Add integration tests","agentId":"worker_8","duration":710,"knowledgeUsed":0,"linesOfCode":101}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add integration tests","timestamp":1763821558614}',
+  1763821558614,
+  1763821558614,
+  1763821558614,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_8] Completed: Add integration tests (710ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create data models',
+  '{"taskName":"Create data models","agentId":"worker_1","duration":1590,"knowledgeUsed":0,"linesOfCode":69}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create data models","timestamp":1763821558613}',
+  1763821558613,
+  1763821558613,
+  1763821558613,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Create data models (1590ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement business logic',
+  '{"taskName":"Implement business logic","agentId":"worker_2","duration":1470,"knowledgeUsed":0,"linesOfCode":76}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement business logic","timestamp":1763821558614}',
+  1763821558614,
+  1763821558614,
+  1763821558614,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_2] Completed: Implement business logic (1470ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add rate limiting',
+  '{"taskName":"Add rate limiting","agentId":"worker_12","duration":220,"knowledgeUsed":0,"linesOfCode":85}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add rate limiting","timestamp":1763821558614}',
+  1763821558614,
+  1763821558614,
+  1763821558614,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_12] Completed: Add rate limiting (220ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create documentation',
+  '{"taskName":"Create documentation","agentId":"worker_9","duration":560,"knowledgeUsed":0,"linesOfCode":127}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create documentation","timestamp":1763821558614}',
+  1763821558614,
+  1763821558614,
+  1763821558614,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_9] Completed: Create documentation (560ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement caching',
+  '{"taskName":"Implement caching","agentId":"worker_11","duration":340,"knowledgeUsed":0,"linesOfCode":119}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement caching","timestamp":1763821558614}',
+  1763821558614,
+  1763821558614,
+  1763821558614,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_11] Completed: Implement caching (340ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add performance monitoring',
+  '{"taskName":"Add performance monitoring","agentId":"worker_10","duration":440,"knowledgeUsed":0,"linesOfCode":134}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add performance monitoring","timestamp":1763821558614}',
+  1763821558614,
+  1763821558614,
+  1763821558614,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_10] Completed: Add performance monitoring (440ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement logging',
+  '{"taskName":"Implement logging","agentId":"worker_6","duration":980,"knowledgeUsed":0,"linesOfCode":95}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement logging","timestamp":1763821558614}',
+  1763821558614,
+  1763821558614,
+  1763821558614,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_6] Completed: Implement logging (980ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add validation layer',
+  '{"taskName":"Add validation layer","agentId":"worker_3","duration":1350,"knowledgeUsed":0,"linesOfCode":51}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add validation layer","timestamp":1763821558614}',
+  1763821558614,
+  1763821558614,
+  1763821558614,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Add validation layer (1350ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add error handling',
+  '{"taskName":"Add error handling","agentId":"worker_5","duration":1080,"knowledgeUsed":0,"linesOfCode":93}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add error handling","timestamp":1763821558614}',
+  1763821558614,
+  1763821558614,
+  1763821558614,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_5] Completed: Add error handling (1080ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create health checks',
+  '{"taskName":"Create health checks","agentId":"worker_13","duration":120,"knowledgeUsed":0,"linesOfCode":74}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create health checks","timestamp":1763821558614}',
+  1763821558614,
+  1763821558614,
+  1763821558614,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_13] Completed: Create health checks (120ms)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 50
+  - Reasoning Entries: 50
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 19
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 15
+  - Cache Size: 15
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: Scalability Test Scenario
+============================================================
+Total Duration: 1.76s
+Total Tasks: 15
+Completed: 15
+Successful: 15
+Failed: 0
+Error Rate: 0.00%
+Throughput: 8.54 tasks/sec
+Avg Task Duration: 1754.53ms
+Max Concurrency: 15
+Memory Used: 9.96MB
+Peak Memory: 9.96MB
+============================================================
+
+
+📊 Test Results:
+  ⚡ Duration: 1.76s
+  🚀 Throughput: 8.54 tasks/sec
+  🔄 Max Concurrency: 15
+  📈 Agent Utilization: 48.39%
+  💾 Memory Used: 10.09 MB
+  📊 Tasks/Agent: 0.48
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TESTING: Extreme Swarm (40 agents)
+  Agents: 40 | Max Concurrent: 48
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+🚀 Starting Swarm Concurrent Execution: Scalability Test Scenario
+Tasks: 15
+Agents: 0
+Max Concurrent: 48
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 41 agents (1 queen, 40 workers)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking started
+⚡ [queen] Starting: Initialize core module
+⚡ [worker_0] Starting: Set up configuration
+⚡ [worker_1] Starting: Create data models
+⚡ [worker_2] Starting: Implement business logic
+⚡ [worker_3] Starting: Add validation layer
+⚡ [worker_4] Starting: Create API endpoints
+⚡ [worker_5] Starting: Add error handling
+⚡ [worker_6] Starting: Implement logging
+⚡ [worker_7] Starting: Write unit tests
+⚡ [worker_8] Starting: Add integration tests
+⚡ [worker_9] Starting: Create documentation
+⚡ [worker_10] Starting: Add performance monitoring
+⚡ [worker_11] Starting: Implement caching
+⚡ [worker_12] Starting: Add rate limiting
+⚡ [worker_13] Starting: Create health checks
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Initialize core module',
+  '{"taskName":"Initialize core module","agentId":"queen","duration":1750,"knowledgeUsed":0,"linesOfCode":122}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Initialize core module","timestamp":1763821563392}',
+  1763821563392,
+  1763821563392,
+  1763821563392,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Initialize core module (1750ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create data models',
+  '{"taskName":"Create data models","agentId":"worker_1","duration":1590,"knowledgeUsed":0,"linesOfCode":97}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create data models","timestamp":1763821563392}',
+  1763821563392,
+  1763821563392,
+  1763821563392,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Create data models (1590ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Set up configuration',
+  '{"taskName":"Set up configuration","agentId":"worker_0","duration":1670,"knowledgeUsed":0,"linesOfCode":117}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Set up configuration","timestamp":1763821563392}',
+  1763821563392,
+  1763821563392,
+  1763821563392,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Set up configuration (1670ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_7","duration":860,"knowledgeUsed":0,"linesOfCode":98}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763821563393}',
+  1763821563393,
+  1763821563393,
+  1763821563393,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_7] Completed: Write unit tests (860ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add integration tests',
+  '{"taskName":"Add integration tests","agentId":"worker_8","duration":710,"knowledgeUsed":0,"linesOfCode":106}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add integration tests","timestamp":1763821563393}',
+  1763821563393,
+  1763821563393,
+  1763821563393,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_8] Completed: Add integration tests (710ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add validation layer',
+  '{"taskName":"Add validation layer","agentId":"worker_3","duration":1350,"knowledgeUsed":0,"linesOfCode":74}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add validation layer","timestamp":1763821563393}',
+  1763821563393,
+  1763821563393,
+  1763821563393,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Add validation layer (1350ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create documentation',
+  '{"taskName":"Create documentation","agentId":"worker_9","duration":560,"knowledgeUsed":0,"linesOfCode":146}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create documentation","timestamp":1763821563393}',
+  1763821563393,
+  1763821563393,
+  1763821563393,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_9] Completed: Create documentation (560ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement business logic',
+  '{"taskName":"Implement business logic","agentId":"worker_2","duration":1470,"knowledgeUsed":0,"linesOfCode":59}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement business logic","timestamp":1763821563392}',
+  1763821563392,
+  1763821563392,
+  1763821563392,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_2] Completed: Implement business logic (1470ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add error handling',
+  '{"taskName":"Add error handling","agentId":"worker_5","duration":1080,"knowledgeUsed":0,"linesOfCode":148}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add error handling","timestamp":1763821563393}',
+  1763821563393,
+  1763821563393,
+  1763821563393,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_5] Completed: Add error handling (1080ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create health checks',
+  '{"taskName":"Create health checks","agentId":"worker_13","duration":120,"knowledgeUsed":0,"linesOfCode":112}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create health checks","timestamp":1763821563393}',
+  1763821563393,
+  1763821563393,
+  1763821563393,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_13] Completed: Create health checks (120ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement caching',
+  '{"taskName":"Implement caching","agentId":"worker_11","duration":340,"knowledgeUsed":0,"linesOfCode":62}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement caching","timestamp":1763821563393}',
+  1763821563393,
+  1763821563393,
+  1763821563393,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_11] Completed: Implement caching (340ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create API endpoints',
+  '{"taskName":"Create API endpoints","agentId":"worker_4","duration":1200,"knowledgeUsed":0,"linesOfCode":135}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create API endpoints","timestamp":1763821563393}',
+  1763821563393,
+  1763821563393,
+  1763821563393,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_4] Completed: Create API endpoints (1200ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement logging',
+  '{"taskName":"Implement logging","agentId":"worker_6","duration":980,"knowledgeUsed":0,"linesOfCode":66}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement logging","timestamp":1763821563393}',
+  1763821563393,
+  1763821563393,
+  1763821563393,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_6] Completed: Implement logging (980ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add performance monitoring',
+  '{"taskName":"Add performance monitoring","agentId":"worker_10","duration":440,"knowledgeUsed":0,"linesOfCode":76}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add performance monitoring","timestamp":1763821563393}',
+  1763821563393,
+  1763821563393,
+  1763821563393,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_10] Completed: Add performance monitoring (440ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add rate limiting',
+  '{"taskName":"Add rate limiting","agentId":"worker_12","duration":220,"knowledgeUsed":0,"linesOfCode":111}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add rate limiting","timestamp":1763821563393}',
+  1763821563393,
+  1763821563393,
+  1763821563393,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_12] Completed: Add rate limiting (220ms)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 50
+  - Reasoning Entries: 50
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 20
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 15
+  - Cache Size: 15
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: Scalability Test Scenario
+============================================================
+Total Duration: 1.76s
+Total Tasks: 15
+Completed: 15
+Successful: 15
+Failed: 0
+Error Rate: 0.00%
+Throughput: 8.54 tasks/sec
+Avg Task Duration: 1755.00ms
+Max Concurrency: 15
+Memory Used: 2.28MB
+Peak Memory: 2.28MB
+============================================================
+
+
+📊 Test Results:
+  ⚡ Duration: 1.76s
+  🚀 Throughput: 8.54 tasks/sec
+  🔄 Max Concurrency: 15
+  📈 Agent Utilization: 36.59%
+  💾 Memory Used: 2.42 MB
+  📊 Tasks/Agent: 0.37
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  TESTING: Maximum Test (50 agents)
+  Agents: 50 | Max Concurrent: 60
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+🚀 Starting Swarm Concurrent Execution: Scalability Test Scenario
+Tasks: 15
+Agents: 0
+Max Concurrent: 60
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 51 agents (1 queen, 50 workers)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking started
+⚡ [queen] Starting: Initialize core module
+⚡ [worker_0] Starting: Set up configuration
+⚡ [worker_1] Starting: Create data models
+⚡ [worker_2] Starting: Implement business logic
+⚡ [worker_3] Starting: Add validation layer
+⚡ [worker_4] Starting: Create API endpoints
+⚡ [worker_5] Starting: Add error handling
+⚡ [worker_6] Starting: Implement logging
+⚡ [worker_7] Starting: Write unit tests
+⚡ [worker_8] Starting: Add integration tests
+⚡ [worker_9] Starting: Create documentation
+⚡ [worker_10] Starting: Add performance monitoring
+⚡ [worker_11] Starting: Implement caching
+⚡ [worker_12] Starting: Add rate limiting
+⚡ [worker_13] Starting: Create health checks
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add validation layer',
+  '{"taskName":"Add validation layer","agentId":"worker_3","duration":1350,"knowledgeUsed":0,"linesOfCode":62}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add validation layer","timestamp":1763821568171}',
+  1763821568171,
+  1763821568171,
+  1763821568171,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Add validation layer (1350ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Initialize core module',
+  '{"taskName":"Initialize core module","agentId":"queen","duration":1750,"knowledgeUsed":0,"linesOfCode":71}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Initialize core module","timestamp":1763821568171}',
+  1763821568171,
+  1763821568171,
+  1763821568171,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Initialize core module (1750ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create API endpoints',
+  '{"taskName":"Create API endpoints","agentId":"worker_4","duration":1200,"knowledgeUsed":0,"linesOfCode":62}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create API endpoints","timestamp":1763821568172}',
+  1763821568172,
+  1763821568172,
+  1763821568172,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_4] Completed: Create API endpoints (1200ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add integration tests',
+  '{"taskName":"Add integration tests","agentId":"worker_8","duration":710,"knowledgeUsed":0,"linesOfCode":59}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add integration tests","timestamp":1763821568172}',
+  1763821568172,
+  1763821568172,
+  1763821568172,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_8] Completed: Add integration tests (710ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create documentation',
+  '{"taskName":"Create documentation","agentId":"worker_9","duration":560,"knowledgeUsed":0,"linesOfCode":64}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create documentation","timestamp":1763821568172}',
+  1763821568172,
+  1763821568172,
+  1763821568172,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_9] Completed: Create documentation (560ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add performance monitoring',
+  '{"taskName":"Add performance monitoring","agentId":"worker_10","duration":440,"knowledgeUsed":0,"linesOfCode":122}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add performance monitoring","timestamp":1763821568172}',
+  1763821568172,
+  1763821568172,
+  1763821568172,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_10] Completed: Add performance monitoring (440ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement caching',
+  '{"taskName":"Implement caching","agentId":"worker_11","duration":340,"knowledgeUsed":0,"linesOfCode":147}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement caching","timestamp":1763821568172}',
+  1763821568172,
+  1763821568172,
+  1763821568172,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_11] Completed: Implement caching (340ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Set up configuration',
+  '{"taskName":"Set up configuration","agentId":"worker_0","duration":1670,"knowledgeUsed":0,"linesOfCode":64}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Set up configuration","timestamp":1763821568171}',
+  1763821568171,
+  1763821568171,
+  1763821568171,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Set up configuration (1670ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add rate limiting',
+  '{"taskName":"Add rate limiting","agentId":"worker_12","duration":220,"knowledgeUsed":0,"linesOfCode":142}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add rate limiting","timestamp":1763821568172}',
+  1763821568172,
+  1763821568172,
+  1763821568172,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_12] Completed: Add rate limiting (220ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create health checks',
+  '{"taskName":"Create health checks","agentId":"worker_13","duration":120,"knowledgeUsed":0,"linesOfCode":94}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create health checks","timestamp":1763821568172}',
+  1763821568172,
+  1763821568172,
+  1763821568172,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_13] Completed: Create health checks (120ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create data models',
+  '{"taskName":"Create data models","agentId":"worker_1","duration":1590,"knowledgeUsed":0,"linesOfCode":134}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create data models","timestamp":1763821568171}',
+  1763821568171,
+  1763821568171,
+  1763821568171,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Create data models (1590ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement business logic',
+  '{"taskName":"Implement business logic","agentId":"worker_2","duration":1470,"knowledgeUsed":0,"linesOfCode":138}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement business logic","timestamp":1763821568171}',
+  1763821568171,
+  1763821568171,
+  1763821568171,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_2] Completed: Implement business logic (1470ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add error handling',
+  '{"taskName":"Add error handling","agentId":"worker_5","duration":1080,"knowledgeUsed":0,"linesOfCode":99}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add error handling","timestamp":1763821568172}',
+  1763821568172,
+  1763821568172,
+  1763821568172,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_5] Completed: Add error handling (1080ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement logging',
+  '{"taskName":"Implement logging","agentId":"worker_6","duration":980,"knowledgeUsed":0,"linesOfCode":135}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement logging","timestamp":1763821568172}',
+  1763821568172,
+  1763821568172,
+  1763821568172,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_6] Completed: Implement logging (980ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_7","duration":860,"knowledgeUsed":0,"linesOfCode":84}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763821568172}',
+  1763821568172,
+  1763821568172,
+  1763821568172,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_7] Completed: Write unit tests (860ms)
+[Swarm Concurrent: Scalability Test Scenario] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 50
+  - Reasoning Entries: 50
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 21
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 15
+  - Cache Size: 15
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: Scalability Test Scenario
+============================================================
+Total Duration: 1.76s
+Total Tasks: 15
+Completed: 15
+Successful: 15
+Failed: 0
+Error Rate: 0.00%
+Throughput: 8.54 tasks/sec
+Avg Task Duration: 1754.20ms
+Max Concurrency: 15
+Memory Used: 2.73MB
+Peak Memory: 2.73MB
+============================================================
+
+
+📊 Test Results:
+  ⚡ Duration: 1.76s
+  🚀 Throughput: 8.54 tasks/sec
+  🔄 Max Concurrency: 15
+  📈 Agent Utilization: 29.41%
+  💾 Memory Used: 2.91 MB
+  📊 Tasks/Agent: 0.29
+
+
+══════════════════════════════════════════════════════════════════════
+                    SCALABILITY ANALYSIS
+══════════════════════════════════════════════════════════════════════
+
+🏆 Optimal Configurations:
+
+┌─────────────────────────────────────────────────────────────┐
+│ Fastest Execution                                           │
+├─────────────────────────────────────────────────────────────┤
+│ Agents: 5                                                   │
+│ Duration: 1.48s                                            │
+│ Throughput: 10.14 tasks/sec                                 │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ Efficiency Sweet Spot                                       │
+├─────────────────────────────────────────────────────────────┤
+│ Agents: 2                                                   │
+│ Efficiency Score: 1.7270                                    │
+│ Utilization: 100.00%                                       │
+└─────────────────────────────────────────────────────────────┘
+
+⚠️  Scaling Limits:
+
+  • Diminishing Returns: 5 agents
+    (4.11% improvement)
+
+  • Bottleneck: 10 agents
+    (-8.97% degradation)
+
+  • Low Utilization: 30 agents
+    (48.39% utilization)
+
+
+💡 Recommendations:
+
+🔴 Optimal Configuration for Maximum Speed
+   Provides fastest execution time at 1.48s
+
+🔴 Efficiency Sweet Spot
+   Best balance of speed, resource usage, and agent utilization at 100.00%
+
+🟡 Diminishing Returns Threshold
+   Adding more agents beyond 2 shows diminishing returns
+
+🔴 Performance Bottleneck Detected
+   Performance degrades with 10+ agents
+
+🟡 Recommended for Most Use Cases
+   Provides excellent performance with reasonable resource usage
+
+══════════════════════════════════════════════════════════════════════
+
+
+💾 Results saved to: /home/user/vibecast/benchmark/results/scalability-2025-11-22T14-26-11-198Z.json
+📄 Detailed report saved to: /home/user/vibecast/benchmark/results/scalability-report-2025-11-22T14-26-11-198Z.md
+
+✅ Scalability benchmark completed!
+

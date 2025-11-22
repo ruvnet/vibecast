@@ -1,0 +1,493 @@
+{
+  "timestamp": "2025-11-22T14:14:45.369Z",
+  "scenarios": [
+    {
+      "scenario": "CRUD API Implementation",
+      "id": "crud-api",
+      "complexity": "medium",
+      "taskCount": 9,
+      "traditional": {
+        "name": "Traditional Sequential: CRUD API Implementation",
+        "totalDuration": 5553,
+        "totalDurationSec": "5.55",
+        "totalTasks": 9,
+        "completedTasks": 9,
+        "successfulTasks": 9,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "1.62",
+        "avgTaskDuration": "616.33",
+        "maxConcurrency": 1,
+        "memoryUsedMB": "0.70",
+        "peakMemoryMB": "6.63",
+        "taskTimings": [
+          {
+            "taskId": "crud-api_Create_User_model/schema",
+            "startTime": 1763820885372,
+            "endTime": 1763820885973,
+            "duration": 601,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_POST_/users_endpoint",
+            "startTime": 1763820885974,
+            "endTime": 1763820886575,
+            "duration": 601,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_GET_/users_endpoint",
+            "startTime": 1763820886575,
+            "endTime": 1763820887174,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_GET_/users/:id_endpoint",
+            "startTime": 1763820887175,
+            "endTime": 1763820887774,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_PUT_/users/:id_endpoint",
+            "startTime": 1763820887775,
+            "endTime": 1763820888374,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_DELETE_/users/:id_endpoint",
+            "startTime": 1763820888375,
+            "endTime": 1763820888975,
+            "duration": 600,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Add_input_validation",
+            "startTime": 1763820888975,
+            "endTime": 1763820889724,
+            "duration": 749,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Add_error_handling",
+            "startTime": 1763820889725,
+            "endTime": 1763820890174,
+            "duration": 449,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Write_unit_tests",
+            "startTime": 1763820890175,
+            "endTime": 1763820890925,
+            "duration": 750,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": [
+          {
+            "label": "Create User model/schema",
+            "timestamp": 1763820885973,
+            "heapUsed": 4820600,
+            "heapTotal": 9539584,
+            "rss": 149344256,
+            "external": 1626213
+          },
+          {
+            "label": "Implement POST /users endpoint",
+            "timestamp": 1763820886575,
+            "heapUsed": 4942864,
+            "heapTotal": 9539584,
+            "rss": 149344256,
+            "external": 1626213
+          },
+          {
+            "label": "Implement GET /users endpoint",
+            "timestamp": 1763820887175,
+            "heapUsed": 5297000,
+            "heapTotal": 9801728,
+            "rss": 149606400,
+            "external": 1626213
+          },
+          {
+            "label": "Implement GET /users/:id endpoint",
+            "timestamp": 1763820887775,
+            "heapUsed": 5884784,
+            "heapTotal": 9801728,
+            "rss": 149606400,
+            "external": 1626213
+          },
+          {
+            "label": "Implement PUT /users/:id endpoint",
+            "timestamp": 1763820888375,
+            "heapUsed": 5277320,
+            "heapTotal": 10063872,
+            "rss": 149692416,
+            "external": 1626213
+          },
+          {
+            "label": "Implement DELETE /users/:id endpoint",
+            "timestamp": 1763820888975,
+            "heapUsed": 5400728,
+            "heapTotal": 10063872,
+            "rss": 149692416,
+            "external": 1626213
+          },
+          {
+            "label": "Add input validation",
+            "timestamp": 1763820889725,
+            "heapUsed": 6196200,
+            "heapTotal": 10326016,
+            "rss": 149954560,
+            "external": 1626213
+          },
+          {
+            "label": "Add error handling",
+            "timestamp": 1763820890175,
+            "heapUsed": 6948080,
+            "heapTotal": 10326016,
+            "rss": 149954560,
+            "external": 1626213
+          },
+          {
+            "label": "Write unit tests",
+            "timestamp": 1763820890925,
+            "heapUsed": 5808000,
+            "heapTotal": 10588160,
+            "rss": 150216704,
+            "external": 1626213
+          }
+        ]
+      },
+      "swarm": {
+        "name": "Swarm Concurrent: CRUD API Implementation",
+        "totalDuration": 1064,
+        "totalDurationSec": "1.06",
+        "totalTasks": 9,
+        "completedTasks": 9,
+        "successfulTasks": 9,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "8.46",
+        "avgTaskDuration": "589.89",
+        "maxConcurrency": 5,
+        "memoryUsedMB": "1.37",
+        "peakMemoryMB": "1.37",
+        "taskTimings": [
+          {
+            "taskId": "crud-api_Create_User_model/schema",
+            "startTime": 1763820892931,
+            "endTime": 1763820893535,
+            "duration": 604,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_POST_/users_endpoint",
+            "startTime": 1763820892931,
+            "endTime": 1763820893771,
+            "duration": 840,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_GET_/users_endpoint",
+            "startTime": 1763820892931,
+            "endTime": 1763820893621,
+            "duration": 690,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_GET_/users/:id_endpoint",
+            "startTime": 1763820892931,
+            "endTime": 1763820893992,
+            "duration": 1061,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_PUT_/users/:id_endpoint",
+            "startTime": 1763820892931,
+            "endTime": 1763820893842,
+            "duration": 911,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Implement_DELETE_/users/:id_endpoint",
+            "startTime": 1763820893535,
+            "endTime": 1763820893993,
+            "duration": 458,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Add_input_validation",
+            "startTime": 1763820893621,
+            "endTime": 1763820893993,
+            "duration": 372,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Add_error_handling",
+            "startTime": 1763820893772,
+            "endTime": 1763820893993,
+            "duration": 221,
+            "success": true
+          },
+          {
+            "taskId": "crud-api_Write_unit_tests",
+            "startTime": 1763820893842,
+            "endTime": 1763820893994,
+            "duration": 152,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": []
+      },
+      "comparison": {
+        "speedImprovement": "80.84%",
+        "speedImprovementValue": 80.84,
+        "throughputImprovement": "422.22%",
+        "throughputImprovementValue": 422.22,
+        "timeSaved": "4.49s",
+        "timeSavedMs": 4489,
+        "memoryDifference": "-5.26MB",
+        "memoryDifferenceValue": -5.26,
+        "concurrencyAdvantage": 5,
+        "winner": "swarm"
+      }
+    },
+    {
+      "scenario": "Data Processing Pipeline",
+      "id": "data-processing",
+      "complexity": "medium",
+      "taskCount": 8,
+      "traditional": {
+        "name": "Traditional Sequential: Data Processing Pipeline",
+        "totalDuration": 4798,
+        "totalDurationSec": "4.80",
+        "totalTasks": 8,
+        "completedTasks": 8,
+        "successfulTasks": 8,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "1.67",
+        "avgTaskDuration": "599.50",
+        "maxConcurrency": 1,
+        "memoryUsedMB": "1.64",
+        "peakMemoryMB": "10.58",
+        "taskTimings": [
+          {
+            "taskId": "data-processing_Create_data_reader_module",
+            "startTime": 1763820894012,
+            "endTime": 1763820894612,
+            "duration": 600,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Implement_data_validation",
+            "startTime": 1763820894612,
+            "endTime": 1763820895362,
+            "duration": 750,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Create_transformation_functions",
+            "startTime": 1763820895362,
+            "endTime": 1763820895961,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Implement_aggregation_logic",
+            "startTime": 1763820895961,
+            "endTime": 1763820896560,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Add_filtering_capabilities",
+            "startTime": 1763820896561,
+            "endTime": 1763820897010,
+            "duration": 449,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Create_output_formatter",
+            "startTime": 1763820897010,
+            "endTime": 1763820897609,
+            "duration": 599,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Add_error_handling",
+            "startTime": 1763820897610,
+            "endTime": 1763820898060,
+            "duration": 450,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Write_unit_tests",
+            "startTime": 1763820898060,
+            "endTime": 1763820898810,
+            "duration": 750,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": [
+          {
+            "label": "Create data reader module",
+            "timestamp": 1763820894612,
+            "heapUsed": 7383384,
+            "heapTotal": 16355328,
+            "rss": 156561408,
+            "external": 1626213
+          },
+          {
+            "label": "Implement data validation",
+            "timestamp": 1763820895362,
+            "heapUsed": 10919672,
+            "heapTotal": 16617472,
+            "rss": 156823552,
+            "external": 1626213
+          },
+          {
+            "label": "Create transformation functions",
+            "timestamp": 1763820895961,
+            "heapUsed": 8713280,
+            "heapTotal": 16617472,
+            "rss": 156823552,
+            "external": 1626213
+          },
+          {
+            "label": "Implement aggregation logic",
+            "timestamp": 1763820896561,
+            "heapUsed": 8036848,
+            "heapTotal": 16879616,
+            "rss": 157085696,
+            "external": 1626213
+          },
+          {
+            "label": "Add filtering capabilities",
+            "timestamp": 1763820897010,
+            "heapUsed": 8220208,
+            "heapTotal": 16879616,
+            "rss": 157085696,
+            "external": 1626213
+          },
+          {
+            "label": "Create output formatter",
+            "timestamp": 1763820897610,
+            "heapUsed": 7996312,
+            "heapTotal": 17141760,
+            "rss": 157347840,
+            "external": 1626213
+          },
+          {
+            "label": "Add error handling",
+            "timestamp": 1763820898060,
+            "heapUsed": 11095184,
+            "heapTotal": 17141760,
+            "rss": 157347840,
+            "external": 1626213
+          },
+          {
+            "label": "Write unit tests",
+            "timestamp": 1763820898810,
+            "heapUsed": 9218616,
+            "heapTotal": 25792512,
+            "rss": 165998592,
+            "external": 1626213
+          }
+        ]
+      },
+      "swarm": {
+        "name": "Swarm Concurrent: Data Processing Pipeline",
+        "totalDuration": 958,
+        "totalDurationSec": "0.96",
+        "totalTasks": 8,
+        "completedTasks": 8,
+        "successfulTasks": 8,
+        "failedTasks": 0,
+        "errorRate": "0.00%",
+        "throughput": "8.35",
+        "avgTaskDuration": "595.00",
+        "maxConcurrency": 5,
+        "memoryUsedMB": "1.41",
+        "peakMemoryMB": "1.41",
+        "taskTimings": [
+          {
+            "taskId": "data-processing_Create_data_reader_module",
+            "startTime": 1763820900814,
+            "endTime": 1763820901762,
+            "duration": 948,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Implement_data_validation",
+            "startTime": 1763820900814,
+            "endTime": 1763820901541,
+            "duration": 727,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Create_transformation_functions",
+            "startTime": 1763820900814,
+            "endTime": 1763820901456,
+            "duration": 642,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Implement_aggregation_logic",
+            "startTime": 1763820900814,
+            "endTime": 1763820901612,
+            "duration": 798,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Add_filtering_capabilities",
+            "startTime": 1763820900814,
+            "endTime": 1763820901762,
+            "duration": 948,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Create_output_formatter",
+            "startTime": 1763820901457,
+            "endTime": 1763820901771,
+            "duration": 314,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Add_error_handling",
+            "startTime": 1763820901541,
+            "endTime": 1763820901768,
+            "duration": 227,
+            "success": true
+          },
+          {
+            "taskId": "data-processing_Write_unit_tests",
+            "startTime": 1763820901612,
+            "endTime": 1763820901768,
+            "duration": 156,
+            "success": true
+          }
+        ],
+        "errors": [],
+        "memorySnapshots": []
+      },
+      "comparison": {
+        "speedImprovement": "80.03%",
+        "speedImprovementValue": 80.03,
+        "throughputImprovement": "400.00%",
+        "throughputImprovementValue": 400,
+        "timeSaved": "3.84s",
+        "timeSavedMs": 3840,
+        "memoryDifference": "-9.17MB",
+        "memoryDifferenceValue": -9.17,
+        "concurrencyAdvantage": 5,
+        "winner": "swarm"
+      }
+    }
+  ]
+}

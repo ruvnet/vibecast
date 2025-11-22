@@ -1,0 +1,1251 @@
+
+> vibecast@1.0.0 benchmark
+> node benchmark/benchmark-runner.js
+
+╔═══════════════════════════════════════════════════════════════╗
+║     CODING METHODOLOGY BENCHMARK COMPARISON                   ║
+║     Traditional Sequential vs Swarm Concurrent                ║
+╚═══════════════════════════════════════════════════════════════╝
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SCENARIO: CRUD API IMPLEMENTATION
+   Complexity: medium | Tasks: 9
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+📍 Phase 1: Traditional Sequential Approach
+
+
+🔨 Starting Traditional Sequential Execution: CRUD API Implementation
+Tasks: 9
+Approach: One task at a time, fully complete before moving to next
+
+[Traditional Sequential: CRUD API Implementation] Performance tracking started
+⏳ Executing: Create User model/schema
+✅ Completed: Create User model/schema
+⏳ Executing: Implement POST /users endpoint
+✅ Completed: Implement POST /users endpoint
+⏳ Executing: Implement GET /users endpoint
+✅ Completed: Implement GET /users endpoint
+⏳ Executing: Implement GET /users/:id endpoint
+✅ Completed: Implement GET /users/:id endpoint
+⏳ Executing: Implement PUT /users/:id endpoint
+✅ Completed: Implement PUT /users/:id endpoint
+⏳ Executing: Implement DELETE /users/:id endpoint
+✅ Completed: Implement DELETE /users/:id endpoint
+⏳ Executing: Add input validation
+✅ Completed: Add input validation
+⏳ Executing: Add error handling
+✅ Completed: Add error handling
+⏳ Executing: Write unit tests
+✅ Completed: Write unit tests
+[Traditional Sequential: CRUD API Implementation] Performance tracking completed
+
+============================================================
+Performance Report: Traditional Sequential: CRUD API Implementation
+============================================================
+Total Duration: 5.55s
+Total Tasks: 9
+Completed: 9
+Successful: 9
+Failed: 0
+Error Rate: 0.00%
+Throughput: 1.62 tasks/sec
+Avg Task Duration: 616.22ms
+Max Concurrency: 1
+Memory Used: 0.84MB
+Peak Memory: 6.52MB
+============================================================
+
+
+
+📍 Phase 2: Swarm Concurrent Approach
+
+
+🚀 Starting Swarm Concurrent Execution: CRUD API Implementation
+Tasks: 9
+Agents: 0
+Max Concurrent: 6
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 5 agents (1 queen, 4 workers)
+[Swarm Concurrent: CRUD API Implementation] Performance tracking started
+⚡ [queen] Starting: Create User model/schema
+⚡ [worker_0] Starting: Implement POST /users endpoint
+⚡ [worker_1] Starting: Implement GET /users endpoint
+⚡ [worker_2] Starting: Implement GET /users/:id endpoint
+⚡ [worker_3] Starting: Implement PUT /users/:id endpoint
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create User model/schema',
+  '{"taskName":"Create User model/schema","agentId":"queen","duration":600,"knowledgeUsed":0,"linesOfCode":61}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create User model/schema","timestamp":1763820942664}',
+  1763820942664,
+  1763820942664,
+  1763820942664,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Create User model/schema (600ms)
+⚡ [queen] Starting: Implement DELETE /users/:id endpoint
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement GET /users endpoint',
+  '{"taskName":"Implement GET /users endpoint","agentId":"worker_1","duration":360,"knowledgeUsed":0,"linesOfCode":102}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement GET /users endpoint","timestamp":1763820942665}',
+  1763820942665,
+  1763820942665,
+  1763820942665,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Implement GET /users endpoint (360ms)
+⚡ [worker_1] Starting: Add input validation
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement POST /users endpoint',
+  '{"taskName":"Implement POST /users endpoint","agentId":"worker_0","duration":480,"knowledgeUsed":0,"linesOfCode":149}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement POST /users endpoint","timestamp":1763820942665}',
+  1763820942665,
+  1763820942665,
+  1763820942665,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Implement POST /users endpoint (480ms)
+⚡ [worker_0] Starting: Add error handling
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement PUT /users/:id endpoint',
+  '{"taskName":"Implement PUT /users/:id endpoint","agentId":"worker_3","duration":120,"knowledgeUsed":0,"linesOfCode":95}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement PUT /users/:id endpoint","timestamp":1763820942667}',
+  1763820942667,
+  1763820942667,
+  1763820942667,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Implement PUT /users/:id endpoint (120ms)
+⚡ [worker_3] Starting: Write unit tests
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement GET /users/:id endpoint',
+  '{"taskName":"Implement GET /users/:id endpoint","agentId":"worker_2","duration":240,"knowledgeUsed":0,"linesOfCode":131}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement GET /users/:id endpoint","timestamp":1763820942666}',
+  1763820942666,
+  1763820942666,
+  1763820942666,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_2] Completed: Implement GET /users/:id endpoint (240ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement DELETE /users/:id endpoint',
+  '{"taskName":"Implement DELETE /users/:id endpoint","agentId":"queen","duration":84,"knowledgeUsed":4,"linesOfCode":136}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement DELETE /users/:id endpoint","timestamp":1763820942753}',
+  1763820942753,
+  1763820942753,
+  1763820942753,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Implement DELETE /users/:id endpoint (84ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add input validation',
+  '{"taskName":"Add input validation","agentId":"worker_1","duration":150,"knowledgeUsed":0,"linesOfCode":61}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add input validation","timestamp":1763820942904}',
+  1763820942904,
+  1763820942904,
+  1763820942904,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Add input validation (150ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add error handling',
+  '{"taskName":"Add error handling","agentId":"worker_0","duration":70,"knowledgeUsed":1,"linesOfCode":125}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add error handling","timestamp":1763820942975}',
+  1763820942975,
+  1763820942975,
+  1763820942975,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Add error handling (70ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_3","duration":150,"knowledgeUsed":0,"linesOfCode":107}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763820943125}',
+  1763820943125,
+  1763820943125,
+  1763820943125,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Write unit tests (150ms)
+[Swarm Concurrent: CRUD API Implementation] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 15
+  - Reasoning Entries: 15
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 8
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 9
+  - Cache Size: 9
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: CRUD API Implementation
+============================================================
+Total Duration: 1.06s
+Total Tasks: 9
+Completed: 9
+Successful: 9
+Failed: 0
+Error Rate: 0.00%
+Throughput: 8.46 tasks/sec
+Avg Task Duration: 590.11ms
+Max Concurrency: 5
+Memory Used: 1.33MB
+Peak Memory: 1.33MB
+============================================================
+
+
+══════════════════════════════════════════════════════════════════════
+  SCENARIO COMPARISON: CRUD API Implementation
+══════════════════════════════════════════════════════════════════════
+
+📊 Performance Metrics:
+
+┌─────────────────────────┬──────────────────┬──────────────────┐
+│ Metric                  │ Traditional      │ Swarm            │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│ Total Time              │ 5.55s            │ 1.06s            │
+│ Throughput              │ 1.62 t/s         │ 8.46 t/s         │
+│ Avg Task Duration       │ 616.22ms         │ 590.11ms         │
+│ Max Concurrency         │ 1                │ 5                │
+│ Memory Used             │ 0.84MB           │ 1.33MB           │
+│ Peak Memory             │ 6.52MB           │ 1.33MB           │
+│ Error Rate              │ 0.00%            │ 0.00%            │
+└─────────────────────────┴──────────────────┴──────────────────┘
+
+🏆 Winner: 🚀 SWARM
+
+📈 Improvements:
+  • Speed: +80.84%
+  • Throughput: +422.22%
+  • Time Saved: 4.49s
+  • Memory Overhead: -5.19MB
+  • Concurrency: 5x parallel tasks
+
+══════════════════════════════════════════════════════════════════════
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SCENARIO: DATA PROCESSING PIPELINE
+   Complexity: medium | Tasks: 8
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+📍 Phase 1: Traditional Sequential Approach
+
+
+🔨 Starting Traditional Sequential Execution: Data Processing Pipeline
+Tasks: 8
+Approach: One task at a time, fully complete before moving to next
+
+[Traditional Sequential: Data Processing Pipeline] Performance tracking started
+⏳ Executing: Create data reader module
+✅ Completed: Create data reader module
+⏳ Executing: Implement data validation
+✅ Completed: Implement data validation
+⏳ Executing: Create transformation functions
+✅ Completed: Create transformation functions
+⏳ Executing: Implement aggregation logic
+✅ Completed: Implement aggregation logic
+⏳ Executing: Add filtering capabilities
+✅ Completed: Add filtering capabilities
+⏳ Executing: Create output formatter
+✅ Completed: Create output formatter
+⏳ Executing: Add error handling
+✅ Completed: Add error handling
+⏳ Executing: Write unit tests
+✅ Completed: Write unit tests
+[Traditional Sequential: Data Processing Pipeline] Performance tracking completed
+
+============================================================
+Performance Report: Traditional Sequential: Data Processing Pipeline
+============================================================
+Total Duration: 4.80s
+Total Tasks: 8
+Completed: 8
+Successful: 8
+Failed: 0
+Error Rate: 0.00%
+Throughput: 1.67 tasks/sec
+Avg Task Duration: 599.63ms
+Max Concurrency: 1
+Memory Used: 1.27MB
+Peak Memory: 10.25MB
+============================================================
+
+
+
+📍 Phase 2: Swarm Concurrent Approach
+
+
+🚀 Starting Swarm Concurrent Execution: Data Processing Pipeline
+Tasks: 8
+Agents: 0
+Max Concurrent: 6
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 5 agents (1 queen, 4 workers)
+[Swarm Concurrent: Data Processing Pipeline] Performance tracking started
+⚡ [queen] Starting: Create data reader module
+⚡ [worker_0] Starting: Implement data validation
+⚡ [worker_1] Starting: Create transformation functions
+⚡ [worker_2] Starting: Implement aggregation logic
+⚡ [worker_3] Starting: Add filtering capabilities
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create data reader module',
+  '{"taskName":"Create data reader module","agentId":"queen","duration":610,"knowledgeUsed":0,"linesOfCode":94}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create data reader module","timestamp":1763820950561}',
+  1763820950561,
+  1763820950561,
+  1763820950561,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Create data reader module (610ms)
+⚡ [queen] Starting: Create output formatter
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement data validation',
+  '{"taskName":"Implement data validation","agentId":"worker_0","duration":490,"knowledgeUsed":0,"linesOfCode":78}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement data validation","timestamp":1763820950561}',
+  1763820950561,
+  1763820950561,
+  1763820950561,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Implement data validation (490ms)
+⚡ [worker_0] Starting: Add error handling
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create transformation functions',
+  '{"taskName":"Create transformation functions","agentId":"worker_1","duration":340,"knowledgeUsed":0,"linesOfCode":85}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create transformation functions","timestamp":1763820950561}',
+  1763820950561,
+  1763820950561,
+  1763820950561,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Create transformation functions (340ms)
+⚡ [worker_1] Starting: Write unit tests
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add filtering capabilities',
+  '{"taskName":"Add filtering capabilities","agentId":"worker_3","duration":100,"knowledgeUsed":0,"linesOfCode":106}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add filtering capabilities","timestamp":1763820950562}',
+  1763820950562,
+  1763820950562,
+  1763820950562,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_3] Completed: Add filtering capabilities (100ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Implement aggregation logic',
+  '{"taskName":"Implement aggregation logic","agentId":"worker_2","duration":220,"knowledgeUsed":0,"linesOfCode":82}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Implement aggregation logic","timestamp":1763820950561}',
+  1763820950561,
+  1763820950561,
+  1763820950561,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_2] Completed: Implement aggregation logic (220ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Create output formatter',
+  '{"taskName":"Create output formatter","agentId":"queen","duration":84,"knowledgeUsed":2,"linesOfCode":99}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Create output formatter","timestamp":1763820950649}',
+  1763820950649,
+  1763820950649,
+  1763820950649,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [queen] Completed: Create output formatter (84ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Add error handling',
+  '{"taskName":"Add error handling","agentId":"worker_0","duration":70,"knowledgeUsed":1,"linesOfCode":120}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Add error handling","timestamp":1763820950719}',
+  1763820950719,
+  1763820950719,
+  1763820950719,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_0] Completed: Add error handling (70ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_1","duration":150,"knowledgeUsed":0,"linesOfCode":135}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763820950869}',
+  1763820950869,
+  1763820950869,
+  1763820950869,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Write unit tests (150ms)
+[Swarm Concurrent: Data Processing Pipeline] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 15
+  - Reasoning Entries: 15
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 9
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 8
+  - Cache Size: 8
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: Data Processing Pipeline
+============================================================
+Total Duration: 0.92s
+Total Tasks: 8
+Completed: 8
+Successful: 8
+Failed: 0
+Error Rate: 0.00%
+Throughput: 8.70 tasks/sec
+Avg Task Duration: 574.25ms
+Max Concurrency: 5
+Memory Used: -0.07MB
+Peak Memory: -0.07MB
+============================================================
+
+
+══════════════════════════════════════════════════════════════════════
+  SCENARIO COMPARISON: Data Processing Pipeline
+══════════════════════════════════════════════════════════════════════
+
+📊 Performance Metrics:
+
+┌─────────────────────────┬──────────────────┬──────────────────┐
+│ Metric                  │ Traditional      │ Swarm            │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│ Total Time              │ 4.80s            │ 0.92s            │
+│ Throughput              │ 1.67 t/s         │ 8.70 t/s         │
+│ Avg Task Duration       │ 599.63ms         │ 574.25ms         │
+│ Max Concurrency         │ 1                │ 5                │
+│ Memory Used             │ 1.27MB           │ -0.07MB          │
+│ Peak Memory             │ 10.25MB          │ -0.07MB          │
+│ Error Rate              │ 0.00%            │ 0.00%            │
+└─────────────────────────┴──────────────────┴──────────────────┘
+
+🏆 Winner: 🚀 SWARM
+
+📈 Improvements:
+  • Speed: +80.84%
+  • Throughput: +420.96%
+  • Time Saved: 3.88s
+  • Memory Overhead: -10.32MB
+  • Concurrency: 5x parallel tasks
+
+══════════════════════════════════════════════════════════════════════
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SCENARIO: AUTHENTICATION SYSTEM
+   Complexity: high | Tasks: 9
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+📍 Phase 1: Traditional Sequential Approach
+
+
+🔨 Starting Traditional Sequential Execution: Authentication System
+Tasks: 9
+Approach: One task at a time, fully complete before moving to next
+
+[Traditional Sequential: Authentication System] Performance tracking started
+⏳ Executing: Set up JWT configuration
+✅ Completed: Set up JWT configuration
+⏳ Executing: Implement user registration
+✅ Completed: Implement user registration
+⏳ Executing: Implement login endpoint
+✅ Completed: Implement login endpoint
+⏳ Executing: Implement token generation
+✅ Completed: Implement token generation
+⏳ Executing: Implement token refresh
+✅ Completed: Implement token refresh
+⏳ Executing: Add password hashing
+✅ Completed: Add password hashing
+⏳ Executing: Create authentication middleware
+✅ Completed: Create authentication middleware
+⏳ Executing: Add rate limiting
+✅ Completed: Add rate limiting
+⏳ Executing: Write unit tests
+✅ Completed: Write unit tests
+[Traditional Sequential: Authentication System] Performance tracking completed
+
+============================================================
+Performance Report: Traditional Sequential: Authentication System
+============================================================
+Total Duration: 4.95s
+Total Tasks: 9
+Completed: 9
+Successful: 9
+Failed: 0
+Error Rate: 0.00%
+Throughput: 1.82 tasks/sec
+Avg Task Duration: 549.67ms
+Max Concurrency: 1
+Memory Used: 3.04MB
+Peak Memory: 11.66MB
+============================================================
+
+
+
+📍 Phase 2: Swarm Concurrent Approach
+
+
+🚀 Starting Swarm Concurrent Execution: Authentication System
+Tasks: 9
+Agents: 0
+Max Concurrent: 6
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 5 agents (1 queen, 4 workers)
+[Swarm Concurrent: Authentication System] Performance tracking started
+⚡ [queen] Starting: Set up JWT configuration
+⚡ [worker_0] Starting: Implement user registration
+⚡ [worker_1] Starting: Implement login endpoint
+⚡ [worker_2] Starting: Implement token generation
+⚡ [worker_3] Starting: Implement token refresh
+✅ [queen] Completed: Set up JWT configuration (560ms)
+⚡ [queen] Starting: Add password hashing
+✅ [worker_3] Completed: Implement token refresh (120ms)
+⚡ [worker_3] Starting: Create authentication middleware
+✅ [worker_0] Completed: Implement user registration (480ms)
+⚡ [worker_0] Starting: Add rate limiting
+✅ [worker_1] Completed: Implement login endpoint (360ms)
+⚡ [worker_1] Starting: Write unit tests
+✅ [worker_2] Completed: Implement token generation (240ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_1","duration":150,"knowledgeUsed":0,"linesOfCode":91}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763820958879}',
+  1763820958879,
+  1763820958879,
+  1763820958879,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at async ConcurrentExecutor.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:265:22) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Write unit tests (150ms)
+✅ [queen] Completed: Add password hashing (100ms)
+✅ [worker_3] Completed: Create authentication middleware (120ms)
+✅ [worker_0] Completed: Add rate limiting (70ms)
+[Swarm Concurrent: Authentication System] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 23
+  - Reasoning Entries: 23
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 10
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 9
+  - Cache Size: 9
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: Authentication System
+============================================================
+Total Duration: 1.06s
+Total Tasks: 9
+Completed: 9
+Successful: 9
+Failed: 0
+Error Rate: 0.00%
+Throughput: 8.50 tasks/sec
+Avg Task Duration: 582.67ms
+Max Concurrency: 5
+Memory Used: -2.73MB
+Peak Memory: -2.73MB
+============================================================
+
+
+══════════════════════════════════════════════════════════════════════
+  SCENARIO COMPARISON: Authentication System
+══════════════════════════════════════════════════════════════════════
+
+📊 Performance Metrics:
+
+┌─────────────────────────┬──────────────────┬──────────────────┐
+│ Metric                  │ Traditional      │ Swarm            │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│ Total Time              │ 4.95s            │ 1.06s            │
+│ Throughput              │ 1.82 t/s         │ 8.50 t/s         │
+│ Avg Task Duration       │ 549.67ms         │ 582.67ms         │
+│ Max Concurrency         │ 1                │ 5                │
+│ Memory Used             │ 3.04MB           │ -2.73MB          │
+│ Peak Memory             │ 11.66MB          │ -2.73MB          │
+│ Error Rate              │ 0.00%            │ 0.00%            │
+└─────────────────────────┴──────────────────┴──────────────────┘
+
+🏆 Winner: 🚀 SWARM
+
+📈 Improvements:
+  • Speed: +78.61%
+  • Throughput: +367.03%
+  • Time Saved: 3.89s
+  • Memory Overhead: -14.39MB
+  • Concurrency: 5x parallel tasks
+
+══════════════════════════════════════════════════════════════════════
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SCENARIO: TASK SCHEDULER
+   Complexity: high | Tasks: 9
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+📍 Phase 1: Traditional Sequential Approach
+
+
+🔨 Starting Traditional Sequential Execution: Task Scheduler
+Tasks: 9
+Approach: One task at a time, fully complete before moving to next
+
+[Traditional Sequential: Task Scheduler] Performance tracking started
+⏳ Executing: Create task queue data structure
+✅ Completed: Create task queue data structure
+⏳ Executing: Implement priority queue
+✅ Completed: Implement priority queue
+⏳ Executing: Add cron parser
+✅ Completed: Add cron parser
+⏳ Executing: Create scheduler engine
+✅ Completed: Create scheduler engine
+⏳ Executing: Implement task execution
+✅ Completed: Implement task execution
+⏳ Executing: Add retry mechanism
+✅ Completed: Add retry mechanism
+⏳ Executing: Create monitoring interface
+✅ Completed: Create monitoring interface
+⏳ Executing: Add logging
+✅ Completed: Add logging
+⏳ Executing: Write unit tests
+✅ Completed: Write unit tests
+[Traditional Sequential: Task Scheduler] Performance tracking completed
+
+============================================================
+Performance Report: Traditional Sequential: Task Scheduler
+============================================================
+Total Duration: 5.10s
+Total Tasks: 9
+Completed: 9
+Successful: 9
+Failed: 0
+Error Rate: 0.00%
+Throughput: 1.76 tasks/sec
+Avg Task Duration: 566.00ms
+Max Concurrency: 1
+Memory Used: 0.82MB
+Peak Memory: 18.70MB
+============================================================
+
+
+
+📍 Phase 2: Swarm Concurrent Approach
+
+
+🚀 Starting Swarm Concurrent Execution: Task Scheduler
+Tasks: 9
+Agents: 0
+Max Concurrent: 6
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 5 agents (1 queen, 4 workers)
+[Swarm Concurrent: Task Scheduler] Performance tracking started
+⚡ [queen] Starting: Create task queue data structure
+⚡ [worker_0] Starting: Implement priority queue
+⚡ [worker_1] Starting: Add cron parser
+⚡ [worker_2] Starting: Create scheduler engine
+⚡ [worker_3] Starting: Implement task execution
+✅ [worker_3] Completed: Implement task execution (120ms)
+⚡ [worker_3] Starting: Add retry mechanism
+✅ [queen] Completed: Create task queue data structure (580ms)
+⚡ [queen] Starting: Create monitoring interface
+✅ [worker_0] Completed: Implement priority queue (460ms)
+⚡ [worker_0] Starting: Add logging
+✅ [worker_1] Completed: Add cron parser (340ms)
+⚡ [worker_1] Starting: Write unit tests
+✅ [worker_2] Completed: Create scheduler engine (240ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_1","duration":150,"knowledgeUsed":0,"linesOfCode":57}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763820967013}',
+  1763820967013,
+  1763820967013,
+  1763820967013,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at async ConcurrentExecutor.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:265:22) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Write unit tests (150ms)
+✅ [worker_3] Completed: Add retry mechanism (70ms)
+✅ [queen] Completed: Create monitoring interface (84ms)
+✅ [worker_0] Completed: Add logging (70ms)
+[Swarm Concurrent: Task Scheduler] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 31
+  - Reasoning Entries: 31
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 11
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 9
+  - Cache Size: 9
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: Task Scheduler
+============================================================
+Total Duration: 1.01s
+Total Tasks: 9
+Completed: 9
+Successful: 9
+Failed: 0
+Error Rate: 0.00%
+Throughput: 8.94 tasks/sec
+Avg Task Duration: 556.33ms
+Max Concurrency: 5
+Memory Used: 8.56MB
+Peak Memory: 8.56MB
+============================================================
+
+
+══════════════════════════════════════════════════════════════════════
+  SCENARIO COMPARISON: Task Scheduler
+══════════════════════════════════════════════════════════════════════
+
+📊 Performance Metrics:
+
+┌─────────────────────────┬──────────────────┬──────────────────┐
+│ Metric                  │ Traditional      │ Swarm            │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│ Total Time              │ 5.10s            │ 1.01s            │
+│ Throughput              │ 1.76 t/s         │ 8.94 t/s         │
+│ Avg Task Duration       │ 566.00ms         │ 556.33ms         │
+│ Max Concurrency         │ 1                │ 5                │
+│ Memory Used             │ 0.82MB           │ 8.56MB           │
+│ Peak Memory             │ 18.70MB          │ 8.56MB           │
+│ Error Rate              │ 0.00%            │ 0.00%            │
+└─────────────────────────┴──────────────────┴──────────────────┘
+
+🏆 Winner: 🚀 SWARM
+
+📈 Improvements:
+  • Speed: +80.26%
+  • Throughput: +407.95%
+  • Time Saved: 4.09s
+  • Memory Overhead: -10.14MB
+  • Concurrency: 5x parallel tasks
+
+══════════════════════════════════════════════════════════════════════
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SCENARIO: CACHING LAYER
+   Complexity: medium | Tasks: 8
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+📍 Phase 1: Traditional Sequential Approach
+
+
+🔨 Starting Traditional Sequential Execution: Caching Layer
+Tasks: 8
+Approach: One task at a time, fully complete before moving to next
+
+[Traditional Sequential: Caching Layer] Performance tracking started
+⏳ Executing: Create cache interface
+✅ Completed: Create cache interface
+⏳ Executing: Implement in-memory cache
+✅ Completed: Implement in-memory cache
+⏳ Executing: Add TTL support
+✅ Completed: Add TTL support
+⏳ Executing: Implement LRU eviction
+✅ Completed: Implement LRU eviction
+⏳ Executing: Add cache statistics
+✅ Completed: Add cache statistics
+⏳ Executing: Create cache warming
+✅ Completed: Create cache warming
+⏳ Executing: Add serialization support
+✅ Completed: Add serialization support
+⏳ Executing: Write unit tests
+✅ Completed: Write unit tests
+[Traditional Sequential: Caching Layer] Performance tracking completed
+
+============================================================
+Performance Report: Traditional Sequential: Caching Layer
+============================================================
+Total Duration: 4.50s
+Total Tasks: 8
+Completed: 8
+Successful: 8
+Failed: 0
+Error Rate: 0.00%
+Throughput: 1.78 tasks/sec
+Avg Task Duration: 561.75ms
+Max Concurrency: 1
+Memory Used: -3.13MB
+Peak Memory: 19.74MB
+============================================================
+
+
+
+📍 Phase 2: Swarm Concurrent Approach
+
+
+🚀 Starting Swarm Concurrent Execution: Caching Layer
+Tasks: 8
+Agents: 0
+Max Concurrent: 6
+Approach: Concurrent execution with shared learning and memory
+
+🔌 Connecting to databases...
+Connected to swarm memory database
+Connected to hive mind database
+✅ Database connections established
+🐝 Initialized 5 agents (1 queen, 4 workers)
+[Swarm Concurrent: Caching Layer] Performance tracking started
+⚡ [queen] Starting: Create cache interface
+⚡ [worker_0] Starting: Implement in-memory cache
+⚡ [worker_1] Starting: Add TTL support
+⚡ [worker_2] Starting: Implement LRU eviction
+⚡ [worker_3] Starting: Add cache statistics
+✅ [worker_0] Completed: Implement in-memory cache (440ms)
+⚡ [worker_0] Starting: Create cache warming
+✅ [queen] Completed: Create cache interface (560ms)
+⚡ [queen] Starting: Add serialization support
+✅ [worker_1] Completed: Add TTL support (320ms)
+⚡ [worker_1] Starting: Write unit tests
+✅ [worker_2] Completed: Implement LRU eviction (220ms)
+✅ [worker_3] Completed: Add cache statistics (100ms)
+Error storing task memory: Error: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+--> in Statement#run([
+  'task_swarm_Write unit tests',
+  '{"taskName":"Write unit tests","agentId":"worker_1","duration":150,"knowledgeUsed":0,"linesOfCode":138}',
+  'swarm',
+  '{"approach":"swarm","taskId":"swarm_Write unit tests","timestamp":1763820974478}',
+  1763820974478,
+  1763820974478,
+  1763820974478,
+  0
+], [Function: replacement])
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:76:19)
+    at Database.<anonymous> (/home/user/vibecast/node_modules/sqlite3/lib/sqlite3.js:20:19)
+    at /home/user/vibecast/benchmark/utils/database-helper.js:57:20
+    at new Promise (<anonymous>)
+    at DatabaseHelper.storeTaskMemory (/home/user/vibecast/benchmark/utils/database-helper.js:44:12)
+    at SharedMemory.storeKnowledge (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:120:29)
+    at SwarmAgent.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:28:24)
+    at async ConcurrentExecutor.executeTask (/home/user/vibecast/benchmark/swarm/concurrent-executor.js:265:22) {
+  errno: 19,
+  code: 'SQLITE_CONSTRAINT',
+  __augmented: true
+}
+Error storing to database: SQLITE_CONSTRAINT: UNIQUE constraint failed: memory_entries.key, memory_entries.namespace
+✅ [worker_1] Completed: Write unit tests (150ms)
+✅ [worker_0] Completed: Create cache warming (84ms)
+✅ [queen] Completed: Add serialization support (70ms)
+[Swarm Concurrent: Caching Layer] Performance tracking completed
+
+📊 Database Statistics:
+Swarm Memory DB:
+  - Total Memories: 38
+  - Reasoning Entries: 38
+Hive Mind DB:
+  - Sessions: 0
+  - Collective Memories: 12
+  - Consensus Decisions: 0
+Shared Memory:
+  - Knowledge Base Size: 8
+  - Cache Size: 8
+Closed swarm database
+Closed hive database
+
+============================================================
+Performance Report: Swarm Concurrent: Caching Layer
+============================================================
+Total Duration: 0.94s
+Total Tasks: 8
+Completed: 8
+Successful: 8
+Failed: 0
+Error Rate: 0.00%
+Throughput: 8.50 tasks/sec
+Avg Task Duration: 584.50ms
+Max Concurrency: 5
+Memory Used: -0.84MB
+Peak Memory: -0.84MB
+============================================================
+
+
+══════════════════════════════════════════════════════════════════════
+  SCENARIO COMPARISON: Caching Layer
+══════════════════════════════════════════════════════════════════════
+
+📊 Performance Metrics:
+
+┌─────────────────────────┬──────────────────┬──────────────────┐
+│ Metric                  │ Traditional      │ Swarm            │
+├─────────────────────────┼──────────────────┼──────────────────┤
+│ Total Time              │ 4.50s            │ 0.94s            │
+│ Throughput              │ 1.78 t/s         │ 8.50 t/s         │
+│ Avg Task Duration       │ 561.75ms         │ 584.50ms         │
+│ Max Concurrency         │ 1                │ 5                │
+│ Memory Used             │ -3.13MB          │ -0.84MB          │
+│ Peak Memory             │ 19.74MB          │ -0.84MB          │
+│ Error Rate              │ 0.00%            │ 0.00%            │
+└─────────────────────────┴──────────────────┴──────────────────┘
+
+🏆 Winner: 🚀 SWARM
+
+📈 Improvements:
+  • Speed: +79.07%
+  • Throughput: +377.53%
+  • Time Saved: 3.56s
+  • Memory Overhead: -20.58MB
+  • Concurrency: 5x parallel tasks
+
+══════════════════════════════════════════════════════════════════════
+
+
+
+╔═══════════════════════════════════════════════════════════════╗
+║                    OVERALL SUMMARY                            ║
+╚═══════════════════════════════════════════════════════════════╝
+
+📊 Scenarios Tested: 5
+🚀 Swarm Wins: 5 (100.0%)
+🔨 Traditional Wins: 0 (0.0%)
+
+⚡ Average Speed Improvement: +79.92%
+⏱️  Total Time Saved: 19.91s
+
+🔍 Key Findings:
+  ✓ Swarm approach shows SIGNIFICANT performance advantage
+  ✓ Recommended for complex, multi-task projects
+
+💾 Memory Analysis:
+  • Avg Memory Overhead: -12.12MB
+  ✓ Minimal memory overhead - acceptable tradeoff
+
+══════════════════════════════════════════════════════════════════════
+
+
+💾 Results saved to: /home/user/vibecast/benchmark/results/benchmark-2025-11-22T14-16-14-512Z.json
+
+📄 Summary report saved to: /home/user/vibecast/benchmark/results/summary-2025-11-22T14-16-14-512Z.md
+
+✅ Benchmark completed successfully!
+
