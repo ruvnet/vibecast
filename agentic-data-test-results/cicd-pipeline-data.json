@@ -1,0 +1,55 @@
+{
+  "metadata": {
+    "type": "cicd",
+    "count": 3,
+    "generated": "2025-11-22T20:15:00Z",
+    "version": "0.1.2",
+    "generator": "@ruvector/agentic-synth (manual API test)",
+    "provider": "anthropic",
+    "model": "claude-3-haiku-20240307",
+    "real_ai_generated": true,
+    "test_method": "direct_api_call_via_curl",
+    "notes": "Generated using Anthropic Claude API directly to validate package concept"
+  },
+  "data": [
+    {
+      "pipeline_id": "12345678-abcd-1234-efgh-123456789abc",
+      "commit_sha": "9876543210abcdef0123456789abcdef01234567",
+      "branch": "main",
+      "status": "success",
+      "duration_seconds": 1200,
+      "tests_passed": 120,
+      "tests_failed": 10,
+      "coverage_percent": 85.7,
+      "build_timestamp": "2023-04-15T09:30:00Z",
+      "triggered_by": "johndoe",
+      "environment": "staging"
+    },
+    {
+      "pipeline_id": "87654321-dcba-4321-hgfe-987654321cba",
+      "commit_sha": "fedcba0987654321efcdba9876543210fedcba",
+      "branch": "feature/new-functionality",
+      "status": "failed",
+      "duration_seconds": 900,
+      "tests_passed": 80,
+      "tests_failed": 25,
+      "coverage_percent": 72.3,
+      "build_timestamp": "2023-04-14T15:45:00Z",
+      "triggered_by": "janedoe",
+      "environment": "dev"
+    },
+    {
+      "pipeline_id": "54321678-badc-2143-efgh-987654321bcd",
+      "commit_sha": "0123456789abcdef9876543210fedcba0123456",
+      "branch": "hotfix/critical-bug",
+      "status": "running",
+      "duration_seconds": 600,
+      "tests_passed": 50,
+      "tests_failed": 5,
+      "coverage_percent": 91.2,
+      "build_timestamp": "2023-04-16T11:15:00Z",
+      "triggered_by": "bobsmith",
+      "environment": "prod"
+    }
+  ]
+}

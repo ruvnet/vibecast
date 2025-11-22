@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "type": "stock-market",
+    "count": 3,
+    "generated": "2025-11-22T20:15:00Z",
+    "version": "0.1.2",
+    "generator": "@ruvector/agentic-synth (manual API test)",
+    "provider": "anthropic",
+    "model": "claude-3-haiku-20240307",
+    "real_ai_generated": true,
+    "test_method": "direct_api_call_via_curl",
+    "notes": "Generated using Anthropic Claude API directly to validate package concept"
+  },
+  "data": [
+    {
+      "ticker": "AAPL",
+      "open": 120.50,
+      "high": 122.75,
+      "low": 119.80,
+      "close": 121.25,
+      "volume": 8765000,
+      "news": "Apple announces new product launch",
+      "sentiment": "bullish",
+      "change_percent": 0.62
+    },
+    {
+      "ticker": "MSFT",
+      "open": 250.00,
+      "high": 254.80,
+      "low": 247.90,
+      "close": 252.75,
+      "volume": 5430000,
+      "news": "Microsoft reports strong earnings",
+      "sentiment": "bullish",
+      "change_percent": 1.10
+    },
+    {
+      "ticker": "AMZN",
+      "open": 3125.00,
+      "high": 3150.00,
+      "low": 3110.00,
+      "close": 3135.50,
+      "volume": 2890000,
+      "news": "Amazon announces expansion plans",
+      "sentiment": "neutral",
+      "change_percent": 0.32
+    }
+  ]
+}
