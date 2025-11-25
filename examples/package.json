@@ -1,0 +1,8 @@
+{
+  "name": "example-portfolio-optimization",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "neural-trader": "^2.3.11"
+  }
+}

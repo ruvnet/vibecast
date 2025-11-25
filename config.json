@@ -1,0 +1,21 @@
+{
+  "trading": {
+    "provider": "alpaca",
+    "symbols": [
+      "AAPL",
+      "MSFT",
+      "GOOGL"
+    ],
+    "strategy": "momentum",
+    "parameters": {
+      "threshold": 0.02,
+      "lookback": 20,
+      "stop_loss": 0.05
+    }
+  },
+  "risk": {
+    "max_position_size": 10000,
+    "max_portfolio_risk": 0.02,
+    "stop_loss_pct": 0.05
+  }
+}

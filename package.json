@@ -1,0 +1,8 @@
+{
+  "name": "my-trading-project",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "neural-trader": "^2.3.11"
+  }
+}
