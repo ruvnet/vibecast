@@ -3,6 +3,19 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@neural-trader/backtesting": "^2.1.2",
+    "@neural-trader/brokers": "^2.1.1",
+    "@neural-trader/core": "^1.0.1",
+    "@neural-trader/execution": "^2.1.2",
+    "@neural-trader/market-data": "^2.1.1",
+    "@neural-trader/neural": "^2.1.3",
+    "@neural-trader/news-trading": "^2.1.1",
+    "@neural-trader/portfolio": "^2.1.2",
+    "@neural-trader/prediction-markets": "^2.1.1",
+    "@neural-trader/predictor": "^0.1.0",
+    "@neural-trader/risk": "^2.1.2",
+    "@neural-trader/sports-betting": "^2.1.1",
+    "@neural-trader/strategies": "^2.1.3",
     "neural-trader": "^2.3.11"
   }
 }
