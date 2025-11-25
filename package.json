@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "ruvector": "^0.1.10"
+    "@ruvector/core": "^0.1.5",
+    "ruvector": "^0.1.11"
   }
 }
