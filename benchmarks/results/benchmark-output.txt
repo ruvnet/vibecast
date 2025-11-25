@@ -1,0 +1,32 @@
+🚀 Ruvector Performance Benchmarks
+
+======================================================================
+
+======================================================================
+📊 Dataset: 1,000 sequences
+======================================================================
+
+📥 Loading dataset...
+   File size: 6.81 MB
+   Load time: 54.00 ms
+   Vectors: 1,000
+   Dimensions: 256
+
+🔧 Initializing VectorDB...
+   Init time: 17.00 ms
+
+📝 Benchmark 1: Insertion Performance
+----------------------------------------------------------------------
+Error: Failed to create database: Database error: Database already open. Cannot acquire lock.
+    at new VectorDB (/home/user/vibecast/node_modules/@ruvector/core/native/linux-x64/index.cjs:13:16)
+    at runBenchmark (/home/user/vibecast/benchmarks/run-benchmarks.js:80:20)
+    at main (/home/user/vibecast/benchmarks/run-benchmarks.js:315:26)
+    at Object.<anonymous> (/home/user/vibecast/benchmarks/run-benchmarks.js:366:1)
+    at Module._compile (node:internal/modules/cjs/loader:1706:14)
+    at Object..js (node:internal/modules/cjs/loader:1839:10)
+    at Module.load (node:internal/modules/cjs/loader:1441:32)
+    at Function._load (node:internal/modules/cjs/loader:1263:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24) {
+  code: 'GenericFailure'
+}

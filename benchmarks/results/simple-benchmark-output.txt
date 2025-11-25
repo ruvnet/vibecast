@@ -1,0 +1,69 @@
+🚀 Ruvector Performance Benchmark
+
+======================================================================
+
+======================================================================
+📊 Dataset: 1,000 sequences
+======================================================================
+
+📥 Loading dataset...
+   File size: 6.81 MB
+   Load time: 60.00 ms
+   Vectors: 1,000
+   Dimensions: 256
+
+🔧 Initializing VectorDB...
+   Init time: 22.00 ms
+
+📝 Benchmark 1: Batch Insertion
+----------------------------------------------------------------------
+   Inserting 1,000 vectors in batches of 100...
+   Progress: 1,000/1,000 (100.0%)   Progress: 1,000/1,000 (100.0%) ✓
+   Total time: 84.00 ms
+   Average: 84.00 µs/vector
+   Throughput: 11,904 inserts/sec
+   Verified: 1,000 vectors in database
+
+🔍 Benchmark 2: Query Performance
+----------------------------------------------------------------------
+   k= 1: 1.08 ms/query, 925 queries/sec
+   k= 5: 1.00 ms/query, 1,000 queries/sec
+   k=10: 1.04 ms/query, 961 queries/sec
+   k=20: 1.08 ms/query, 925 queries/sec
+   k=50: 1.25 ms/query, 800 queries/sec
+
+🎯 Benchmark 3: Taxonomic Accuracy
+----------------------------------------------------------------------
+   k= 1: Genus 24.0%, Family 24.0%, Phylum 42.0%
+   k= 5: Genus 18.0%, Family 18.0%, Phylum 32.0%
+   k=10: Genus 14.0%, Family 14.0%, Phylum 44.0%
+
+📏 Benchmark 4: Distance Distribution
+----------------------------------------------------------------------
+   Distance Range     Count      Percentage
+   0.0-0.1               0        0.0%  
+   0.1-0.2               0        0.0%  
+   0.2-0.3               0        0.0%  
+   0.3-0.4               0        0.0%  
+   0.4-0.5               0        0.0%  
+   0.5+                200      100.0%  ████████████████████████████████████████
+
+💾 Benchmark 5: Memory Usage
+----------------------------------------------------------------------
+   Heap used: 15.00 MB
+   Heap total: 22.16 MB
+   RSS: 225.90 MB
+   External: 1.80 MB
+   Per vector: 15.36 KB
+
+🔬 Benchmark 6: Example Similarity Search
+----------------------------------------------------------------------
+
+   Query: Escherichia coli (Escherichia)
+
+   Top 10 similar sequences:
+TypeError: Cannot read properties of undefined (reading 'toFixed')
+    at /home/user/vibecast/benchmarks/run-simple-benchmark.js:275:122
+    at Array.forEach (<anonymous>)
+    at runBenchmark (/home/user/vibecast/benchmarks/run-simple-benchmark.js:270:13)
+    at async main (/home/user/vibecast/benchmarks/run-simple-benchmark.js:299:20)

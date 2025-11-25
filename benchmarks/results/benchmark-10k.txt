@@ -1,0 +1,88 @@
+🚀 Ruvector Performance Benchmark
+
+======================================================================
+
+======================================================================
+📊 Dataset: 10,000 sequences
+======================================================================
+
+📥 Loading dataset...
+   File size: 68.10 MB
+   Load time: 634.00 ms
+   Vectors: 10,000
+   Dimensions: 256
+
+🔧 Initializing VectorDB...
+   Init time: 18.00 ms
+
+📝 Benchmark 1: Batch Insertion
+----------------------------------------------------------------------
+   Inserting 10,000 vectors in batches of 100...
+   Progress: 1,000/10,000 (10.0%)   Progress: 2,000/10,000 (20.0%)   Progress: 3,000/10,000 (30.0%)   Progress: 4,000/10,000 (40.0%)   Progress: 5,000/10,000 (50.0%)   Progress: 6,000/10,000 (60.0%)   Progress: 7,000/10,000 (70.0%)   Progress: 8,000/10,000 (80.0%)   Progress: 9,000/10,000 (90.0%)   Progress: 10,000/10,000 (100.0%)   Progress: 10,000/10,000 (100.0%) ✓
+   Total time: 817.00 ms
+   Average: 81.70 µs/vector
+   Throughput: 12,239 inserts/sec
+   Verified: 10,000 vectors in database
+
+🔍 Benchmark 2: Query Performance
+----------------------------------------------------------------------
+   k= 1: 6.01 ms/query, 166 queries/sec
+   k= 5: 6.11 ms/query, 163 queries/sec
+   k=10: 5.37 ms/query, 186 queries/sec
+   k=20: 6.48 ms/query, 154 queries/sec
+   k=50: 7.27 ms/query, 137 queries/sec
+
+🎯 Benchmark 3: Taxonomic Accuracy
+----------------------------------------------------------------------
+   k= 1: Genus 50.0%, Family 50.0%, Phylum 58.0%
+   k= 5: Genus 32.0%, Family 32.0%, Phylum 46.0%
+   k=10: Genus 30.0%, Family 30.0%, Phylum 50.0%
+
+📏 Benchmark 4: Distance Distribution
+----------------------------------------------------------------------
+   Distance Range     Count      Percentage
+   0.0-0.1               0        0.0%  
+   0.1-0.2               0        0.0%  
+   0.2-0.3               0        0.0%  
+   0.3-0.4               0        0.0%  
+   0.4-0.5               0        0.0%  
+   0.5+                200      100.0%  ████████████████████████████████████████
+
+💾 Benchmark 5: Memory Usage
+----------------------------------------------------------------------
+   Heap used: 97.74 MB
+   Heap total: 128.71 MB
+   RSS: 357.98 MB
+   External: 1.93 MB
+   Per vector: 10.01 KB
+
+🔬 Benchmark 6: Example Similarity Search
+----------------------------------------------------------------------
+
+   Query: Escherichia coli (Escherichia)
+
+   Top 10 similar sequences:
+    1. [✓] Escherichia coli                    (dist: 0.0000) ← SELF
+    2. [✗] Bifidobacterium longum              (dist: 0.0895)
+    3. [✗] Methanobrevibacter smithii          (dist: 0.0900)
+    4. [✓] Escherichia coli                    (dist: 0.0925)
+    5. [✗] Methanobrevibacter smithii          (dist: 0.0929)
+    6. [✓] Escherichia coli                    (dist: 0.0942)
+    7. [✗] Methanobrevibacter smithii          (dist: 0.0954)
+    8. [✗] Bifidobacterium longum              (dist: 0.0957)
+    9. [✗] Methanobrevibacter smithii          (dist: 0.0962)
+   10. [✗] Lactobacillus acidophilus           (dist: 0.0964)
+
+
+======================================================================
+📈 BENCHMARK SUMMARY
+======================================================================
+
+📊 Results by Dataset Size:
+   Size        Insert/sec    Memory/Vector    Init Time
+   ------------------------------------------------------------
+       10,000        12,239        10.01 KB      18.00 ms
+
+💾 Full results saved to: /home/user/vibecast/benchmarks/results/simple-benchmark-results.json
+
+✅ Benchmarks complete!

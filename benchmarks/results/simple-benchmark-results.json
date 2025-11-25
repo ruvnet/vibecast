@@ -1,0 +1,13 @@
+[
+  {
+    "datasetSize": 10000,
+    "dimensions": 256,
+    "fileSize": 71409425,
+    "loadTime": 634,
+    "initTime": 18,
+    "totalInsertTime": 817,
+    "insertThroughput": 12239,
+    "memoryUsage": 102485912,
+    "memoryPerVector": 10248.5912
+  }
+]
