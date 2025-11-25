@@ -1,0 +1,60 @@
+digraph KnowledgeGraph {
+  rankdir=LR;
+  node [shape=box, style=rounded];
+
+  subgraph cluster_ai {
+    label="ai";
+    style=filled;
+    color=lightgrey;
+    ADAS [label="ADAS"];
+    AI_Agent_System [label="AI Agent System"];
+    AI_Alignment [label="AI Alignment"];
+    AI_Audit [label="AI Audit"];
+    AI_Board [label="AI Board"];
+  }
+
+  subgraph cluster_metaverse {
+    label="metaverse";
+    style=filled;
+    color=lightgrey;
+    AI_Ethics_Checklist [label="AI Ethics Checklist"];
+    AI_Governance_Principle [label="AI Governance Principle"];
+    AI_Model_Card [label="AI Model Card"];
+    AI_TRiSM [label="AI TRiSM"];
+    AI_Trust_Risk_and_Security_Management [label="AI Trust Risk and Security Man"];
+  }
+
+  subgraph cluster_mv {
+    label="mv";
+    style=filled;
+    color=lightgrey;
+    3D_Scene_Exchange_Protocol__SXP_ [label="3D Scene Exchange Protocol (SX"];
+    6G_Network_Slice [label="6G Network Slice"];
+    AI_Governance_Framework [label="AI Governance Framework"];
+    API_Standard [label="API Standard"];
+    Accessibility_Audit_Tool [label="Accessibility Audit Tool"];
+  }
+
+  subgraph cluster_bc {
+    label="bc";
+    style=filled;
+    color=lightgrey;
+    Address [label="Address"];
+    Anti_Counterfeiting [label="Anti Counterfeiting"];
+    Archival_Node [label="Archival Node"];
+    BC_0101_transaction_fee [label="BC 0101 transaction fee"];
+    BC_0102_Inflation [label="BC 0102 inflation"];
+  }
+
+  subgraph cluster_rb {
+    label="rb";
+    style=filled;
+    color=lightgrey;
+    Acceleration [label="Acceleration"];
+    Adaptive_Control [label="Adaptive Control"];
+    Admittance_Control [label="Admittance Control"];
+    Aerial_Robot [label="Aerial Robot"];
+    Agricultural_Robot [label="Agricultural Robot"];
+  }
+
+}
