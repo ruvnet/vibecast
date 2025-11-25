@@ -136,3 +136,5 @@ dist
 .pnp.*
 kg-temp/
 node_modules/
+*.db
+test-*.js
