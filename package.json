@@ -16,6 +16,7 @@
     "@neural-trader/risk": "^2.6.0",
     "@neural-trader/sports-betting": "^2.1.1",
     "@neural-trader/strategies": "^2.6.0",
-    "neural-trader": "^2.6.2"
+    "cli-table3": "^0.6.5",
+    "neural-trader": "^2.6.3"
   }
 }
