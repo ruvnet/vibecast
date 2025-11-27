@@ -1,0 +1,27 @@
+{
+  "projectName": "vibecast",
+  "teamName": "VibeCast",
+  "track": "entertainment-discovery",
+  "tools": {
+    "claudeCode": false,
+    "geminiCli": false,
+    "claudeFlow": false,
+    "agenticFlow": false,
+    "flowNexus": false,
+    "adk": false,
+    "googleCloudCli": false,
+    "vertexAi": false,
+    "ruvector": false,
+    "agentDb": false,
+    "agenticSynth": false,
+    "strangeLoops": false,
+    "sparc": false,
+    "lionpride": false,
+    "agenticFramework": false,
+    "openaiAgents": false
+  },
+  "mcpEnabled": false,
+  "discordLinked": false,
+  "initialized": true,
+  "createdAt": "2025-11-27T16:08:27.273Z"
+}
