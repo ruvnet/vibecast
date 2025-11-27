@@ -1,0 +1,34 @@
+{
+  "version": "2.0",
+  "created": "2025-11-27T19:55:55.209Z",
+  "vectors": {
+    "dimensions": 384,
+    "cveCount": 51,
+    "patternCount": 69
+  },
+  "graph": {
+    "totalNodes": 204,
+    "totalEdges": 253,
+    "nodeTypes": [
+      "CVE",
+      "CWE",
+      "ATTACK_TECHNIQUE",
+      "VULN_TYPE",
+      "PATTERN"
+    ],
+    "edgeTypes": [
+      "HAS_WEAKNESS",
+      "ENABLES_TECHNIQUE",
+      "DETECTS",
+      "RELATED_CVE",
+      "LEADS_TO"
+    ]
+  },
+  "cveStats": {
+    "total": 51,
+    "critical": 33,
+    "high": 13,
+    "exploited": 36,
+    "cisaKEV": 35
+  }
+}

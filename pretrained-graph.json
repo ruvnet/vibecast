@@ -1,0 +1,3926 @@
+{
+  "nodes": [
+    {
+      "id": "CVE-2024-3094",
+      "type": "CVE",
+      "properties": {
+        "title": "XZ Utils Backdoor",
+        "cvss": 10,
+        "cwe": [
+          "CWE-506"
+        ],
+        "published": "2024-03-29",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2024-4577",
+      "type": "CVE",
+      "properties": {
+        "title": "PHP CGI Argument Injection",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-78"
+        ],
+        "published": "2024-06-06",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2024-21626",
+      "type": "CVE",
+      "properties": {
+        "title": "runc Container Escape",
+        "cvss": 8.6,
+        "cwe": [
+          "CWE-403",
+          "CWE-668"
+        ],
+        "published": "2024-01-31",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2024-38856",
+      "type": "CVE",
+      "properties": {
+        "title": "Apache OFBiz Pre-Auth RCE",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-94",
+          "CWE-917"
+        ],
+        "published": "2024-08-05",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2024-27198",
+      "type": "CVE",
+      "properties": {
+        "title": "JetBrains TeamCity Auth Bypass",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-288"
+        ],
+        "published": "2024-03-04",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2024-1709",
+      "type": "CVE",
+      "properties": {
+        "title": "ConnectWise ScreenConnect Auth Bypass",
+        "cvss": 10,
+        "cwe": [
+          "CWE-288",
+          "CWE-287"
+        ],
+        "published": "2024-02-19",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2024-23897",
+      "type": "CVE",
+      "properties": {
+        "title": "Jenkins Arbitrary File Read",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-22",
+          "CWE-88"
+        ],
+        "published": "2024-01-24",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2024-0204",
+      "type": "CVE",
+      "properties": {
+        "title": "Fortra GoAnywhere Auth Bypass",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-425"
+        ],
+        "published": "2024-01-22",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2024-20353",
+      "type": "CVE",
+      "properties": {
+        "title": "Cisco ASA/FTD WebVPN DoS",
+        "cvss": 8.6,
+        "cwe": [
+          "CWE-835"
+        ],
+        "published": "2024-04-24",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2024-20359",
+      "type": "CVE",
+      "properties": {
+        "title": "Cisco ASA/FTD Persistent Local Code Exec",
+        "cvss": 6,
+        "cwe": [
+          "CWE-94"
+        ],
+        "published": "2024-04-24",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-44487",
+      "type": "CVE",
+      "properties": {
+        "title": "HTTP/2 Rapid Reset Attack",
+        "cvss": 7.5,
+        "cwe": [
+          "CWE-400"
+        ],
+        "published": "2023-10-10",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-38545",
+      "type": "CVE",
+      "properties": {
+        "title": "curl SOCKS5 Heap Overflow",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-787",
+          "CWE-122"
+        ],
+        "published": "2023-10-11",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2023-4863",
+      "type": "CVE",
+      "properties": {
+        "title": "libwebp Heap Buffer Overflow",
+        "cvss": 9.6,
+        "cwe": [
+          "CWE-787"
+        ],
+        "published": "2023-09-11",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-22527",
+      "type": "CVE",
+      "properties": {
+        "title": "Atlassian Confluence Template Injection RCE",
+        "cvss": 10,
+        "cwe": [
+          "CWE-94",
+          "CWE-917"
+        ],
+        "published": "2024-01-16",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-46604",
+      "type": "CVE",
+      "properties": {
+        "title": "Apache ActiveMQ RCE",
+        "cvss": 10,
+        "cwe": [
+          "CWE-502"
+        ],
+        "published": "2023-10-27",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-34362",
+      "type": "CVE",
+      "properties": {
+        "title": "MOVEit Transfer SQL Injection",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-89"
+        ],
+        "published": "2023-06-02",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-27350",
+      "type": "CVE",
+      "properties": {
+        "title": "PaperCut NG/MF RCE",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-284"
+        ],
+        "published": "2023-04-19",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-20198",
+      "type": "CVE",
+      "properties": {
+        "title": "Cisco IOS XE Web UI Privilege Escalation",
+        "cvss": 10,
+        "cwe": [
+          "CWE-420"
+        ],
+        "published": "2023-10-16",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-42793",
+      "type": "CVE",
+      "properties": {
+        "title": "JetBrains TeamCity Auth Bypass",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-288"
+        ],
+        "published": "2023-09-19",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-29357",
+      "type": "CVE",
+      "properties": {
+        "title": "Microsoft SharePoint Privilege Escalation",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-287"
+        ],
+        "published": "2023-06-13",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-28771",
+      "type": "CVE",
+      "properties": {
+        "title": "Zyxel Firewall Command Injection",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-78"
+        ],
+        "published": "2023-04-25",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-2868",
+      "type": "CVE",
+      "properties": {
+        "title": "Barracuda ESG Command Injection",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-78"
+        ],
+        "published": "2023-05-24",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-45133",
+      "type": "CVE",
+      "properties": {
+        "title": "@babel/traverse Prototype Pollution",
+        "cvss": 9.3,
+        "cwe": [
+          "CWE-1321"
+        ],
+        "published": "2023-10-12",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2022-46175",
+      "type": "CVE",
+      "properties": {
+        "title": "json5 Prototype Pollution",
+        "cvss": 7.1,
+        "cwe": [
+          "CWE-1321"
+        ],
+        "published": "2022-12-24",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2023-26159",
+      "type": "CVE",
+      "properties": {
+        "title": "follow-redirects SSRF",
+        "cvss": 6.1,
+        "cwe": [
+          "CWE-601",
+          "CWE-918"
+        ],
+        "published": "2024-01-02",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2022-25883",
+      "type": "CVE",
+      "properties": {
+        "title": "semver ReDoS",
+        "cvss": 7.5,
+        "cwe": [
+          "CWE-1333"
+        ],
+        "published": "2023-06-21",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2022-37601",
+      "type": "CVE",
+      "properties": {
+        "title": "loader-utils Prototype Pollution",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-1321"
+        ],
+        "published": "2022-10-12",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2021-23337",
+      "type": "CVE",
+      "properties": {
+        "title": "Lodash Command Injection",
+        "cvss": 7.2,
+        "cwe": [
+          "CWE-94",
+          "CWE-77"
+        ],
+        "published": "2021-02-15",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2022-29078",
+      "type": "CVE",
+      "properties": {
+        "title": "ejs Template Injection RCE",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-94"
+        ],
+        "published": "2022-04-25",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2021-44906",
+      "type": "CVE",
+      "properties": {
+        "title": "minimist Prototype Pollution",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-1321"
+        ],
+        "published": "2022-03-17",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2023-26136",
+      "type": "CVE",
+      "properties": {
+        "title": "tough-cookie Prototype Pollution",
+        "cvss": 6.5,
+        "cwe": [
+          "CWE-1321"
+        ],
+        "published": "2023-07-01",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2022-21680",
+      "type": "CVE",
+      "properties": {
+        "title": "marked ReDoS",
+        "cvss": 7.5,
+        "cwe": [
+          "CWE-1333"
+        ],
+        "published": "2022-01-14",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2021-44228",
+      "type": "CVE",
+      "properties": {
+        "title": "Log4Shell",
+        "cvss": 10,
+        "cwe": [
+          "CWE-917",
+          "CWE-20",
+          "CWE-502"
+        ],
+        "published": "2021-12-10",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2021-45046",
+      "type": "CVE",
+      "properties": {
+        "title": "Log4j2 Incomplete Fix",
+        "cvss": 9,
+        "cwe": [
+          "CWE-917"
+        ],
+        "published": "2021-12-14",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2022-22965",
+      "type": "CVE",
+      "properties": {
+        "title": "Spring4Shell",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-94"
+        ],
+        "published": "2022-03-31",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2022-22963",
+      "type": "CVE",
+      "properties": {
+        "title": "Spring Cloud Function SpEL Injection",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-917",
+          "CWE-94"
+        ],
+        "published": "2022-03-29",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-40217",
+      "type": "CVE",
+      "properties": {
+        "title": "Python ssl.SSLSocket TLS Bypass",
+        "cvss": 5.3,
+        "cwe": [
+          "CWE-295"
+        ],
+        "published": "2023-08-25",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2022-42919",
+      "type": "CVE",
+      "properties": {
+        "title": "Python multiprocessing Local Privilege Escalation",
+        "cvss": 7.8,
+        "cwe": [
+          "CWE-269"
+        ],
+        "published": "2022-11-02",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2022-0185",
+      "type": "CVE",
+      "properties": {
+        "title": "Linux Kernel Heap Overflow Container Escape",
+        "cvss": 8.4,
+        "cwe": [
+          "CWE-787",
+          "CWE-190"
+        ],
+        "published": "2022-02-11",
+        "exploited": true,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2022-0847",
+      "type": "CVE",
+      "properties": {
+        "title": "Dirty Pipe",
+        "cvss": 7.8,
+        "cwe": [
+          "CWE-281"
+        ],
+        "published": "2022-03-07",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2020-15257",
+      "type": "CVE",
+      "properties": {
+        "title": "containerd Container Escape",
+        "cvss": 5.2,
+        "cwe": [
+          "CWE-269"
+        ],
+        "published": "2020-12-01",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CVE-2023-36884",
+      "type": "CVE",
+      "properties": {
+        "title": "Microsoft Office/Windows HTML RCE",
+        "cvss": 8.3,
+        "cwe": [
+          "CWE-94"
+        ],
+        "published": "2023-07-11",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2023-23397",
+      "type": "CVE",
+      "properties": {
+        "title": "Microsoft Outlook Privilege Escalation",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-294"
+        ],
+        "published": "2023-03-14",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2022-41082",
+      "type": "CVE",
+      "properties": {
+        "title": "Microsoft Exchange ProxyNotShell RCE",
+        "cvss": 8.8,
+        "cwe": [
+          "CWE-502"
+        ],
+        "published": "2022-10-02",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2022-26134",
+      "type": "CVE",
+      "properties": {
+        "title": "Atlassian Confluence OGNL Injection",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-917",
+          "CWE-74"
+        ],
+        "published": "2022-06-02",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2021-34473",
+      "type": "CVE",
+      "properties": {
+        "title": "Microsoft Exchange ProxyShell",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-918"
+        ],
+        "published": "2021-07-14",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2021-26855",
+      "type": "CVE",
+      "properties": {
+        "title": "Microsoft Exchange ProxyLogon",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-918"
+        ],
+        "published": "2021-03-02",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2020-1472",
+      "type": "CVE",
+      "properties": {
+        "title": "Zerologon",
+        "cvss": 10,
+        "cwe": [
+          "CWE-330"
+        ],
+        "published": "2020-08-17",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2019-11510",
+      "type": "CVE",
+      "properties": {
+        "title": "Pulse Secure VPN Arbitrary File Read",
+        "cvss": 10,
+        "cwe": [
+          "CWE-22"
+        ],
+        "published": "2019-05-08",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2019-19781",
+      "type": "CVE",
+      "properties": {
+        "title": "Citrix ADC/Gateway Path Traversal RCE",
+        "cvss": 9.8,
+        "cwe": [
+          "CWE-22"
+        ],
+        "published": "2019-12-27",
+        "exploited": true,
+        "cisaKEV": true
+      }
+    },
+    {
+      "id": "CVE-2024-6387",
+      "type": "CVE",
+      "properties": {
+        "title": "OpenSSH regreSSHion",
+        "cvss": 8.1,
+        "cwe": [
+          "CWE-362",
+          "CWE-416"
+        ],
+        "published": "2024-07-01",
+        "exploited": false,
+        "cisaKEV": false
+      }
+    },
+    {
+      "id": "CWE-20",
+      "type": "CWE",
+      "properties": {
+        "name": "Improper Input Validation",
+        "category": "Input Validation"
+      }
+    },
+    {
+      "id": "CWE-22",
+      "type": "CWE",
+      "properties": {
+        "name": "Path Traversal",
+        "category": "Input Validation"
+      }
+    },
+    {
+      "id": "CWE-77",
+      "type": "CWE",
+      "properties": {
+        "name": "Command Injection",
+        "category": "Injection"
+      }
+    },
+    {
+      "id": "CWE-78",
+      "type": "CWE",
+      "properties": {
+        "name": "OS Command Injection",
+        "category": "Injection"
+      }
+    },
+    {
+      "id": "CWE-79",
+      "type": "CWE",
+      "properties": {
+        "name": "Cross-site Scripting (XSS)",
+        "category": "Injection"
+      }
+    },
+    {
+      "id": "CWE-89",
+      "type": "CWE",
+      "properties": {
+        "name": "SQL Injection",
+        "category": "Injection"
+      }
+    },
+    {
+      "id": "CWE-94",
+      "type": "CWE",
+      "properties": {
+        "name": "Code Injection",
+        "category": "Injection"
+      }
+    },
+    {
+      "id": "CWE-98",
+      "type": "CWE",
+      "properties": {
+        "name": "PHP Remote File Inclusion",
+        "category": "Injection"
+      }
+    },
+    {
+      "id": "CWE-119",
+      "type": "CWE",
+      "properties": {
+        "name": "Buffer Overflow",
+        "category": "Memory Safety"
+      }
+    },
+    {
+      "id": "CWE-120",
+      "type": "CWE",
+      "properties": {
+        "name": "Buffer Copy without Size Check",
+        "category": "Memory Safety"
+      }
+    },
+    {
+      "id": "CWE-125",
+      "type": "CWE",
+      "properties": {
+        "name": "Out-of-bounds Read",
+        "category": "Memory Safety"
+      }
+    },
+    {
+      "id": "CWE-126",
+      "type": "CWE",
+      "properties": {
+        "name": "Buffer Over-read",
+        "category": "Memory Safety"
+      }
+    },
+    {
+      "id": "CWE-190",
+      "type": "CWE",
+      "properties": {
+        "name": "Integer Overflow",
+        "category": "Numeric Errors"
+      }
+    },
+    {
+      "id": "CWE-200",
+      "type": "CWE",
+      "properties": {
+        "name": "Information Exposure",
+        "category": "Information Disclosure"
+      }
+    },
+    {
+      "id": "CWE-209",
+      "type": "CWE",
+      "properties": {
+        "name": "Error Message Information Leak",
+        "category": "Information Disclosure"
+      }
+    },
+    {
+      "id": "CWE-269",
+      "type": "CWE",
+      "properties": {
+        "name": "Improper Privilege Management",
+        "category": "Access Control"
+      }
+    },
+    {
+      "id": "CWE-276",
+      "type": "CWE",
+      "properties": {
+        "name": "Incorrect Default Permissions",
+        "category": "Access Control"
+      }
+    },
+    {
+      "id": "CWE-287",
+      "type": "CWE",
+      "properties": {
+        "name": "Improper Authentication",
+        "category": "Authentication"
+      }
+    },
+    {
+      "id": "CWE-288",
+      "type": "CWE",
+      "properties": {
+        "name": "Authentication Bypass Using Alternate Path",
+        "category": "Authentication"
+      }
+    },
+    {
+      "id": "CWE-295",
+      "type": "CWE",
+      "properties": {
+        "name": "Improper Certificate Validation",
+        "category": "Cryptography"
+      }
+    },
+    {
+      "id": "CWE-306",
+      "type": "CWE",
+      "properties": {
+        "name": "Missing Authentication",
+        "category": "Authentication"
+      }
+    },
+    {
+      "id": "CWE-327",
+      "type": "CWE",
+      "properties": {
+        "name": "Use of Broken Crypto Algorithm",
+        "category": "Cryptography"
+      }
+    },
+    {
+      "id": "CWE-330",
+      "type": "CWE",
+      "properties": {
+        "name": "Use of Insufficiently Random Values",
+        "category": "Cryptography"
+      }
+    },
+    {
+      "id": "CWE-352",
+      "type": "CWE",
+      "properties": {
+        "name": "Cross-Site Request Forgery (CSRF)",
+        "category": "Session Management"
+      }
+    },
+    {
+      "id": "CWE-362",
+      "type": "CWE",
+      "properties": {
+        "name": "Race Condition",
+        "category": "Concurrency"
+      }
+    },
+    {
+      "id": "CWE-384",
+      "type": "CWE",
+      "properties": {
+        "name": "Session Fixation",
+        "category": "Session Management"
+      }
+    },
+    {
+      "id": "CWE-400",
+      "type": "CWE",
+      "properties": {
+        "name": "Uncontrolled Resource Consumption",
+        "category": "Resource Management"
+      }
+    },
+    {
+      "id": "CWE-401",
+      "type": "CWE",
+      "properties": {
+        "name": "Memory Leak",
+        "category": "Memory Safety"
+      }
+    },
+    {
+      "id": "CWE-416",
+      "type": "CWE",
+      "properties": {
+        "name": "Use After Free",
+        "category": "Memory Safety"
+      }
+    },
+    {
+      "id": "CWE-434",
+      "type": "CWE",
+      "properties": {
+        "name": "Unrestricted File Upload",
+        "category": "Input Validation"
+      }
+    },
+    {
+      "id": "CWE-502",
+      "type": "CWE",
+      "properties": {
+        "name": "Deserialization of Untrusted Data",
+        "category": "Injection"
+      }
+    },
+    {
+      "id": "CWE-506",
+      "type": "CWE",
+      "properties": {
+        "name": "Embedded Malicious Code",
+        "category": "Malware"
+      }
+    },
+    {
+      "id": "CWE-601",
+      "type": "CWE",
+      "properties": {
+        "name": "URL Redirection to Untrusted Site",
+        "category": "Input Validation"
+      }
+    },
+    {
+      "id": "CWE-611",
+      "type": "CWE",
+      "properties": {
+        "name": "XML External Entity (XXE)",
+        "category": "Injection"
+      }
+    },
+    {
+      "id": "CWE-668",
+      "type": "CWE",
+      "properties": {
+        "name": "Exposure of Resource to Wrong Sphere",
+        "category": "Access Control"
+      }
+    },
+    {
+      "id": "CWE-732",
+      "type": "CWE",
+      "properties": {
+        "name": "Incorrect Permission Assignment",
+        "category": "Access Control"
+      }
+    },
+    {
+      "id": "CWE-776",
+      "type": "CWE",
+      "properties": {
+        "name": "XML Entity Expansion",
+        "category": "Injection"
+      }
+    },
+    {
+      "id": "CWE-787",
+      "type": "CWE",
+      "properties": {
+        "name": "Out-of-bounds Write",
+        "category": "Memory Safety"
+      }
+    },
+    {
+      "id": "CWE-798",
+      "type": "CWE",
+      "properties": {
+        "name": "Use of Hard-coded Credentials",
+        "category": "Authentication"
+      }
+    },
+    {
+      "id": "CWE-862",
+      "type": "CWE",
+      "properties": {
+        "name": "Missing Authorization",
+        "category": "Access Control"
+      }
+    },
+    {
+      "id": "CWE-863",
+      "type": "CWE",
+      "properties": {
+        "name": "Incorrect Authorization",
+        "category": "Access Control"
+      }
+    },
+    {
+      "id": "CWE-917",
+      "type": "CWE",
+      "properties": {
+        "name": "Expression Language Injection",
+        "category": "Injection"
+      }
+    },
+    {
+      "id": "CWE-918",
+      "type": "CWE",
+      "properties": {
+        "name": "Server-Side Request Forgery (SSRF)",
+        "category": "Input Validation"
+      }
+    },
+    {
+      "id": "CWE-943",
+      "type": "CWE",
+      "properties": {
+        "name": "NoSQL Injection",
+        "category": "Injection"
+      }
+    },
+    {
+      "id": "CWE-1021",
+      "type": "CWE",
+      "properties": {
+        "name": "Improper Restriction of Rendered UI",
+        "category": "UI Security"
+      }
+    },
+    {
+      "id": "CWE-1321",
+      "type": "CWE",
+      "properties": {
+        "name": "Prototype Pollution",
+        "category": "Injection"
+      }
+    },
+    {
+      "id": "CWE-1333",
+      "type": "CWE",
+      "properties": {
+        "name": "Regex Complexity",
+        "category": "Resource Management"
+      }
+    },
+    {
+      "id": "T1059",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Command and Scripting Interpreter",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "id": "T1059.001",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "PowerShell",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "id": "T1059.004",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Unix Shell",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "id": "T1059.007",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "JavaScript",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "id": "T1190",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Exploit Public-Facing Application",
+        "tactic": "Initial Access"
+      }
+    },
+    {
+      "id": "T1210",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Exploitation of Remote Services",
+        "tactic": "Lateral Movement"
+      }
+    },
+    {
+      "id": "T1211",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Exploitation for Defense Evasion",
+        "tactic": "Defense Evasion"
+      }
+    },
+    {
+      "id": "T1212",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Exploitation for Credential Access",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "id": "T1068",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Exploitation for Privilege Escalation",
+        "tactic": "Privilege Escalation"
+      }
+    },
+    {
+      "id": "T1203",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Exploitation for Client Execution",
+        "tactic": "Execution"
+      }
+    },
+    {
+      "id": "T1505.003",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Web Shell",
+        "tactic": "Persistence"
+      }
+    },
+    {
+      "id": "T1078",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Valid Accounts",
+        "tactic": "Defense Evasion"
+      }
+    },
+    {
+      "id": "T1110",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Brute Force",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "id": "T1556",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Modify Authentication Process",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "id": "T1552",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Unsecured Credentials",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "id": "T1552.001",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Credentials In Files",
+        "tactic": "Credential Access"
+      }
+    },
+    {
+      "id": "T1055",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Process Injection",
+        "tactic": "Defense Evasion"
+      }
+    },
+    {
+      "id": "T1105",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Ingress Tool Transfer",
+        "tactic": "Command and Control"
+      }
+    },
+    {
+      "id": "T1071",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Application Layer Protocol",
+        "tactic": "Command and Control"
+      }
+    },
+    {
+      "id": "T1486",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Data Encrypted for Impact",
+        "tactic": "Impact"
+      }
+    },
+    {
+      "id": "T1489",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Service Stop",
+        "tactic": "Impact"
+      }
+    },
+    {
+      "id": "T1499",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Endpoint Denial of Service",
+        "tactic": "Impact"
+      }
+    },
+    {
+      "id": "T1048",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Exfiltration Over Alternative Protocol",
+        "tactic": "Exfiltration"
+      }
+    },
+    {
+      "id": "T1041",
+      "type": "ATTACK_TECHNIQUE",
+      "properties": {
+        "name": "Exfiltration Over C2 Channel",
+        "tactic": "Exfiltration"
+      }
+    },
+    {
+      "id": "command_injection",
+      "type": "VULN_TYPE",
+      "properties": {
+        "cvss": 9.8,
+        "cwe": "CWE-78",
+        "patternCount": 7
+      }
+    },
+    {
+      "id": "command_injection_pattern_0",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "command_injection",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "command_injection_pattern_1",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "command_injection",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "command_injection_pattern_2",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "command_injection",
+        "confidence": 0.9,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "command_injection_pattern_3",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "command_injection",
+        "confidence": 0.8,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "command_injection_pattern_4",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "command_injection",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "command_injection_pattern_5",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "command_injection",
+        "confidence": 0.9,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "command_injection_pattern_6",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "command_injection",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "sql_injection",
+      "type": "VULN_TYPE",
+      "properties": {
+        "cvss": 9.8,
+        "cwe": "CWE-89",
+        "patternCount": 5
+      }
+    },
+    {
+      "id": "sql_injection_pattern_0",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "sql_injection",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "sql_injection_pattern_1",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "sql_injection",
+        "confidence": 0.9,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "sql_injection_pattern_2",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "sql_injection",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "sql_injection_pattern_3",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "sql_injection",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "sql_injection_pattern_4",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "sql_injection",
+        "confidence": 0.9,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "prototype_pollution",
+      "type": "VULN_TYPE",
+      "properties": {
+        "cvss": 9.8,
+        "cwe": "CWE-1321",
+        "patternCount": 6
+      }
+    },
+    {
+      "id": "prototype_pollution_pattern_0",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "prototype_pollution",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "prototype_pollution_pattern_1",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "prototype_pollution",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "prototype_pollution_pattern_2",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "prototype_pollution",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "prototype_pollution_pattern_3",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "prototype_pollution",
+        "confidence": 0.8,
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "prototype_pollution_pattern_4",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "prototype_pollution",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "prototype_pollution_pattern_5",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "prototype_pollution",
+        "confidence": 0.75,
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "template_injection",
+      "type": "VULN_TYPE",
+      "properties": {
+        "cvss": 10,
+        "cwe": "CWE-94",
+        "patternCount": 5
+      }
+    },
+    {
+      "id": "template_injection_pattern_0",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "template_injection",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "template_injection_pattern_1",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "template_injection",
+        "confidence": 0.9,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "template_injection_pattern_2",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "template_injection",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "template_injection_pattern_3",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "template_injection",
+        "confidence": 0.9,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "template_injection_pattern_4",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "template_injection",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "deserialization",
+      "type": "VULN_TYPE",
+      "properties": {
+        "cvss": 10,
+        "cwe": "CWE-502",
+        "patternCount": 6
+      }
+    },
+    {
+      "id": "deserialization_pattern_0",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "deserialization",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "deserialization_pattern_1",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "deserialization",
+        "confidence": 0.9,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "deserialization_pattern_2",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "deserialization",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "deserialization_pattern_3",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "deserialization",
+        "confidence": 0.8,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "deserialization_pattern_4",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "deserialization",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "deserialization_pattern_5",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "deserialization",
+        "confidence": 0.75,
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "jndi_injection",
+      "type": "VULN_TYPE",
+      "properties": {
+        "cvss": 10,
+        "cwe": "CWE-917",
+        "patternCount": 4
+      }
+    },
+    {
+      "id": "jndi_injection_pattern_0",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "jndi_injection",
+        "confidence": 1,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "jndi_injection_pattern_1",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "jndi_injection",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "jndi_injection_pattern_2",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "jndi_injection",
+        "confidence": 0.7,
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "jndi_injection_pattern_3",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "jndi_injection",
+        "confidence": 0.6,
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "ssrf",
+      "type": "VULN_TYPE",
+      "properties": {
+        "cvss": 8.6,
+        "cwe": "CWE-918",
+        "patternCount": 5
+      }
+    },
+    {
+      "id": "ssrf_pattern_0",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "ssrf",
+        "confidence": 0.9,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "ssrf_pattern_1",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "ssrf",
+        "confidence": 0.9,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "ssrf_pattern_2",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "ssrf",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "ssrf_pattern_3",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "ssrf",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "ssrf_pattern_4",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "ssrf",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "path_traversal",
+      "type": "VULN_TYPE",
+      "properties": {
+        "cvss": 8.6,
+        "cwe": "CWE-22",
+        "patternCount": 5
+      }
+    },
+    {
+      "id": "path_traversal_pattern_0",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "path_traversal",
+        "confidence": 0.9,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "path_traversal_pattern_1",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "path_traversal",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "path_traversal_pattern_2",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "path_traversal",
+        "confidence": 0.8,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "path_traversal_pattern_3",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "path_traversal",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "path_traversal_pattern_4",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "path_traversal",
+        "confidence": 0.9,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "auth_bypass",
+      "type": "VULN_TYPE",
+      "properties": {
+        "cvss": 9.8,
+        "cwe": "CWE-287",
+        "patternCount": 5
+      }
+    },
+    {
+      "id": "auth_bypass_pattern_0",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "auth_bypass",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "auth_bypass_pattern_1",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "auth_bypass",
+        "confidence": 0.9,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "auth_bypass_pattern_2",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "auth_bypass",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "auth_bypass_pattern_3",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "auth_bypass",
+        "confidence": 0.7,
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "auth_bypass_pattern_4",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "auth_bypass",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "hardcoded_secrets",
+      "type": "VULN_TYPE",
+      "properties": {
+        "cvss": 9.8,
+        "cwe": "CWE-798",
+        "patternCount": 7
+      }
+    },
+    {
+      "id": "hardcoded_secrets_pattern_0",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "hardcoded_secrets",
+        "confidence": 0.9,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "hardcoded_secrets_pattern_1",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "hardcoded_secrets",
+        "confidence": 1,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "hardcoded_secrets_pattern_2",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "hardcoded_secrets",
+        "confidence": 1,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "hardcoded_secrets_pattern_3",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "hardcoded_secrets",
+        "confidence": 1,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "hardcoded_secrets_pattern_4",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "hardcoded_secrets",
+        "confidence": 1,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "hardcoded_secrets_pattern_5",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "hardcoded_secrets",
+        "confidence": 1,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "hardcoded_secrets_pattern_6",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "hardcoded_secrets",
+        "confidence": 0.8,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "xss",
+      "type": "VULN_TYPE",
+      "properties": {
+        "cvss": 6.1,
+        "cwe": "CWE-79",
+        "patternCount": 5
+      }
+    },
+    {
+      "id": "xss_pattern_0",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "xss",
+        "confidence": 0.85,
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "xss_pattern_1",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "xss",
+        "confidence": 0.9,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "xss_pattern_2",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "xss",
+        "confidence": 0.8,
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "xss_pattern_3",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "xss",
+        "confidence": 0.75,
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "xss_pattern_4",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "xss",
+        "confidence": 0.8,
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "regex_dos",
+      "type": "VULN_TYPE",
+      "properties": {
+        "cvss": 7.5,
+        "cwe": "CWE-1333",
+        "patternCount": 4
+      }
+    },
+    {
+      "id": "regex_dos_pattern_0",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "regex_dos",
+        "confidence": 0.9,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "regex_dos_pattern_1",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "regex_dos",
+        "confidence": 0.9,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "regex_dos_pattern_2",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "regex_dos",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    },
+    {
+      "id": "regex_dos_pattern_3",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "regex_dos",
+        "confidence": 0.8,
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "buffer_overflow",
+      "type": "VULN_TYPE",
+      "properties": {
+        "cvss": 9.8,
+        "cwe": "CWE-787",
+        "patternCount": 5
+      }
+    },
+    {
+      "id": "buffer_overflow_pattern_0",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "buffer_overflow",
+        "confidence": 0.7,
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "buffer_overflow_pattern_1",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "buffer_overflow",
+        "confidence": 0.9,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "buffer_overflow_pattern_2",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "buffer_overflow",
+        "confidence": 0.95,
+        "severity": "critical"
+      }
+    },
+    {
+      "id": "buffer_overflow_pattern_3",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "buffer_overflow",
+        "confidence": 0.7,
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "buffer_overflow_pattern_4",
+      "type": "PATTERN",
+      "properties": {
+        "vulnType": "buffer_overflow",
+        "confidence": 0.85,
+        "severity": "high"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "CVE-2024-3094",
+      "to": "CWE-506",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2024-4577",
+      "to": "CWE-78",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2024-21626",
+      "to": "CWE-668",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": false
+      }
+    },
+    {
+      "from": "CVE-2024-38856",
+      "to": "CWE-94",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2024-38856",
+      "to": "CWE-917",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": false
+      }
+    },
+    {
+      "from": "CVE-2024-27198",
+      "to": "CWE-288",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2024-1709",
+      "to": "CWE-288",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2024-1709",
+      "to": "CWE-287",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": false
+      }
+    },
+    {
+      "from": "CVE-2024-23897",
+      "to": "CWE-22",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2024-20359",
+      "to": "CWE-94",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-44487",
+      "to": "CWE-400",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-38545",
+      "to": "CWE-787",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-4863",
+      "to": "CWE-787",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-22527",
+      "to": "CWE-94",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-22527",
+      "to": "CWE-917",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": false
+      }
+    },
+    {
+      "from": "CVE-2023-46604",
+      "to": "CWE-502",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-34362",
+      "to": "CWE-89",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-42793",
+      "to": "CWE-288",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-29357",
+      "to": "CWE-287",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-28771",
+      "to": "CWE-78",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-2868",
+      "to": "CWE-78",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-45133",
+      "to": "CWE-1321",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2022-46175",
+      "to": "CWE-1321",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-26159",
+      "to": "CWE-601",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-26159",
+      "to": "CWE-918",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": false
+      }
+    },
+    {
+      "from": "CVE-2022-25883",
+      "to": "CWE-1333",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2022-37601",
+      "to": "CWE-1321",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2021-23337",
+      "to": "CWE-94",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2021-23337",
+      "to": "CWE-77",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": false
+      }
+    },
+    {
+      "from": "CVE-2022-29078",
+      "to": "CWE-94",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2021-44906",
+      "to": "CWE-1321",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-26136",
+      "to": "CWE-1321",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2022-21680",
+      "to": "CWE-1333",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2021-44228",
+      "to": "CWE-917",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2021-44228",
+      "to": "CWE-20",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": false
+      }
+    },
+    {
+      "from": "CVE-2021-44228",
+      "to": "CWE-502",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": false
+      }
+    },
+    {
+      "from": "CVE-2021-45046",
+      "to": "CWE-917",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2022-22965",
+      "to": "CWE-94",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2022-22963",
+      "to": "CWE-917",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2022-22963",
+      "to": "CWE-94",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": false
+      }
+    },
+    {
+      "from": "CVE-2023-40217",
+      "to": "CWE-295",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2022-42919",
+      "to": "CWE-269",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2022-0185",
+      "to": "CWE-787",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2022-0185",
+      "to": "CWE-190",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": false
+      }
+    },
+    {
+      "from": "CVE-2020-15257",
+      "to": "CWE-269",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2023-36884",
+      "to": "CWE-94",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2022-41082",
+      "to": "CWE-502",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2022-26134",
+      "to": "CWE-917",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2021-34473",
+      "to": "CWE-918",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2021-26855",
+      "to": "CWE-918",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2020-1472",
+      "to": "CWE-330",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2019-11510",
+      "to": "CWE-22",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2019-19781",
+      "to": "CWE-22",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2024-6387",
+      "to": "CWE-362",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": true
+      }
+    },
+    {
+      "from": "CVE-2024-6387",
+      "to": "CWE-416",
+      "type": "HAS_WEAKNESS",
+      "properties": {
+        "primary": false
+      }
+    },
+    {
+      "from": "CVE-2024-3094",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-3094",
+      "to": "T1059.004",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-4577",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-4577",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-21626",
+      "to": "T1068",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-38856",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-38856",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-27198",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-27198",
+      "to": "T1078",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-1709",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-1709",
+      "to": "T1078",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-1709",
+      "to": "T1210",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-23897",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-23897",
+      "to": "T1552.001",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-0204",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-20353",
+      "to": "T1499",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-20359",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-20359",
+      "to": "T1505.003",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-44487",
+      "to": "T1499",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-38545",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-38545",
+      "to": "T1203",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-4863",
+      "to": "T1203",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-4863",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-22527",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-22527",
+      "to": "T1059.007",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-46604",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-46604",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-34362",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-34362",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-27350",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-27350",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-20198",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-42793",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-42793",
+      "to": "T1078",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-29357",
+      "to": "T1068",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-29357",
+      "to": "T1078",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-28771",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-28771",
+      "to": "T1059.004",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-2868",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-2868",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-45133",
+      "to": "T1059.007",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-46175",
+      "to": "T1059.007",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-26159",
+      "to": "T1071",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-25883",
+      "to": "T1499",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-37601",
+      "to": "T1059.007",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2021-23337",
+      "to": "T1059.007",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-29078",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-29078",
+      "to": "T1059.007",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2021-44906",
+      "to": "T1059.007",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-26136",
+      "to": "T1059.007",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-21680",
+      "to": "T1499",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2021-44228",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2021-44228",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2021-44228",
+      "to": "T1105",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2021-45046",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2021-45046",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-22965",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-22965",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-22963",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-22963",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-42919",
+      "to": "T1068",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-0185",
+      "to": "T1068",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-0847",
+      "to": "T1068",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2020-15257",
+      "to": "T1068",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-36884",
+      "to": "T1203",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2023-23397",
+      "to": "T1212",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-41082",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-41082",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-26134",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2022-26134",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2021-34473",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2021-34473",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2021-26855",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2021-26855",
+      "to": "T1505.003",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2020-1472",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2020-1472",
+      "to": "T1556",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2019-11510",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2019-11510",
+      "to": "T1552.001",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2019-19781",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2019-19781",
+      "to": "T1059",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "CVE-2024-6387",
+      "to": "T1190",
+      "type": "ENABLES_TECHNIQUE",
+      "properties": {}
+    },
+    {
+      "from": "command_injection_pattern_0",
+      "to": "command_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "command_injection_pattern_1",
+      "to": "command_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "command_injection_pattern_2",
+      "to": "command_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "command_injection_pattern_3",
+      "to": "command_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "command_injection_pattern_4",
+      "to": "command_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "command_injection_pattern_5",
+      "to": "command_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "command_injection_pattern_6",
+      "to": "command_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "command_injection",
+      "to": "CVE-2024-4577",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "command_injection",
+      "to": "CVE-2021-23337",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "command_injection",
+      "to": "CVE-2023-28771",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "command_injection",
+      "to": "CVE-2023-2868",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "sql_injection_pattern_0",
+      "to": "sql_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "sql_injection_pattern_1",
+      "to": "sql_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "sql_injection_pattern_2",
+      "to": "sql_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "sql_injection_pattern_3",
+      "to": "sql_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "sql_injection_pattern_4",
+      "to": "sql_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "sql_injection",
+      "to": "CVE-2023-34362",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "prototype_pollution_pattern_0",
+      "to": "prototype_pollution",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "prototype_pollution_pattern_1",
+      "to": "prototype_pollution",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "prototype_pollution_pattern_2",
+      "to": "prototype_pollution",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "prototype_pollution_pattern_3",
+      "to": "prototype_pollution",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "prototype_pollution_pattern_4",
+      "to": "prototype_pollution",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "prototype_pollution_pattern_5",
+      "to": "prototype_pollution",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "prototype_pollution",
+      "to": "CVE-2023-45133",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "prototype_pollution",
+      "to": "CVE-2022-46175",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "prototype_pollution",
+      "to": "CVE-2022-37601",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "prototype_pollution",
+      "to": "CVE-2021-44906",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "prototype_pollution",
+      "to": "CVE-2023-26136",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "template_injection_pattern_0",
+      "to": "template_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "template_injection_pattern_1",
+      "to": "template_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "template_injection_pattern_2",
+      "to": "template_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "template_injection_pattern_3",
+      "to": "template_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "template_injection_pattern_4",
+      "to": "template_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "template_injection",
+      "to": "CVE-2023-22527",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "template_injection",
+      "to": "CVE-2022-29078",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "template_injection",
+      "to": "CVE-2022-22963",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "deserialization_pattern_0",
+      "to": "deserialization",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "deserialization_pattern_1",
+      "to": "deserialization",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "deserialization_pattern_2",
+      "to": "deserialization",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "deserialization_pattern_3",
+      "to": "deserialization",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "deserialization_pattern_4",
+      "to": "deserialization",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "deserialization_pattern_5",
+      "to": "deserialization",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "deserialization",
+      "to": "CVE-2023-46604",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "deserialization",
+      "to": "CVE-2022-41082",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "deserialization",
+      "to": "CVE-2021-44228",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "jndi_injection_pattern_0",
+      "to": "jndi_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "jndi_injection_pattern_1",
+      "to": "jndi_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "jndi_injection_pattern_2",
+      "to": "jndi_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "jndi_injection_pattern_3",
+      "to": "jndi_injection",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "jndi_injection",
+      "to": "CVE-2021-44228",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "jndi_injection",
+      "to": "CVE-2021-45046",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "ssrf_pattern_0",
+      "to": "ssrf",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "ssrf_pattern_1",
+      "to": "ssrf",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "ssrf_pattern_2",
+      "to": "ssrf",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "ssrf_pattern_3",
+      "to": "ssrf",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "ssrf_pattern_4",
+      "to": "ssrf",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "ssrf",
+      "to": "CVE-2023-26159",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "ssrf",
+      "to": "CVE-2021-26855",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "ssrf",
+      "to": "CVE-2021-34473",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "path_traversal_pattern_0",
+      "to": "path_traversal",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "path_traversal_pattern_1",
+      "to": "path_traversal",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "path_traversal_pattern_2",
+      "to": "path_traversal",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "path_traversal_pattern_3",
+      "to": "path_traversal",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "path_traversal_pattern_4",
+      "to": "path_traversal",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "path_traversal",
+      "to": "CVE-2024-21626",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "path_traversal",
+      "to": "CVE-2024-38856",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "path_traversal",
+      "to": "CVE-2024-23897",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "path_traversal",
+      "to": "CVE-2019-11510",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "path_traversal",
+      "to": "CVE-2019-19781",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "auth_bypass_pattern_0",
+      "to": "auth_bypass",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "auth_bypass_pattern_1",
+      "to": "auth_bypass",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "auth_bypass_pattern_2",
+      "to": "auth_bypass",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "auth_bypass_pattern_3",
+      "to": "auth_bypass",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "auth_bypass_pattern_4",
+      "to": "auth_bypass",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "auth_bypass",
+      "to": "CVE-2024-27198",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "auth_bypass",
+      "to": "CVE-2024-1709",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "auth_bypass",
+      "to": "CVE-2023-20198",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "auth_bypass",
+      "to": "CVE-2020-1472",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "hardcoded_secrets_pattern_0",
+      "to": "hardcoded_secrets",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "hardcoded_secrets_pattern_1",
+      "to": "hardcoded_secrets",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "hardcoded_secrets_pattern_2",
+      "to": "hardcoded_secrets",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "hardcoded_secrets_pattern_3",
+      "to": "hardcoded_secrets",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "hardcoded_secrets_pattern_4",
+      "to": "hardcoded_secrets",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "hardcoded_secrets_pattern_5",
+      "to": "hardcoded_secrets",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "hardcoded_secrets_pattern_6",
+      "to": "hardcoded_secrets",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "xss_pattern_0",
+      "to": "xss",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "xss_pattern_1",
+      "to": "xss",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "xss_pattern_2",
+      "to": "xss",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "xss_pattern_3",
+      "to": "xss",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "xss_pattern_4",
+      "to": "xss",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "regex_dos_pattern_0",
+      "to": "regex_dos",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "regex_dos_pattern_1",
+      "to": "regex_dos",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "regex_dos_pattern_2",
+      "to": "regex_dos",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "regex_dos_pattern_3",
+      "to": "regex_dos",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "regex_dos",
+      "to": "CVE-2022-25883",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "regex_dos",
+      "to": "CVE-2022-21680",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "buffer_overflow_pattern_0",
+      "to": "buffer_overflow",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "buffer_overflow_pattern_1",
+      "to": "buffer_overflow",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "buffer_overflow_pattern_2",
+      "to": "buffer_overflow",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "buffer_overflow_pattern_3",
+      "to": "buffer_overflow",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "buffer_overflow_pattern_4",
+      "to": "buffer_overflow",
+      "type": "DETECTS",
+      "properties": {}
+    },
+    {
+      "from": "buffer_overflow",
+      "to": "CVE-2023-38545",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "buffer_overflow",
+      "to": "CVE-2023-4863",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "buffer_overflow",
+      "to": "CVE-2022-0185",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "buffer_overflow",
+      "to": "CVE-2022-0847",
+      "type": "RELATED_CVE",
+      "properties": {}
+    },
+    {
+      "from": "ssrf",
+      "to": "path_traversal",
+      "type": "LEADS_TO",
+      "properties": {
+        "weight": 0.85
+      }
+    },
+    {
+      "from": "path_traversal",
+      "to": "command_injection",
+      "type": "LEADS_TO",
+      "properties": {
+        "weight": 0.9
+      }
+    },
+    {
+      "from": "sql_injection",
+      "to": "auth_bypass",
+      "type": "LEADS_TO",
+      "properties": {
+        "weight": 0.88
+      }
+    },
+    {
+      "from": "auth_bypass",
+      "to": "hardcoded_secrets",
+      "type": "LEADS_TO",
+      "properties": {
+        "weight": 0.75
+      }
+    },
+    {
+      "from": "prototype_pollution",
+      "to": "command_injection",
+      "type": "LEADS_TO",
+      "properties": {
+        "weight": 0.92
+      }
+    },
+    {
+      "from": "template_injection",
+      "to": "command_injection",
+      "type": "LEADS_TO",
+      "properties": {
+        "weight": 0.95
+      }
+    },
+    {
+      "from": "deserialization",
+      "to": "command_injection",
+      "type": "LEADS_TO",
+      "properties": {
+        "weight": 0.97
+      }
+    },
+    {
+      "from": "jndi_injection",
+      "to": "command_injection",
+      "type": "LEADS_TO",
+      "properties": {
+        "weight": 0.98
+      }
+    },
+    {
+      "from": "xss",
+      "to": "auth_bypass",
+      "type": "LEADS_TO",
+      "properties": {
+        "weight": 0.65
+      }
+    },
+    {
+      "from": "buffer_overflow",
+      "to": "command_injection",
+      "type": "LEADS_TO",
+      "properties": {
+        "weight": 0.85
+      }
+    },
+    {
+      "from": "regex_dos",
+      "to": "deserialization",
+      "type": "LEADS_TO",
+      "properties": {
+        "weight": 0.4
+      }
+    },
+    {
+      "from": "command_injection",
+      "to": "hardcoded_secrets",
+      "type": "LEADS_TO",
+      "properties": {
+        "weight": 0.8
+      }
+    }
+  ],
+  "nodeIndex": {
+    "CVE": [
+      "CVE-2024-3094",
+      "CVE-2024-4577",
+      "CVE-2024-21626",
+      "CVE-2024-38856",
+      "CVE-2024-27198",
+      "CVE-2024-1709",
+      "CVE-2024-23897",
+      "CVE-2024-0204",
+      "CVE-2024-20353",
+      "CVE-2024-20359",
+      "CVE-2023-44487",
+      "CVE-2023-38545",
+      "CVE-2023-4863",
+      "CVE-2023-22527",
+      "CVE-2023-46604",
+      "CVE-2023-34362",
+      "CVE-2023-27350",
+      "CVE-2023-20198",
+      "CVE-2023-42793",
+      "CVE-2023-29357",
+      "CVE-2023-28771",
+      "CVE-2023-2868",
+      "CVE-2023-45133",
+      "CVE-2022-46175",
+      "CVE-2023-26159",
+      "CVE-2022-25883",
+      "CVE-2022-37601",
+      "CVE-2021-23337",
+      "CVE-2022-29078",
+      "CVE-2021-44906",
+      "CVE-2023-26136",
+      "CVE-2022-21680",
+      "CVE-2021-44228",
+      "CVE-2021-45046",
+      "CVE-2022-22965",
+      "CVE-2022-22963",
+      "CVE-2023-40217",
+      "CVE-2022-42919",
+      "CVE-2022-0185",
+      "CVE-2022-0847",
+      "CVE-2020-15257",
+      "CVE-2023-36884",
+      "CVE-2023-23397",
+      "CVE-2022-41082",
+      "CVE-2022-26134",
+      "CVE-2021-34473",
+      "CVE-2021-26855",
+      "CVE-2020-1472",
+      "CVE-2019-11510",
+      "CVE-2019-19781",
+      "CVE-2024-6387"
+    ],
+    "CWE": [
+      "CWE-20",
+      "CWE-22",
+      "CWE-77",
+      "CWE-78",
+      "CWE-79",
+      "CWE-89",
+      "CWE-94",
+      "CWE-98",
+      "CWE-119",
+      "CWE-120",
+      "CWE-125",
+      "CWE-126",
+      "CWE-190",
+      "CWE-200",
+      "CWE-209",
+      "CWE-269",
+      "CWE-276",
+      "CWE-287",
+      "CWE-288",
+      "CWE-295",
+      "CWE-306",
+      "CWE-327",
+      "CWE-330",
+      "CWE-352",
+      "CWE-362",
+      "CWE-384",
+      "CWE-400",
+      "CWE-401",
+      "CWE-416",
+      "CWE-434",
+      "CWE-502",
+      "CWE-506",
+      "CWE-601",
+      "CWE-611",
+      "CWE-668",
+      "CWE-732",
+      "CWE-776",
+      "CWE-787",
+      "CWE-798",
+      "CWE-862",
+      "CWE-863",
+      "CWE-917",
+      "CWE-918",
+      "CWE-943",
+      "CWE-1021",
+      "CWE-1321",
+      "CWE-1333"
+    ],
+    "ATTACK_TECHNIQUE": [
+      "T1059",
+      "T1059.001",
+      "T1059.004",
+      "T1059.007",
+      "T1190",
+      "T1210",
+      "T1211",
+      "T1212",
+      "T1068",
+      "T1203",
+      "T1505.003",
+      "T1078",
+      "T1110",
+      "T1556",
+      "T1552",
+      "T1552.001",
+      "T1055",
+      "T1105",
+      "T1071",
+      "T1486",
+      "T1489",
+      "T1499",
+      "T1048",
+      "T1041"
+    ],
+    "VULN_TYPE": [
+      "command_injection",
+      "sql_injection",
+      "prototype_pollution",
+      "template_injection",
+      "deserialization",
+      "jndi_injection",
+      "ssrf",
+      "path_traversal",
+      "auth_bypass",
+      "hardcoded_secrets",
+      "xss",
+      "regex_dos",
+      "buffer_overflow"
+    ],
+    "PATTERN": [
+      "command_injection_pattern_0",
+      "command_injection_pattern_1",
+      "command_injection_pattern_2",
+      "command_injection_pattern_3",
+      "command_injection_pattern_4",
+      "command_injection_pattern_5",
+      "command_injection_pattern_6",
+      "sql_injection_pattern_0",
+      "sql_injection_pattern_1",
+      "sql_injection_pattern_2",
+      "sql_injection_pattern_3",
+      "sql_injection_pattern_4",
+      "prototype_pollution_pattern_0",
+      "prototype_pollution_pattern_1",
+      "prototype_pollution_pattern_2",
+      "prototype_pollution_pattern_3",
+      "prototype_pollution_pattern_4",
+      "prototype_pollution_pattern_5",
+      "template_injection_pattern_0",
+      "template_injection_pattern_1",
+      "template_injection_pattern_2",
+      "template_injection_pattern_3",
+      "template_injection_pattern_4",
+      "deserialization_pattern_0",
+      "deserialization_pattern_1",
+      "deserialization_pattern_2",
+      "deserialization_pattern_3",
+      "deserialization_pattern_4",
+      "deserialization_pattern_5",
+      "jndi_injection_pattern_0",
+      "jndi_injection_pattern_1",
+      "jndi_injection_pattern_2",
+      "jndi_injection_pattern_3",
+      "ssrf_pattern_0",
+      "ssrf_pattern_1",
+      "ssrf_pattern_2",
+      "ssrf_pattern_3",
+      "ssrf_pattern_4",
+      "path_traversal_pattern_0",
+      "path_traversal_pattern_1",
+      "path_traversal_pattern_2",
+      "path_traversal_pattern_3",
+      "path_traversal_pattern_4",
+      "auth_bypass_pattern_0",
+      "auth_bypass_pattern_1",
+      "auth_bypass_pattern_2",
+      "auth_bypass_pattern_3",
+      "auth_bypass_pattern_4",
+      "hardcoded_secrets_pattern_0",
+      "hardcoded_secrets_pattern_1",
+      "hardcoded_secrets_pattern_2",
+      "hardcoded_secrets_pattern_3",
+      "hardcoded_secrets_pattern_4",
+      "hardcoded_secrets_pattern_5",
+      "hardcoded_secrets_pattern_6",
+      "xss_pattern_0",
+      "xss_pattern_1",
+      "xss_pattern_2",
+      "xss_pattern_3",
+      "xss_pattern_4",
+      "regex_dos_pattern_0",
+      "regex_dos_pattern_1",
+      "regex_dos_pattern_2",
+      "regex_dos_pattern_3",
+      "buffer_overflow_pattern_0",
+      "buffer_overflow_pattern_1",
+      "buffer_overflow_pattern_2",
+      "buffer_overflow_pattern_3",
+      "buffer_overflow_pattern_4"
+    ]
+  },
+  "stats": {
+    "totalNodes": 204,
+    "totalEdges": 253,
+    "nodeTypes": [
+      "CVE",
+      "CWE",
+      "ATTACK_TECHNIQUE",
+      "VULN_TYPE",
+      "PATTERN"
+    ],
+    "edgeTypes": [
+      "HAS_WEAKNESS",
+      "ENABLES_TECHNIQUE",
+      "DETECTS",
+      "RELATED_CVE",
+      "LEADS_TO"
+    ]
+  }
+}
