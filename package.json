@@ -1,0 +1,35 @@
+{
+  "name": "ruvector-cve-security-system",
+  "version": "1.0.0",
+  "description": "High-performance CVE security introspection system using RuVector with GNN, Vector DB, and Graph analysis",
+  "main": "ruvector-cve-scanner.js",
+  "scripts": {
+    "scan": "node ruvector-cve-scanner.js",
+    "scan:quick": "node security-scan.js",
+    "scan:gnn": "node gnn-threat-intel.js",
+    "scan:all": "npm run scan:quick && npm run scan:gnn && npm run scan",
+    "doctor": "npx ruvector doctor",
+    "install-deps": "npx ruvector install --all"
+  },
+  "bin": {
+    "ruvector-cve": "./ruvector-cve-scanner.js"
+  },
+  "keywords": [
+    "security",
+    "cve",
+    "vulnerability",
+    "scanner",
+    "gnn",
+    "graph-neural-network",
+    "vector-database",
+    "threat-intelligence",
+    "ruvector"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "ruvector": "^0.1.24"
+  }
+}
