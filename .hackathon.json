@@ -11,7 +11,7 @@
     "adk": false,
     "googleCloudCli": false,
     "vertexAi": false,
-    "ruvector": false,
+    "ruvector": true,
     "agentDb": false,
     "agenticSynth": false,
     "strangeLoops": false,
