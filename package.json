@@ -17,6 +17,7 @@
     "swarm:api": "node swarm-trainer.js --api",
     "swarm:help": "node swarm-trainer.js --help",
     "insights": "node cve-insights.js",
+    "explore": "node github-security-explorer.js",
     "doctor": "npx ruvector doctor",
     "install-deps": "npx ruvector install --all"
   },

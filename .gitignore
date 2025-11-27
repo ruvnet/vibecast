@@ -148,3 +148,7 @@ pretrained-*.json
 *-graph.json
 *-model-info.json
 package-lock.json
+
+# Security exploration output
+security-models/
+security-exploration-report.json
