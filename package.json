@@ -13,6 +13,9 @@
     "test": "node test-suite.js",
     "benchmark": "node benchmark.js",
     "train": "node pretrained-models.js",
+    "swarm": "node swarm-trainer.js",
+    "swarm:api": "node swarm-trainer.js --api",
+    "swarm:help": "node swarm-trainer.js --help",
     "doctor": "npx ruvector doctor",
     "install-deps": "npx ruvector install --all"
   },

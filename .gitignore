@@ -140,3 +140,11 @@ dist
 *.db
 security-vectors.db
 cve-vectors.db
+
+# Swarm training output files
+swarm-*.json
+pretrained-*.json
+*-vectors.json
+*-graph.json
+*-model-info.json
+package-lock.json
