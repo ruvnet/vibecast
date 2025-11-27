@@ -1,0 +1,1569 @@
+{
+  "timestamp": "2025-11-27T18:43:27.699Z",
+  "engine": "RuVector Optimized CVE Scanner v2.0",
+  "stats": {
+    "filesScanned": 7,
+    "linesScanned": 4585,
+    "bytesProcessed": 145707,
+    "timeMs": 33,
+    "critical": 317,
+    "high": 12,
+    "medium": 8,
+    "low": 0
+  },
+  "performance": {
+    "throughputLinesPerSec": 138939.39393939395,
+    "bytesPerSec": 4415363.636363637,
+    "cacheHitRate": "59.2"
+  },
+  "summary": {
+    "total": 337,
+    "critical": 317,
+    "high": 12,
+    "medium": 8,
+    "low": 0
+  },
+  "findings": [
+    {
+      "type": "command_injection",
+      "cvss": 9.8,
+      "cwe": "CWE-78",
+      "cves": [
+        "CVE-2024-4577",
+        "CVE-2021-23337"
+      ],
+      "line": 65,
+      "column": 5,
+      "code": "'exec(\"${cmd}\")',",
+      "match": "exec(\"${",
+      "confidence": 0.8973954942648357,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "prototype_pollution",
+      "cvss": 9.8,
+      "cwe": "CWE-1321",
+      "cves": [
+        "CVE-2023-45133",
+        "CVE-2022-46175",
+        "CVE-2022-37601",
+        "CVE-2023-26136"
+      ],
+      "line": 69,
+      "column": 11,
+      "code": "'${var}[\"__proto__\"] = ${val}',",
+      "match": "[\"__proto__\"]",
+      "confidence": 0.9332282074313827,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "prototype_pollution",
+      "cvss": 9.8,
+      "cwe": "CWE-1321",
+      "cves": [
+        "CVE-2023-45133",
+        "CVE-2022-46175",
+        "CVE-2022-37601",
+        "CVE-2023-26136"
+      ],
+      "line": 382,
+      "column": 27,
+      "code": "this.nodes.set(id, { ...data, id });",
+      "match": "...data",
+      "confidence": 0.7802489536970819,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 57,
+      "column": 10,
+      "code": "console.log(`\\n${C.B}${C.c}▶ ${name}${C.x}`);",
+      "match": "log(`\\n${C.B}${C.c}▶ ${name}${",
+      "confidence": 0.7083565711995857,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 58,
+      "column": 10,
+      "code": "console.log(`${C.d}${'─'.repeat(60)}${C.x}`);",
+      "match": "log(`${C.d}${'─'.repeat(60)}${",
+      "confidence": 0.6819793965348065,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 115,
+      "column": 10,
+      "code": "console.log(`  Code size: ${formatBytes(code.length)}`);",
+      "match": "log(`  Code size: ${",
+      "confidence": 0.6913334538031705,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 116,
+      "column": 10,
+      "code": "console.log(`  Patterns: ${patterns.length}`);",
+      "match": "log(`  Patterns: ${",
+      "confidence": 0.6683963810583412,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 140,
+      "column": 10,
+      "code": "console.log(`\\n  ${C.g}Results:${C.x}`);",
+      "match": "log(`\\n  ${C.g}Results:${",
+      "confidence": 0.6932915558564422,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 141,
+      "column": 10,
+      "code": "console.log(`    Time: ${elapsed.toFixed(2)}ms`);",
+      "match": "log(`    Time: ${",
+      "confidence": 0.709423849651047,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 142,
+      "column": 10,
+      "code": "console.log(`    Ops/sec: ${formatNumber(opsPerSec)}`);",
+      "match": "log(`    Ops/sec: ${",
+      "confidence": 0.7195661014830775,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 143,
+      "column": 10,
+      "code": "console.log(`    Throughput: ${formatNumber(throughput)} chars/sec`);",
+      "match": "log(`    Throughput: ${",
+      "confidence": 0.7335948084314567,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 144,
+      "column": 10,
+      "code": "console.log(`    Total matches: ${totalMatches}`);",
+      "match": "log(`    Total matches: ${",
+      "confidence": 0.675699915080371,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 185,
+      "column": 10,
+      "code": "console.log(`  Dimensions: ${dim}`);",
+      "match": "log(`  Dimensions: ${",
+      "confidence": 0.6892034237792568,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 186,
+      "column": 10,
+      "code": "console.log(`  Test texts: ${texts.length}`);",
+      "match": "log(`  Test texts: ${",
+      "confidence": 0.6709587824503135,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 204,
+      "column": 10,
+      "code": "console.log(`\\n  ${C.g}Embedding Results:${C.x}`);",
+      "match": "log(`\\n  ${C.g}Embedding Results:${",
+      "confidence": 0.6975184409995324,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 205,
+      "column": 10,
+      "code": "console.log(`    Time: ${elapsed.toFixed(2)}ms`);",
+      "match": "log(`    Time: ${",
+      "confidence": 0.709423849651047,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 206,
+      "column": 10,
+      "code": "console.log(`    Embeddings/sec: ${formatNumber(embeddingsPerSec)}`);",
+      "match": "log(`    Embeddings/sec: ${",
+      "confidence": 0.6817887242488843,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 222,
+      "column": 10,
+      "code": "console.log(`\\n  ${C.g}Similarity Results:${C.x}`);",
+      "match": "log(`\\n  ${C.g}Similarity Results:${",
+      "confidence": 0.7135625959199154,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 223,
+      "column": 10,
+      "code": "console.log(`    Comparisons: ${totalSims}`);",
+      "match": "log(`    Comparisons: ${",
+      "confidence": 0.689678430669772,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 224,
+      "column": 10,
+      "code": "console.log(`    Time: ${elapsed.toFixed(2)}ms`);",
+      "match": "log(`    Time: ${",
+      "confidence": 0.709423849651047,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 225,
+      "column": 10,
+      "code": "console.log(`    Comparisons/sec: ${formatNumber(simsPerSec)}`);",
+      "match": "log(`    Comparisons/sec: ${",
+      "confidence": 0.7122722942876442,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 331,
+      "column": 10,
+      "code": "console.log(`  Nodes: ${numNodes}`);",
+      "match": "log(`  Nodes: ${",
+      "confidence": 0.7205236856474053,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 332,
+      "column": 10,
+      "code": "console.log(`  Edges: ${edges.length}`);",
+      "match": "log(`  Edges: ${",
+      "confidence": 0.7083707922717714,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 333,
+      "column": 10,
+      "code": "console.log(`  Heads: ${heads}`);",
+      "match": "log(`  Heads: ${",
+      "confidence": 0.696690844233415,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 334,
+      "column": 10,
+      "code": "console.log(`  Dimensions: ${dim}`);",
+      "match": "log(`  Dimensions: ${",
+      "confidence": 0.6892034237792568,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 353,
+      "column": 10,
+      "code": "console.log(`\\n  ${C.g}Results:${C.x}`);",
+      "match": "log(`\\n  ${C.g}Results:${",
+      "confidence": 0.6932915558564422,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 354,
+      "column": 10,
+      "code": "console.log(`    Time: ${elapsed.toFixed(2)}ms`);",
+      "match": "log(`    Time: ${",
+      "confidence": 0.709423849651047,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 355,
+      "column": 10,
+      "code": "console.log(`    Layers/sec: ${formatNumber(layersPerSec)}`);",
+      "match": "log(`    Layers/sec: ${",
+      "confidence": 0.69326923535296,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 356,
+      "column": 10,
+      "code": "console.log(`    Nodes/sec: ${formatNumber(nodesPerSec)}`);",
+      "match": "log(`    Nodes/sec: ${",
+      "confidence": 0.710717715144634,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 357,
+      "column": 10,
+      "code": "console.log(`    Latency: ${(elapsed / iterations).toFixed(3)}ms per layer`);",
+      "match": "log(`    Latency: ${",
+      "confidence": 0.7081280376659564,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 456,
+      "column": 10,
+      "code": "console.log(`  Nodes: ${numNodes}`);",
+      "match": "log(`  Nodes: ${",
+      "confidence": 0.7205236856474053,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 457,
+      "column": 10,
+      "code": "console.log(`  Edges: ${numEdges}`);",
+      "match": "log(`  Edges: ${",
+      "confidence": 0.7083707922717714,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 467,
+      "column": 10,
+      "code": "console.log(`\\n  ${C.g}PageRank Results:${C.x}`);",
+      "match": "log(`\\n  ${C.g}PageRank Results:${",
+      "confidence": 0.7180546138539603,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 468,
+      "column": 10,
+      "code": "console.log(`    Time: ${elapsed.toFixed(2)}ms (100 runs)`);",
+      "match": "log(`    Time: ${",
+      "confidence": 0.709423849651047,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 469,
+      "column": 10,
+      "code": "console.log(`    Runs/sec: ${formatNumber(pageRankPerSec)}`);",
+      "match": "log(`    Runs/sec: ${",
+      "confidence": 0.7024782556307497,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 476,
+      "column": 10,
+      "code": "console.log(`\\n  ${C.g}Chain Discovery Results:${C.x}`);",
+      "match": "log(`\\n  ${C.g}Chain Discovery Results:${",
+      "confidence": 0.6863065707849446,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 477,
+      "column": 10,
+      "code": "console.log(`    Chains found: ${chains.length}`);",
+      "match": "log(`    Chains found: ${",
+      "confidence": 0.7005852339876611,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 478,
+      "column": 10,
+      "code": "console.log(`    Time: ${elapsed.toFixed(2)}ms`);",
+      "match": "log(`    Time: ${",
+      "confidence": 0.709423849651047,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 488,
+      "column": 10,
+      "code": "console.log(`\\n  ${C.g}BFS Traversal Results:${C.x}`);",
+      "match": "log(`\\n  ${C.g}BFS Traversal Results:${",
+      "confidence": 0.6935161450434841,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 489,
+      "column": 10,
+      "code": "console.log(`    Traversals/sec: ${formatNumber(bfsPerSec)}`);",
+      "match": "log(`    Traversals/sec: ${",
+      "confidence": 0.6965104827851791,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 517,
+      "column": 10,
+      "code": "console.log(`  ${C.g}Memory Stats:${C.x}`);",
+      "match": "log(`  ${C.g}Memory Stats:${",
+      "confidence": 0.731058118352785,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 518,
+      "column": 10,
+      "code": "console.log(`    Initial heap: ${formatBytes(initialMemory.heapUsed)}`);",
+      "match": "log(`    Initial heap: ${",
+      "confidence": 0.6817111505918785,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 519,
+      "column": 10,
+      "code": "console.log(`    After embeddings (10K): ${formatBytes(afterEmbeddings.heapUsed)}`);",
+      "match": "log(`    After embeddings (10K): ${",
+      "confidence": 0.6891446063121088,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 520,
+      "column": 10,
+      "code": "console.log(`    After code gen (100KB): ${formatBytes(afterCode.heapUsed)}`);",
+      "match": "log(`    After code gen (100KB): ${",
+      "confidence": 0.6931117581353698,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 521,
+      "column": 10,
+      "code": "console.log(`    Embedding memory: ${formatBytes(afterEmbeddings.heapUsed - initialMemory.heapUsed)}`);",
+      "match": "log(`    Embedding memory: ${",
+      "confidence": 0.7263816740579988,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 522,
+      "column": 10,
+      "code": "console.log(`    RSS: ${formatBytes(afterCode.rss)}`);",
+      "match": "log(`    RSS: ${",
+      "confidence": 0.6857040473848492,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 544,
+      "column": 12,
+      "code": "console.log(`  ${C.g}RuVector GNN Layer:${C.x} ${gnnTime.toFixed(2)}ms`);",
+      "match": "log(`  ${C.g}RuVector GNN Layer:${C.x} ${",
+      "confidence": 0.6688291085332865,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 551,
+      "column": 12,
+      "code": "console.log(`  ${C.g}RuVector Compression:${C.x} ${compressTime.toFixed(2)}ms`);",
+      "match": "log(`  ${C.g}RuVector Compression:${C.x} ${",
+      "confidence": 0.7107139492757072,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 559,
+      "column": 12,
+      "code": "console.log(`  ${C.y}RuVector native features unavailable${C.x}`);",
+      "match": "log(`  ${C.y}RuVector native features unavailable${",
+      "confidence": 0.7275439152069134,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 601,
+      "column": 12,
+      "code": "console.log(`  ${formatBytes(size).padEnd(10)} → ${elapsed.toFixed(2)}ms (${formatNumber(linesPerSec)} lines/sec)`);",
+      "match": "log(`  ${formatBytes(size).padEnd(10)} → ${elapsed.toFixed(2)}ms (${",
+      "confidence": 0.6869491684266115,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 619,
+      "column": 10,
+      "code": "console.log(`${C.B}${C.m}═══════════════════════════════════════════════════════════════${C.x}`);",
+      "match": "log(`${C.B}${C.m}═══════════════════════════════════════════════════════════════",
+      "confidence": 0.6835752416263476,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 620,
+      "column": 10,
+      "code": "console.log(`${C.B}${C.m}  RuVector CVE Scanner - Performance Benchmark${C.x}`);",
+      "match": "log(`${C.B}${C.m}  RuVector CVE Scanner - Performance Benchmark${",
+      "confidence": 0.6802746708211211,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 621,
+      "column": 10,
+      "code": "console.log(`${C.B}${C.m}═══════════════════════════════════════════════════════════════${C.x}`);",
+      "match": "log(`${C.B}${C.m}═══════════════════════════════════════════════════════════════",
+      "confidence": 0.6835752416263476,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 622,
+      "column": 10,
+      "code": "console.log(`${C.d}  ${new Date().toISOString()}${C.x}`);",
+      "match": "log(`${C.d}  ${new Date().toISOString()}${",
+      "confidence": 0.7087433693158061,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 623,
+      "column": 10,
+      "code": "console.log(`${C.d}  Iterations: ${CONFIG.iterations} | Warmup: ${CONFIG.warmupIterations}${C.x}\\n`);",
+      "match": "log(`${C.d}  Iterations: ${CONFIG.iterations} | Warmup: ${CONFIG.warmupIteration",
+      "confidence": 0.7097844767648067,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 639,
+      "column": 10,
+      "code": "console.log(`\\n${C.B}${C.m}═══════════════════════════════════════════════════════════════${C.x}`);",
+      "match": "log(`\\n${C.B}${C.m}═════════════════════════════════════════════════════════════",
+      "confidence": 0.7263949146000093,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 640,
+      "column": 10,
+      "code": "console.log(`${C.B}${C.m}  BENCHMARK SUMMARY${C.x}`);",
+      "match": "log(`${C.B}${C.m}  BENCHMARK SUMMARY${",
+      "confidence": 0.6546647145514038,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 641,
+      "column": 10,
+      "code": "console.log(`${C.B}${C.m}═══════════════════════════════════════════════════════════════${C.x}\\n`);",
+      "match": "log(`${C.B}${C.m}═══════════════════════════════════════════════════════════════",
+      "confidence": 0.6835752416263476,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 643,
+      "column": 10,
+      "code": "console.log(`  ${C.B}Pattern Matching:${C.x}`);",
+      "match": "log(`  ${C.B}Pattern Matching:${",
+      "confidence": 0.6929853814394622,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 644,
+      "column": 10,
+      "code": "console.log(`    ${formatNumber(benchmarkResults.patternMatching.opsPerSec)} ops/sec`);",
+      "match": "log(`    ${",
+      "confidence": 0.6805416947102682,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 645,
+      "column": 10,
+      "code": "console.log(`    ${formatNumber(benchmarkResults.patternMatching.throughput)} chars/sec throughput`);",
+      "match": "log(`    ${",
+      "confidence": 0.6805416947102682,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 647,
+      "column": 10,
+      "code": "console.log(`\\n  ${C.B}Vector Embeddings:${C.x}`);",
+      "match": "log(`\\n  ${C.B}Vector Embeddings:${",
+      "confidence": 0.6868422984662812,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 648,
+      "column": 10,
+      "code": "console.log(`    ${formatNumber(benchmarkResults.vectorEmbedding.embeddingsPerSec)} embeddings/sec`);",
+      "match": "log(`    ${",
+      "confidence": 0.6805416947102682,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 649,
+      "column": 10,
+      "code": "console.log(`    ${formatNumber(benchmarkResults.vectorEmbedding.simsPerSec)} similarity ops/sec`);",
+      "match": "log(`    ${",
+      "confidence": 0.6805416947102682,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 651,
+      "column": 10,
+      "code": "console.log(`\\n  ${C.B}GNN Layer:${C.x}`);",
+      "match": "log(`\\n  ${C.B}GNN Layer:${",
+      "confidence": 0.711209837130711,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 652,
+      "column": 10,
+      "code": "console.log(`    ${formatNumber(benchmarkResults.gnnLayer.nodesPerSec)} nodes/sec`);",
+      "match": "log(`    ${",
+      "confidence": 0.6805416947102682,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 653,
+      "column": 10,
+      "code": "console.log(`    ${benchmarkResults.gnnLayer.latency.toFixed(3)}ms latency per layer`);",
+      "match": "log(`    ${",
+      "confidence": 0.6805416947102682,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 655,
+      "column": 10,
+      "code": "console.log(`\\n  ${C.B}Attack Graph:${C.x}`);",
+      "match": "log(`\\n  ${C.B}Attack Graph:${",
+      "confidence": 0.6734617628115003,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 656,
+      "column": 10,
+      "code": "console.log(`    ${formatNumber(benchmarkResults.attackGraph.pageRankPerSec)} PageRank/sec`);",
+      "match": "log(`    ${",
+      "confidence": 0.6805416947102682,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 657,
+      "column": 10,
+      "code": "console.log(`    ${formatNumber(benchmarkResults.attackGraph.bfsPerSec)} BFS traversals/sec`);",
+      "match": "log(`    ${",
+      "confidence": 0.6805416947102682,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 659,
+      "column": 10,
+      "code": "console.log(`\\n  ${C.B}Memory:${C.x}`);",
+      "match": "log(`\\n  ${C.B}Memory:${",
+      "confidence": 0.6921074019379926,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 660,
+      "column": 10,
+      "code": "console.log(`    Peak heap: ${formatBytes(benchmarkResults.memory.finalHeap)}`);",
+      "match": "log(`    Peak heap: ${",
+      "confidence": 0.7016899726841981,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 661,
+      "column": 10,
+      "code": "console.log(`    RSS: ${formatBytes(benchmarkResults.memory.rss)}`);",
+      "match": "log(`    RSS: ${",
+      "confidence": 0.6857040473848492,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 663,
+      "column": 10,
+      "code": "console.log(`\\n  ${C.B}Total Benchmark Time: ${(totalTime / 1000).toFixed(2)}s${C.x}`);",
+      "match": "log(`\\n  ${C.B}Total Benchmark Time: ${(totalTime / 1000).toFixed(2)}s${",
+      "confidence": 0.6902527741598258,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 680,
+      "column": 10,
+      "code": "console.log(`\\n  ${C.g}✓ Results saved to benchmark-results.json${C.x}`);",
+      "match": "log(`\\n  ${C.g}✓ Results saved to benchmark-results.json${",
+      "confidence": 0.696805924077265,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "xss",
+      "cvss": 6.1,
+      "cwe": "CWE-79",
+      "cves": [],
+      "line": 71,
+      "column": 5,
+      "code": "'innerHTML = ${html}',",
+      "match": "innerHTML = ",
+      "confidence": 0.8343089646337997,
+      "file": "benchmark.js"
+    },
+    {
+      "type": "prototype_pollution",
+      "cvss": 9.8,
+      "cwe": "CWE-1321",
+      "cves": [
+        "CVE-2023-45133",
+        "CVE-2022-46175",
+        "CVE-2022-37601",
+        "CVE-2023-26136"
+      ],
+      "line": 365,
+      "column": 16,
+      "code": "{ regex: /deepMerge|defaultsDeep/gi, confidence: 0.7 }",
+      "match": "deepMerge",
+      "confidence": 0.7343725059438732,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "prototype_pollution",
+      "cvss": 9.8,
+      "cwe": "CWE-1321",
+      "cves": [
+        "CVE-2023-45133",
+        "CVE-2022-46175",
+        "CVE-2022-37601",
+        "CVE-2023-26136"
+      ],
+      "line": 365,
+      "column": 26,
+      "code": "{ regex: /deepMerge|defaultsDeep/gi, confidence: 0.7 }",
+      "match": "defaultsDeep",
+      "confidence": 0.7160526492706766,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "unsafe_deserialization",
+      "cvss": 10,
+      "cwe": "CWE-502",
+      "cves": [
+        "CVE-2023-46604"
+      ],
+      "line": 392,
+      "column": 16,
+      "code": "{ regex: /ObjectInputStream/gi, confidence: 0.8 },",
+      "match": "ObjectInputStream",
+      "confidence": 0.8230382864100292,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "unsafe_deserialization",
+      "cvss": 10,
+      "cwe": "CWE-502",
+      "cves": [
+        "CVE-2023-46604"
+      ],
+      "line": 394,
+      "column": 16,
+      "code": "{ regex: /node-serialize/gi, confidence: 0.95 }",
+      "match": "node-serialize",
+      "confidence": 0.9395307496949857,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 544,
+      "column": 10,
+      "code": "console.log(`  Total CVEs:           ${stats.total}`);",
+      "match": "log(`  Total CVEs:           ${",
+      "confidence": 0.6944066457829607,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 545,
+      "column": 10,
+      "code": "console.log(`  Critical (9.0+):      ${stats.critical}`);",
+      "match": "log(`  Critical (9.0+):      ${",
+      "confidence": 0.7161527117742545,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 546,
+      "column": 10,
+      "code": "console.log(`  High (7.0-8.9):       ${stats.high}`);",
+      "match": "log(`  High (7.0-8.9):       ${",
+      "confidence": 0.6831061687185978,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 547,
+      "column": 10,
+      "code": "console.log(`  Actively Exploited:   ${stats.exploited}`);",
+      "match": "log(`  Actively Exploited:   ${",
+      "confidence": 0.7050307534165327,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 548,
+      "column": 10,
+      "code": "console.log(`  CISA KEV Entries:     ${stats.kev}`);",
+      "match": "log(`  CISA KEV Entries:     ${",
+      "confidence": 0.7032168329963542,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "path_traversal",
+      "cvss": 8.6,
+      "cwe": "CWE-22",
+      "cves": [
+        "CVE-2024-21626",
+        "CVE-2024-38856"
+      ],
+      "line": 459,
+      "column": 30,
+      "code": "{ regex: /\\.\\.\\/|\\.\\.\\\\|%2e%2e/gi, confidence: 0.9 },",
+      "match": "%2e%2e",
+      "confidence": 0.9017234348049475,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "xss",
+      "cvss": 6.1,
+      "cwe": "CWE-79",
+      "cves": [],
+      "line": 489,
+      "column": 16,
+      "code": "{ regex: /dangerouslySetInnerHTML/gi, confidence: 0.8 },",
+      "match": "dangerouslySetInnerHTML",
+      "confidence": 0.8106887504844618,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "auth_bypass",
+      "cvss": 9.8,
+      "cwe": "CWE-287",
+      "cves": [
+        "CVE-2024-27198",
+        "CVE-2024-1709"
+      ],
+      "line": 67,
+      "column": 52,
+      "code": "description: 'JetBrains TeamCity authentication bypass',",
+      "match": "bypass",
+      "confidence": 0.6836809020034387,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "auth_bypass",
+      "cvss": 9.8,
+      "cwe": "CWE-287",
+      "cves": [
+        "CVE-2024-27198",
+        "CVE-2024-1709"
+      ],
+      "line": 79,
+      "column": 59,
+      "code": "description: 'ConnectWise ScreenConnect authentication bypass',",
+      "match": "bypass",
+      "confidence": 0.6836809020034387,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "auth_bypass",
+      "cvss": 9.8,
+      "cwe": "CWE-287",
+      "cves": [
+        "CVE-2024-27198",
+        "CVE-2024-1709"
+      ],
+      "line": 291,
+      "column": 43,
+      "code": "description: 'Python ssl.SSLSocket TLS bypass',",
+      "match": "bypass",
+      "confidence": 0.6836809020034387,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "auth_bypass",
+      "cvss": 9.8,
+      "cwe": "CWE-287",
+      "cves": [
+        "CVE-2024-27198",
+        "CVE-2024-1709"
+      ],
+      "line": 497,
+      "column": 20,
+      "code": "// Authentication Bypass (CVE-2024-27198, CVE-2024-1709)",
+      "match": "Bypass",
+      "confidence": 0.739922376287183,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "auth_bypass",
+      "cvss": 9.8,
+      "cwe": "CWE-287",
+      "cves": [
+        "CVE-2024-27198",
+        "CVE-2024-1709"
+      ],
+      "line": 498,
+      "column": 7,
+      "code": "auth_bypass: {",
+      "match": "bypass",
+      "confidence": 0.6836809020034387,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "auth_bypass",
+      "cvss": 9.8,
+      "cwe": "CWE-287",
+      "cves": [
+        "CVE-2024-27198",
+        "CVE-2024-1709"
+      ],
+      "line": 504,
+      "column": 16,
+      "code": "{ regex: /bypass|skip[_-]?auth/gi, confidence: 0.7 }",
+      "match": "bypass",
+      "confidence": 0.6836809020034387,
+      "file": "cve-database.js"
+    },
+    {
+      "type": "prototype_pollution",
+      "cvss": 9.8,
+      "cwe": "CWE-1321",
+      "cves": [
+        "CVE-2023-45133",
+        "CVE-2022-46175",
+        "CVE-2022-37601",
+        "CVE-2023-26136"
+      ],
+      "line": 217,
+      "column": 6,
+      "code": "...data,",
+      "match": "...data",
+      "confidence": 0.7802489536970819,
+      "file": "gnn-threat-intel.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 23,
+      "column": 6,
+      "code": "const log = (msg, col = 'w') => console.log(`${c[col]}${msg}${c.x}`);",
+      "match": "log = (msg, col = 'w') => console.log(`${c[col]}${msg}${",
+      "confidence": 0.7317315191297767,
+      "file": "gnn-threat-intel.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 25,
+      "column": 10,
+      "code": "console.log(`\\n${c.B}${c.m}${'▓'.repeat(70)}${c.x}`);",
+      "match": "log(`\\n${c.B}${c.m}${'▓'.repeat(70)}${",
+      "confidence": 0.6879952277846376,
+      "file": "gnn-threat-intel.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 26,
+      "column": 10,
+      "code": "console.log(`${c.B}${c.m}  ${msg}${c.x}`);",
+      "match": "log(`${c.B}${c.m}  ${msg}${",
+      "confidence": 0.7127892642038942,
+      "file": "gnn-threat-intel.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 27,
+      "column": 10,
+      "code": "console.log(`${c.B}${c.m}${'▓'.repeat(70)}${c.x}\\n`);",
+      "match": "log(`${c.B}${c.m}${'▓'.repeat(70)}${",
+      "confidence": 0.7055948605368236,
+      "file": "gnn-threat-intel.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 456,
+      "column": 2,
+      "code": "log(`  Found ${files.length} files to analyze`, 'c');",
+      "match": "log(`  Found ${",
+      "confidence": 0.6962331035335771,
+      "file": "gnn-threat-intel.js"
+    },
+    {
+      "type": "jndi_injection",
+      "cvss": 10,
+      "cwe": "CWE-917",
+      "cves": [
+        "CVE-2021-44228",
+        "CVE-2021-45046"
+      ],
+      "line": 479,
+      "column": 10,
+      "code": "console.log(`${c.B}Detected Threats:${c.x}`);",
+      "match": "log(`${c.B}Detected Threats:${",
+      "confidence": 0.7083615867940867,
+      "file": "gnn-threat-intel.js"
+    }
+  ],
+  "attackChains": [
+    [
+      "sql_injection",
+      "auth_bypass",
+      "hardcoded_secrets"
+    ],
+    [
+      "prototype_pollution",
+      "command_injection",
+      "path_traversal"
+    ],
+    [
+      "template_injection",
+      "command_injection",
+      "path_traversal"
+    ],
+    [
+      "unsafe_deserialization",
+      "command_injection",
+      "path_traversal"
+    ],
+    [
+      "xss",
+      "auth_bypass",
+      "hardcoded_secrets"
+    ],
+    [
+      "command_injection",
+      "path_traversal"
+    ],
+    [
+      "ssrf",
+      "path_traversal"
+    ],
+    [
+      "auth_bypass",
+      "hardcoded_secrets"
+    ]
+  ]
+}

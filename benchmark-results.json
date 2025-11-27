@@ -1,0 +1,83 @@
+{
+  "timestamp": "2025-11-27T18:41:18.894Z",
+  "config": {
+    "iterations": 1000,
+    "warmupIterations": 100,
+    "vectorDim": 256,
+    "gnnHeads": 8,
+    "sampleCodeSize": 10000,
+    "graphNodes": 100,
+    "graphEdges": 300
+  },
+  "results": {
+    "patternMatching": {
+      "elapsed": 369.616311,
+      "opsPerSec": 178563.54829535648,
+      "throughput": 27114604.25781913,
+      "totalMatches": 152000,
+      "patterns": 66,
+      "codeSize": 10022
+    },
+    "vectorEmbedding": {
+      "embeddingsPerSec": 67315.56628715273,
+      "simsPerSec": 2627404.022299941,
+      "dimensions": 256
+    },
+    "gnnLayer": {
+      "layersPerSec": 685.9632943099105,
+      "nodesPerSec": 34298.16471549552,
+      "latency": 1.45780395,
+      "nodes": 50,
+      "edges": 162
+    },
+    "attackGraph": {
+      "pageRankPerSec": 75.2986545876601,
+      "chainsFound": 2087,
+      "bfsPerSec": 48001.0652396398,
+      "nodes": 100,
+      "edges": 300
+    },
+    "memory": {
+      "initialHeap": 6832952,
+      "finalHeap": 11175824,
+      "embeddingMemory": 692496,
+      "rss": 175427584
+    },
+    "ruvector": {
+      "available": false
+    },
+    "endToEnd": [
+      {
+        "size": 1000,
+        "elapsed": 0.557797,
+        "matches": 12,
+        "linesPerSec": 59161.30778760015
+      },
+      {
+        "size": 10000,
+        "elapsed": 0.452763,
+        "matches": 161,
+        "linesPerSec": 697936.8897193454
+      },
+      {
+        "size": 50000,
+        "elapsed": 2.12056,
+        "matches": 774,
+        "linesPerSec": 757818.6894027994
+      },
+      {
+        "size": 100000,
+        "elapsed": 3.595076,
+        "matches": 1644,
+        "linesPerSec": 907630.3254785156
+      }
+    ]
+  },
+  "system": {
+    "platform": "linux",
+    "arch": "x64",
+    "nodeVersion": "v22.21.1",
+    "cpus": 16
+  },
+  "totalTime": 4002
+}

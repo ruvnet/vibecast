@@ -7,7 +7,10 @@
     "scan": "node ruvector-cve-scanner.js",
     "scan:quick": "node security-scan.js",
     "scan:gnn": "node gnn-threat-intel.js",
+    "scan:optimized": "node optimized-scanner.js",
     "scan:all": "npm run scan:quick && npm run scan:gnn && npm run scan",
+    "test": "node test-suite.js",
+    "benchmark": "node benchmark.js",
     "doctor": "npx ruvector doctor",
     "install-deps": "npx ruvector install --all"
   },
