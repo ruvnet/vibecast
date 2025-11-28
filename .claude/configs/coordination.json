@@ -1,0 +1,62 @@
+{
+  "version": "1.0.71",
+  "description": "Agent coordination and orchestration configuration",
+  "coordination": {
+    "taskManagement": {
+      "todoIntegration": {
+        "enabled": true,
+        "autoBreakdown": true,
+        "dependencyTracking": true,
+        "progressMonitoring": true,
+        "priorityManagement": true
+      },
+      "taskDistribution": {
+        "algorithm": "intelligent_balancing",
+        "loadBalancing": true,
+        "skillMatching": true,
+        "resourceOptimization": true
+      }
+    },
+    "communication": {
+      "memorySharing": {
+        "enabled": true,
+        "crossAgentAccess": true,
+        "knowledgeSync": true,
+        "conflictResolution": "timestamp_priority"
+      },
+      "coordination": {
+        "realTimeUpdates": true,
+        "statusBroadcasting": true,
+        "emergencySignaling": true
+      }
+    },
+    "monitoring": {
+      "progressTracking": {
+        "enabled": true,
+        "realTimeUpdates": true,
+        "milestoneTracking": true,
+        "performanceMetrics": true
+      },
+      "healthMonitoring": {
+        "agentHealth": true,
+        "taskHealth": true,
+        "systemHealth": true,
+        "alerting": true
+      }
+    }
+  },
+  "optimization": {
+    "resourceManagement": {
+      "pooling": true,
+      "allocation": "dynamic",
+      "recycling": true,
+      "monitoring": true
+    },
+    "performance": {
+      "batchOptimization": true,
+      "parallelExecution": true,
+      "caching": true,
+      "compression": true
+    }
+  }
+}

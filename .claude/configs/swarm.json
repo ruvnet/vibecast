@@ -1,0 +1,174 @@
+{
+  "version": "1.0.71",
+  "description": "Swarm orchestration configuration for Claude-Flow",
+  "strategies": {
+    "research": {
+      "description": "Multi-agent research coordination",
+      "defaultMode": "distributed",
+      "defaultAgents": 6,
+      "phases": [
+        "planning",
+        "execution",
+        "synthesis",
+        "reporting"
+      ],
+      "tools": [
+        "WebSearch",
+        "WebFetch",
+        "Memory",
+        "TodoWrite",
+        "Task"
+      ],
+      "coordination": "memory_based"
+    },
+    "development": {
+      "description": "Coordinated software development",
+      "defaultMode": "hierarchical",
+      "defaultAgents": 8,
+      "phases": [
+        "architecture",
+        "implementation",
+        "testing",
+        "integration"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Memory",
+        "TodoWrite",
+        "Task"
+      ],
+      "coordination": "hierarchical_teams"
+    },
+    "analysis": {
+      "description": "Data analysis and insights generation",
+      "defaultMode": "mesh",
+      "defaultAgents": 10,
+      "phases": [
+        "collection",
+        "processing",
+        "analysis",
+        "visualization"
+      ],
+      "tools": [
+        "Read",
+        "Bash",
+        "Memory",
+        "TodoWrite",
+        "Task"
+      ],
+      "coordination": "peer_to_peer"
+    },
+    "testing": {
+      "description": "Comprehensive testing coordination",
+      "defaultMode": "distributed",
+      "defaultAgents": 12,
+      "phases": [
+        "planning",
+        "execution",
+        "validation",
+        "reporting"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Bash",
+        "TodoWrite",
+        "Task"
+      ],
+      "coordination": "distributed_validation"
+    },
+    "optimization": {
+      "description": "Performance optimization coordination",
+      "defaultMode": "hybrid",
+      "defaultAgents": 6,
+      "phases": [
+        "profiling",
+        "analysis",
+        "optimization",
+        "validation"
+      ],
+      "tools": [
+        "Read",
+        "Edit",
+        "Bash",
+        "Memory",
+        "TodoWrite"
+      ],
+      "coordination": "adaptive_hybrid"
+    },
+    "maintenance": {
+      "description": "System maintenance coordination",
+      "defaultMode": "centralized",
+      "defaultAgents": 4,
+      "phases": [
+        "assessment",
+        "planning",
+        "execution",
+        "verification"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Bash",
+        "TodoWrite",
+        "Memory"
+      ],
+      "coordination": "centralized_safety"
+    }
+  },
+  "coordinationModes": {
+    "centralized": {
+      "description": "Single coordinator manages all agents",
+      "useCases": [
+        "maintenance",
+        "safety_critical",
+        "simple_tasks"
+      ],
+      "coordination": "master_slave",
+      "communication": "hub_spoke"
+    },
+    "distributed": {
+      "description": "Multiple coordinators manage agent groups",
+      "useCases": [
+        "research",
+        "testing",
+        "large_scale"
+      ],
+      "coordination": "multi_master",
+      "communication": "federated"
+    },
+    "hierarchical": {
+      "description": "Tree-like organization with team leads",
+      "useCases": [
+        "development",
+        "structured_workflows",
+        "large_teams"
+      ],
+      "coordination": "tree_structure",
+      "communication": "hierarchical_reporting"
+    },
+    "mesh": {
+      "description": "Peer-to-peer agent communication",
+      "useCases": [
+        "analysis",
+        "dynamic_tasks",
+        "adaptive_workflows"
+      ],
+      "coordination": "peer_to_peer",
+      "communication": "mesh_network"
+    },
+    "hybrid": {
+      "description": "Adaptive coordination based on task phase",
+      "useCases": [
+        "optimization",
+        "complex_workflows",
+        "multi_phase"
+      ],
+      "coordination": "adaptive_mixed",
+      "communication": "dynamic_topology"
+    }
+  }
+}

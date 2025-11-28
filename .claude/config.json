@@ -1,0 +1,46 @@
+{
+  "version": "1.0.71",
+  "project": {
+    "name": "vibecast",
+    "type": "claude-flow",
+    "created": "2025-11-28T21:45:05.363Z"
+  },
+  "features": {
+    "swarm": true,
+    "sparc": false,
+    "memory": true,
+    "terminal": true,
+    "mcp": true,
+    "batchTools": true,
+    "orchestration": true
+  },
+  "batchTools": {
+    "enabled": true,
+    "maxConcurrentTasks": 10,
+    "memoryCoordination": true,
+    "taskOrchestration": true,
+    "parallelExecution": true
+  },
+  "swarmConfig": {
+    "defaultStrategy": "auto",
+    "defaultMode": "centralized",
+    "defaultMaxAgents": 5,
+    "defaultTimeout": 60,
+    "enableMonitoring": true,
+    "enableParallel": true,
+    "outputFormats": [
+      "json",
+      "sqlite",
+      "csv",
+      "html"
+    ],
+    "defaultOutputDir": "./reports"
+  },
+  "coordination": {
+    "todoIntegration": true,
+    "memorySharing": true,
+    "crossAgentCommunication": true,
+    "taskDependencyTracking": true,
+    "progressMonitoring": true
+  }
+}
