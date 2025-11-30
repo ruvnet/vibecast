@@ -205,7 +205,7 @@ async function runTests() {
   });
 
   test('HardNegativeMiner', () => {
-    const miner = new attention.HardNegativeMiner(5, 0.8);
+    const miner = new attention.HardNegativeMiner(attention.MiningStrategy.HardNegative);
     if (typeof miner !== 'object') throw new Error('Failed to create');
   });
 
@@ -221,44 +221,41 @@ async function runTests() {
 
   await test('parallelAttentionCompute', async () => {
     const result = await attention.parallelAttentionCompute(
-      attention.AttentionType.ScaledDotProduct,
+      { attentionType: attention.AttentionType.ScaledDotProduct, dim: DIM },
       [query],
-      [keys],
-      [values],
-      2
+      [[...keys]],
+      [[...values]]
     );
-    if (!Array.isArray(result) || result.length !== 1) throw new Error('Invalid result');
+    if (!result.outputs || result.outputs.length !== 1) throw new Error('Invalid result');
   });
 
   await test('batchAttentionCompute', async () => {
     const result = await attention.batchAttentionCompute(
-      attention.AttentionType.ScaledDotProduct,
       [query, query],
-      [keys, keys],
-      [values, values],
-      { batchSize: 2 }
+      [[...keys], [...keys]],
+      [[...values], [...values]],
+      DIM
     );
-    if (!Array.isArray(result)) throw new Error('Invalid result');
+    if (!result.outputs || result.outputs.length !== 2) throw new Error('Invalid result');
   });
 
   await test('computeAttentionAsync', async () => {
     const result = await attention.computeAttentionAsync(
-      attention.AttentionType.ScaledDotProduct,
       query,
       keys,
       values,
-      {}
+      DIM
     );
     if (result.length !== DIM) throw new Error('Invalid result');
   });
 
   await test('computeFlashAttentionAsync', async () => {
-    const result = await attention.computeFlashAttentionAsync(query, keys, values, 16);
+    const result = await attention.computeFlashAttentionAsync(query, keys, values, DIM, 16);
     if (result.length !== DIM) throw new Error('Invalid result');
   });
 
   await test('computeHyperbolicAttentionAsync', async () => {
-    const result = await attention.computeHyperbolicAttentionAsync(query, keys, values, 1.0);
+    const result = await attention.computeHyperbolicAttentionAsync(query, keys, values, DIM, 1.0);
     if (result.length !== DIM) throw new Error('Invalid result');
   });
 
@@ -280,11 +277,12 @@ async function runTests() {
   await test('batchFlashAttentionCompute', async () => {
     const result = await attention.batchFlashAttentionCompute(
       [query],
-      [keys],
-      [values],
+      [[...keys]],
+      [[...values]],
+      DIM,
       16
     );
-    if (!Array.isArray(result)) throw new Error('Invalid result');
+    if (!result.outputs || result.outputs.length !== 1) throw new Error('Invalid result');
   });
 
   // ---------------------------------------------------------------------------
