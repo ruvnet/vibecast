@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@ruvector/attention": "^0.1.0",
+    "@ruvector/attention": "^0.1.1",
     "@ruvector/attention-linux-x64-gnu": "^0.1.0",
     "agentdb": "^2.0.0-alpha.2.7",
     "ruvector-attention-wasm": "^0.1.0"
