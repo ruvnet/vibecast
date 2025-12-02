@@ -152,4 +152,134 @@ node demos/self-discovery/cognitive-explorer.js
 - Semantic memory enables intelligence
 - Cognitive patterns create emergent behaviors
 
-See [AGENTDB-EXPLORATION.md](AGENTDB-EXPLORATION.md) for comprehensive findings and insights. 
+See [AGENTDB-EXPLORATION.md](AGENTDB-EXPLORATION.md) for comprehensive findings and insights.
+
+---
+
+## Session 3: Hyperbolic Attention & Cognitive Optimization
+
+**Status**: ✅ COMPLETE
+
+### What We Built
+
+Deep exploration of Hyperbolic Attention using the Poincaré ball model, plus an enhanced cognitive system that intelligently selects attention mechanisms.
+
+#### 🌀 Hyperbolic Attention Deep Dive
+
+**File**: `demos/attention/hyperbolic-deep-dive.js`
+
+Comprehensive exploration of hyperbolic geometry for hierarchical AI:
+
+**Key Concepts**:
+- **Hyperbolic Space**: Negative curvature, exponential growth from center
+- **Poincaré Ball Model**: Infinite space mapped to unit ball
+- **Distance Preserves Hierarchy**: Siblings closer than cousins
+- **Natural Tree Embedding**: No distortion, low dimensions
+
+**5 Hyperbolic Operations Demonstrated**:
+1. `expMap` - Move points in hyperbolic space
+2. `logMap` - Find direction between points
+3. `mobiusAddition` - Combine points hyperbolically
+4. `poincareDistance` - Measure hierarchical distance
+5. `projectToPoincareBall` - Keep points in valid range
+
+**Why Hyperbolic > Euclidean for Hierarchies**:
+```
+Euclidean: All leaf nodes equidistant from root ❌
+Hyperbolic: Distance reflects hierarchy ✅
+```
+
+#### 🧠 Enhanced Cognitive System
+
+**File**: `demos/self-discovery/enhanced-cognitive-system.js`
+
+Advanced system using **5 attention mechanisms intelligently**:
+
+| Mechanism | Purpose | Performance |
+|-----------|---------|-------------|
+| Multi-Head (8 heads) | Compare & relate | 0.047ms |
+| Hyperbolic (Poincaré) | Organize hierarchies | 0.222ms |
+| Flash (block 32) | Long sequences | 0.023ms |
+| MoE (4 experts) | Specialized routing | 0.021ms |
+| Linear (64 features) | Real-time processing | Fast |
+
+**Intelligent Selection**:
+- Hierarchy tasks → Hyperbolic
+- Comparisons → Multi-Head
+- Long sequences → Flash
+- Specialized analysis → MoE
+- Real-time → Linear
+
+**Meta-Cognitive Achievement**: System knows WHICH attention to use WHEN
+
+#### 📊 Results
+
+**Hierarchical Organization**:
+```
+╔════════════════════════════════╗
+║   Cognitive Capabilities       ║ (root)
+╚════════════════════════════════╝
+   │
+   ├─ Core Systems
+   ├─ Attention Mechanisms
+   ├─ Processing
+   └─ Optimization
+
+4 categories organized via Poincaré ball model ✓
+```
+
+**Attention Usage**:
+- Multi-Head: Relationship discovery (3 relationships found)
+- Hyperbolic: Hierarchy construction (4 categories)
+- Flash: Sequence analysis (5-item sequence)
+- MoE: Expert routing (4 experts, top-2 selection)
+
+#### 🎓 Key Insights
+
+**Hyperbolic Geometry**:
+- Negative curvature creates exponentially more space
+- Perfect for trees (knowledge graphs, org charts, taxonomies)
+- Distance reflects hierarchy, not just proximity
+- Lower dimensions needed than Euclidean
+
+**Intelligent Attention**:
+- True intelligence = choosing right tool for task
+- Each mechanism excels at specific problems
+- Combining mechanisms creates emergent capabilities
+- Meta-cognition: thinking about thinking
+
+#### 💼 Use Cases
+
+**Perfect for Hyperbolic Attention**:
+- ✅ Knowledge graphs (WordNet, Wikipedia)
+- ✅ Org charts (companies, military, government)
+- ✅ Skill trees (games, courses, dependencies)
+- ✅ Language structure (parse trees, documents)
+
+**Not ideal for**:
+- ❌ Flat data, grids, fully connected networks
+
+#### 📚 Documentation
+
+**[HYPERBOLIC-ATTENTION-GUIDE.md](HYPERBOLIC-ATTENTION-GUIDE.md)** - 1,000+ line comprehensive guide:
+- Poincaré ball model explained with visualizations
+- Hyperbolic vs Euclidean comparison
+- All 5 operations with code examples
+- Mathematical details and best practices
+- When to use (and when not to)
+
+#### 🚀 Run the Demos
+
+```bash
+# Hyperbolic attention exploration
+node demos/attention/hyperbolic-deep-dive.js
+
+# Enhanced cognitive system
+node demos/self-discovery/enhanced-cognitive-system.js
+```
+
+#### 💡 The Breakthrough
+
+Created a system that doesn't just USE attention—it UNDERSTANDS which mechanism for which task. That's meta-cognition.
+
+**Key Quote**: *"In hyperbolic space, hierarchies are geometry."* 
