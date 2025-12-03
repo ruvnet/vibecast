@@ -1,0 +1,347 @@
+{
+  "models": {
+    "smollm2-135m": {
+      "bestConfig": {
+        "microRank": 1,
+        "baseRank": 4,
+        "lr": 0.01,
+        "ewc": 1000,
+        "throughput": 11905,
+        "score": 17857.142857142855
+      },
+      "training": {
+        "totalTrained": 6000,
+        "avgQuality": 0.7778934299464833,
+        "throughput": 10582,
+        "qualityProgression": [
+          {
+            "phase": "Easy",
+            "index": 500,
+            "quality": 0.6420531630782607
+          },
+          {
+            "phase": "Medium",
+            "index": 500,
+            "quality": 0.5449874451451174
+          },
+          {
+            "phase": "Medium",
+            "index": 1000,
+            "quality": 0.6410435277900202
+          },
+          {
+            "phase": "Medium",
+            "index": 1500,
+            "quality": 0.6051558134576387
+          },
+          {
+            "phase": "Hard",
+            "index": 500,
+            "quality": 0.6347759796254326
+          },
+          {
+            "phase": "Hard",
+            "index": 1000,
+            "quality": 0.6618287627888444
+          },
+          {
+            "phase": "Hard",
+            "index": 1500,
+            "quality": 0.49276782488146004
+          },
+          {
+            "phase": "Expert",
+            "index": 500,
+            "quality": 0.7964565387846813
+          }
+        ]
+      },
+      "memory": [
+        {
+          "trajectoryCapacity": 500,
+          "patternClusters": 25,
+          "name": "Ultra-Minimal",
+          "memoryMB": "0.3",
+          "throughput": 10638
+        },
+        {
+          "trajectoryCapacity": 1000,
+          "patternClusters": 50,
+          "name": "Minimal",
+          "memoryMB": "0.3",
+          "throughput": 10870
+        },
+        {
+          "trajectoryCapacity": 2000,
+          "patternClusters": 75,
+          "name": "Compact",
+          "memoryMB": "0.0",
+          "throughput": 11111
+        },
+        {
+          "trajectoryCapacity": 5000,
+          "patternClusters": 100,
+          "name": "Standard",
+          "memoryMB": "0.3",
+          "throughput": 10870
+        }
+      ],
+      "maxThroughput": {
+        "throughput": 11099,
+        "latencyUs": 90.1
+      }
+    },
+    "lfm2-350m": {
+      "bestConfig": {
+        "microRank": 1,
+        "baseRank": 4,
+        "lr": 0.01,
+        "ewc": 1000,
+        "throughput": 6757,
+        "score": 10135.135135135135
+      },
+      "training": {
+        "totalTrained": 6000,
+        "avgQuality": 0.7764898145531335,
+        "throughput": 5464,
+        "qualityProgression": [
+          {
+            "phase": "Easy",
+            "index": 500,
+            "quality": 0.6293699445009564
+          },
+          {
+            "phase": "Medium",
+            "index": 500,
+            "quality": 0.6376094918345216
+          },
+          {
+            "phase": "Medium",
+            "index": 1000,
+            "quality": 0.6925010235235998
+          },
+          {
+            "phase": "Medium",
+            "index": 1500,
+            "quality": 0.5866676455726954
+          },
+          {
+            "phase": "Hard",
+            "index": 500,
+            "quality": 0.5010928382597346
+          },
+          {
+            "phase": "Hard",
+            "index": 1000,
+            "quality": 0.522932442641961
+          },
+          {
+            "phase": "Hard",
+            "index": 1500,
+            "quality": 0.666439643083242
+          },
+          {
+            "phase": "Expert",
+            "index": 500,
+            "quality": 0.8988524723678029
+          }
+        ]
+      },
+      "memory": [
+        {
+          "trajectoryCapacity": 500,
+          "patternClusters": 25,
+          "name": "Ultra-Minimal",
+          "memoryMB": "0.0",
+          "throughput": 5952
+        },
+        {
+          "trajectoryCapacity": 1000,
+          "patternClusters": 50,
+          "name": "Minimal",
+          "memoryMB": "1.5",
+          "throughput": 6173
+        },
+        {
+          "trajectoryCapacity": 2000,
+          "patternClusters": 75,
+          "name": "Compact",
+          "memoryMB": "0.0",
+          "throughput": 6173
+        },
+        {
+          "trajectoryCapacity": 5000,
+          "patternClusters": 100,
+          "name": "Standard",
+          "memoryMB": "0.0",
+          "throughput": 6250
+        }
+      ],
+      "maxThroughput": {
+        "throughput": 6743,
+        "latencyUs": 148.3
+      }
+    },
+    "qwen2.5-0.5b": {
+      "bestConfig": {
+        "microRank": 1,
+        "baseRank": 12,
+        "lr": 0.01,
+        "ewc": 2000,
+        "throughput": 7937,
+        "score": 11904.761904761905
+      },
+      "training": {
+        "totalTrained": 6000,
+        "avgQuality": 0.7671373080432105,
+        "throughput": 6623,
+        "qualityProgression": [
+          {
+            "phase": "Easy",
+            "index": 500,
+            "quality": 0.6026790592762385
+          },
+          {
+            "phase": "Medium",
+            "index": 500,
+            "quality": 0.5224368413564139
+          },
+          {
+            "phase": "Medium",
+            "index": 1000,
+            "quality": 0.5798142362680629
+          },
+          {
+            "phase": "Medium",
+            "index": 1500,
+            "quality": 0.5323104875994371
+          },
+          {
+            "phase": "Hard",
+            "index": 500,
+            "quality": 0.5394083724318447
+          },
+          {
+            "phase": "Hard",
+            "index": 1000,
+            "quality": 0.5858374650953848
+          },
+          {
+            "phase": "Hard",
+            "index": 1500,
+            "quality": 0.43162531354478323
+          },
+          {
+            "phase": "Expert",
+            "index": 500,
+            "quality": 0.9101369553329639
+          }
+        ]
+      },
+      "memory": [
+        {
+          "trajectoryCapacity": 500,
+          "patternClusters": 25,
+          "name": "Ultra-Minimal",
+          "memoryMB": "2.7",
+          "throughput": 3937
+        },
+        {
+          "trajectoryCapacity": 1000,
+          "patternClusters": 50,
+          "name": "Minimal",
+          "memoryMB": "0.0",
+          "throughput": 7143
+        },
+        {
+          "trajectoryCapacity": 2000,
+          "patternClusters": 75,
+          "name": "Compact",
+          "memoryMB": "0.0",
+          "throughput": 6849
+        },
+        {
+          "trajectoryCapacity": 5000,
+          "patternClusters": 100,
+          "name": "Standard",
+          "memoryMB": "2.7",
+          "throughput": 6944
+        }
+      ],
+      "maxThroughput": {
+        "throughput": 7758,
+        "latencyUs": 128.9
+      }
+    }
+  },
+  "moe": {
+    "trainTime": 1685441,
+    "routerAccuracy": 88.2,
+    "throughput": 4902,
+    "stats": {
+      "totalExperts": 6,
+      "processCount": 2017,
+      "router": {
+        "totalRoutes": 2017,
+        "expertDistribution": {
+          "code": 341,
+          "math": 336,
+          "reasoning": 336,
+          "chat": 336,
+          "creative": 335,
+          "knowledge": 335
+        }
+      },
+      "experts": {
+        "code": {
+          "expert": "code",
+          "name": "Code Expert",
+          "baseModel": "qwen2.5-0.5b",
+          "trainingCount": 3000,
+          "avgQuality": "0.599",
+          "activations": 341
+        },
+        "math": {
+          "expert": "math",
+          "name": "Math Expert",
+          "baseModel": "smollm2-135m",
+          "trainingCount": 3000,
+          "avgQuality": "0.601",
+          "activations": 336
+        },
+        "reasoning": {
+          "expert": "reasoning",
+          "name": "Reasoning Expert",
+          "baseModel": "lfm2-350m",
+          "trainingCount": 3000,
+          "avgQuality": "0.599",
+          "activations": 336
+        },
+        "chat": {
+          "expert": "chat",
+          "name": "Chat Expert",
+          "baseModel": "smollm2-135m",
+          "trainingCount": 3000,
+          "avgQuality": "0.601",
+          "activations": 336
+        },
+        "creative": {
+          "expert": "creative",
+          "name": "Creative Expert",
+          "baseModel": "smollm2-360m",
+          "trainingCount": 3000,
+          "avgQuality": "0.600",
+          "activations": 335
+        },
+        "knowledge": {
+          "expert": "knowledge",
+          "name": "Knowledge Expert",
+          "baseModel": "qwen2.5-0.5b",
+          "trainingCount": 3000,
+          "avgQuality": "0.601",
+          "activations": 335
+        }
+      }
+    }
+  }
+}

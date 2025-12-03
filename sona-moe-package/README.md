@@ -5,11 +5,12 @@ SONA Mixture of Experts - Federated learning for tiny LLMs with intelligent rout
 ## Features
 
 - **6 Specialized Experts**: Code, Math, Reasoning, Chat, Creative, Knowledge
-- **Intelligent Routing**: 87.5% accuracy query-to-expert matching
-- **High Throughput**: 3,356+ queries/sec
+- **Intelligent Routing**: 88.2% accuracy query-to-expert matching
+- **High Throughput**: 4,902+ queries/sec (optimized)
 - **Memory Efficient**: ~270MB active (only 1-2 experts loaded)
 - **Federated Learning**: Train across ephemeral agents
 - **ONNX/INT4 Ready**: Export for edge deployment
+- **Curriculum Learning**: Optimized hyperparameters via 4-phase training
 
 ## Installation
 
@@ -122,11 +123,14 @@ console.log(config.estimatedMemoryMB); // 67
 
 | Metric | Value |
 |--------|-------|
-| MoE Routing Accuracy | 87.5% |
-| MoE Throughput | 3,356 queries/sec |
-| SmolLM2-135M Quality Gain | +96.8% |
-| LFM2-350M Quality Gain | +89.9% |
-| Qwen2.5-0.5B Quality Gain | +92.3% |
+| MoE Routing Accuracy | 88.2% |
+| MoE Throughput | 4,902 queries/sec |
+| SmolLM2-135M Throughput | 11,905 ops/sec |
+| LFM2-350M Throughput | 6,757 ops/sec |
+| Qwen2.5-0.5B Throughput | 7,937 ops/sec |
+| SmolLM2-135M Latency | 90.1μs |
+| LFM2-350M Latency | 148.3μs |
+| Qwen2.5-0.5B Latency | 128.9μs |
 
 ## Architecture
 

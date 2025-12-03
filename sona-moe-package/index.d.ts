@@ -101,8 +101,10 @@ export interface OptimalConfig {
   microLoraRank: number;
   baseLoraRank: number;
   learningRate: number;
+  ewcLambda: number;
   expectedThroughput: number;
   expectedQualityGain: string;
+  latencyUs: number;
 }
 
 // Classes

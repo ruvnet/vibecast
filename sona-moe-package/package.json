@@ -1,6 +1,6 @@
 {
   "name": "@ruvector/sona-moe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SONA Mixture of Experts - Federated learning for tiny LLMs with intelligent routing",
   "main": "index.js",
   "types": "index.d.ts",
