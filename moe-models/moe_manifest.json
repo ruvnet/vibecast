@@ -1,0 +1,160 @@
+{
+  "type": "sona-moe",
+  "version": "1.0.0",
+  "experts": {
+    "code": {
+      "name": "Code Expert",
+      "baseModel": "qwen2.5-0.5b",
+      "hiddenDim": 896,
+      "domains": [
+        "python",
+        "javascript",
+        "rust",
+        "sql",
+        "debugging",
+        "refactoring"
+      ],
+      "trainingCount": 1000,
+      "avgQuality": 0.5983198281618418
+    },
+    "math": {
+      "name": "Math Expert",
+      "baseModel": "smollm2-135m",
+      "hiddenDim": 576,
+      "domains": [
+        "arithmetic",
+        "algebra",
+        "calculus",
+        "statistics",
+        "logic"
+      ],
+      "trainingCount": 1000,
+      "avgQuality": 0.5990622663189397
+    },
+    "reasoning": {
+      "name": "Reasoning Expert",
+      "baseModel": "lfm2-350m",
+      "hiddenDim": 1024,
+      "domains": [
+        "logic",
+        "analysis",
+        "planning",
+        "problem-solving",
+        "decision"
+      ],
+      "trainingCount": 1000,
+      "avgQuality": 0.5995757120789916
+    },
+    "chat": {
+      "name": "Chat Expert",
+      "baseModel": "smollm2-135m",
+      "hiddenDim": 576,
+      "domains": [
+        "conversation",
+        "greeting",
+        "small-talk",
+        "assistance"
+      ],
+      "trainingCount": 1000,
+      "avgQuality": 0.6004000557936934
+    },
+    "creative": {
+      "name": "Creative Expert",
+      "baseModel": "smollm2-360m",
+      "hiddenDim": 960,
+      "domains": [
+        "writing",
+        "stories",
+        "poetry",
+        "ideas",
+        "brainstorm"
+      ],
+      "trainingCount": 1000,
+      "avgQuality": 0.5997740718208773
+    },
+    "knowledge": {
+      "name": "Knowledge Expert",
+      "baseModel": "qwen2.5-0.5b",
+      "hiddenDim": 896,
+      "domains": [
+        "facts",
+        "history",
+        "science",
+        "geography",
+        "definitions"
+      ],
+      "trainingCount": 1000,
+      "avgQuality": 0.6003399492025434
+    }
+  },
+  "router": {
+    "topK": 2,
+    "threshold": 0.25
+  },
+  "stats": {
+    "totalExperts": 6,
+    "processCount": 1024,
+    "router": {
+      "totalRoutes": 1024,
+      "expertDistribution": {
+        "code": 256,
+        "creative": 255,
+        "chat": 259,
+        "math": 252,
+        "knowledge": 5,
+        "reasoning": 254
+      }
+    },
+    "experts": {
+      "code": {
+        "expert": "code",
+        "name": "Code Expert",
+        "baseModel": "qwen2.5-0.5b",
+        "trainingCount": 1000,
+        "avgQuality": "0.598",
+        "activations": 256
+      },
+      "math": {
+        "expert": "math",
+        "name": "Math Expert",
+        "baseModel": "smollm2-135m",
+        "trainingCount": 1000,
+        "avgQuality": "0.599",
+        "activations": 252
+      },
+      "reasoning": {
+        "expert": "reasoning",
+        "name": "Reasoning Expert",
+        "baseModel": "lfm2-350m",
+        "trainingCount": 1000,
+        "avgQuality": "0.600",
+        "activations": 254
+      },
+      "chat": {
+        "expert": "chat",
+        "name": "Chat Expert",
+        "baseModel": "smollm2-135m",
+        "trainingCount": 1000,
+        "avgQuality": "0.600",
+        "activations": 259
+      },
+      "creative": {
+        "expert": "creative",
+        "name": "Creative Expert",
+        "baseModel": "smollm2-360m",
+        "trainingCount": 1000,
+        "avgQuality": "0.600",
+        "activations": 255
+      },
+      "knowledge": {
+        "expert": "knowledge",
+        "name": "Knowledge Expert",
+        "baseModel": "qwen2.5-0.5b",
+        "trainingCount": 1000,
+        "avgQuality": "0.600",
+        "activations": 5
+      }
+    }
+  },
+  "exportedAt": "2025-12-03T14:46:52.039Z"
+}

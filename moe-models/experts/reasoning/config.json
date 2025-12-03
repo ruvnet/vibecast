@@ -1,0 +1,45 @@
+{
+  "key": "reasoning",
+  "name": "Reasoning Expert",
+  "description": "Specialized in logical reasoning and analysis",
+  "baseModel": "lfm2-350m",
+  "domains": [
+    "logic",
+    "analysis",
+    "planning",
+    "problem-solving",
+    "decision"
+  ],
+  "keywords": [
+    "why",
+    "because",
+    "therefore",
+    "analyze",
+    "reason",
+    "think",
+    "plan",
+    "decide"
+  ],
+  "baseModelConfig": {
+    "name": "LFM2-350M",
+    "hiddenDim": 1024,
+    "numLayers": 24,
+    "numHeads": 16,
+    "headDim": 64,
+    "params": "350M",
+    "contextLength": 32768,
+    "strengths": [
+      "long-context",
+      "efficiency"
+    ]
+  },
+  "sonaConfig": {
+    "microLoraRank": 1,
+    "baseLoraRank": 8,
+    "learningRate": 0.005
+  },
+  "training": {
+    "count": 1000,
+    "avgQuality": 0.5995757120789916
+  }
+}

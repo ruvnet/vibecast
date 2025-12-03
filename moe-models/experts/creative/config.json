@@ -1,0 +1,44 @@
+{
+  "key": "creative",
+  "name": "Creative Expert",
+  "description": "Specialized in creative writing and ideation",
+  "baseModel": "smollm2-360m",
+  "domains": [
+    "writing",
+    "stories",
+    "poetry",
+    "ideas",
+    "brainstorm"
+  ],
+  "keywords": [
+    "write",
+    "story",
+    "creative",
+    "imagine",
+    "idea",
+    "poem",
+    "describe"
+  ],
+  "baseModelConfig": {
+    "name": "SmolLM2-360M",
+    "hiddenDim": 960,
+    "numLayers": 32,
+    "numHeads": 15,
+    "headDim": 64,
+    "params": "360M",
+    "contextLength": 8192,
+    "strengths": [
+      "small",
+      "versatile"
+    ]
+  },
+  "sonaConfig": {
+    "microLoraRank": 1,
+    "baseLoraRank": 8,
+    "learningRate": 0.005
+  },
+  "training": {
+    "count": 1000,
+    "avgQuality": 0.5997740718208773
+  }
+}
