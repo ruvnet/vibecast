@@ -1,0 +1,56 @@
+{
+  "name": "toyota-simulation-agent",
+  "version": "1.0.0",
+  "description": "Self-learning AI agent that simulates Toyota Motor Company - all employees, supply chain partners, manufacturing, and operations",
+  "main": "dist/index.js",
+  "bin": {
+    "toyota-sim": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "dev": "ts-node src/cli.ts",
+    "simulate": "ts-node src/cli.ts simulate",
+    "learn": "ts-node src/cli.ts learn",
+    "dashboard": "ts-node src/cli.ts dashboard",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts"
+  },
+  "keywords": [
+    "toyota",
+    "simulation",
+    "ai-agent",
+    "self-learning",
+    "supply-chain",
+    "manufacturing",
+    "ruvector"
+  ],
+  "author": "rUv <ruv@ruv.net>",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.0",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1",
+    "eventemitter3": "^5.0.1",
+    "inquirer": "^8.2.6",
+    "lodash": "^4.17.21",
+    "nanoid": "^3.3.7",
+    "ora": "^5.4.1",
+    "p-queue": "^6.6.2",
+    "random-seed": "^0.3.0",
+    "table": "^6.8.1",
+    "uuid": "^9.0.1",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^8.2.10",
+    "@types/lodash": "^4.14.202",
+    "@types/node": "^20.10.0",
+    "@types/uuid": "^9.0.7",
+    "typescript": "^5.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
