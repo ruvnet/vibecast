@@ -40,6 +40,14 @@ export {
 // ruvector Orchestrator
 export { RuvectorAgentOrchestrator } from './ruvector/AgentOrchestrator';
 
+// ruvector Integration (Vector Memory + GNN)
+export {
+  RuvectorSystem,
+  RuvectorMemorySystem,
+  RuvectorGNNLearner,
+  getRuvectorSystem,
+} from './ruvector/RuvectorIntegration';
+
 // Simulation Engine
 export { ToyotaSimulationEngine } from './simulation/SimulationEngine';
 

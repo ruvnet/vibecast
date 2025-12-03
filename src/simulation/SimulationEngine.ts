@@ -17,6 +17,7 @@ import { OrganizationalStructureGenerator, TOYOTA_LOCATIONS, ToyotaLocation } fr
 import { SupplyChainSimulator } from '../toyota/SupplyChain';
 import { ProductionLineSimulator, QualityManagementSystem } from '../toyota/ManufacturingSimulation';
 import { RuvectorAgentOrchestrator } from '../ruvector/AgentOrchestrator';
+import { RuvectorSystem } from '../ruvector/RuvectorIntegration';
 import { v4 as uuidv4 } from 'uuid';
 
 // ============================================================================
@@ -46,6 +47,7 @@ export class ToyotaSimulationEngine extends EventEmitter<SimulationEngineEvents>
   private manufacturing: ProductionLineSimulator;
   private qualitySystem: QualityManagementSystem;
   private orchestrator: RuvectorAgentOrchestrator;
+  private ruvectorSystem: RuvectorSystem;
   private tickInterval: NodeJS.Timeout | null = null;
   private simulationDay: number = 1;
   private vehiclesProducedTotal: number = 0;
@@ -76,6 +78,12 @@ export class ToyotaSimulationEngine extends EventEmitter<SimulationEngineEvents>
     this.orchestrator = new RuvectorAgentOrchestrator({
       learningEnabled: this.config.enableLearning,
       maxConcurrentAgents: Math.min(10000, Math.floor(this.config.employeeCount / 10)),
+    });
+    this.ruvectorSystem = new RuvectorSystem({
+      enableMemory: true,
+      enableGNN: true,
+      memory: { dimension: 128, metric: 'cosine' },
+      gnn: { inputDimension: 128, hiddenDimension: 256, attentionHeads: 4 },
     });
   }
 
@@ -186,11 +194,24 @@ export class ToyotaSimulationEngine extends EventEmitter<SimulationEngineEvents>
     console.log(`  ✓ Daily capacity: ${prodMetrics.totalDailyCapacity.toLocaleString()} vehicles`);
     console.log('└────────────────────────────────────────────────────────────────┘\n');
 
-    // Step 4: Initialize ruvector orchestrator
-    console.log('┌─ Phase 4: Activating ruvector AI Agent System ──────────────────┐');
+    // Step 4: Initialize ruvector AI system (vector memory + GNN)
+    console.log('┌─ Phase 4: Activating ruvector AI System ────────────────────────┐');
+    await this.ruvectorSystem.initialize();
+
+    // Register agents with GNN for relationship learning
+    if (this.ruvectorSystem.gnn) {
+      let registered = 0;
+      for (const agent of agents.slice(0, 10000)) { // Limit for performance
+        const embedding = this.generateAgentEmbedding(agent);
+        this.ruvectorSystem.gnn.registerAgent(agent.id, embedding);
+        registered++;
+      }
+      console.log(`  ✓ Registered ${registered.toLocaleString()} agents with GNN`);
+    }
+
     this.orchestrator.registerAgents(agents);
     console.log(`  ✓ Registered ${agents.length.toLocaleString()} agents with orchestrator`);
-    console.log(`  ✓ Learning models initialized`);
+    console.log(`  ✓ Vector memory system active`);
     console.log(`  ✓ Swarm intelligence activated`);
     console.log('└────────────────────────────────────────────────────────────────┘\n');
 
@@ -464,6 +485,7 @@ export class ToyotaSimulationEngine extends EventEmitter<SimulationEngineEvents>
       supplyChain: this.supplyChain.getSupplierMetrics(),
       quality: this.qualitySystem.getQualityReport(),
       orchestrator: this.orchestrator.getOrchestratorMetrics(),
+      ruvector: this.ruvectorSystem.getStats(),
       financials: {
         revenue: `¥${(this.state.metrics.revenue / 1e12).toFixed(1)} trillion`,
         operatingProfit: `¥${(this.state.metrics.operatingProfit / 1e12).toFixed(1)} trillion`,
@@ -505,5 +527,63 @@ export class ToyotaSimulationEngine extends EventEmitter<SimulationEngineEvents>
 
   getConfig(): SimulationConfig {
     return this.config;
+  }
+
+  /**
+   * Generate a simple embedding for an agent based on its attributes
+   */
+  private generateAgentEmbedding(agent: ToyotaAgent): number[] {
+    const embedding: number[] = new Array(128).fill(0);
+
+    // Encode agent type (first 16 dimensions)
+    const typeHash = this.hashString(agent.type);
+    for (let i = 0; i < 16; i++) {
+      embedding[i] = ((typeHash >> i) & 1) ? 1 : -1;
+    }
+
+    // Encode department (next 16 dimensions)
+    const deptHash = this.hashString(agent.department);
+    for (let i = 0; i < 16; i++) {
+      embedding[16 + i] = ((deptHash >> i) & 1) ? 1 : -1;
+    }
+
+    // Encode performance metrics (next 32 dimensions)
+    embedding[32] = agent.performance.productivity / 100;
+    embedding[33] = agent.performance.quality / 100;
+    embedding[34] = agent.performance.efficiency / 100;
+    embedding[35] = agent.performance.collaboration / 100;
+    embedding[36] = agent.performance.innovation / 100;
+    embedding[37] = agent.performance.learning / 100;
+
+    // Encode state (next 16 dimensions)
+    embedding[64] = agent.state.energy / 100;
+    embedding[65] = agent.state.morale / 100;
+    embedding[66] = 1 - (agent.state.stress / 100);
+    embedding[67] = agent.learningRate;
+
+    // Encode skills (remaining dimensions)
+    for (let i = 0; i < Math.min(agent.skills.length, 32); i++) {
+      embedding[80 + i] = agent.skills[i].level / 100;
+    }
+
+    // Normalize
+    const norm = Math.sqrt(embedding.reduce((sum, v) => sum + v * v, 0)) || 1;
+    return embedding.map(v => v / norm);
+  }
+
+  private hashString(str: string): number {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      hash = ((hash << 5) - hash) + str.charCodeAt(i);
+      hash |= 0;
+    }
+    return Math.abs(hash);
+  }
+
+  /**
+   * Get ruvector system for external access
+   */
+  getRuvectorSystem(): RuvectorSystem {
+    return this.ruvectorSystem;
   }
 }

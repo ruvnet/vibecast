@@ -29,6 +29,8 @@
   "license": "MIT",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.24.0",
+    "@ruvector/agentic-synth": "^0.1.6",
+    "@ruvector/gnn": "^0.1.19",
     "chalk": "^4.1.2",
     "commander": "^11.1.0",
     "dotenv": "^16.3.1",
@@ -39,6 +41,7 @@
     "ora": "^5.4.1",
     "p-queue": "^6.6.2",
     "random-seed": "^0.3.0",
+    "ruvector": "^0.1.26",
     "table": "^6.8.1",
     "uuid": "^9.0.1",
     "winston": "^3.11.0"
