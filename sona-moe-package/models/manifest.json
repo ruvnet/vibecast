@@ -1,0 +1,53 @@
+{
+  "name": "@ruvector/sona-moe",
+  "version": "1.0.0",
+  "buildDate": "2025-12-03T14:58:28.587Z",
+  "buildTime": 142593,
+  "models": [
+    {
+      "key": "smollm2-135m",
+      "name": "SmolLM2-135M",
+      "params": "135M",
+      "hiddenDim": 576,
+      "contextLength": 8192,
+      "performance": {
+        "expectedThroughput": 11381,
+        "expectedQualityGain": "+96.8%"
+      }
+    },
+    {
+      "key": "lfm2-350m",
+      "name": "LFM2-350M",
+      "params": "350M",
+      "hiddenDim": 1024,
+      "contextLength": 32768,
+      "performance": {
+        "expectedThroughput": 6544,
+        "expectedQualityGain": "+89.9%"
+      }
+    },
+    {
+      "key": "qwen2.5-0.5b",
+      "name": "Qwen2.5-0.5B",
+      "params": "0.5B",
+      "hiddenDim": 896,
+      "contextLength": 32768,
+      "performance": {
+        "expectedThroughput": 7465,
+        "expectedQualityGain": "+92.3%"
+      }
+    }
+  ],
+  "moe": {
+    "experts": 6,
+    "routingAccuracy": "83.3%",
+    "throughput": "3378 queries/sec",
+    "trainingTime": "53.3s"
+  },
+  "recommendations": {
+    "smallest": "smollm2-135m (135M params, ~67MB INT4)",
+    "bestQuality": "qwen2.5-0.5b (0.5B params, ~250MB INT4)",
+    "bestContext": "lfm2-350m (350M params, 32K context)",
+    "moe": "6 experts, ~270MB active memory"
+  }
+}

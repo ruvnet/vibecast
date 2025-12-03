@@ -1,0 +1,43 @@
+{
+  "key": "chat",
+  "name": "Chat Expert",
+  "description": "Specialized in conversational interactions",
+  "baseModel": "smollm2-135m",
+  "domains": [
+    "conversation",
+    "greeting",
+    "small-talk",
+    "assistance"
+  ],
+  "keywords": [
+    "hello",
+    "hi",
+    "thanks",
+    "help",
+    "please",
+    "how are",
+    "what is"
+  ],
+  "baseModelConfig": {
+    "name": "SmolLM2-135M",
+    "hiddenDim": 576,
+    "numLayers": 30,
+    "numHeads": 9,
+    "headDim": 64,
+    "params": "135M",
+    "contextLength": 8192,
+    "strengths": [
+      "ultra-small",
+      "mobile"
+    ]
+  },
+  "sonaConfig": {
+    "microLoraRank": 1,
+    "baseLoraRank": 8,
+    "learningRate": 0.005
+  },
+  "training": {
+    "count": 1000,
+    "avgQuality": 0.6000699047218002
+  }
+}

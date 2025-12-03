@@ -1,0 +1,23 @@
+{
+  "model": "SmolLM2-135M",
+  "key": "smollm2-135m",
+  "params": "135M",
+  "hiddenDim": 576,
+  "contextLength": 8192,
+  "optimalConfig": {
+    "microLoraRank": 1,
+    "baseLoraRank": 4,
+    "learningRate": 0.005,
+    "expectedThroughput": 11381,
+    "expectedQualityGain": "+96.8%"
+  },
+  "training": {
+    "trajectories": 2000,
+    "timeMs": 19850,
+    "agents": 5
+  },
+  "performance": {
+    "expectedThroughput": 11381,
+    "expectedQualityGain": "+96.8%"
+  }
+}

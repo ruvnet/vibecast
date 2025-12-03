@@ -1,0 +1,45 @@
+{
+  "key": "math",
+  "name": "Math Expert",
+  "description": "Specialized in mathematical reasoning and calculations",
+  "baseModel": "smollm2-135m",
+  "domains": [
+    "arithmetic",
+    "algebra",
+    "calculus",
+    "statistics",
+    "logic"
+  ],
+  "keywords": [
+    "calculate",
+    "solve",
+    "equation",
+    "number",
+    "math",
+    "formula",
+    "proof",
+    "sum"
+  ],
+  "baseModelConfig": {
+    "name": "SmolLM2-135M",
+    "hiddenDim": 576,
+    "numLayers": 30,
+    "numHeads": 9,
+    "headDim": 64,
+    "params": "135M",
+    "contextLength": 8192,
+    "strengths": [
+      "ultra-small",
+      "mobile"
+    ]
+  },
+  "sonaConfig": {
+    "microLoraRank": 1,
+    "baseLoraRank": 8,
+    "learningRate": 0.005
+  },
+  "training": {
+    "count": 1000,
+    "avgQuality": 0.601269628110608
+  }
+}

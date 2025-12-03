@@ -1,0 +1,23 @@
+{
+  "model": "Qwen2.5-0.5B",
+  "key": "qwen2.5-0.5b",
+  "params": "0.5B",
+  "hiddenDim": 896,
+  "contextLength": 32768,
+  "optimalConfig": {
+    "microLoraRank": 1,
+    "baseLoraRank": 16,
+    "learningRate": 0.005,
+    "expectedThroughput": 7465,
+    "expectedQualityGain": "+92.3%"
+  },
+  "training": {
+    "trajectories": 2000,
+    "timeMs": 31936,
+    "agents": 5
+  },
+  "performance": {
+    "expectedThroughput": 7465,
+    "expectedQualityGain": "+92.3%"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "key": "knowledge",
+  "name": "Knowledge Expert",
+  "description": "Specialized in factual knowledge and explanations",
+  "baseModel": "qwen2.5-0.5b",
+  "domains": [
+    "facts",
+    "history",
+    "science",
+    "geography",
+    "definitions"
+  ],
+  "keywords": [
+    "what",
+    "who",
+    "when",
+    "where",
+    "explain",
+    "define",
+    "tell me about"
+  ],
+  "baseModelConfig": {
+    "name": "Qwen2.5-0.5B",
+    "hiddenDim": 896,
+    "numLayers": 24,
+    "numHeads": 14,
+    "headDim": 64,
+    "params": "0.5B",
+    "contextLength": 32768,
+    "strengths": [
+      "multilingual",
+      "code"
+    ]
+  },
+  "sonaConfig": {
+    "microLoraRank": 1,
+    "baseLoraRank": 8,
+    "learningRate": 0.005
+  },
+  "training": {
+    "count": 1000,
+    "avgQuality": 0.5998425492447328
+  }
+}

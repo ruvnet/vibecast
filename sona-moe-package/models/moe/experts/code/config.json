@@ -1,0 +1,47 @@
+{
+  "key": "code",
+  "name": "Code Expert",
+  "description": "Specialized in code generation, debugging, and explanation",
+  "baseModel": "qwen2.5-0.5b",
+  "domains": [
+    "python",
+    "javascript",
+    "rust",
+    "sql",
+    "debugging",
+    "refactoring"
+  ],
+  "keywords": [
+    "function",
+    "class",
+    "code",
+    "bug",
+    "error",
+    "implement",
+    "write",
+    "script",
+    "api"
+  ],
+  "baseModelConfig": {
+    "name": "Qwen2.5-0.5B",
+    "hiddenDim": 896,
+    "numLayers": 24,
+    "numHeads": 14,
+    "headDim": 64,
+    "params": "0.5B",
+    "contextLength": 32768,
+    "strengths": [
+      "multilingual",
+      "code"
+    ]
+  },
+  "sonaConfig": {
+    "microLoraRank": 1,
+    "baseLoraRank": 8,
+    "learningRate": 0.005
+  },
+  "training": {
+    "count": 1000,
+    "avgQuality": 0.5996815089011525
+  }
+}

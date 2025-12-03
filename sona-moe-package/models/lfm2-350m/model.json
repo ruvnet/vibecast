@@ -1,0 +1,23 @@
+{
+  "model": "LFM2-350M",
+  "key": "lfm2-350m",
+  "params": "350M",
+  "hiddenDim": 1024,
+  "contextLength": 32768,
+  "optimalConfig": {
+    "microLoraRank": 1,
+    "baseLoraRank": 16,
+    "learningRate": 0.005,
+    "expectedThroughput": 6544,
+    "expectedQualityGain": "+89.9%"
+  },
+  "training": {
+    "trajectories": 2000,
+    "timeMs": 37288,
+    "agents": 5
+  },
+  "performance": {
+    "expectedThroughput": 6544,
+    "expectedQualityGain": "+89.9%"
+  }
+}

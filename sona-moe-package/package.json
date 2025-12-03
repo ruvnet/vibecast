@@ -1,0 +1,49 @@
+{
+  "name": "@ruvector/sona-moe",
+  "version": "1.0.0",
+  "description": "SONA Mixture of Experts - Federated learning for tiny LLMs with intelligent routing",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "benchmark": "node benchmark.js",
+    "train": "node train.js",
+    "build": "node build.js"
+  },
+  "keywords": [
+    "llm",
+    "mixture-of-experts",
+    "moe",
+    "federated-learning",
+    "sona",
+    "lora",
+    "tiny-llm",
+    "machine-learning",
+    "ai",
+    "onnx",
+    "quantization",
+    "smollm",
+    "qwen",
+    "lfm2"
+  ],
+  "author": "ruvector",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruvnet/vibecast"
+  },
+  "dependencies": {
+    "@ruvector/sona": "^0.1.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "src/",
+    "models/",
+    "README.md",
+    "LICENSE"
+  ]
+}
