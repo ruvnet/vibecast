@@ -1,0 +1,767 @@
+{
+  "timestamp": "2025-12-03T14:28:04.422Z",
+  "models": {
+    "smollm2-135m": {
+      "model": "SmolLM2-135M",
+      "params": "135M",
+      "hiddenDim": 576,
+      "benchmarks": {
+        "microLora": {
+          "iterations": 2000,
+          "totalMs": 175.739066,
+          "avgUs": 87.869533,
+          "opsPerSec": 11381
+        },
+        "trajectory": {
+          "iterations": 1000,
+          "totalMs": 140.158,
+          "avgMs": 0.14015799999999998,
+          "trajPerSec": 7135
+        },
+        "learning": {
+          "trajectories": 500,
+          "learnTimeMs": 1685.06708
+        },
+        "quality": {
+          "before": 0.3516123310114096,
+          "after": 0.6920513564961378,
+          "improvement": 96.822265733815,
+          "trajectoriesTrained": 1000
+        },
+        "hyperparams": {
+          "best": {
+            "microRank": 1,
+            "baseRank": 4,
+            "lr": 0.005,
+            "opsPerSec": 12004,
+            "score": 18006
+          },
+          "top5": [
+            {
+              "microRank": 1,
+              "baseRank": 4,
+              "lr": 0.005,
+              "opsPerSec": 12004,
+              "score": 18006
+            },
+            {
+              "microRank": 2,
+              "baseRank": 4,
+              "lr": 0.005,
+              "opsPerSec": 11828,
+              "score": 17742
+            },
+            {
+              "microRank": 1,
+              "baseRank": 8,
+              "lr": 0.005,
+              "opsPerSec": 11736,
+              "score": 17604
+            },
+            {
+              "microRank": 2,
+              "baseRank": 8,
+              "lr": 0.005,
+              "opsPerSec": 11460,
+              "score": 17190
+            },
+            {
+              "microRank": 2,
+              "baseRank": 16,
+              "lr": 0.005,
+              "opsPerSec": 11314,
+              "score": 16971
+            }
+          ],
+          "all": [
+            {
+              "microRank": 1,
+              "baseRank": 4,
+              "lr": 0.005,
+              "opsPerSec": 12004,
+              "score": 18006
+            },
+            {
+              "microRank": 2,
+              "baseRank": 4,
+              "lr": 0.005,
+              "opsPerSec": 11828,
+              "score": 17742
+            },
+            {
+              "microRank": 1,
+              "baseRank": 8,
+              "lr": 0.005,
+              "opsPerSec": 11736,
+              "score": 17604
+            },
+            {
+              "microRank": 2,
+              "baseRank": 8,
+              "lr": 0.005,
+              "opsPerSec": 11460,
+              "score": 17190
+            },
+            {
+              "microRank": 2,
+              "baseRank": 16,
+              "lr": 0.005,
+              "opsPerSec": 11314,
+              "score": 16971
+            },
+            {
+              "microRank": 1,
+              "baseRank": 16,
+              "lr": 0.005,
+              "opsPerSec": 11254,
+              "score": 16881
+            },
+            {
+              "microRank": 1,
+              "baseRank": 4,
+              "lr": 0.002,
+              "opsPerSec": 12013,
+              "score": 14415.6
+            },
+            {
+              "microRank": 2,
+              "baseRank": 16,
+              "lr": 0.002,
+              "opsPerSec": 11992,
+              "score": 14390.4
+            },
+            {
+              "microRank": 1,
+              "baseRank": 8,
+              "lr": 0.002,
+              "opsPerSec": 11990,
+              "score": 14388
+            },
+            {
+              "microRank": 2,
+              "baseRank": 8,
+              "lr": 0.002,
+              "opsPerSec": 11910,
+              "score": 14292
+            },
+            {
+              "microRank": 1,
+              "baseRank": 16,
+              "lr": 0.002,
+              "opsPerSec": 11784,
+              "score": 14140.8
+            },
+            {
+              "microRank": 2,
+              "baseRank": 4,
+              "lr": 0.002,
+              "opsPerSec": 11347,
+              "score": 13616.4
+            },
+            {
+              "microRank": 1,
+              "baseRank": 16,
+              "lr": 0.001,
+              "opsPerSec": 12155,
+              "score": 13370.500000000002
+            },
+            {
+              "microRank": 1,
+              "baseRank": 8,
+              "lr": 0.001,
+              "opsPerSec": 12111,
+              "score": 13322.1
+            },
+            {
+              "microRank": 2,
+              "baseRank": 8,
+              "lr": 0.001,
+              "opsPerSec": 12002,
+              "score": 13202.2
+            },
+            {
+              "microRank": 2,
+              "baseRank": 16,
+              "lr": 0.001,
+              "opsPerSec": 11752,
+              "score": 12927.2
+            },
+            {
+              "microRank": 2,
+              "baseRank": 4,
+              "lr": 0.001,
+              "opsPerSec": 11643,
+              "score": 12807.300000000001
+            },
+            {
+              "microRank": 1,
+              "baseRank": 4,
+              "lr": 0.001,
+              "opsPerSec": 11368,
+              "score": 12504.800000000001
+            }
+          ]
+        },
+        "agentScaling": [
+          {
+            "agents": 1,
+            "timeMs": 775.413872,
+            "trajectories": 200,
+            "trajPerSec": 258
+          },
+          {
+            "agents": 5,
+            "timeMs": 715.101762,
+            "trajectories": 200,
+            "trajPerSec": 280
+          },
+          {
+            "agents": 10,
+            "timeMs": 717.37372,
+            "trajectories": 200,
+            "trajPerSec": 279
+          },
+          {
+            "agents": 20,
+            "timeMs": 718.873921,
+            "trajectories": 200,
+            "trajPerSec": 278
+          }
+        ],
+        "memory": [
+          {
+            "config": "Minimal",
+            "trajectoryCapacity": 1000,
+            "patternClusters": 25,
+            "memoryMB": 9.9
+          },
+          {
+            "config": "Standard",
+            "trajectoryCapacity": 5000,
+            "patternClusters": 100,
+            "memoryMB": -13.8
+          },
+          {
+            "config": "Large",
+            "trajectoryCapacity": 20000,
+            "patternClusters": 200,
+            "memoryMB": 1.9
+          }
+        ]
+      }
+    },
+    "lfm2-350m": {
+      "model": "LFM2-350M",
+      "params": "350M",
+      "hiddenDim": 1024,
+      "benchmarks": {
+        "microLora": {
+          "iterations": 2000,
+          "totalMs": 305.602848,
+          "avgUs": 152.801424,
+          "opsPerSec": 6544
+        },
+        "trajectory": {
+          "iterations": 1000,
+          "totalMs": 239.789625,
+          "avgMs": 0.239789625,
+          "trajPerSec": 4170
+        },
+        "learning": {
+          "trajectories": 500,
+          "learnTimeMs": 3086.711354
+        },
+        "quality": {
+          "before": 0.35128997076144863,
+          "after": 0.6669527859814224,
+          "improvement": 89.85819166307247,
+          "trajectoriesTrained": 1000
+        },
+        "hyperparams": {
+          "best": {
+            "microRank": 1,
+            "baseRank": 16,
+            "lr": 0.005,
+            "opsPerSec": 7005,
+            "score": 10507.5
+          },
+          "top5": [
+            {
+              "microRank": 1,
+              "baseRank": 16,
+              "lr": 0.005,
+              "opsPerSec": 7005,
+              "score": 10507.5
+            },
+            {
+              "microRank": 2,
+              "baseRank": 8,
+              "lr": 0.005,
+              "opsPerSec": 6789,
+              "score": 10183.5
+            },
+            {
+              "microRank": 2,
+              "baseRank": 4,
+              "lr": 0.005,
+              "opsPerSec": 6685,
+              "score": 10027.5
+            },
+            {
+              "microRank": 2,
+              "baseRank": 16,
+              "lr": 0.005,
+              "opsPerSec": 6670,
+              "score": 10005
+            },
+            {
+              "microRank": 1,
+              "baseRank": 8,
+              "lr": 0.005,
+              "opsPerSec": 6513,
+              "score": 9769.5
+            }
+          ],
+          "all": [
+            {
+              "microRank": 1,
+              "baseRank": 16,
+              "lr": 0.005,
+              "opsPerSec": 7005,
+              "score": 10507.5
+            },
+            {
+              "microRank": 2,
+              "baseRank": 8,
+              "lr": 0.005,
+              "opsPerSec": 6789,
+              "score": 10183.5
+            },
+            {
+              "microRank": 2,
+              "baseRank": 4,
+              "lr": 0.005,
+              "opsPerSec": 6685,
+              "score": 10027.5
+            },
+            {
+              "microRank": 2,
+              "baseRank": 16,
+              "lr": 0.005,
+              "opsPerSec": 6670,
+              "score": 10005
+            },
+            {
+              "microRank": 1,
+              "baseRank": 8,
+              "lr": 0.005,
+              "opsPerSec": 6513,
+              "score": 9769.5
+            },
+            {
+              "microRank": 1,
+              "baseRank": 4,
+              "lr": 0.005,
+              "opsPerSec": 6210,
+              "score": 9315
+            },
+            {
+              "microRank": 1,
+              "baseRank": 16,
+              "lr": 0.002,
+              "opsPerSec": 6983,
+              "score": 8379.6
+            },
+            {
+              "microRank": 1,
+              "baseRank": 8,
+              "lr": 0.002,
+              "opsPerSec": 6730,
+              "score": 8076
+            },
+            {
+              "microRank": 2,
+              "baseRank": 16,
+              "lr": 0.002,
+              "opsPerSec": 6716,
+              "score": 8059.2
+            },
+            {
+              "microRank": 2,
+              "baseRank": 4,
+              "lr": 0.002,
+              "opsPerSec": 6497,
+              "score": 7796.4
+            },
+            {
+              "microRank": 1,
+              "baseRank": 4,
+              "lr": 0.002,
+              "opsPerSec": 6356,
+              "score": 7627.2
+            },
+            {
+              "microRank": 1,
+              "baseRank": 8,
+              "lr": 0.001,
+              "opsPerSec": 6815,
+              "score": 7496.500000000001
+            },
+            {
+              "microRank": 2,
+              "baseRank": 8,
+              "lr": 0.002,
+              "opsPerSec": 6100,
+              "score": 7320
+            },
+            {
+              "microRank": 1,
+              "baseRank": 4,
+              "lr": 0.001,
+              "opsPerSec": 6648,
+              "score": 7312.8
+            },
+            {
+              "microRank": 1,
+              "baseRank": 16,
+              "lr": 0.001,
+              "opsPerSec": 6635,
+              "score": 7298.500000000001
+            },
+            {
+              "microRank": 2,
+              "baseRank": 16,
+              "lr": 0.001,
+              "opsPerSec": 6609,
+              "score": 7269.900000000001
+            },
+            {
+              "microRank": 2,
+              "baseRank": 4,
+              "lr": 0.001,
+              "opsPerSec": 6506,
+              "score": 7156.6
+            },
+            {
+              "microRank": 2,
+              "baseRank": 8,
+              "lr": 0.001,
+              "opsPerSec": 6487,
+              "score": 7135.700000000001
+            }
+          ]
+        },
+        "agentScaling": [
+          {
+            "agents": 1,
+            "timeMs": 1397.168684,
+            "trajectories": 200,
+            "trajPerSec": 143
+          },
+          {
+            "agents": 5,
+            "timeMs": 1302.21383,
+            "trajectories": 200,
+            "trajPerSec": 154
+          },
+          {
+            "agents": 10,
+            "timeMs": 1316.946895,
+            "trajectories": 200,
+            "trajPerSec": 152
+          },
+          {
+            "agents": 20,
+            "timeMs": 1314.236241,
+            "trajectories": 200,
+            "trajPerSec": 152
+          }
+        ],
+        "memory": [
+          {
+            "config": "Minimal",
+            "trajectoryCapacity": 1000,
+            "patternClusters": 25,
+            "memoryMB": 0
+          },
+          {
+            "config": "Standard",
+            "trajectoryCapacity": 5000,
+            "patternClusters": 100,
+            "memoryMB": 0
+          },
+          {
+            "config": "Large",
+            "trajectoryCapacity": 20000,
+            "patternClusters": 200,
+            "memoryMB": 0
+          }
+        ]
+      }
+    },
+    "qwen2.5-0.5b": {
+      "model": "Qwen2.5-0.5B",
+      "params": "0.5B",
+      "hiddenDim": 896,
+      "benchmarks": {
+        "microLora": {
+          "iterations": 2000,
+          "totalMs": 267.905501,
+          "avgUs": 133.9527505,
+          "opsPerSec": 7465
+        },
+        "trajectory": {
+          "iterations": 1000,
+          "totalMs": 212.536628,
+          "avgMs": 0.212536628,
+          "trajPerSec": 4705
+        },
+        "learning": {
+          "trajectories": 500,
+          "learnTimeMs": 2680.763294
+        },
+        "quality": {
+          "before": 0.3521321726532255,
+          "after": 0.6772732359175286,
+          "improvement": 92.33494934996956,
+          "trajectoriesTrained": 1000
+        },
+        "hyperparams": {
+          "best": {
+            "microRank": 1,
+            "baseRank": 16,
+            "lr": 0.005,
+            "opsPerSec": 7780,
+            "score": 11670
+          },
+          "top5": [
+            {
+              "microRank": 1,
+              "baseRank": 16,
+              "lr": 0.005,
+              "opsPerSec": 7780,
+              "score": 11670
+            },
+            {
+              "microRank": 2,
+              "baseRank": 16,
+              "lr": 0.005,
+              "opsPerSec": 7433,
+              "score": 11149.5
+            },
+            {
+              "microRank": 2,
+              "baseRank": 4,
+              "lr": 0.005,
+              "opsPerSec": 7200,
+              "score": 10800
+            },
+            {
+              "microRank": 1,
+              "baseRank": 8,
+              "lr": 0.005,
+              "opsPerSec": 7002,
+              "score": 10503
+            },
+            {
+              "microRank": 2,
+              "baseRank": 8,
+              "lr": 0.005,
+              "opsPerSec": 6922,
+              "score": 10383
+            }
+          ],
+          "all": [
+            {
+              "microRank": 1,
+              "baseRank": 16,
+              "lr": 0.005,
+              "opsPerSec": 7780,
+              "score": 11670
+            },
+            {
+              "microRank": 2,
+              "baseRank": 16,
+              "lr": 0.005,
+              "opsPerSec": 7433,
+              "score": 11149.5
+            },
+            {
+              "microRank": 2,
+              "baseRank": 4,
+              "lr": 0.005,
+              "opsPerSec": 7200,
+              "score": 10800
+            },
+            {
+              "microRank": 1,
+              "baseRank": 8,
+              "lr": 0.005,
+              "opsPerSec": 7002,
+              "score": 10503
+            },
+            {
+              "microRank": 2,
+              "baseRank": 8,
+              "lr": 0.005,
+              "opsPerSec": 6922,
+              "score": 10383
+            },
+            {
+              "microRank": 1,
+              "baseRank": 4,
+              "lr": 0.005,
+              "opsPerSec": 6913,
+              "score": 10369.5
+            },
+            {
+              "microRank": 2,
+              "baseRank": 4,
+              "lr": 0.002,
+              "opsPerSec": 7746,
+              "score": 9295.199999999999
+            },
+            {
+              "microRank": 1,
+              "baseRank": 8,
+              "lr": 0.002,
+              "opsPerSec": 7541,
+              "score": 9049.199999999999
+            },
+            {
+              "microRank": 2,
+              "baseRank": 8,
+              "lr": 0.002,
+              "opsPerSec": 7521,
+              "score": 9025.199999999999
+            },
+            {
+              "microRank": 1,
+              "baseRank": 4,
+              "lr": 0.002,
+              "opsPerSec": 7453,
+              "score": 8943.6
+            },
+            {
+              "microRank": 2,
+              "baseRank": 4,
+              "lr": 0.001,
+              "opsPerSec": 7807,
+              "score": 8587.7
+            },
+            {
+              "microRank": 2,
+              "baseRank": 16,
+              "lr": 0.002,
+              "opsPerSec": 6996,
+              "score": 8395.199999999999
+            },
+            {
+              "microRank": 1,
+              "baseRank": 16,
+              "lr": 0.002,
+              "opsPerSec": 6983,
+              "score": 8379.6
+            },
+            {
+              "microRank": 2,
+              "baseRank": 16,
+              "lr": 0.001,
+              "opsPerSec": 7434,
+              "score": 8177.400000000001
+            },
+            {
+              "microRank": 1,
+              "baseRank": 16,
+              "lr": 0.001,
+              "opsPerSec": 7371,
+              "score": 8108.1
+            },
+            {
+              "microRank": 1,
+              "baseRank": 8,
+              "lr": 0.001,
+              "opsPerSec": 7155,
+              "score": 7870.500000000001
+            },
+            {
+              "microRank": 2,
+              "baseRank": 8,
+              "lr": 0.001,
+              "opsPerSec": 7066,
+              "score": 7772.6
+            },
+            {
+              "microRank": 1,
+              "baseRank": 4,
+              "lr": 0.001,
+              "opsPerSec": 6647,
+              "score": 7311.700000000001
+            }
+          ]
+        },
+        "agentScaling": [
+          {
+            "agents": 1,
+            "timeMs": 1222.34917,
+            "trajectories": 200,
+            "trajPerSec": 164
+          },
+          {
+            "agents": 5,
+            "timeMs": 1136.502389,
+            "trajectories": 200,
+            "trajPerSec": 176
+          },
+          {
+            "agents": 10,
+            "timeMs": 1156.091723,
+            "trajectories": 200,
+            "trajPerSec": 173
+          },
+          {
+            "agents": 20,
+            "timeMs": 1147.673343,
+            "trajectories": 200,
+            "trajPerSec": 174
+          }
+        ],
+        "memory": [
+          {
+            "config": "Minimal",
+            "trajectoryCapacity": 1000,
+            "patternClusters": 25,
+            "memoryMB": -3.9
+          },
+          {
+            "config": "Standard",
+            "trajectoryCapacity": 5000,
+            "patternClusters": 100,
+            "memoryMB": -4
+          },
+          {
+            "config": "Large",
+            "trajectoryCapacity": 20000,
+            "patternClusters": 200,
+            "memoryMB": -4
+          }
+        ]
+      }
+    }
+  },
+  "totalTimeMs": 121158,
+  "winners": {
+    "throughput": {
+      "model": "SmolLM2-135M",
+      "value": 11381
+    },
+    "quality": {
+      "model": "SmolLM2-135M",
+      "value": 96.822265733815
+    },
+    "efficiency": {
+      "model": "SmolLM2-135M",
+      "value": 1685.06708
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "model": "Qwen2.5-0.5B",
+  "huggingface_path": "Qwen/Qwen2.5-0.5B",
+  "recommended": "int4-awq",
+  "options": {
+    "fp16": {
+      "memory_mb": 1000,
+      "quality": "100%",
+      "command": "python -c \"from transformers import AutoModelForCausalLM; m = AutoModelForCausalLM.from_pretrained('Qwen/Qwen2.5-0.5B', torch_dtype='float16')\""
+    },
+    "int8": {
+      "memory_mb": 500,
+      "quality": "99%",
+      "command": "python -c \"from transformers import AutoModelForCausalLM, BitsAndBytesConfig; m = AutoModelForCausalLM.from_pretrained('Qwen/Qwen2.5-0.5B', quantization_config=BitsAndBytesConfig(load_in_8bit=True))\""
+    },
+    "int4-awq": {
+      "memory_mb": 250,
+      "quality": "98.5%",
+      "command": "pip install autoawq && python -c \"from awq import AutoAWQForCausalLM; m = AutoAWQForCausalLM.from_quantized('Qwen/Qwen2.5-0.5B-AWQ')\""
+    }
+  },
+  "onnx_export": "python -m optimum.exporters.onnx --model Qwen/Qwen2.5-0.5B --task text-generation-with-past ./qwen2.5-0.5b-onnx"
+}

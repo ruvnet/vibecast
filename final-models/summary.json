@@ -1,0 +1,32 @@
+{
+  "exportedAt": "2025-12-03T14:36:45.634Z",
+  "models": [
+    {
+      "model": "SmolLM2-135M",
+      "key": "smollm2-135m",
+      "params": "135M",
+      "trajectories": 4000,
+      "quality": "0.724",
+      "throughput": 9542,
+      "directory": "final-models/smollm2-135m"
+    },
+    {
+      "model": "LFM2-350M",
+      "key": "lfm2-350m",
+      "params": "350M",
+      "trajectories": 4000,
+      "quality": "0.728",
+      "throughput": 6297,
+      "directory": "final-models/lfm2-350m"
+    },
+    {
+      "model": "Qwen2.5-0.5B",
+      "key": "qwen2.5-0.5b",
+      "params": "0.5B",
+      "trajectories": 4000,
+      "quality": "0.737",
+      "throughput": 7215,
+      "directory": "final-models/qwen2.5-0.5b"
+    }
+  ]
+}

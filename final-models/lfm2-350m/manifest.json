@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "model": {
+    "name": "LFM2-350M",
+    "key": "lfm2-350m",
+    "params": "350M",
+    "hiddenDim": 1024,
+    "numLayers": 24,
+    "contextLength": 32768,
+    "huggingface": "liquid/lfm2-350m"
+  },
+  "sona": {
+    "microLoraRank": 1,
+    "baseLoraRank": 16,
+    "learningRate": 0.005,
+    "trajectoryCapacity": 20000,
+    "patternClusters": 150,
+    "ewcLambda": 2000
+  },
+  "training": {
+    "totalTrajectories": 4000,
+    "trainingTimeMs": 125071,
+    "phases": [
+      "Bootstrap",
+      "Foundation",
+      "Refinement",
+      "Mastery"
+    ]
+  },
+  "performance": {
+    "finalQuality": "0.728",
+    "throughputOpsPerSec": 6297
+  },
+  "exportedAt": "2025-12-03T14:34:56.491Z"
+}

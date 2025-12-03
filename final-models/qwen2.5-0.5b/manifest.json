@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "model": {
+    "name": "Qwen2.5-0.5B",
+    "key": "qwen2.5-0.5b",
+    "params": "0.5B",
+    "hiddenDim": 896,
+    "numLayers": 24,
+    "contextLength": 32768,
+    "huggingface": "Qwen/Qwen2.5-0.5B"
+  },
+  "sona": {
+    "microLoraRank": 1,
+    "baseLoraRank": 16,
+    "learningRate": 0.005,
+    "trajectoryCapacity": 20000,
+    "patternClusters": 150,
+    "ewcLambda": 2000
+  },
+  "training": {
+    "totalTrajectories": 4000,
+    "trainingTimeMs": 108393,
+    "phases": [
+      "Bootstrap",
+      "Foundation",
+      "Refinement",
+      "Mastery"
+    ]
+  },
+  "performance": {
+    "finalQuality": "0.737",
+    "throughputOpsPerSec": 7215
+  },
+  "exportedAt": "2025-12-03T14:36:45.620Z"
+}

@@ -1,0 +1,62 @@
+{
+  "smollm2-135m": {
+    "model": "SmolLM2-135M",
+    "params": "135M",
+    "sonaConfig": {
+      "hiddenDim": 576,
+      "microLoraRank": 1,
+      "baseLoraRank": 4,
+      "microLoraLr": 0.005,
+      "trajectoryCapacity": 10000,
+      "patternClusters": 100,
+      "ewcLambda": 2000,
+      "enableSimd": true
+    },
+    "expectedPerformance": {
+      "microLoraOpsPerSec": 11381,
+      "trajectoryPerSec": 7135,
+      "qualityImprovement": "+96.8%"
+    },
+    "recommendedUse": "Edge deployment, mobile apps, IoT devices"
+  },
+  "lfm2-350m": {
+    "model": "LFM2-350M",
+    "params": "350M",
+    "sonaConfig": {
+      "hiddenDim": 1024,
+      "microLoraRank": 1,
+      "baseLoraRank": 16,
+      "microLoraLr": 0.005,
+      "trajectoryCapacity": 10000,
+      "patternClusters": 100,
+      "ewcLambda": 2000,
+      "enableSimd": true
+    },
+    "expectedPerformance": {
+      "microLoraOpsPerSec": 6544,
+      "trajectoryPerSec": 4170,
+      "qualityImprovement": "+89.9%"
+    },
+    "recommendedUse": "Long-context tasks, document processing, 32K context"
+  },
+  "qwen2.5-0.5b": {
+    "model": "Qwen2.5-0.5B",
+    "params": "0.5B",
+    "sonaConfig": {
+      "hiddenDim": 896,
+      "microLoraRank": 1,
+      "baseLoraRank": 16,
+      "microLoraLr": 0.005,
+      "trajectoryCapacity": 10000,
+      "patternClusters": 100,
+      "ewcLambda": 2000,
+      "enableSimd": true
+    },
+    "expectedPerformance": {
+      "microLoraOpsPerSec": 7465,
+      "trajectoryPerSec": 4705,
+      "qualityImprovement": "+92.3%"
+    },
+    "recommendedUse": "Code generation, multilingual tasks, general assistant"
+  }
+}

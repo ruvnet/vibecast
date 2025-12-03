@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "model": {
+    "name": "SmolLM2-135M",
+    "key": "smollm2-135m",
+    "params": "135M",
+    "hiddenDim": 576,
+    "numLayers": 30,
+    "contextLength": 8192,
+    "huggingface": "HuggingFaceTB/SmolLM2-135M"
+  },
+  "sona": {
+    "microLoraRank": 1,
+    "baseLoraRank": 4,
+    "learningRate": 0.005,
+    "trajectoryCapacity": 20000,
+    "patternClusters": 150,
+    "ewcLambda": 2000
+  },
+  "training": {
+    "totalTrajectories": 4000,
+    "trainingTimeMs": 68372,
+    "phases": [
+      "Bootstrap",
+      "Foundation",
+      "Refinement",
+      "Mastery"
+    ]
+  },
+  "performance": {
+    "finalQuality": "0.724",
+    "throughputOpsPerSec": 9542
+  },
+  "exportedAt": "2025-12-03T14:32:50.574Z"
+}

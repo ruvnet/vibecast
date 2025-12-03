@@ -1,0 +1,23 @@
+{
+  "model": "LFM2-350M",
+  "huggingface_path": "liquid/lfm2-350m",
+  "recommended": "int4-awq",
+  "options": {
+    "fp16": {
+      "memory_mb": 700,
+      "quality": "100%",
+      "command": "python -c \"from transformers import AutoModelForCausalLM; m = AutoModelForCausalLM.from_pretrained('liquid/lfm2-350m', torch_dtype='float16')\""
+    },
+    "int8": {
+      "memory_mb": 350,
+      "quality": "99%",
+      "command": "python -c \"from transformers import AutoModelForCausalLM, BitsAndBytesConfig; m = AutoModelForCausalLM.from_pretrained('liquid/lfm2-350m', quantization_config=BitsAndBytesConfig(load_in_8bit=True))\""
+    },
+    "int4-awq": {
+      "memory_mb": 175,
+      "quality": "98.5%",
+      "command": "pip install autoawq && python -c \"from awq import AutoAWQForCausalLM; m = AutoAWQForCausalLM.from_quantized('liquid/lfm2-350m-AWQ')\""
+    }
+  },
+  "onnx_export": "python -m optimum.exporters.onnx --model liquid/lfm2-350m --task text-generation-with-past ./lfm2-350m-onnx"
+}
