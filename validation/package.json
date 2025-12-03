@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "@huggingface/transformers": "^3.8.1",
-    "@ruvector/ruvllm": "^0.2.0"
+    "@ruvector/ruvllm": "^0.2.1"
   }
 }
