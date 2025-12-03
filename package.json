@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@ruvector/attention-linux-x64-gnu": "^0.1.1",
     "agentdb": "^2.0.0-alpha.2.14",
     "agentic-flow": "^2.0.1-alpha.2"
   }
