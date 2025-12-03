@@ -1,0 +1,16 @@
+{
+  "name": "vibecast-ruvector-test",
+  "version": "1.0.0",
+  "description": "Test suite for ruvector compatibility fixes and SONA integration",
+  "type": "module",
+  "scripts": {
+    "test": "node test-ruvector.js"
+  },
+  "dependencies": {
+    "ruvector": "^0.1.27",
+    "@ruvector/core": "^0.1.16",
+    "@ruvector/gnn": "^0.1.21",
+    "@ruvector/attention": "^0.1.2",
+    "@ruvector/sona": "^0.1.3"
+  }
+}
