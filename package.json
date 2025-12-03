@@ -2,7 +2,7 @@
   "dependencies": {
     "@ruvector/attention-linux-x64-gnu": "^0.1.1",
     "@ruvector/gnn": "^0.1.22",
-    "agentdb": "^2.0.0-alpha.2.19",
+    "agentdb": "^2.0.0-alpha.2.20",
     "agentic-flow": "^2.0.1-alpha.5",
     "ruvector": "^0.1.29"
   }
