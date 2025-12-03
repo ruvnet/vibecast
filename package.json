@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "agentic-flow": "^2.0.1-alpha"
+    "agentdb": "^2.0.0-alpha.2.14",
+    "agentic-flow": "^2.0.1-alpha.2"
   }
 }
