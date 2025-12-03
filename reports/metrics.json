@@ -1,0 +1,149 @@
+{
+  "package": "@ruvector/sona",
+  "version": "0.1.1",
+  "testDate": "2025-12-03",
+  "totalTests": 134,
+  "allPassing": true,
+
+  "microLora": {
+    "configurations": {
+      "rank1_simd": { "meanMs": 0.476, "p99Ms": 0.685, "throughput": 2100 },
+      "rank2_simd": { "meanMs": 0.452, "p99Ms": 0.771, "throughput": 2211 },
+      "rank1_nosimd": { "meanMs": 0.487, "p99Ms": 0.897, "throughput": 2054 },
+      "rank2_nosimd": { "meanMs": 0.459, "p99Ms": 0.808, "throughput": 2181 }
+    },
+    "optimal": "rank2_simd",
+    "batchPerformance": {
+      "1": { "totalMs": 0.45, "perVectorMs": 0.454, "throughput": 2203 },
+      "4": { "totalMs": 1.91, "perVectorMs": 0.477, "throughput": 2095 },
+      "8": { "totalMs": 3.72, "perVectorMs": 0.465, "throughput": 2150 },
+      "16": { "totalMs": 7.23, "perVectorMs": 0.452, "throughput": 2214 },
+      "32": { "totalMs": 14.31, "perVectorMs": 0.447, "throughput": 2236 },
+      "64": { "totalMs": 29.32, "perVectorMs": 0.458, "throughput": 2183 },
+      "128": { "totalMs": 60.29, "perVectorMs": 0.471, "throughput": 2123 }
+    },
+    "optimalBatchSize": 32
+  },
+
+  "fullInference": {
+    "model": "Phi-4",
+    "hiddenDim": 3072,
+    "numLayers": 40,
+    "configurations": {
+      "minimal": { "meanMs": 18.65, "p95Ms": 21.83, "perLayerMs": 0.466 },
+      "microOptimized": { "meanMs": 18.47, "p95Ms": 20.00, "perLayerMs": 0.462 },
+      "balanced": { "meanMs": 18.07, "p95Ms": 19.82, "perLayerMs": 0.452 },
+      "highAdaptation": { "meanMs": 18.28, "p95Ms": 20.01, "perLayerMs": 0.457 }
+    },
+    "optimal": "balanced",
+    "bestOverheadMs": 18.07,
+    "bestPerLayerMs": 0.452
+  },
+
+  "qualityImprovement": {
+    "learningRateAnalysis": {
+      "0.001": { "early": 62.6, "late": 91.0, "improvement": 45.2 },
+      "0.002": { "early": 60.5, "late": 93.9, "improvement": 55.3 },
+      "0.005": { "early": 62.0, "late": 91.9, "improvement": 48.2 },
+      "0.010": { "early": 60.7, "late": 91.8, "improvement": 51.2 },
+      "0.020": { "early": 60.7, "late": 92.0, "improvement": 51.7 }
+    },
+    "optimalLearningRate": 0.002,
+    "maximumImprovement": 55.3,
+    "perTaskImprovement": {
+      "code": { "before": 91.6, "after": 96.1, "improvement": 5.0 },
+      "creative": { "before": 73.2, "after": 76.3, "improvement": 4.3 },
+      "reasoning": { "before": 77.9, "after": 80.7, "improvement": 3.6 },
+      "chat": { "before": 83.7, "after": 85.4, "improvement": 2.1 },
+      "math": { "before": 85.5, "after": 86.5, "improvement": 1.2 },
+      "factual": { "before": 95.0, "after": 93.8, "improvement": -1.2 }
+    },
+    "averageImprovement": 2.5,
+    "theoreticalMaximum": {
+      "baseline": 63.3,
+      "adapted": 95.0,
+      "improvement": 50.0
+    }
+  },
+
+  "routing": {
+    "patternSearch": {
+      "k1": { "meanMs": 1.782, "throughput": 561 },
+      "k3": { "meanMs": 2.475, "throughput": 404 },
+      "k5": { "meanMs": 3.119, "throughput": 321 },
+      "k10": { "meanMs": 3.507, "throughput": 285 },
+      "k20": { "meanMs": 3.570, "throughput": 280 }
+    },
+    "accuracy": {
+      "highConfidenceRouting": 100,
+      "throughput": 741,
+      "avgLatencyMs": 1.35,
+      "p99LatencyMs": 2.58
+    }
+  },
+
+  "memory": {
+    "configurations": {
+      "ultraLight": { "capacity": 100, "clusters": 10 },
+      "light": { "capacity": 250, "clusters": 20 },
+      "standard": { "capacity": 500, "clusters": 50 },
+      "heavy": { "capacity": 1000, "clusters": 100 }
+    },
+    "perTrajectoryKB": 3.5,
+    "standardModeMB": 11
+  },
+
+  "learning": {
+    "cycleTimeMs": 0.05,
+    "incrementalSupported": true,
+    "ewcLambdaOptimal": 2000,
+    "catastrophicForgettingPrevented": true
+  },
+
+  "multiModel": {
+    "phi4": { "hiddenDim": 3072, "layers": 40, "latencyMs": 21.1 },
+    "llama7b": { "hiddenDim": 4096, "layers": 32, "latencyMs": 23.4 },
+    "mistral7b": { "hiddenDim": 4096, "layers": 32, "latencyMs": 22.8 },
+    "phi3mini": { "hiddenDim": 3072, "layers": 32, "latencyMs": 17.2 }
+  },
+
+  "recommendedConfigs": {
+    "maxSpeed": {
+      "microLoraRank": 2,
+      "enableSimd": true,
+      "patternClusters": 25,
+      "qualityThreshold": 0.7
+    },
+    "maxQuality": {
+      "microLoraRank": 2,
+      "baseLoraRank": 16,
+      "microLoraLr": 0.002,
+      "patternClusters": 100,
+      "qualityThreshold": 0.2
+    },
+    "balanced": {
+      "microLoraRank": 2,
+      "baseLoraRank": 8,
+      "microLoraLr": 0.001,
+      "ewcLambda": 1000,
+      "patternClusters": 50,
+      "qualityThreshold": 0.4,
+      "enableSimd": true
+    },
+    "edge": {
+      "microLoraRank": 1,
+      "baseLoraRank": 4,
+      "trajectoryCapacity": 200,
+      "patternClusters": 15,
+      "qualityThreshold": 0.6
+    }
+  },
+
+  "testSuites": {
+    "coreApi": { "tests": 62, "status": "pass" },
+    "phi4Benchmarks": { "tests": 21, "status": "pass" },
+    "optimization": { "tests": 29, "status": "pass" },
+    "llmImprovement": { "tests": 12, "status": "pass" },
+    "extremeOptimization": { "tests": 10, "status": "pass" }
+  }
+}
