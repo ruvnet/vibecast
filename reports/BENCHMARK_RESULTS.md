@@ -1,9 +1,9 @@
 # @ruvector/sona v0.1.x Benchmark Results
 
 **Date:** December 3, 2025
-**Package:** @ruvector/sona v0.1.1
+**Package:** @ruvector/sona v0.1.2
 **Test Environment:** Linux x64, Node.js
-**Total Tests:** 134 passing
+**Total Tests:** 134 passing (Node.js) + 55 passing (Rust)
 
 ---
 
@@ -258,4 +258,59 @@ SONA (Self-Optimizing Neural Architecture) provides runtime-adaptive learning fo
 
 ---
 
-*Report generated from 134 automated tests on @ruvector/sona v0.1.1*
+---
+
+## 11. Rust Native Benchmarks (v0.1.2)
+
+### 11.1 Trajectory Performance
+
+| Dimension | Single Trajectory |
+|-----------|------------------|
+| 64 | 560 ns |
+| 128 | 754 ns |
+| 256 | 1.16 µs |
+| 512 | 2.12 µs |
+
+### 11.2 LoRA Performance
+
+| Operation | Dimension | Latency |
+|-----------|-----------|---------|
+| Micro-LoRA | 64 | 232 ns |
+| Micro-LoRA | 256 | 899 ns |
+| Micro-LoRA | 512 | 1.77 µs |
+| Base-LoRA | 256 | 2.92 µs |
+| Base-LoRA | 512 | 6.0 µs |
+
+### 11.3 Learning Performance
+
+| Operation | Latency |
+|-----------|---------|
+| force_learn | 133 ns |
+
+---
+
+## 12. New Export Features (v0.1.2)
+
+### 12.1 HuggingFace Export
+
+| Feature | Description |
+|---------|-------------|
+| SafeTensors | PEFT-compatible LoRA weight serialization |
+| Dataset Export | JSONL patterns and DPO preference pairs |
+| Hub Integration | Direct upload via git-lfs |
+| Pretraining | Benchmark-optimized config generation |
+
+### 12.2 Export Module Files
+
+```
+src/export/
+├── mod.rs              # HuggingFaceExporter interface
+├── safetensors.rs      # Binary format export
+├── dataset.rs          # JSONL dataset export
+├── huggingface_hub.rs  # Hub API integration
+└── pretrain.rs         # Pretraining configuration
+```
+
+---
+
+*Report generated from 134 Node.js tests + 55 Rust tests on @ruvector/sona v0.1.2*
