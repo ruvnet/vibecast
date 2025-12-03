@@ -1,0 +1,16 @@
+{
+  "model": "LFM2-350M",
+  "huggingface_path": "liquid/lfm2-350m",
+  "recommended_quantization": "int4-awq",
+  "estimated_memory_mb": 167,
+  "export_commands": {
+    "onnx": "python -m optimum.exporters.onnx --model liquid/lfm2-350m --task text-generation-with-past ./lfm2-350m-onnx",
+    "quantize_int8": "python -m onnxruntime.transformers.optimizer --input ./lfm2-350m-onnx/model.onnx --output ./lfm2-350m-int8.onnx --float16",
+    "quantize_int4": "python -m auto_gptq --model_name_or_path liquid/lfm2-350m --bits 4 --method awq"
+  },
+  "runtime_options": {
+    "onnx_runtime": "onnxruntime or onnxruntime-gpu",
+    "transformers": "pip install transformers accelerate",
+    "peft": "pip install peft"
+  }
+}

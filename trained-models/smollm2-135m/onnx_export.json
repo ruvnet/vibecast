@@ -1,0 +1,16 @@
+{
+  "model": "SmolLM2-135M",
+  "huggingface_path": "HuggingFaceTB/SmolLM2-135M",
+  "recommended_quantization": "int4-awq",
+  "estimated_memory_mb": 64,
+  "export_commands": {
+    "onnx": "python -m optimum.exporters.onnx --model HuggingFaceTB/SmolLM2-135M --task text-generation-with-past ./smollm2-135m-onnx",
+    "quantize_int8": "python -m onnxruntime.transformers.optimizer --input ./smollm2-135m-onnx/model.onnx --output ./smollm2-135m-int8.onnx --float16",
+    "quantize_int4": "python -m auto_gptq --model_name_or_path HuggingFaceTB/SmolLM2-135M --bits 4 --method awq"
+  },
+  "runtime_options": {
+    "onnx_runtime": "onnxruntime or onnxruntime-gpu",
+    "transformers": "pip install transformers accelerate",
+    "peft": "pip install peft"
+  }
+}

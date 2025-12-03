@@ -1,0 +1,16 @@
+{
+  "model": "Qwen2.5-0.5B",
+  "huggingface_path": "Qwen/Qwen2.5-0.5B",
+  "recommended_quantization": "int4-awq",
+  "estimated_memory_mb": 238,
+  "export_commands": {
+    "onnx": "python -m optimum.exporters.onnx --model Qwen/Qwen2.5-0.5B --task text-generation-with-past ./qwen2.5-0.5b-onnx",
+    "quantize_int8": "python -m onnxruntime.transformers.optimizer --input ./qwen2.5-0.5b-onnx/model.onnx --output ./qwen2.5-0.5b-int8.onnx --float16",
+    "quantize_int4": "python -m auto_gptq --model_name_or_path Qwen/Qwen2.5-0.5B --bits 4 --method awq"
+  },
+  "runtime_options": {
+    "onnx_runtime": "onnxruntime or onnxruntime-gpu",
+    "transformers": "pip install transformers accelerate",
+    "peft": "pip install peft"
+  }
+}

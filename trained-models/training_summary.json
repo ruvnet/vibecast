@@ -1,0 +1,81 @@
+{
+  "training_run": "2025-12-03T14:23:45.455Z",
+  "models_trained": 3,
+  "results": [
+    {
+      "model": "smollm2-135m",
+      "name": "SmolLM2-135M",
+      "params": "135M",
+      "training": {
+        "duration_ms": 17977,
+        "trajectories": 1600,
+        "agents": 10
+      },
+      "benchmarks": {
+        "throughput": "6666.7",
+        "quality_improvement": "2.8"
+      },
+      "export": {
+        "outputDir": "trained-models/smollm2-135m",
+        "files": [
+          "training_metadata.json",
+          "adapter_config.json",
+          "onnx_export.json",
+          "load_model.py",
+          "README.md"
+        ],
+        "adapterName": "sona-smollm2-135m-2025-12-03T14-22-43-391Z"
+      }
+    },
+    {
+      "model": "lfm2-350m",
+      "name": "LFM2-350M",
+      "params": "350M",
+      "training": {
+        "duration_ms": 32442,
+        "trajectories": 1600,
+        "agents": 10
+      },
+      "benchmarks": {
+        "throughput": "3703.7",
+        "quality_improvement": "-2.1"
+      },
+      "export": {
+        "outputDir": "trained-models/lfm2-350m",
+        "files": [
+          "training_metadata.json",
+          "adapter_config.json",
+          "onnx_export.json",
+          "load_model.py",
+          "README.md"
+        ],
+        "adapterName": "sona-lfm2-350m-2025-12-03T14-23-15-938Z"
+      }
+    },
+    {
+      "model": "qwen2.5-0.5b",
+      "name": "Qwen2.5-0.5B",
+      "params": "0.5B",
+      "training": {
+        "duration_ms": 29428,
+        "trajectories": 1600,
+        "agents": 10
+      },
+      "benchmarks": {
+        "throughput": "5000.0",
+        "quality_improvement": "0.2"
+      },
+      "export": {
+        "outputDir": "trained-models/qwen2.5-0.5b",
+        "files": [
+          "training_metadata.json",
+          "adapter_config.json",
+          "onnx_export.json",
+          "load_model.py",
+          "README.md"
+        ],
+        "adapterName": "sona-qwen2.5-0.5b-2025-12-03T14-23-45-453Z"
+      }
+    }
+  ]
+}

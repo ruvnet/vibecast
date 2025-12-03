@@ -1,0 +1,50 @@
+{
+  "adapter_name": "sona-lfm2-350m-2025-12-03T14-23-15-938Z",
+  "base_model": "lfm2-350m",
+  "base_model_config": {
+    "name": "LFM2-350M",
+    "hiddenDim": 1024,
+    "numLayers": 24,
+    "numHeads": 16,
+    "headDim": 64,
+    "params": "350M",
+    "contextLength": 32768,
+    "strengths": [
+      "long-context",
+      "efficiency"
+    ]
+  },
+  "training": {
+    "total_trajectories": 1750,
+    "agents_used": 12,
+    "training_time_ms": 32541,
+    "checkpoints": 1
+  },
+  "sona_config": {
+    "micro_lora_rank": 2,
+    "base_lora_rank": 8,
+    "learning_rate": 0.002,
+    "trajectory_capacity": 10000,
+    "pattern_clusters": 100,
+    "ewc_lambda": 2000
+  },
+  "quantization": "int4-awq",
+  "exported_at": "2025-12-03T14:23:15.938Z",
+  "benchmarks": {
+    "throughput": {
+      "samples": 100,
+      "durationMs": 27,
+      "throughput": "3703.7"
+    },
+    "quality": {
+      "before": "0.717",
+      "after": "0.703",
+      "improvement": "-2.1"
+    }
+  },
+  "dataset_info": {
+    "code_samples": 300,
+    "reasoning_samples": 300,
+    "chat_samples": 200
+  }
+}

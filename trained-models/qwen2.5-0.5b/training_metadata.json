@@ -1,0 +1,50 @@
+{
+  "adapter_name": "sona-qwen2.5-0.5b-2025-12-03T14-23-45-453Z",
+  "base_model": "qwen2.5-0.5b",
+  "base_model_config": {
+    "name": "Qwen2.5-0.5B",
+    "hiddenDim": 896,
+    "numLayers": 24,
+    "numHeads": 14,
+    "headDim": 64,
+    "params": "0.5B",
+    "contextLength": 32768,
+    "strengths": [
+      "multilingual",
+      "code"
+    ]
+  },
+  "training": {
+    "total_trajectories": 1750,
+    "agents_used": 12,
+    "training_time_ms": 29512,
+    "checkpoints": 1
+  },
+  "sona_config": {
+    "micro_lora_rank": 2,
+    "base_lora_rank": 8,
+    "learning_rate": 0.002,
+    "trajectory_capacity": 10000,
+    "pattern_clusters": 100,
+    "ewc_lambda": 2000
+  },
+  "quantization": "int4-awq",
+  "exported_at": "2025-12-03T14:23:45.453Z",
+  "benchmarks": {
+    "throughput": {
+      "samples": 100,
+      "durationMs": 20,
+      "throughput": "5000.0"
+    },
+    "quality": {
+      "before": "0.720",
+      "after": "0.722",
+      "improvement": "0.2"
+    }
+  },
+  "dataset_info": {
+    "code_samples": 300,
+    "reasoning_samples": 300,
+    "chat_samples": 200
+  }
+}
