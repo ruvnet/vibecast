@@ -3,12 +3,12 @@
  * Manages reactor core operations, temperature, pressure, and safety systems
  */
 
-const { RuvectorClient } = require('ruvector');
+const { VectorDB } = require('ruvector');
 
 class ReactorControlSystem {
   constructor(config = {}) {
     this.reactorId = config.reactorId || 'REACTOR-01';
-    this.ruvector = new RuvectorClient();
+    this.ruvector = null; // Initialize later if needed
 
     // Reactor parameters
     this.state = {
@@ -142,18 +142,20 @@ class ReactorControlSystem {
       this.state.safetyMargin / 100
     ];
 
-    try {
-      await this.ruvector.upsert({
-        collection: 'reactor-telemetry',
-        id: `${this.reactorId}-${Date.now()}`,
-        vector: vector,
-        metadata: {
-          ...this.state,
-          reactorId: this.reactorId
-        }
-      });
-    } catch (error) {
-      console.error('Error storing reactor state:', error.message);
+    if (this.ruvector) {
+      try {
+        await this.ruvector.upsert({
+          collection: 'reactor-telemetry',
+          id: `${this.reactorId}-${Date.now()}`,
+          vector: vector,
+          metadata: {
+            ...this.state,
+            reactorId: this.reactorId
+          }
+        });
+      } catch (error) {
+        console.error('Error storing reactor state:', error.message);
+      }
     }
   }
 

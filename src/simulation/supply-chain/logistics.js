@@ -3,12 +3,12 @@
  * Manages fuel supply, waste disposal, parts inventory, and vendor relationships
  */
 
-const { RuvectorClient } = require('ruvector');
+const { VectorDB } = require('ruvector');
 
 class SupplyChainManagement {
   constructor(config = {}) {
     this.plantId = config.plantId || 'NPP-01';
-    this.ruvector = new RuvectorClient();
+    this.ruvector = null; // Initialize later if needed
 
     // Inventory management
     this.inventory = {
@@ -289,20 +289,22 @@ class SupplyChainManagement {
       this.shipments.length / 10
     ];
 
-    try {
-      await this.ruvector.upsert({
-        collection: 'supply-chain-metrics',
-        id: `${this.plantId}-${Date.now()}`,
-        vector: vector,
-        metadata: {
-          plantId: this.plantId,
-          inventory: this.inventory,
-          activeOrders: this.orders.filter(o => o.status !== 'DELIVERED').length,
-          timestamp: Date.now()
-        }
-      });
-    } catch (error) {
-      console.error('Error storing supply chain metrics:', error.message);
+    if (this.ruvector) {
+      try {
+        await this.ruvector.upsert({
+          collection: 'supply-chain-metrics',
+          id: `${this.plantId}-${Date.now()}`,
+          vector: vector,
+          metadata: {
+            plantId: this.plantId,
+            inventory: this.inventory,
+            activeOrders: this.orders.filter(o => o.status !== 'DELIVERED').length,
+            timestamp: Date.now()
+          }
+        });
+      } catch (error) {
+        console.error('Error storing supply chain metrics:', error.message);
+      }
     }
   }
 

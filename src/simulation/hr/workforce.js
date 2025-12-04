@@ -3,17 +3,14 @@
  * Manages personnel, training, certifications, shifts, and safety compliance
  */
 
-const { RuvectorClient } = require('ruvector');
+const { VectorDB } = require('ruvector');
 
 class HumanResourcesManagement {
   constructor(config = {}) {
     this.plantId = config.plantId || 'NPP-01';
-    this.ruvector = new RuvectorClient();
+    this.ruvector = null; // Initialize later if needed
 
-    // Personnel roster
-    this.personnel = this.initializePersonnel();
-
-    // Shift schedule
+    // Shift schedule (must be before personnel initialization)
     this.shifts = {
       current: 'A',
       rotation: ['A', 'B', 'C', 'D'],
@@ -21,7 +18,7 @@ class HumanResourcesManagement {
       lastRotation: Date.now()
     };
 
-    // Training programs
+    // Training programs (must be before personnel initialization)
     this.trainingPrograms = [
       {
         id: 'TRAIN-001',
@@ -61,6 +58,9 @@ class HumanResourcesManagement {
       overtimeHours: 0,
       staffingLevel: 100
     };
+
+    // Personnel roster (initialized last, depends on shifts and trainingPrograms)
+    this.personnel = this.initializePersonnel();
   }
 
   /**
@@ -273,21 +273,23 @@ class HumanResourcesManagement {
       this.personnel.filter(p => p.status === 'ACTIVE').length / 100
     ];
 
-    try {
-      await this.ruvector.upsert({
-        collection: 'hr-metrics',
-        id: `${this.plantId}-${Date.now()}`,
-        vector: vector,
-        metadata: {
-          plantId: this.plantId,
-          metrics: this.metrics,
-          activeShift: this.shifts.current,
-          totalPersonnel: this.personnel.length,
-          timestamp: Date.now()
-        }
-      });
-    } catch (error) {
-      console.error('Error storing HR metrics:', error.message);
+    if (this.ruvector) {
+      try {
+        await this.ruvector.upsert({
+          collection: 'hr-metrics',
+          id: `${this.plantId}-${Date.now()}`,
+          vector: vector,
+          metadata: {
+            plantId: this.plantId,
+            metrics: this.metrics,
+            activeShift: this.shifts.current,
+            totalPersonnel: this.personnel.length,
+            timestamp: Date.now()
+          }
+        });
+      } catch (error) {
+        console.error('Error storing HR metrics:', error.message);
+      }
     }
   }
 

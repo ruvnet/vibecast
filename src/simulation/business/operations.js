@@ -4,12 +4,12 @@
  * and overall business performance
  */
 
-const { RuvectorClient } = require('ruvector');
+const { VectorDB } = require('ruvector');
 
 class BusinessOperations {
   constructor(config = {}) {
     this.plantId = config.plantId || 'NPP-01';
-    this.ruvector = new RuvectorClient();
+    this.ruvector = null; // Initialize later if needed
 
     // Financial tracking
     this.financials = {
@@ -257,21 +257,23 @@ class BusinessOperations {
       this.compliance.safetyRecords.violationCount === 0 ? 1 : 0
     ];
 
-    try {
-      await this.ruvector.upsert({
-        collection: 'business-metrics',
-        id: `${this.plantId}-${Date.now()}`,
-        vector: vector,
-        metadata: {
-          plantId: this.plantId,
-          financials: this.financials,
-          performance: this.performance,
-          compliance: this.compliance,
-          timestamp: Date.now()
-        }
-      });
-    } catch (error) {
-      console.error('Error storing business metrics:', error.message);
+    if (this.ruvector) {
+      try {
+        await this.ruvector.upsert({
+          collection: 'business-metrics',
+          id: `${this.plantId}-${Date.now()}`,
+          vector: vector,
+          metadata: {
+            plantId: this.plantId,
+            financials: this.financials,
+            performance: this.performance,
+            compliance: this.compliance,
+            timestamp: Date.now()
+          }
+        });
+      } catch (error) {
+        console.error('Error storing business metrics:', error.message);
+      }
     }
   }
 
