@@ -48,8 +48,8 @@ class SolarAdapter {
       cooling_activation: { min: 0, max: 1, unit: 'boolean' }
     };
 
-    this.state = this.initializeState();
     this.weatherModel = this.initializeWeatherModel();
+    this.state = this.initializeState();
   }
 
   initializeState() {
@@ -112,7 +112,7 @@ class SolarAdapter {
     this.state.powerOutput += inverterAdjust;
     this.state.powerOutput = this.clip(this.state.powerOutput, 0, this.farmCapacity);
 
-    const reward = this.calculateReward(prevState, this.state);
+    const reward = this.calculateReward(prevState, this.state, action);
     const done = this.checkDone();
     const safetyViolation = false; // Solar is generally safe
 
@@ -235,7 +235,7 @@ class SolarAdapter {
     return Math.max(0, alignment);
   }
 
-  calculateReward(prevState, currentState) {
+  calculateReward(prevState, currentState, action = [0, 0, 0, 0, 0]) {
     let reward = 0;
 
     // 1. Revenue from power generation
