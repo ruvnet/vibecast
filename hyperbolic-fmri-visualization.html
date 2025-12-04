@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperbolic Lattice fMRI Visualization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            grid-template-rows: 60px 1fr;
+            height: 100vh;
+        }
+
+        header {
+            grid-column: 1 / -1;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        aside {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-y: auto;
+        }
+
+        .panel {
+            margin-bottom: 30px;
+        }
+
+        .panel h2 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-group label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .value-display {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .stats {
+            display: grid;
+            gap: 10px;
+        }
+
+        .stat-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.6;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        main {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .info-overlay {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 300px;
+        }
+
+        .info-overlay h3 {
+            font-size: 14px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .info-item {
+            font-size: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .legend h3 {
+            font-size: 12px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 11px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 1000;
+        }
+
+        .tooltip.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Hyperbolic Lattice fMRI System</h1>
+            <div class="status">
+                <span class="status-dot"></span>
+                <span>System Active</span>
+            </div>
+        </header>
+
+        <aside>
+            <div class="panel">
+                <h2>Visualization</h2>
+                <div class="control-group">
+                    <label>Time Point: <span id="timeValue">0</span></label>
+                    <input type="range" id="timeSlider" min="0" max="199" value="0">
+                    <div class="value-display">TR = <span id="trValue">0.0</span>s</div>
+                </div>
+                <div class="control-group">
+                    <label>Activation Threshold: <span id="thresholdValue">0.5</span></label>
+                    <input type="range" id="thresholdSlider" min="0" max="100" value="50">
+                </div>
+                <div class="control-group">
+                    <label>Rotation Speed: <span id="rotationValue">1.0</span>x</label>
+                    <input type="range" id="rotationSlider" min="0" max="200" value="100">
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Controls</h2>
+                <button onclick="playAnimation()">▶ Play Animation</button>
+                <button onclick="resetView()">⟲ Reset View</button>
+                <button onclick="toggleConnections()">🔗 Toggle Connections</button>
+                <button onclick="exportData()">💾 Export Data</button>
+            </div>
+
+            <div class="panel">
+                <h2>Statistics</h2>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Regions</div>
+                        <div class="stat-value" id="regionCount">36</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Connections</div>
+                        <div class="stat-value" id="connectionCount">61</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Active Regions</div>
+                        <div class="stat-value" id="activeCount">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Task State</div>
+                        <div class="stat-value" id="taskState">Rest</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main>
+            <canvas id="canvas"></canvas>
+
+            <div class="info-overlay">
+                <h3>Poincaré Ball Model</h3>
+                <div class="info-item">
+                    <span>Curvature:</span>
+                    <span>-1.0</span>
+                </div>
+                <div class="info-item">
+                    <span>Dimensions:</span>
+                    <span>3D</span>
+                </div>
+                <div class="info-item">
+                    <span>Embedding:</span>
+                    <span>Hierarchical</span>
+                </div>
+                <div class="info-item">
+                    <span>Distance Metric:</span>
+                    <span>Hyperbolic</span>
+                </div>
+            </div>
+
+            <div class="legend">
+                <h3>CORTICAL HIERARCHY</h3>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #3b82f6;"></div>
+                    <span>Level 0 - Primary Sensory</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #8b5cf6;"></div>
+                    <span>Level 1 - Secondary Processing</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ec4899;"></div>
+                    <span>Level 2 - Association Areas</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f59e0b;"></div>
+                    <span>Level 3 - Prefrontal</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #10b981;"></div>
+                    <span>Level 4 - Abstract Cognition</span>
+                </div>
+            </div>
+
+            <div class="tooltip" id="tooltip"></div>
+        </main>
+    </div>
+
+    <script>
+        // Canvas setup
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+            canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Hierarchy colors
+        const hierarchyColors = {
+            0: '#3b82f6',  // Blue - Primary
+            1: '#8b5cf6',  // Purple - Secondary
+            2: '#ec4899',  // Pink - Association
+            3: '#f59e0b',  // Orange - Prefrontal
+            4: '#10b981',  // Green - Abstract
+        };
+
+        // Generate mock brain regions
+        function generateBrainRegions() {
+            const regions = [];
+            const levels = [8, 6, 8, 8, 6]; // Regions per hierarchy level
+
+            let id = 0;
+            for (let level = 0; level < 5; level++) {
+                for (let i = 0; i < levels[level]; i++) {
+                    const radius = 0.15 + (level * 0.15); // Hierarchy to radius
+                    const theta = (i / levels[level]) * 2 * Math.PI;
+                    const phi = Math.PI / 2;
+
+                    // Convert to 3D Poincaré coordinates
+                    const x = radius * Math.sin(phi) * Math.cos(theta);
+                    const y = radius * Math.sin(phi) * Math.sin(theta);
+                    const z = radius * Math.cos(phi);
+
+                    regions.push({
+                        id,
+                        level,
+                        x, y, z,
+                        activation: Math.random(),
+                    });
+
+                    id++;
+                }
+            }
+
+            return regions;
+        }
+
+        let regions = generateBrainRegions();
+        let currentTime = 0;
+        let rotationAngle = 0;
+        let rotationSpeed = 0.005;
+        let showConnections = true;
+        let isPlaying = false;
+
+        // Project 3D to 2D
+        function project3D(x, y, z, scale = 250) {
+            const centerX = canvas.width / window.devicePixelRatio / 2;
+            const centerY = canvas.height / window.devicePixelRatio / 2;
+
+            // Rotate around Y axis
+            const cos = Math.cos(rotationAngle);
+            const sin = Math.sin(rotationAngle);
+            const rotatedX = x * cos - z * sin;
+            const rotatedZ = x * sin + z * cos;
+
+            // Simple perspective
+            const perspective = 300 / (300 + rotatedZ * 100);
+
+            return {
+                x: centerX + rotatedX * scale * perspective,
+                y: centerY - y * scale * perspective,
+                z: rotatedZ,
+            };
+        }
+
+        // Draw Poincaré ball boundary
+        function drawBall() {
+            const centerX = canvas.width / window.devicePixelRatio / 2;
+            const centerY = canvas.height / window.devicePixelRatio / 2;
+            const radius = 250;
+
+            // Outer circle
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Grid lines (latitude)
+            for (let i = 1; i < 4; i++) {
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius * (i / 4), 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+        }
+
+        // Draw regions
+        function drawRegions() {
+            // Sort by z for proper depth ordering
+            const sorted = [...regions].sort((a, b) => {
+                const az = project3D(a.x, a.y, a.z).z;
+                const bz = project3D(b.x, b.y, b.z).z;
+                return az - bz;
+            });
+
+            for (const region of sorted) {
+                const pos = project3D(region.x, region.y, region.z);
+
+                // Node size based on activation
+                const baseSize = 8;
+                const size = baseSize + region.activation * 8;
+
+                // Color based on hierarchy
+                const color = hierarchyColors[region.level];
+
+                // Draw node
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, size, 0, Math.PI * 2);
+
+                // Gradient for depth effect
+                const gradient = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, size);
+                gradient.addColorStop(0, color);
+                gradient.addColorStop(1, color + '80');
+
+                ctx.fillStyle = gradient;
+                ctx.fill();
+
+                // Glow effect for high activation
+                if (region.activation > 0.6) {
+                    ctx.shadowColor = color;
+                    ctx.shadowBlur = 20;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+
+                // Outline
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+        }
+
+        // Draw connections
+        function drawConnections() {
+            if (!showConnections) return;
+
+            ctx.globalAlpha = 0.3;
+
+            for (let i = 0; i < regions.length; i++) {
+                for (let j = i + 1; j < regions.length; j++) {
+                    // Connect regions in same or adjacent hierarchy levels
+                    if (Math.abs(regions[i].level - regions[j].level) <= 1) {
+                        const pos1 = project3D(regions[i].x, regions[i].y, regions[i].z);
+                        const pos2 = project3D(regions[j].x, regions[j].y, regions[j].z);
+
+                        // Correlation strength (mock)
+                        const correlation = Math.random();
+
+                        if (correlation > 0.7) {
+                            ctx.beginPath();
+                            ctx.moveTo(pos1.x, pos1.y);
+                            ctx.lineTo(pos2.x, pos2.y);
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${correlation * 0.5})`;
+                            ctx.lineWidth = correlation * 2;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            ctx.globalAlpha = 1.0;
+        }
+
+        // Render loop
+        function render() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawBall();
+            if (showConnections) drawConnections();
+            drawRegions();
+
+            rotationAngle += rotationSpeed;
+
+            requestAnimationFrame(render);
+        }
+
+        render();
+
+        // Controls
+        document.getElementById('timeSlider').addEventListener('input', (e) => {
+            currentTime = parseInt(e.target.value);
+            document.getElementById('timeValue').textContent = currentTime;
+            document.getElementById('trValue').textContent = (currentTime * 2).toFixed(1);
+
+            // Update activations
+            const inTask = (currentTime >= 0 && currentTime < 30) || (currentTime >= 60 && currentTime < 90);
+            document.getElementById('taskState').textContent = inTask ? 'Motor Task' : 'Rest';
+
+            regions.forEach(r => {
+                r.activation = Math.random() * (inTask ? 1.0 : 0.5);
+            });
+
+            updateStats();
+        });
+
+        document.getElementById('thresholdSlider').addEventListener('input', (e) => {
+            const threshold = e.target.value / 100;
+            document.getElementById('thresholdValue').textContent = threshold.toFixed(2);
+            updateStats();
+        });
+
+        document.getElementById('rotationSlider').addEventListener('input', (e) => {
+            rotationSpeed = (e.target.value / 100) * 0.01;
+            document.getElementById('rotationValue').textContent = (e.target.value / 100).toFixed(1);
+        });
+
+        function updateStats() {
+            const threshold = parseFloat(document.getElementById('thresholdValue').textContent);
+            const active = regions.filter(r => r.activation > threshold).length;
+            document.getElementById('activeCount').textContent = active;
+        }
+
+        function playAnimation() {
+            if (isPlaying) {
+                isPlaying = false;
+                return;
+            }
+
+            isPlaying = true;
+            const slider = document.getElementById('timeSlider');
+
+            function step() {
+                if (!isPlaying) return;
+
+                let value = parseInt(slider.value);
+                value = (value + 1) % 200;
+                slider.value = value;
+                slider.dispatchEvent(new Event('input'));
+
+                setTimeout(step, 100);
+            }
+
+            step();
+        }
+
+        function resetView() {
+            rotationAngle = 0;
+            document.getElementById('timeSlider').value = 0;
+            document.getElementById('timeSlider').dispatchEvent(new Event('input'));
+        }
+
+        function toggleConnections() {
+            showConnections = !showConnections;
+        }
+
+        function exportData() {
+            const data = {
+                regions: regions.map(r => ({
+                    id: r.id,
+                    level: r.level,
+                    coordinates: [r.x, r.y, r.z],
+                    activation: r.activation,
+                })),
+                timestamp: new Date().toISOString(),
+            };
+
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `hyperbolic-fmri-${Date.now()}.json`;
+            a.click();
+        }
+
+        updateStats();
+    </script>
+</body>
+</html>
