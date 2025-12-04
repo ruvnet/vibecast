@@ -1,0 +1,24 @@
+{
+  "name": "vibecast",
+  "version": "1.0.0",
+  "description": "Weekly Vibecast Live coding sessions with rUv. Check branches for each week.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:53374/git/ruvnet/vibecast"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ruvector/agentic-synth": "^0.1.6",
+    "@ruvector/ruvllm": "^0.2.2",
+    "agentic-flow": "^2.0.1-alpha.5",
+    "e2b": "^2.8.3",
+    "ruvector": "^0.1.31"
+  }
+}
