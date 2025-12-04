@@ -1,25 +1,59 @@
 {
   "name": "vibecast",
   "version": "1.0.0",
-  "description": "Weekly Vibecast Live coding sessions with rUv. Check branches for each week.",
-  "main": "index.js",
+  "description": "Universal Energy System Controller with Reinforcement Learning for nuclear fission, fusion, solar, wind, and hybrid systems",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node examples/basic-simulation.js",
+    "demo": "node examples/rl-demo.js",
+    "demo:rl": "node examples/rl-demo.js",
+    "demo:simulation": "node examples/basic-simulation.js",
+    "demo:optimization": "node examples/optimization-discovery.js",
+    "train": "node examples/rl-training.js",
+    "train:fission": "node examples/rl-training.js nuclear-fission PPO 100",
+    "train:fusion": "node examples/rl-training.js nuclear-fusion SAC 100",
+    "train:solar": "node examples/rl-training.js solar PPO 100",
+    "test": "node scripts/test.js",
+    "install:deps": "npm install",
+    "setup": "node -e \"require('fs').mkdirSync('reports', {recursive: true}); require('fs').mkdirSync('checkpoints', {recursive: true}); require('fs').mkdirSync('logs', {recursive: true}); console.log('✓ Setup complete')\""
   },
+  "keywords": [
+    "reinforcement-learning",
+    "energy-systems",
+    "nuclear",
+    "solar",
+    "wind",
+    "control-systems",
+    "ai",
+    "machine-learning",
+    "simulation",
+    "ruvector",
+    "autonomous-control",
+    "power-generation",
+    "renewable-energy"
+  ],
+  "author": "rUv <https://ruv.io>",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://local_proxy@127.0.0.1:53374/git/ruvnet/vibecast"
+    "url": "https://github.com/ruvnet/vibecast.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruvnet/vibecast/issues"
+  },
+  "homepage": "https://github.com/ruvnet/vibecast#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "dependencies": {
     "@ruvector/agentic-synth": "^0.1.6",
     "@ruvector/attention": "^0.1.3",
-    "@ruvector/ruvllm": "^0.2.2",
-    "agentic-flow": "^2.0.1-alpha.5",
-    "e2b": "^2.8.3",
+    "agentic-flow": "2.0.1-alpha.5",
     "ruvector": "^0.1.31"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {
+    "@ruvector/ruvllm": "latest"
   }
 }
