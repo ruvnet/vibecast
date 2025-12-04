@@ -1,0 +1,1192 @@
+{
+  "timestamp": "2025-12-04T18:25:42.683Z",
+  "totalOpportunitiesDiscovered": 12,
+  "averageNoveltyScore": "9.05",
+  "categorization": {
+    "nearTerm": 6,
+    "midTerm": 5,
+    "longTerm": 1
+  },
+  "topOpportunities": [
+    {
+      "domain": "Waste Valorization",
+      "opportunity": "Fast Spectrum Transmutation of Long-Lived Isotopes",
+      "description": "Partner with or develop fast reactor capability to transmute long-lived waste into shorter-lived or stable isotopes. Reduce waste repository requirements.",
+      "impact": "Very High",
+      "timeframe": "10-15 years",
+      "roi": "Waste volume reduction by 95%, valuable isotope recovery",
+      "implementation": [
+        "Fast reactor design study (sodium or lead-cooled)",
+        "Pyroprocessing facility for fuel recycling",
+        "Isotope separation and target fabrication",
+        "Transmutation target irradiation campaigns",
+        "International collaboration (France, Russia, Japan)"
+      ],
+      "technologies": [
+        "Fast reactors",
+        "Pyroprocessing",
+        "Target fabrication",
+        "Hot cells"
+      ],
+      "novelty": 9.7,
+      "strategic": "Solves nuclear waste problem, enables true sustainability"
+    },
+    {
+      "domain": "Quantum Sensing",
+      "opportunity": "Quantum Sensors for Ultra-Precise Neutron Flux Mapping",
+      "description": "Deploy quantum diamond NV-center sensors for unprecedented spatial resolution in neutron flux measurement. Enable better fuel performance.",
+      "impact": "Medium",
+      "timeframe": "3-5 years",
+      "roi": "Improved physics models, 1-2% power uprate potential",
+      "implementation": [
+        "Quantum diamond sensors in instrument thimbles",
+        "Room-temperature operation",
+        "Real-time 3D flux reconstruction",
+        "Machine learning for signal processing",
+        "Validation against fission chambers"
+      ],
+      "technologies": [
+        "Quantum diamond sensors",
+        "Laser systems",
+        "ML signal processing"
+      ],
+      "novelty": 9.6,
+      "breakthrough": "Quantum advantage in sensing"
+    },
+    {
+      "domain": "Autonomous Operations",
+      "opportunity": "Reinforcement Learning Control Agent",
+      "description": "Replace manual control rod adjustments with RL agent trained in digital twin environment. Optimize for power stability, fuel efficiency, and safety margins.",
+      "impact": "Very High",
+      "timeframe": "3-5 years",
+      "roi": "15-20% improvement in capacity factor, 30% reduction in operator interventions",
+      "implementation": [
+        "Create high-fidelity simulation environment (OpenAI Gym)",
+        "Train PPO/SAC agent with multi-objective reward function",
+        "Hardware-in-the-loop testing with redundant safety systems",
+        "Gradual deployment: advisory -> supervised -> autonomous modes",
+        "Continuous learning from operational data"
+      ],
+      "technologies": [
+        "Ray RLlib",
+        "Stable Baselines3",
+        "Docker",
+        "Kubernetes"
+      ],
+      "novelty": 9.5,
+      "risks": [
+        "Regulatory approval",
+        "Operator trust",
+        "Safety validation"
+      ],
+      "mitigations": [
+        "NRC pre-application meetings",
+        "Extended shadowing period",
+        "Triple-redundant oversight"
+      ]
+    },
+    {
+      "domain": "Federated Learning",
+      "opportunity": "Multi-Plant AI Collective Intelligence",
+      "description": "Create federated learning network across nuclear fleet. Share insights while preserving data privacy. Discover global optimization patterns.",
+      "impact": "Very High",
+      "timeframe": "2-3 years",
+      "roi": "5-10% fleet-wide efficiency improvement",
+      "implementation": [
+        "Federated learning framework (PySyft or TensorFlow Federated)",
+        "Secure multi-party computation protocols",
+        "Central aggregation server with differential privacy",
+        "Local model training on plant-specific data",
+        "Knowledge transfer for rare events and anomalies"
+      ],
+      "technologies": [
+        "PySyft",
+        "Differential Privacy",
+        "Secure Enclaves",
+        "Blockchain audit trail"
+      ],
+      "novelty": 9.4,
+      "benefits": [
+        "Learn from 50+ global reactors",
+        "Faster anomaly detection",
+        "Shared safety insights"
+      ]
+    },
+    {
+      "domain": "Circular Economy",
+      "opportunity": "Integrated Nuclear + Hydrogen Production",
+      "description": "Couple high-temperature steam electrolysis to reactor for green hydrogen production during low-demand periods. Create new revenue stream.",
+      "impact": "Very High",
+      "timeframe": "4-6 years",
+      "roi": "$50-100M additional annual revenue, grid flexibility",
+      "implementation": [
+        "Solid oxide electrolyzer cell (SOEC) system (100 MW)",
+        "Heat integration from secondary loop",
+        "Hydrogen compression and storage",
+        "Industrial customers or fuel cell vehicle supply",
+        "Dynamic load following capabilities"
+      ],
+      "technologies": [
+        "SOEC",
+        "High-temp heat exchangers",
+        "H2 storage",
+        "Grid integration"
+      ],
+      "novelty": 9.3,
+      "markets": [
+        "Industrial hydrogen",
+        "Ammonia production",
+        "Steel manufacturing",
+        "Transportation"
+      ]
+    },
+    {
+      "domain": "Digital Twin",
+      "opportunity": "Physics-Informed Neural Network for Temperature Control",
+      "description": "Temperature variance detected. Implement PINN model to predict thermal dynamics 10 steps ahead, enabling proactive cooling adjustments.",
+      "impact": "High",
+      "timeframe": "2-3 years",
+      "roi": "25-35% reduction in thermal cycling stress",
+      "implementation": [
+        "Deploy edge TPUs for real-time PINN inference",
+        "Train on 5 years of historical thermal data",
+        "Integrate with existing SCADA via OPC-UA",
+        "Implement digital twin with 100ms update cycle"
+      ],
+      "technologies": [
+        "TensorFlow",
+        "NVIDIA Jetson AGX",
+        "OPC-UA",
+        "TimescaleDB"
+      ],
+      "novelty": 9.2
+    },
+    {
+      "domain": "Quantum Optimization",
+      "opportunity": "Quantum Annealing for Refueling Optimization",
+      "description": "Use D-Wave quantum annealer to solve NP-hard fuel shuffle optimization. Find globally optimal configurations in minutes vs. days.",
+      "impact": "Medium",
+      "timeframe": "2-4 years",
+      "roi": "2-3% improved fuel utilization, $5-10M/year savings",
+      "implementation": [
+        "Formulate fuel shuffle as QUBO problem",
+        "D-Wave Advantage quantum computer access",
+        "Hybrid classical-quantum algorithm",
+        "Validation against current genetic algorithms",
+        "Integration with fuel management software"
+      ],
+      "technologies": [
+        "D-Wave Quantum Annealer",
+        "QUBO formulation",
+        "Hybrid algorithms"
+      ],
+      "novelty": 9.1,
+      "feasibility": "Near-term quantum advantage application"
+    },
+    {
+      "domain": "Advanced Materials",
+      "opportunity": "Accident Tolerant Fuel Implementation",
+      "description": "Transition to ATF (chromium-coated zirconium or SiC cladding) for enhanced safety margins and higher burnup. Enables 24-month fuel cycles.",
+      "impact": "Very High",
+      "timeframe": "5-7 years",
+      "roi": "10-15% fuel cost reduction, enhanced safety, extended outage cycles",
+      "implementation": [
+        "Lead test assemblies (LTAs) in current reactor",
+        "Real-time fuel performance monitoring",
+        "Gradual core conversion (20% per cycle)",
+        "AI-driven fuel shuffle optimization",
+        "Predictive cladding integrity models"
+      ],
+      "technologies": [
+        "Chromium-coated cladding",
+        "SiC composites",
+        "In-core sensors",
+        "ML optimization"
+      ],
+      "novelty": 9,
+      "regulatory": "NRC 10 CFR 50.46a requires demonstration"
+    },
+    {
+      "domain": "Natural Language Operations",
+      "opportunity": "LLM-Powered Operating Procedures Assistant",
+      "description": "Deploy plant-specific LLM trained on all procedures, technical specs, and historical operations. Natural language interface for operators.",
+      "impact": "Medium-High",
+      "timeframe": "1-2 years",
+      "roi": "50% reduction in procedure retrieval time, error reduction",
+      "implementation": [
+        "Fine-tune LLM (Llama 2 70B or GPT-4) on plant documents",
+        "RAG system with vector database of procedures",
+        "Voice interface for hands-free operation",
+        "Real-time context awareness of plant state",
+        "Audit trail and explainability for all suggestions"
+      ],
+      "technologies": [
+        "LLMs",
+        "RAG",
+        "Vector DB",
+        "Speech recognition",
+        "On-premise deployment"
+      ],
+      "novelty": 8.9,
+      "safety": "Advisory only, not control decisions"
+    },
+    {
+      "domain": "Autonomous Inspection",
+      "opportunity": "AI Vision for Autonomous Containment Inspection",
+      "description": "Deploy ground and aerial robots with computer vision for 24/7 containment structure monitoring. Detect micro-cracks, corrosion, and anomalies.",
+      "impact": "High",
+      "timeframe": "2-3 years",
+      "roi": "70% reduction in manual inspection time, early defect detection",
+      "implementation": [
+        "Boston Dynamics Spot robots with custom sensors",
+        "Drone swarms for exterior inspection",
+        "YOLOv8 + SegFormer models for defect detection",
+        "Automated reporting with severity classification",
+        "3D mapping and change detection"
+      ],
+      "technologies": [
+        "Boston Dynamics Spot",
+        "DJI M300 RTK",
+        "PyTorch",
+        "ROS2"
+      ],
+      "novelty": 8.8
+    }
+  ],
+  "byDomain": {
+    "Waste Valorization": [
+      {
+        "domain": "Waste Valorization",
+        "opportunity": "Fast Spectrum Transmutation of Long-Lived Isotopes",
+        "description": "Partner with or develop fast reactor capability to transmute long-lived waste into shorter-lived or stable isotopes. Reduce waste repository requirements.",
+        "impact": "Very High",
+        "timeframe": "10-15 years",
+        "roi": "Waste volume reduction by 95%, valuable isotope recovery",
+        "implementation": [
+          "Fast reactor design study (sodium or lead-cooled)",
+          "Pyroprocessing facility for fuel recycling",
+          "Isotope separation and target fabrication",
+          "Transmutation target irradiation campaigns",
+          "International collaboration (France, Russia, Japan)"
+        ],
+        "technologies": [
+          "Fast reactors",
+          "Pyroprocessing",
+          "Target fabrication",
+          "Hot cells"
+        ],
+        "novelty": 9.7,
+        "strategic": "Solves nuclear waste problem, enables true sustainability"
+      }
+    ],
+    "Quantum Sensing": [
+      {
+        "domain": "Quantum Sensing",
+        "opportunity": "Quantum Sensors for Ultra-Precise Neutron Flux Mapping",
+        "description": "Deploy quantum diamond NV-center sensors for unprecedented spatial resolution in neutron flux measurement. Enable better fuel performance.",
+        "impact": "Medium",
+        "timeframe": "3-5 years",
+        "roi": "Improved physics models, 1-2% power uprate potential",
+        "implementation": [
+          "Quantum diamond sensors in instrument thimbles",
+          "Room-temperature operation",
+          "Real-time 3D flux reconstruction",
+          "Machine learning for signal processing",
+          "Validation against fission chambers"
+        ],
+        "technologies": [
+          "Quantum diamond sensors",
+          "Laser systems",
+          "ML signal processing"
+        ],
+        "novelty": 9.6,
+        "breakthrough": "Quantum advantage in sensing"
+      }
+    ],
+    "Autonomous Operations": [
+      {
+        "domain": "Autonomous Operations",
+        "opportunity": "Reinforcement Learning Control Agent",
+        "description": "Replace manual control rod adjustments with RL agent trained in digital twin environment. Optimize for power stability, fuel efficiency, and safety margins.",
+        "impact": "Very High",
+        "timeframe": "3-5 years",
+        "roi": "15-20% improvement in capacity factor, 30% reduction in operator interventions",
+        "implementation": [
+          "Create high-fidelity simulation environment (OpenAI Gym)",
+          "Train PPO/SAC agent with multi-objective reward function",
+          "Hardware-in-the-loop testing with redundant safety systems",
+          "Gradual deployment: advisory -> supervised -> autonomous modes",
+          "Continuous learning from operational data"
+        ],
+        "technologies": [
+          "Ray RLlib",
+          "Stable Baselines3",
+          "Docker",
+          "Kubernetes"
+        ],
+        "novelty": 9.5,
+        "risks": [
+          "Regulatory approval",
+          "Operator trust",
+          "Safety validation"
+        ],
+        "mitigations": [
+          "NRC pre-application meetings",
+          "Extended shadowing period",
+          "Triple-redundant oversight"
+        ]
+      }
+    ],
+    "Federated Learning": [
+      {
+        "domain": "Federated Learning",
+        "opportunity": "Multi-Plant AI Collective Intelligence",
+        "description": "Create federated learning network across nuclear fleet. Share insights while preserving data privacy. Discover global optimization patterns.",
+        "impact": "Very High",
+        "timeframe": "2-3 years",
+        "roi": "5-10% fleet-wide efficiency improvement",
+        "implementation": [
+          "Federated learning framework (PySyft or TensorFlow Federated)",
+          "Secure multi-party computation protocols",
+          "Central aggregation server with differential privacy",
+          "Local model training on plant-specific data",
+          "Knowledge transfer for rare events and anomalies"
+        ],
+        "technologies": [
+          "PySyft",
+          "Differential Privacy",
+          "Secure Enclaves",
+          "Blockchain audit trail"
+        ],
+        "novelty": 9.4,
+        "benefits": [
+          "Learn from 50+ global reactors",
+          "Faster anomaly detection",
+          "Shared safety insights"
+        ]
+      }
+    ],
+    "Circular Economy": [
+      {
+        "domain": "Circular Economy",
+        "opportunity": "Integrated Nuclear + Hydrogen Production",
+        "description": "Couple high-temperature steam electrolysis to reactor for green hydrogen production during low-demand periods. Create new revenue stream.",
+        "impact": "Very High",
+        "timeframe": "4-6 years",
+        "roi": "$50-100M additional annual revenue, grid flexibility",
+        "implementation": [
+          "Solid oxide electrolyzer cell (SOEC) system (100 MW)",
+          "Heat integration from secondary loop",
+          "Hydrogen compression and storage",
+          "Industrial customers or fuel cell vehicle supply",
+          "Dynamic load following capabilities"
+        ],
+        "technologies": [
+          "SOEC",
+          "High-temp heat exchangers",
+          "H2 storage",
+          "Grid integration"
+        ],
+        "novelty": 9.3,
+        "markets": [
+          "Industrial hydrogen",
+          "Ammonia production",
+          "Steel manufacturing",
+          "Transportation"
+        ]
+      }
+    ],
+    "Digital Twin": [
+      {
+        "domain": "Digital Twin",
+        "opportunity": "Physics-Informed Neural Network for Temperature Control",
+        "description": "Temperature variance detected. Implement PINN model to predict thermal dynamics 10 steps ahead, enabling proactive cooling adjustments.",
+        "impact": "High",
+        "timeframe": "2-3 years",
+        "roi": "25-35% reduction in thermal cycling stress",
+        "implementation": [
+          "Deploy edge TPUs for real-time PINN inference",
+          "Train on 5 years of historical thermal data",
+          "Integrate with existing SCADA via OPC-UA",
+          "Implement digital twin with 100ms update cycle"
+        ],
+        "technologies": [
+          "TensorFlow",
+          "NVIDIA Jetson AGX",
+          "OPC-UA",
+          "TimescaleDB"
+        ],
+        "novelty": 9.2
+      }
+    ],
+    "Quantum Optimization": [
+      {
+        "domain": "Quantum Optimization",
+        "opportunity": "Quantum Annealing for Refueling Optimization",
+        "description": "Use D-Wave quantum annealer to solve NP-hard fuel shuffle optimization. Find globally optimal configurations in minutes vs. days.",
+        "impact": "Medium",
+        "timeframe": "2-4 years",
+        "roi": "2-3% improved fuel utilization, $5-10M/year savings",
+        "implementation": [
+          "Formulate fuel shuffle as QUBO problem",
+          "D-Wave Advantage quantum computer access",
+          "Hybrid classical-quantum algorithm",
+          "Validation against current genetic algorithms",
+          "Integration with fuel management software"
+        ],
+        "technologies": [
+          "D-Wave Quantum Annealer",
+          "QUBO formulation",
+          "Hybrid algorithms"
+        ],
+        "novelty": 9.1,
+        "feasibility": "Near-term quantum advantage application"
+      }
+    ],
+    "Advanced Materials": [
+      {
+        "domain": "Advanced Materials",
+        "opportunity": "Accident Tolerant Fuel Implementation",
+        "description": "Transition to ATF (chromium-coated zirconium or SiC cladding) for enhanced safety margins and higher burnup. Enables 24-month fuel cycles.",
+        "impact": "Very High",
+        "timeframe": "5-7 years",
+        "roi": "10-15% fuel cost reduction, enhanced safety, extended outage cycles",
+        "implementation": [
+          "Lead test assemblies (LTAs) in current reactor",
+          "Real-time fuel performance monitoring",
+          "Gradual core conversion (20% per cycle)",
+          "AI-driven fuel shuffle optimization",
+          "Predictive cladding integrity models"
+        ],
+        "technologies": [
+          "Chromium-coated cladding",
+          "SiC composites",
+          "In-core sensors",
+          "ML optimization"
+        ],
+        "novelty": 9,
+        "regulatory": "NRC 10 CFR 50.46a requires demonstration"
+      }
+    ],
+    "Natural Language Operations": [
+      {
+        "domain": "Natural Language Operations",
+        "opportunity": "LLM-Powered Operating Procedures Assistant",
+        "description": "Deploy plant-specific LLM trained on all procedures, technical specs, and historical operations. Natural language interface for operators.",
+        "impact": "Medium-High",
+        "timeframe": "1-2 years",
+        "roi": "50% reduction in procedure retrieval time, error reduction",
+        "implementation": [
+          "Fine-tune LLM (Llama 2 70B or GPT-4) on plant documents",
+          "RAG system with vector database of procedures",
+          "Voice interface for hands-free operation",
+          "Real-time context awareness of plant state",
+          "Audit trail and explainability for all suggestions"
+        ],
+        "technologies": [
+          "LLMs",
+          "RAG",
+          "Vector DB",
+          "Speech recognition",
+          "On-premise deployment"
+        ],
+        "novelty": 8.9,
+        "safety": "Advisory only, not control decisions"
+      }
+    ],
+    "Autonomous Inspection": [
+      {
+        "domain": "Autonomous Inspection",
+        "opportunity": "AI Vision for Autonomous Containment Inspection",
+        "description": "Deploy ground and aerial robots with computer vision for 24/7 containment structure monitoring. Detect micro-cracks, corrosion, and anomalies.",
+        "impact": "High",
+        "timeframe": "2-3 years",
+        "roi": "70% reduction in manual inspection time, early defect detection",
+        "implementation": [
+          "Boston Dynamics Spot robots with custom sensors",
+          "Drone swarms for exterior inspection",
+          "YOLOv8 + SegFormer models for defect detection",
+          "Automated reporting with severity classification",
+          "3D mapping and change detection"
+        ],
+        "technologies": [
+          "Boston Dynamics Spot",
+          "DJI M300 RTK",
+          "PyTorch",
+          "ROS2"
+        ],
+        "novelty": 8.8
+      }
+    ],
+    "Carbon Capture": [
+      {
+        "domain": "Carbon Capture",
+        "opportunity": "Direct Air Capture Powered by Nuclear Heat",
+        "description": "Install DAC plant using reactor thermal energy. Remove 1 million tons CO2/year while strengthening climate credentials.",
+        "impact": "High",
+        "timeframe": "3-5 years",
+        "roi": "Carbon credits $50-100M/year, ESG improvement",
+        "implementation": [
+          "Partner with Carbon Engineering or Climeworks",
+          "Heat integration for sorbent regeneration",
+          "CO2 compression and pipeline to sequestration",
+          "Carbon credit certification (Gold Standard)",
+          "Scale to multiple units over time"
+        ],
+        "technologies": [
+          "DAC",
+          "Heat exchangers",
+          "CO2 compression",
+          "CCS infrastructure"
+        ],
+        "novelty": 8.6
+      }
+    ],
+    "Additive Manufacturing": [
+      {
+        "domain": "Additive Manufacturing",
+        "opportunity": "On-Site 3D Printing of Safety-Critical Components",
+        "description": "Install metal AM facility for rapid fabrication of replacement parts. Reduce supply chain dependencies and enable design optimizations.",
+        "impact": "Medium-High",
+        "timeframe": "2-4 years",
+        "roi": "50-70% reduction in part lead times, 30% cost savings",
+        "implementation": [
+          "EOS M400 or similar metal 3D printer",
+          "Digital parts library with CAD models",
+          "ASME BPVC Section III certification process",
+          "Material testing lab (tensile, fatigue, corrosion)",
+          "Quality control with CT scanning"
+        ],
+        "technologies": [
+          "Metal AM (DMLS)",
+          "Inconel 718",
+          "CT scanning",
+          "CAD/CAM"
+        ],
+        "novelty": 7.5
+      }
+    ]
+  },
+  "implementationRoadmap": {
+    "Phase 1 (Years 1-2)": [
+      {
+        "domain": "Federated Learning",
+        "opportunity": "Multi-Plant AI Collective Intelligence",
+        "description": "Create federated learning network across nuclear fleet. Share insights while preserving data privacy. Discover global optimization patterns.",
+        "impact": "Very High",
+        "timeframe": "2-3 years",
+        "roi": "5-10% fleet-wide efficiency improvement",
+        "implementation": [
+          "Federated learning framework (PySyft or TensorFlow Federated)",
+          "Secure multi-party computation protocols",
+          "Central aggregation server with differential privacy",
+          "Local model training on plant-specific data",
+          "Knowledge transfer for rare events and anomalies"
+        ],
+        "technologies": [
+          "PySyft",
+          "Differential Privacy",
+          "Secure Enclaves",
+          "Blockchain audit trail"
+        ],
+        "novelty": 9.4,
+        "benefits": [
+          "Learn from 50+ global reactors",
+          "Faster anomaly detection",
+          "Shared safety insights"
+        ]
+      },
+      {
+        "domain": "Digital Twin",
+        "opportunity": "Physics-Informed Neural Network for Temperature Control",
+        "description": "Temperature variance detected. Implement PINN model to predict thermal dynamics 10 steps ahead, enabling proactive cooling adjustments.",
+        "impact": "High",
+        "timeframe": "2-3 years",
+        "roi": "25-35% reduction in thermal cycling stress",
+        "implementation": [
+          "Deploy edge TPUs for real-time PINN inference",
+          "Train on 5 years of historical thermal data",
+          "Integrate with existing SCADA via OPC-UA",
+          "Implement digital twin with 100ms update cycle"
+        ],
+        "technologies": [
+          "TensorFlow",
+          "NVIDIA Jetson AGX",
+          "OPC-UA",
+          "TimescaleDB"
+        ],
+        "novelty": 9.2
+      },
+      {
+        "domain": "Quantum Optimization",
+        "opportunity": "Quantum Annealing for Refueling Optimization",
+        "description": "Use D-Wave quantum annealer to solve NP-hard fuel shuffle optimization. Find globally optimal configurations in minutes vs. days.",
+        "impact": "Medium",
+        "timeframe": "2-4 years",
+        "roi": "2-3% improved fuel utilization, $5-10M/year savings",
+        "implementation": [
+          "Formulate fuel shuffle as QUBO problem",
+          "D-Wave Advantage quantum computer access",
+          "Hybrid classical-quantum algorithm",
+          "Validation against current genetic algorithms",
+          "Integration with fuel management software"
+        ],
+        "technologies": [
+          "D-Wave Quantum Annealer",
+          "QUBO formulation",
+          "Hybrid algorithms"
+        ],
+        "novelty": 9.1,
+        "feasibility": "Near-term quantum advantage application"
+      },
+      {
+        "domain": "Natural Language Operations",
+        "opportunity": "LLM-Powered Operating Procedures Assistant",
+        "description": "Deploy plant-specific LLM trained on all procedures, technical specs, and historical operations. Natural language interface for operators.",
+        "impact": "Medium-High",
+        "timeframe": "1-2 years",
+        "roi": "50% reduction in procedure retrieval time, error reduction",
+        "implementation": [
+          "Fine-tune LLM (Llama 2 70B or GPT-4) on plant documents",
+          "RAG system with vector database of procedures",
+          "Voice interface for hands-free operation",
+          "Real-time context awareness of plant state",
+          "Audit trail and explainability for all suggestions"
+        ],
+        "technologies": [
+          "LLMs",
+          "RAG",
+          "Vector DB",
+          "Speech recognition",
+          "On-premise deployment"
+        ],
+        "novelty": 8.9,
+        "safety": "Advisory only, not control decisions"
+      },
+      {
+        "domain": "Autonomous Inspection",
+        "opportunity": "AI Vision for Autonomous Containment Inspection",
+        "description": "Deploy ground and aerial robots with computer vision for 24/7 containment structure monitoring. Detect micro-cracks, corrosion, and anomalies.",
+        "impact": "High",
+        "timeframe": "2-3 years",
+        "roi": "70% reduction in manual inspection time, early defect detection",
+        "implementation": [
+          "Boston Dynamics Spot robots with custom sensors",
+          "Drone swarms for exterior inspection",
+          "YOLOv8 + SegFormer models for defect detection",
+          "Automated reporting with severity classification",
+          "3D mapping and change detection"
+        ],
+        "technologies": [
+          "Boston Dynamics Spot",
+          "DJI M300 RTK",
+          "PyTorch",
+          "ROS2"
+        ],
+        "novelty": 8.8
+      }
+    ],
+    "Phase 2 (Years 3-5)": [
+      {
+        "domain": "Quantum Sensing",
+        "opportunity": "Quantum Sensors for Ultra-Precise Neutron Flux Mapping",
+        "description": "Deploy quantum diamond NV-center sensors for unprecedented spatial resolution in neutron flux measurement. Enable better fuel performance.",
+        "impact": "Medium",
+        "timeframe": "3-5 years",
+        "roi": "Improved physics models, 1-2% power uprate potential",
+        "implementation": [
+          "Quantum diamond sensors in instrument thimbles",
+          "Room-temperature operation",
+          "Real-time 3D flux reconstruction",
+          "Machine learning for signal processing",
+          "Validation against fission chambers"
+        ],
+        "technologies": [
+          "Quantum diamond sensors",
+          "Laser systems",
+          "ML signal processing"
+        ],
+        "novelty": 9.6,
+        "breakthrough": "Quantum advantage in sensing"
+      },
+      {
+        "domain": "Autonomous Operations",
+        "opportunity": "Reinforcement Learning Control Agent",
+        "description": "Replace manual control rod adjustments with RL agent trained in digital twin environment. Optimize for power stability, fuel efficiency, and safety margins.",
+        "impact": "Very High",
+        "timeframe": "3-5 years",
+        "roi": "15-20% improvement in capacity factor, 30% reduction in operator interventions",
+        "implementation": [
+          "Create high-fidelity simulation environment (OpenAI Gym)",
+          "Train PPO/SAC agent with multi-objective reward function",
+          "Hardware-in-the-loop testing with redundant safety systems",
+          "Gradual deployment: advisory -> supervised -> autonomous modes",
+          "Continuous learning from operational data"
+        ],
+        "technologies": [
+          "Ray RLlib",
+          "Stable Baselines3",
+          "Docker",
+          "Kubernetes"
+        ],
+        "novelty": 9.5,
+        "risks": [
+          "Regulatory approval",
+          "Operator trust",
+          "Safety validation"
+        ],
+        "mitigations": [
+          "NRC pre-application meetings",
+          "Extended shadowing period",
+          "Triple-redundant oversight"
+        ]
+      },
+      {
+        "domain": "Circular Economy",
+        "opportunity": "Integrated Nuclear + Hydrogen Production",
+        "description": "Couple high-temperature steam electrolysis to reactor for green hydrogen production during low-demand periods. Create new revenue stream.",
+        "impact": "Very High",
+        "timeframe": "4-6 years",
+        "roi": "$50-100M additional annual revenue, grid flexibility",
+        "implementation": [
+          "Solid oxide electrolyzer cell (SOEC) system (100 MW)",
+          "Heat integration from secondary loop",
+          "Hydrogen compression and storage",
+          "Industrial customers or fuel cell vehicle supply",
+          "Dynamic load following capabilities"
+        ],
+        "technologies": [
+          "SOEC",
+          "High-temp heat exchangers",
+          "H2 storage",
+          "Grid integration"
+        ],
+        "novelty": 9.3,
+        "markets": [
+          "Industrial hydrogen",
+          "Ammonia production",
+          "Steel manufacturing",
+          "Transportation"
+        ]
+      },
+      {
+        "domain": "Advanced Materials",
+        "opportunity": "Accident Tolerant Fuel Implementation",
+        "description": "Transition to ATF (chromium-coated zirconium or SiC cladding) for enhanced safety margins and higher burnup. Enables 24-month fuel cycles.",
+        "impact": "Very High",
+        "timeframe": "5-7 years",
+        "roi": "10-15% fuel cost reduction, enhanced safety, extended outage cycles",
+        "implementation": [
+          "Lead test assemblies (LTAs) in current reactor",
+          "Real-time fuel performance monitoring",
+          "Gradual core conversion (20% per cycle)",
+          "AI-driven fuel shuffle optimization",
+          "Predictive cladding integrity models"
+        ],
+        "technologies": [
+          "Chromium-coated cladding",
+          "SiC composites",
+          "In-core sensors",
+          "ML optimization"
+        ],
+        "novelty": 9,
+        "regulatory": "NRC 10 CFR 50.46a requires demonstration"
+      },
+      {
+        "domain": "Carbon Capture",
+        "opportunity": "Direct Air Capture Powered by Nuclear Heat",
+        "description": "Install DAC plant using reactor thermal energy. Remove 1 million tons CO2/year while strengthening climate credentials.",
+        "impact": "High",
+        "timeframe": "3-5 years",
+        "roi": "Carbon credits $50-100M/year, ESG improvement",
+        "implementation": [
+          "Partner with Carbon Engineering or Climeworks",
+          "Heat integration for sorbent regeneration",
+          "CO2 compression and pipeline to sequestration",
+          "Carbon credit certification (Gold Standard)",
+          "Scale to multiple units over time"
+        ],
+        "technologies": [
+          "DAC",
+          "Heat exchangers",
+          "CO2 compression",
+          "CCS infrastructure"
+        ],
+        "novelty": 8.6
+      }
+    ],
+    "Phase 3 (Years 6-10)": [
+      {
+        "domain": "Waste Valorization",
+        "opportunity": "Fast Spectrum Transmutation of Long-Lived Isotopes",
+        "description": "Partner with or develop fast reactor capability to transmute long-lived waste into shorter-lived or stable isotopes. Reduce waste repository requirements.",
+        "impact": "Very High",
+        "timeframe": "10-15 years",
+        "roi": "Waste volume reduction by 95%, valuable isotope recovery",
+        "implementation": [
+          "Fast reactor design study (sodium or lead-cooled)",
+          "Pyroprocessing facility for fuel recycling",
+          "Isotope separation and target fabrication",
+          "Transmutation target irradiation campaigns",
+          "International collaboration (France, Russia, Japan)"
+        ],
+        "technologies": [
+          "Fast reactors",
+          "Pyroprocessing",
+          "Target fabrication",
+          "Hot cells"
+        ],
+        "novelty": 9.7,
+        "strategic": "Solves nuclear waste problem, enables true sustainability"
+      }
+    ]
+  },
+  "allOpportunities": [
+    {
+      "domain": "Waste Valorization",
+      "opportunity": "Fast Spectrum Transmutation of Long-Lived Isotopes",
+      "description": "Partner with or develop fast reactor capability to transmute long-lived waste into shorter-lived or stable isotopes. Reduce waste repository requirements.",
+      "impact": "Very High",
+      "timeframe": "10-15 years",
+      "roi": "Waste volume reduction by 95%, valuable isotope recovery",
+      "implementation": [
+        "Fast reactor design study (sodium or lead-cooled)",
+        "Pyroprocessing facility for fuel recycling",
+        "Isotope separation and target fabrication",
+        "Transmutation target irradiation campaigns",
+        "International collaboration (France, Russia, Japan)"
+      ],
+      "technologies": [
+        "Fast reactors",
+        "Pyroprocessing",
+        "Target fabrication",
+        "Hot cells"
+      ],
+      "novelty": 9.7,
+      "strategic": "Solves nuclear waste problem, enables true sustainability"
+    },
+    {
+      "domain": "Quantum Sensing",
+      "opportunity": "Quantum Sensors for Ultra-Precise Neutron Flux Mapping",
+      "description": "Deploy quantum diamond NV-center sensors for unprecedented spatial resolution in neutron flux measurement. Enable better fuel performance.",
+      "impact": "Medium",
+      "timeframe": "3-5 years",
+      "roi": "Improved physics models, 1-2% power uprate potential",
+      "implementation": [
+        "Quantum diamond sensors in instrument thimbles",
+        "Room-temperature operation",
+        "Real-time 3D flux reconstruction",
+        "Machine learning for signal processing",
+        "Validation against fission chambers"
+      ],
+      "technologies": [
+        "Quantum diamond sensors",
+        "Laser systems",
+        "ML signal processing"
+      ],
+      "novelty": 9.6,
+      "breakthrough": "Quantum advantage in sensing"
+    },
+    {
+      "domain": "Autonomous Operations",
+      "opportunity": "Reinforcement Learning Control Agent",
+      "description": "Replace manual control rod adjustments with RL agent trained in digital twin environment. Optimize for power stability, fuel efficiency, and safety margins.",
+      "impact": "Very High",
+      "timeframe": "3-5 years",
+      "roi": "15-20% improvement in capacity factor, 30% reduction in operator interventions",
+      "implementation": [
+        "Create high-fidelity simulation environment (OpenAI Gym)",
+        "Train PPO/SAC agent with multi-objective reward function",
+        "Hardware-in-the-loop testing with redundant safety systems",
+        "Gradual deployment: advisory -> supervised -> autonomous modes",
+        "Continuous learning from operational data"
+      ],
+      "technologies": [
+        "Ray RLlib",
+        "Stable Baselines3",
+        "Docker",
+        "Kubernetes"
+      ],
+      "novelty": 9.5,
+      "risks": [
+        "Regulatory approval",
+        "Operator trust",
+        "Safety validation"
+      ],
+      "mitigations": [
+        "NRC pre-application meetings",
+        "Extended shadowing period",
+        "Triple-redundant oversight"
+      ]
+    },
+    {
+      "domain": "Federated Learning",
+      "opportunity": "Multi-Plant AI Collective Intelligence",
+      "description": "Create federated learning network across nuclear fleet. Share insights while preserving data privacy. Discover global optimization patterns.",
+      "impact": "Very High",
+      "timeframe": "2-3 years",
+      "roi": "5-10% fleet-wide efficiency improvement",
+      "implementation": [
+        "Federated learning framework (PySyft or TensorFlow Federated)",
+        "Secure multi-party computation protocols",
+        "Central aggregation server with differential privacy",
+        "Local model training on plant-specific data",
+        "Knowledge transfer for rare events and anomalies"
+      ],
+      "technologies": [
+        "PySyft",
+        "Differential Privacy",
+        "Secure Enclaves",
+        "Blockchain audit trail"
+      ],
+      "novelty": 9.4,
+      "benefits": [
+        "Learn from 50+ global reactors",
+        "Faster anomaly detection",
+        "Shared safety insights"
+      ]
+    },
+    {
+      "domain": "Circular Economy",
+      "opportunity": "Integrated Nuclear + Hydrogen Production",
+      "description": "Couple high-temperature steam electrolysis to reactor for green hydrogen production during low-demand periods. Create new revenue stream.",
+      "impact": "Very High",
+      "timeframe": "4-6 years",
+      "roi": "$50-100M additional annual revenue, grid flexibility",
+      "implementation": [
+        "Solid oxide electrolyzer cell (SOEC) system (100 MW)",
+        "Heat integration from secondary loop",
+        "Hydrogen compression and storage",
+        "Industrial customers or fuel cell vehicle supply",
+        "Dynamic load following capabilities"
+      ],
+      "technologies": [
+        "SOEC",
+        "High-temp heat exchangers",
+        "H2 storage",
+        "Grid integration"
+      ],
+      "novelty": 9.3,
+      "markets": [
+        "Industrial hydrogen",
+        "Ammonia production",
+        "Steel manufacturing",
+        "Transportation"
+      ]
+    },
+    {
+      "domain": "Digital Twin",
+      "opportunity": "Physics-Informed Neural Network for Temperature Control",
+      "description": "Temperature variance detected. Implement PINN model to predict thermal dynamics 10 steps ahead, enabling proactive cooling adjustments.",
+      "impact": "High",
+      "timeframe": "2-3 years",
+      "roi": "25-35% reduction in thermal cycling stress",
+      "implementation": [
+        "Deploy edge TPUs for real-time PINN inference",
+        "Train on 5 years of historical thermal data",
+        "Integrate with existing SCADA via OPC-UA",
+        "Implement digital twin with 100ms update cycle"
+      ],
+      "technologies": [
+        "TensorFlow",
+        "NVIDIA Jetson AGX",
+        "OPC-UA",
+        "TimescaleDB"
+      ],
+      "novelty": 9.2
+    },
+    {
+      "domain": "Quantum Optimization",
+      "opportunity": "Quantum Annealing for Refueling Optimization",
+      "description": "Use D-Wave quantum annealer to solve NP-hard fuel shuffle optimization. Find globally optimal configurations in minutes vs. days.",
+      "impact": "Medium",
+      "timeframe": "2-4 years",
+      "roi": "2-3% improved fuel utilization, $5-10M/year savings",
+      "implementation": [
+        "Formulate fuel shuffle as QUBO problem",
+        "D-Wave Advantage quantum computer access",
+        "Hybrid classical-quantum algorithm",
+        "Validation against current genetic algorithms",
+        "Integration with fuel management software"
+      ],
+      "technologies": [
+        "D-Wave Quantum Annealer",
+        "QUBO formulation",
+        "Hybrid algorithms"
+      ],
+      "novelty": 9.1,
+      "feasibility": "Near-term quantum advantage application"
+    },
+    {
+      "domain": "Advanced Materials",
+      "opportunity": "Accident Tolerant Fuel Implementation",
+      "description": "Transition to ATF (chromium-coated zirconium or SiC cladding) for enhanced safety margins and higher burnup. Enables 24-month fuel cycles.",
+      "impact": "Very High",
+      "timeframe": "5-7 years",
+      "roi": "10-15% fuel cost reduction, enhanced safety, extended outage cycles",
+      "implementation": [
+        "Lead test assemblies (LTAs) in current reactor",
+        "Real-time fuel performance monitoring",
+        "Gradual core conversion (20% per cycle)",
+        "AI-driven fuel shuffle optimization",
+        "Predictive cladding integrity models"
+      ],
+      "technologies": [
+        "Chromium-coated cladding",
+        "SiC composites",
+        "In-core sensors",
+        "ML optimization"
+      ],
+      "novelty": 9,
+      "regulatory": "NRC 10 CFR 50.46a requires demonstration"
+    },
+    {
+      "domain": "Natural Language Operations",
+      "opportunity": "LLM-Powered Operating Procedures Assistant",
+      "description": "Deploy plant-specific LLM trained on all procedures, technical specs, and historical operations. Natural language interface for operators.",
+      "impact": "Medium-High",
+      "timeframe": "1-2 years",
+      "roi": "50% reduction in procedure retrieval time, error reduction",
+      "implementation": [
+        "Fine-tune LLM (Llama 2 70B or GPT-4) on plant documents",
+        "RAG system with vector database of procedures",
+        "Voice interface for hands-free operation",
+        "Real-time context awareness of plant state",
+        "Audit trail and explainability for all suggestions"
+      ],
+      "technologies": [
+        "LLMs",
+        "RAG",
+        "Vector DB",
+        "Speech recognition",
+        "On-premise deployment"
+      ],
+      "novelty": 8.9,
+      "safety": "Advisory only, not control decisions"
+    },
+    {
+      "domain": "Autonomous Inspection",
+      "opportunity": "AI Vision for Autonomous Containment Inspection",
+      "description": "Deploy ground and aerial robots with computer vision for 24/7 containment structure monitoring. Detect micro-cracks, corrosion, and anomalies.",
+      "impact": "High",
+      "timeframe": "2-3 years",
+      "roi": "70% reduction in manual inspection time, early defect detection",
+      "implementation": [
+        "Boston Dynamics Spot robots with custom sensors",
+        "Drone swarms for exterior inspection",
+        "YOLOv8 + SegFormer models for defect detection",
+        "Automated reporting with severity classification",
+        "3D mapping and change detection"
+      ],
+      "technologies": [
+        "Boston Dynamics Spot",
+        "DJI M300 RTK",
+        "PyTorch",
+        "ROS2"
+      ],
+      "novelty": 8.8
+    },
+    {
+      "domain": "Carbon Capture",
+      "opportunity": "Direct Air Capture Powered by Nuclear Heat",
+      "description": "Install DAC plant using reactor thermal energy. Remove 1 million tons CO2/year while strengthening climate credentials.",
+      "impact": "High",
+      "timeframe": "3-5 years",
+      "roi": "Carbon credits $50-100M/year, ESG improvement",
+      "implementation": [
+        "Partner with Carbon Engineering or Climeworks",
+        "Heat integration for sorbent regeneration",
+        "CO2 compression and pipeline to sequestration",
+        "Carbon credit certification (Gold Standard)",
+        "Scale to multiple units over time"
+      ],
+      "technologies": [
+        "DAC",
+        "Heat exchangers",
+        "CO2 compression",
+        "CCS infrastructure"
+      ],
+      "novelty": 8.6
+    },
+    {
+      "domain": "Additive Manufacturing",
+      "opportunity": "On-Site 3D Printing of Safety-Critical Components",
+      "description": "Install metal AM facility for rapid fabrication of replacement parts. Reduce supply chain dependencies and enable design optimizations.",
+      "impact": "Medium-High",
+      "timeframe": "2-4 years",
+      "roi": "50-70% reduction in part lead times, 30% cost savings",
+      "implementation": [
+        "EOS M400 or similar metal 3D printer",
+        "Digital parts library with CAD models",
+        "ASME BPVC Section III certification process",
+        "Material testing lab (tensile, fatigue, corrosion)",
+        "Quality control with CT scanning"
+      ],
+      "technologies": [
+        "Metal AM (DMLS)",
+        "Inconel 718",
+        "CT scanning",
+        "CAD/CAM"
+      ],
+      "novelty": 7.5
+    }
+  ],
+  "breakthrough_insights": [
+    {
+      "opportunity": "Fast Spectrum Transmutation of Long-Lived Isotopes",
+      "domain": "Waste Valorization",
+      "novelty": 9.7,
+      "transformative_potential": "Very High",
+      "why_breakthrough": "Revolutionary technology with potential to transform nuclear industry globally"
+    },
+    {
+      "opportunity": "Quantum Sensors for Ultra-Precise Neutron Flux Mapping",
+      "domain": "Quantum Sensing",
+      "novelty": 9.6,
+      "transformative_potential": "Medium",
+      "why_breakthrough": "Revolutionary technology with potential to transform nuclear industry globally"
+    },
+    {
+      "opportunity": "Reinforcement Learning Control Agent",
+      "domain": "Autonomous Operations",
+      "novelty": 9.5,
+      "transformative_potential": "Very High",
+      "why_breakthrough": "Revolutionary technology with potential to transform nuclear industry globally"
+    },
+    {
+      "opportunity": "Multi-Plant AI Collective Intelligence",
+      "domain": "Federated Learning",
+      "novelty": 9.4,
+      "transformative_potential": "Very High",
+      "why_breakthrough": "Cutting-edge application of emerging technology with significant competitive advantage"
+    },
+    {
+      "opportunity": "Integrated Nuclear + Hydrogen Production",
+      "domain": "Circular Economy",
+      "novelty": 9.3,
+      "transformative_potential": "Very High",
+      "why_breakthrough": "Cutting-edge application of emerging technology with significant competitive advantage"
+    },
+    {
+      "opportunity": "Physics-Informed Neural Network for Temperature Control",
+      "domain": "Digital Twin",
+      "novelty": 9.2,
+      "transformative_potential": "High",
+      "why_breakthrough": "Cutting-edge application of emerging technology with significant competitive advantage"
+    },
+    {
+      "opportunity": "Quantum Annealing for Refueling Optimization",
+      "domain": "Quantum Optimization",
+      "novelty": 9.1,
+      "transformative_potential": "Medium",
+      "why_breakthrough": "Cutting-edge application of emerging technology with significant competitive advantage"
+    },
+    {
+      "opportunity": "Accident Tolerant Fuel Implementation",
+      "domain": "Advanced Materials",
+      "novelty": 9,
+      "transformative_potential": "Very High",
+      "why_breakthrough": "Cutting-edge application of emerging technology with significant competitive advantage"
+    }
+  ]
+}
