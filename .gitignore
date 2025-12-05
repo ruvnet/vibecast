@@ -70,5 +70,8 @@ build/
 *.backup
 *.bak
 
+# Archive (old documentation)
+archive/
+
 # Keep example reports for reference
 !reports/README.md
