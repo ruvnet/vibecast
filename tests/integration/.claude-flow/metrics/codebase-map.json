@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-01-15T20:12:33.617Z",
+  "projectRoot": "/workspaces/vibecast/tests/integration",
+  "structure": {
+    "hasPackageJson": false,
+    "hasTsConfig": false,
+    "hasClaudeConfig": false,
+    "hasClaudeFlow": true
+  },
+  "scannedAt": 1768507953617
+}
