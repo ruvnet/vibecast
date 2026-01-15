@@ -14,7 +14,6 @@ use crate::domain::entities::{
     Embedding, EmbeddingBatch, EmbeddingMetadata, SegmentId, StorageTier,
 };
 use crate::infrastructure::model_manager::ModelManager;
-use crate::infrastructure::onnx_inference::OnnxInference;
 use crate::normalization;
 use crate::{EmbeddingError, EMBEDDING_DIM, MEL_BINS, MEL_FRAMES};
 

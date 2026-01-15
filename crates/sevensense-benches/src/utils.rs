@@ -56,7 +56,7 @@ pub mod targets {
 /// # Returns
 /// A vector of random f32 vectors, normalized to unit length
 pub fn generate_random_vectors(count: usize, dims: usize) -> Vec<Vec<f32>> {
-    use std::f32::consts::PI;
+    
 
     let mut vectors = Vec::with_capacity(count);
 

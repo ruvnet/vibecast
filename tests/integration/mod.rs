@@ -136,7 +136,7 @@ impl IntegrationTestContext {
     }
 
     /// Populate context with test data
-    pub fn with_test_data(mut self, num_recordings: usize, segments_per_recording: usize) -> Self {
+    pub fn with_test_data(self, num_recordings: usize, segments_per_recording: usize) -> Self {
         for _ in 0..num_recordings {
             let recording = create_test_recording();
             let recording_id = recording.id;

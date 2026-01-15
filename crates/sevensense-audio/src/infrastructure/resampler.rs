@@ -4,7 +4,7 @@
 //! polyphase sinc interpolation.
 
 use rubato::{
-    FftFixedIn, FftFixedInOut, FftFixedOut, Resampler, SincFixedIn, SincFixedOut,
+    FftFixedInOut, Resampler, SincFixedIn,
     SincInterpolationParameters, SincInterpolationType, WindowFunction,
 };
 use tracing::{debug, instrument};

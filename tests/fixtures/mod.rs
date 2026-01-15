@@ -5,7 +5,7 @@
 
 use std::collections::HashMap;
 use uuid::Uuid;
-use chrono::{DateTime, Utc, Duration as ChronoDuration};
+use chrono::{DateTime, Utc};
 
 // ============================================================================
 // Shared Kernel Types (mirroring sevensense-core)
@@ -409,13 +409,19 @@ pub fn l2_normalize(vector: &[f32]) -> Vec<f32> {
 
 /// Factory function to create similar embeddings (clustered)
 pub fn create_similar_embeddings(base_vector: &[f32], count: usize, noise: f32) -> Vec<Embedding> {
+    // Scale noise by sqrt(dims) to maintain reasonable angular distance
+    // In high-dimensional spaces, random perturbations cause large angular changes
+    let dims = base_vector.len();
+    let scaled_noise = noise / (dims as f32).sqrt();
+
     (0..count)
         .map(|i| {
             let noisy_vector: Vec<f32> = base_vector
                 .iter()
                 .enumerate()
                 .map(|(j, &v)| {
-                    let noise_val = ((i * j) as f32 * 0.01).sin() * noise;
+                    // Use (i+1) to ensure first embedding also has noise
+                    let noise_val = (((i + 1) * (j + 1)) as f32 * 0.01).sin() * scaled_noise;
                     v + noise_val
                 })
                 .collect();
@@ -729,7 +735,7 @@ pub fn compute_entropy_rate(matrix: &TransitionMatrix) -> f32 {
 // ============================================================================
 
 /// Evidence type for citations
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Hash)]
 pub enum EvidenceType {
     Neighbor,
     Exemplar,
@@ -832,7 +838,8 @@ pub fn create_test_citations(count: usize) -> Vec<Citation> {
                 _ => EvidenceType::Motif,
             },
             evidence_id: Uuid::new_v4().to_string(),
-            strength: 0.7 + (i as f32 * 0.05),
+            // Spread strength evenly across [0.5, 1.0] range
+            strength: 0.5 + (i as f32 / count.max(1) as f32) * 0.5,
         })
         .collect()
 }
@@ -895,12 +902,14 @@ pub fn create_test_spectrogram() -> Vec<Vec<f32>> {
 
     (0..frames)
         .map(|frame| {
+            // Vary amplitude across frames (simulates signal onset/offset)
+            let amplitude = 0.3 + 0.7 * ((frame as f32 / 50.0).sin().abs());
             (0..mel_bins)
                 .map(|bin| {
                     // Create a pattern that simulates a frequency sweep
                     let center = 64.0 + 30.0 * (frame as f32 / 100.0).sin();
                     let distance = (bin as f32 - center).abs();
-                    (-distance / 20.0).exp()
+                    amplitude * (-distance / 20.0).exp()
                 })
                 .collect()
         })

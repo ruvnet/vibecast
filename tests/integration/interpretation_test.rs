@@ -449,8 +449,6 @@ mod rab_pattern {
 // ============================================================================
 
 mod structural_descriptors {
-    use super::*;
-
     #[test]
     fn test_pitch_contour_description() {
         // Mock pitch contour stats
@@ -573,8 +571,6 @@ mod hypothesis_generation {
 // ============================================================================
 
 mod monitoring_summary {
-    use super::*;
-
     struct DiversityMetrics {
         species_richness: u32,
         shannon_index: f32,

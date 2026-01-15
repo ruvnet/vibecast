@@ -86,7 +86,7 @@ pub struct HnswIndex {
     needs_rebuild: bool,
 
     /// Search buffer (reused across queries).
-    search_buf: Search,
+    _search_buf: Search,
 }
 
 impl HnswIndex {
@@ -98,7 +98,7 @@ impl HnswIndex {
             vectors: Vec::new(),
             config: config.clone(),
             needs_rebuild: false,
-            search_buf: Search::default(),
+            _search_buf: Search::default(),
         }
     }
 

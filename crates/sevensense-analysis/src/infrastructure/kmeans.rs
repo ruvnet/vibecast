@@ -3,7 +3,7 @@
 //! Standard K-Means algorithm with k-means++ initialization for
 //! partitioning embeddings into k clusters.
 
-use ndarray::{Array1, Array2, ArrayView1, Axis};
+use ndarray::{Array2, ArrayView1};
 use tracing::{debug, instrument};
 
 use crate::application::services::AnalysisError;
@@ -273,6 +273,7 @@ impl KMeansClusterer {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use ndarray::Array1;
 
     fn create_test_data() -> Array2<f32> {
         // Create simple separable clusters

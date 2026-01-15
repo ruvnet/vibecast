@@ -13,7 +13,7 @@ use thiserror::Error;
 use tracing::{debug, info, instrument, warn};
 
 use super::onnx_inference::OnnxInference;
-use crate::domain::entities::{EmbeddingModel, ModelStatus, ModelVersion};
+use crate::domain::entities::{EmbeddingModel, ModelVersion};
 
 /// Errors that can occur during model management
 #[derive(Debug, Error)]

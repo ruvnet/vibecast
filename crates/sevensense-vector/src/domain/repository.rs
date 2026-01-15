@@ -4,7 +4,6 @@
 //! to remain independent of specific storage implementations.
 
 use async_trait::async_trait;
-use std::ops::Range;
 
 use super::entities::{EmbeddingId, SimilarityEdge, EdgeType, StoredVector, VectorMetadata};
 use super::error::VectorError;

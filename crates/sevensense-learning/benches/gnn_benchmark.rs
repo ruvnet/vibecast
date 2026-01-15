@@ -69,14 +69,14 @@ fn benchmark_attention_computation(c: &mut Criterion) {
 }
 
 fn benchmark_cosine_similarity(c: &mut Criterion) {
-    c.bench_function("cosine_similarity_256d", |b| {
-        let a: Vec<f32> = (0..256).map(|i| (i as f32).sin()).collect();
-        let b: Vec<f32> = (0..256).map(|i| (i as f32).cos()).collect();
+    c.bench_function("cosine_similarity_256d", |bencher| {
+        let vec_a: Vec<f32> = (0..256).map(|i| (i as f32).sin()).collect();
+        let vec_b: Vec<f32> = (0..256).map(|i| (i as f32).cos()).collect();
 
-        b.iter(|| {
-            let dot: f32 = black_box(&a).iter().zip(black_box(&b)).map(|(x, y)| x * y).sum();
-            let norm_a: f32 = a.iter().map(|x| x * x).sum::<f32>().sqrt();
-            let norm_b: f32 = b.iter().map(|x| x * x).sum::<f32>().sqrt();
+        bencher.iter(|| {
+            let dot: f32 = black_box(&vec_a).iter().zip(black_box(&vec_b)).map(|(x, y)| x * y).sum();
+            let norm_a: f32 = vec_a.iter().map(|x| x * x).sum::<f32>().sqrt();
+            let norm_b: f32 = vec_b.iter().map(|x| x * x).sum::<f32>().sqrt();
             black_box(dot / (norm_a * norm_b))
         });
     });

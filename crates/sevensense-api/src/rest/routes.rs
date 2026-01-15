@@ -11,7 +11,7 @@ use super::handlers;
 use crate::AppContext;
 
 /// Create the REST API router with all endpoints.
-pub fn create_router(ctx: AppContext) -> Router<AppContext> {
+pub fn create_router(_ctx: AppContext) -> Router<AppContext> {
     Router::new()
         // Health check
         .route("/health", get(handlers::health_check))

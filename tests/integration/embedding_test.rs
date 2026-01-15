@@ -224,18 +224,24 @@ mod quantization {
     use super::*;
 
     /// Quantize f32 vector to i8 (scalar quantization)
+    /// Uses symmetric quantization around the midpoint to properly utilize i8 range
     fn quantize_i8(vector: &[f32]) -> (Vec<i8>, f32, f32) {
         let min_val = vector.iter().cloned().fold(f32::INFINITY, f32::min);
         let max_val = vector.iter().cloned().fold(f32::NEG_INFINITY, f32::max);
 
-        let scale = (max_val - min_val) / 255.0;
-        let zero_point = min_val;
+        // Use symmetric quantization: map [min, max] to [-127, 127]
+        let scale = (max_val - min_val) / 254.0;  // 254 = 127 - (-127)
+        let zero_point = (min_val + max_val) / 2.0;  // Midpoint of input range
 
         let quantized: Vec<i8> = vector
             .iter()
             .map(|v| {
-                let scaled = ((v - zero_point) / scale).round();
-                (scaled as i16).clamp(-128, 127) as i8
+                if scale == 0.0 {
+                    0i8
+                } else {
+                    let scaled = ((v - zero_point) / scale).round();
+                    (scaled as i16).clamp(-127, 127) as i8
+                }
             })
             .collect();
 

@@ -5,7 +5,7 @@
 
 use thiserror::Error;
 
-use super::{Audio, AudioMetadata, Segment};
+use super::{Audio, Segment};
 
 /// Audio processing error.
 #[derive(Debug, Error)]
@@ -98,7 +98,7 @@ impl AudioPipeline {
         // 4. Resample to target rate
         // 5. Normalize to -1.0 to 1.0
 
-        let (duration, sample_rate, _) = self.get_metadata(data)?;
+        let (duration, _sample_rate, _) = self.get_metadata(data)?;
 
         // Generate placeholder samples
         let num_samples = (duration * self.config.target_sample_rate as f64) as usize;
@@ -112,7 +112,7 @@ impl AudioPipeline {
     }
 
     /// Segment audio into individual calls/vocalizations.
-    pub fn segment(&self, audio: &Audio) -> Result<Vec<Segment>, AudioError> {
+    pub fn segment(&self, _audio: &Audio) -> Result<Vec<Segment>, AudioError> {
         // In a real implementation, this would:
         // 1. Compute spectrogram
         // 2. Detect energy regions above threshold

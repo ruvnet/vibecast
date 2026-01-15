@@ -5,9 +5,7 @@
 //!
 //! Reference: Kirkpatrick et al., "Overcoming catastrophic forgetting in neural networks", PNAS 2017
 
-use ndarray::{Array1, Array2};
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
 
 use crate::infrastructure::gnn_model::GnnModel;
 
@@ -253,7 +251,7 @@ impl EwcRegularizer {
         let mut param_idx = 0;
 
         for (layer_idx, layer_fisher) in ewc_state.fisher.diagonal.iter().enumerate() {
-            let layer_lambda = self.get_layer_lambda(layer_idx);
+            let _layer_lambda = self.get_layer_lambda(layer_idx);
 
             for &fisher_val in layer_fisher {
                 if param_idx < current_params.len() && param_idx < optimal_params.len() {

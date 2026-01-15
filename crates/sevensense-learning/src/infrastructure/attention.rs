@@ -8,7 +8,6 @@
 use ndarray::{Array1, Array2, Axis};
 use rand::Rng;
 use rand_distr::{Distribution, Uniform};
-use serde::{Deserialize, Serialize};
 
 /// Error type for attention operations
 #[derive(Debug, thiserror::Error)]
@@ -162,7 +161,7 @@ impl AttentionLayer {
     }
 
     /// Update weights with gradient
-    pub fn update_weights(&mut self, lr: f32, weight_decay: f32) {
+    pub fn update_weights(&mut self, _lr: f32, weight_decay: f32) {
         self.query_weights -= &(&self.query_weights * weight_decay);
         self.key_weights -= &(&self.key_weights * weight_decay);
         self.value_weights -= &(&self.value_weights * weight_decay);

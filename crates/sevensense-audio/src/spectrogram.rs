@@ -3,7 +3,7 @@
 //! This module provides efficient spectrogram computation using FFT
 //! and mel-scale filterbanks, producing features suitable for ML models.
 
-use ndarray::{Array1, Array2, Axis};
+use ndarray::{Array2, Axis};
 use rayon::prelude::*;
 use realfft::RealFftPlanner;
 use std::f32::consts::PI;

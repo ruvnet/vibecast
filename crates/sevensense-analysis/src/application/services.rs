@@ -5,9 +5,8 @@
 //! sequence analysis, and anomaly detection.
 
 use std::collections::HashMap;
-use std::sync::Arc;
 
-use ndarray::{Array1, Array2};
+use ndarray::Array2;
 use thiserror::Error;
 use tracing::{debug, info, instrument, warn};
 
@@ -20,7 +19,7 @@ use crate::domain::value_objects::{
     SequenceMetrics, TransitionMatrix,
 };
 use crate::infrastructure::{HdbscanClusterer, KMeansClusterer, MarkovAnalyzer};
-use crate::metrics::{SilhouetteScore, VMeasure};
+use crate::metrics::SilhouetteScore;
 
 /// Errors that can occur in analysis services.
 #[derive(Debug, Error)]
@@ -662,7 +661,7 @@ impl MotifDetectionService {
                 let mut motif = Motif::new(sequence, n_occurrences, avg_duration_ms, confidence);
 
                 // Add occurrence instances (simplified - would need segment IDs)
-                for (seq_idx, start) in occurrences {
+                for (_seq_idx, start) in occurrences {
                     motif.add_occurrence(MotifOccurrence::new(
                         RecordingId::new(),
                         Vec::new(),

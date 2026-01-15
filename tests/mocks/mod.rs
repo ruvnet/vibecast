@@ -4,7 +4,7 @@
 //! for isolated unit and integration testing.
 
 use std::collections::HashMap;
-use std::sync::{Arc, RwLock};
+use std::sync::RwLock;
 use uuid::Uuid;
 use chrono::{DateTime, Utc};
 
@@ -326,7 +326,7 @@ pub struct MockEmbeddingModelAdapter {
     dimensions: usize,
     model_name: String,
     model_version: String,
-    latency_ms: u64,
+    _latency_ms: u64,
     fail_rate: f32,
 }
 
@@ -336,7 +336,7 @@ impl Default for MockEmbeddingModelAdapter {
             dimensions: 1536,
             model_name: "perch".to_string(),
             model_version: "2.0".to_string(),
-            latency_ms: 10,
+            _latency_ms: 10,
             fail_rate: 0.0,
         }
     }
@@ -382,11 +382,21 @@ impl MockEmbeddingModelAdapter {
         // Generate deterministic embedding based on audio content
         let mut embedding = vec![0.0f32; self.dimensions];
 
-        // Simple hash-like transformation of audio to embedding
+        // Hash-like transformation that is sensitive to actual values, not just scale
         for (i, chunk) in audio_samples.chunks(100).enumerate() {
             let sum: f32 = chunk.iter().sum();
+            let sum_squares: f32 = chunk.iter().map(|x| x * x).sum();
+            let mean = sum / chunk.len() as f32;
+            let variance = sum_squares / chunk.len() as f32 - mean * mean;
+
             let dim_idx = i % self.dimensions;
+            let dim_idx2 = (i + 1) % self.dimensions;
+            let dim_idx3 = (i + 2) % self.dimensions;
+
+            // Use different statistics to create distinct embeddings
             embedding[dim_idx] += sum * 0.001;
+            embedding[dim_idx2] += variance * 0.01;  // Variance-based component
+            embedding[dim_idx3] += (sum.abs() + 0.1).ln() * 0.1;  // Log-scale component
         }
 
         // L2 normalize
@@ -615,21 +625,21 @@ impl MockVectorIndex {
 #[derive(Debug, Default)]
 pub struct MockClusteringService {
     min_cluster_size: usize,
-    min_samples: usize,
+    _min_samples: usize,
 }
 
 impl MockClusteringService {
     pub fn new() -> Self {
         Self {
             min_cluster_size: 5,
-            min_samples: 3,
+            _min_samples: 3,
         }
     }
 
     pub fn with_params(min_cluster_size: usize, min_samples: usize) -> Self {
         Self {
             min_cluster_size,
-            min_samples,
+            _min_samples: min_samples,
         }
     }
 
@@ -848,13 +858,13 @@ impl MockEvidencePackBuilder {
 /// Mock interpretation generator
 #[derive(Debug, Default)]
 pub struct MockInterpretationGenerator {
-    min_confidence: f32,
+    _min_confidence: f32,
 }
 
 impl MockInterpretationGenerator {
     pub fn new() -> Self {
         Self {
-            min_confidence: 0.7,
+            _min_confidence: 0.7,
         }
     }
 
@@ -874,7 +884,7 @@ impl MockInterpretationGenerator {
                 avg_distance
             ));
 
-            for (i, neighbor) in evidence_pack.neighbors.iter().take(3).enumerate() {
+            for (_i, neighbor) in evidence_pack.neighbors.iter().take(3).enumerate() {
                 citations.push(Citation {
                     claim: statements[0].clone(),
                     evidence_type: EvidenceType::Neighbor,

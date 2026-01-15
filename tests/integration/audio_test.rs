@@ -304,12 +304,12 @@ mod segmentation {
         let recording_id = RecordingId::new();
 
         // Create audio with clear signal/silence pattern
-        let mut samples = vec![0.0f32; 32000]; // 1 second of silence
-        // Add a "call" at 100-600ms
-        for i in 3200..19200 {
-            samples[i] = 0.5 * ((i as f32 * 0.1).sin());
+        let mut samples = vec![0.0f32; 64000]; // 2 seconds
+        // Add a loud "call" at 200-1200ms (1 second of signal)
+        for i in 6400..38400 {
+            samples[i] = 0.8 * ((i as f32 * 0.05).sin()); // Louder signal
         }
-        // Silence until end
+        // Silence at start and end
 
         let segments = segmenter.segment(&samples, recording_id);
 

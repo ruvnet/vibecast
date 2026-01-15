@@ -12,7 +12,7 @@ use uuid::Uuid;
 
 use super::{
     EvidencePackData, EvidenceSegment, FeatureContributionData, NeighborEvidenceData,
-    SearchResult, SharedFeature, SpeciesInfo, VisualizationUrls,
+    SearchResult, SharedFeature, VisualizationUrls,
 };
 
 /// Interpretation error.

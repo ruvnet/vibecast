@@ -21,7 +21,7 @@
 //! - `mobius_add`: Gyrovector addition (parallel transport)
 //! - `poincare_distance`: Geodesic distance on the manifold
 
-use std::f32::consts::PI;
+#![allow(dead_code)]  // Hyperbolic geometry utilities for future use
 
 /// Default curvature for the Poincare ball model.
 /// Negative curvature corresponds to hyperbolic space.

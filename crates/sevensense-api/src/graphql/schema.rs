@@ -4,12 +4,11 @@
 //! for the GraphQL API.
 
 use async_graphql::*;
-use chrono::{DateTime, Utc};
 use futures::Stream;
 use uuid::Uuid;
 
 use super::types::*;
-use crate::{AppContext, ProcessingEvent, ProcessingStatus};
+use crate::{AppContext, ProcessingStatus};
 
 /// Root query type for GraphQL API.
 pub struct QueryRoot;

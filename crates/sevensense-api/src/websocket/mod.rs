@@ -13,7 +13,7 @@ use crate::AppContext;
 
 /// Create the WebSocket router.
 #[must_use]
-pub fn create_router(ctx: AppContext) -> Router<AppContext> {
+pub fn create_router(_ctx: AppContext) -> Router<AppContext> {
     Router::new()
         // Recording status updates
         .route("/recordings/:id", get(handlers::recording_status_ws))

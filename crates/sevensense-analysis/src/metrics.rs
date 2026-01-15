@@ -3,7 +3,7 @@
 //! Provides V-measure, silhouette score, entropy calculations, and other
 //! metrics for evaluating clustering quality and sequence analysis.
 
-use ndarray::{Array1, Array2, ArrayView1, Axis};
+use ndarray::{Array2, ArrayView1, Axis};
 use std::collections::HashMap;
 
 /// Clustering quality metrics collection.
@@ -408,7 +408,7 @@ impl VMeasure {
 
         let mut cond_entropy = 0.0f32;
 
-        for (&(a, b), &count_ab) in &contingency {
+        for (&(_a, b), &count_ab) in &contingency {
             let count_b = counts_b[&b];
             let p_ab = count_ab as f32 / n;
             let p_a_given_b = count_ab as f32 / count_b as f32;

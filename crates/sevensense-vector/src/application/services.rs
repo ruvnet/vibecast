@@ -10,8 +10,8 @@ use tracing::{debug, info, instrument, warn};
 
 use crate::distance::{cosine_similarity, normalize_vector};
 use crate::domain::{
-    EmbeddingId, HnswConfig, SimilarityEdge, EdgeType, StoredVector, VectorMetadata,
-    VectorError, VectorIndexRepository,
+    EmbeddingId, HnswConfig, SimilarityEdge, EdgeType,
+    VectorError,
 };
 use crate::infrastructure::hnsw_index::HnswIndex;
 

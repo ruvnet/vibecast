@@ -5,11 +5,10 @@
 //! - GraphSAGE (Sample and Aggregate)
 //! - GAT (Graph Attention Network)
 
-use ndarray::{Array1, Array2, Axis};
+use ndarray::{Array1, Array2};
 use rand::Rng;
 use rand_distr::{Distribution, Normal, Uniform};
 use serde::{Deserialize, Serialize};
-use std::f32::consts::PI;
 
 use crate::domain::entities::GnnModelType;
 use crate::infrastructure::attention::AttentionLayer;
@@ -361,7 +360,7 @@ impl GnnLayer {
     /// Update weights with gradients
     pub fn update_weights(&mut self, gradient: &Array2<f32>, lr: f32, weight_decay: f32) {
         match self {
-            Self::Gcn { weights, bias } => {
+            Self::Gcn { weights, bias: _ } => {
                 // Apply weight decay
                 *weights -= &(weights.clone() * weight_decay);
                 // Apply gradient update
@@ -372,7 +371,7 @@ impl GnnLayer {
             Self::GraphSage {
                 self_weights,
                 neighbor_weights,
-                bias,
+                bias: _,
                 ..
             } => {
                 *self_weights -= &(self_weights.clone() * weight_decay);
@@ -382,7 +381,7 @@ impl GnnLayer {
                     *neighbor_weights -= &(gradient * lr);
                 }
             }
-            Self::Gat { weights, bias, .. } => {
+            Self::Gat { weights, bias: _, .. } => {
                 *weights -= &(weights.clone() * weight_decay);
                 if gradient.shape() == weights.shape() {
                     *weights -= &(gradient * lr);

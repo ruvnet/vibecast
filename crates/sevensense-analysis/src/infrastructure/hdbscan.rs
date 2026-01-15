@@ -4,12 +4,11 @@
 //! This implementation uses core distance and mutual reachability distance
 //! to build a minimum spanning tree and extract clusters.
 
-use ndarray::{Array1, Array2, ArrayView1};
-use ordered_float::OrderedFloat;
+use ndarray::{Array2, ArrayView1};
 use petgraph::graph::{NodeIndex, UnGraph};
 use petgraph::algo::min_spanning_tree;
 use petgraph::data::FromElements;
-use std::collections::{BinaryHeap, HashMap, HashSet};
+use std::collections::{HashMap, HashSet};
 use tracing::{debug, instrument};
 
 use crate::application::services::AnalysisError;
@@ -254,7 +253,7 @@ impl HdbscanClusterer {
         let mut sorted = weights.clone();
         sorted.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
 
-        let median = sorted[n / 2];
+        let _median = sorted[n / 2];
         let q1 = sorted[n / 4];
         let q3 = sorted[3 * n / 4];
         let iqr = q3 - q1;
@@ -324,6 +323,7 @@ struct CondensedNode {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use ndarray::Array1;
 
     fn create_clustered_data() -> Array2<f32> {
         // Create 3 clear clusters with deterministic variation

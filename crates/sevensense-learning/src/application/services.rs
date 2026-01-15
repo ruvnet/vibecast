@@ -6,7 +6,7 @@
 use std::sync::Arc;
 use std::time::Instant;
 
-use ndarray::{Array1, Array2, Axis};
+use ndarray::Array2;
 use rayon::prelude::*;
 use tokio::sync::RwLock;
 use tracing::{debug, info, instrument, warn};
@@ -15,9 +15,9 @@ use crate::domain::entities::{
     EmbeddingId, GnnModelType, LearningConfig, LearningSession, RefinedEmbedding,
     TrainingMetrics, TrainingStatus, TransitionGraph,
 };
-use crate::domain::repository::{LearningRepository, RepositoryResult};
+use crate::domain::repository::LearningRepository;
 use crate::ewc::{EwcRegularizer, EwcState};
-use crate::infrastructure::gnn_model::{GnnError, GnnLayer, GnnModel};
+use crate::infrastructure::gnn_model::{GnnError, GnnModel};
 use crate::loss;
 
 /// Error type for learning service operations

@@ -3,7 +3,6 @@
 //! This module provides various loss functions for training GNN models
 //! on graph-structured data with contrastive learning objectives.
 
-use std::f32::consts::E;
 
 /// Compute InfoNCE (Noise Contrastive Estimation) loss.
 ///

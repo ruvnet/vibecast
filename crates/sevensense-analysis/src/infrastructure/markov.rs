@@ -3,7 +3,7 @@
 //! Provides transition matrix computation, entropy calculation,
 //! and sequence analysis for understanding vocalization patterns.
 
-use std::collections::{HashMap, HashSet};
+use std::collections::HashSet;
 use tracing::{debug, instrument};
 
 use crate::domain::entities::ClusterId;

@@ -534,9 +534,10 @@ mod transition_matrix {
             *counts.entry((from_idx, to_idx)).or_insert(0) += 1;
         }
 
-        // Transitions: 0->1 (2x), 1->0 (2x), 0->2 (1x), 2->1 (1x)
-        assert_eq!(*counts.get(&(0, 1)).unwrap_or(&0), 2);
-        assert_eq!(*counts.get(&(1, 0)).unwrap_or(&0), 1);
+        // Sequence: [0, 1, 0, 2, 1, 0]
+        // Transitions: 0->1 (1x), 1->0 (2x), 0->2 (1x), 2->1 (1x)
+        assert_eq!(*counts.get(&(0, 1)).unwrap_or(&0), 1);
+        assert_eq!(*counts.get(&(1, 0)).unwrap_or(&0), 2);
     }
 }
 

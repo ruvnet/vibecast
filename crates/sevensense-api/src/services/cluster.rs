@@ -72,7 +72,7 @@ impl ClusterEngine {
     }
 
     /// Update clusters with new embeddings.
-    pub fn update_clusters(&self, embeddings: &[SegmentEmbedding]) -> Result<(), AnalysisError> {
+    pub fn update_clusters(&self, _embeddings: &[SegmentEmbedding]) -> Result<(), AnalysisError> {
         // In a real implementation, this would:
         // 1. Run HDBSCAN or similar clustering
         // 2. Merge with existing clusters if similar
