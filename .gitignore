@@ -1,3 +1,13 @@
+# Rust build artifacts
+target/
+Cargo.lock
+
+# Claude Code local files
+.claude/
+.claude-flow/
+.swarm/
+.mcp.json
+
 # Logs
 logs
 *.log
