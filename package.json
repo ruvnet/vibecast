@@ -1,0 +1,45 @@
+{
+  "name": "visa-requirements-gatherer",
+  "version": "1.0.0",
+  "description": "Canadian Visa Requirements Gatherer - Tracks and compares immigration program conditions using claude-flow browser automation",
+  "main": "src/index.js",
+  "bin": {
+    "visa-gather": "./src/cli.js"
+  },
+  "scripts": {
+    "gather": "node src/cli.js gather",
+    "gather:express": "node src/cli.js gather --express",
+    "gather:pnp": "node src/cli.js gather --pnp",
+    "list": "node src/cli.js list",
+    "check": "node src/cli.js check",
+    "history": "node src/cli.js history",
+    "test": "node --test src/**/*.test.js",
+    "claude-flow": "npx claude-flow@alpha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:52938/git/ruvnet/vibecast"
+  },
+  "keywords": [
+    "canada",
+    "visa",
+    "immigration",
+    "express-entry",
+    "pnp",
+    "scraper",
+    "claude-flow",
+    "browser-automation"
+  ],
+  "author": "rUv",
+  "license": "ISC",
+  "dependencies": {
+    "@anthropic-ai/claude-code": "^2.1.19",
+    "@anthropic-ai/sdk": "^0.71.2",
+    "cheerio": "^1.2.0",
+    "playwright": "^1.58.0",
+    "puppeteer-core": "^24.36.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

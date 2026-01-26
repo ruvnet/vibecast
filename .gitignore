@@ -134,3 +134,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Visa Requirements Gatherer data
+data/baseline.json
+data/history/

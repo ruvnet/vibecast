@@ -1,0 +1,3 @@
+# This directory stores visa requirements data
+# - baseline.json: Current baseline for comparison
+# - history/: Historical snapshots
