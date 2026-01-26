@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-26T02:39:46.060Z",
+  "timestamp": "2026-01-26T02:54:46.066Z",
   "projectRoot": "/home/user/vibecast",
   "structure": {
     "hasPackageJson": false,
@@ -7,5 +7,5 @@
     "hasClaudeConfig": true,
     "hasClaudeFlow": true
   },
-  "scannedAt": 1769395186061
+  "scannedAt": 1769396086067
 }
