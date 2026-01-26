@@ -26,7 +26,10 @@ const {
   listSnapshots,
   loadSnapshot,
   compareWithBaseline,
-  generateDiffReport
+  generateDiffReport,
+  formatEligibility,
+  generateEligibilityReport,
+  getProgramEligibilitySummary
 } = require('./utils/diff-detector');
 
 const {
@@ -35,7 +38,9 @@ const {
   getSourcesByCategory,
   getSourceById,
   getPNPSources,
-  getExpressEntrySources
+  getExpressEntrySources,
+  getEligibility,
+  getAllEligibilitySummaries
 } = require('./config/visa-sources');
 
 /**
@@ -215,6 +220,13 @@ module.exports = {
   loadSnapshot,
   compareWithBaseline,
   generateDiffReport,
+
+  // Eligibility
+  getEligibility,
+  getAllEligibilitySummaries,
+  formatEligibility,
+  generateEligibilityReport,
+  getProgramEligibilitySummary,
 
   // Configuration
   VISA_SOURCES,

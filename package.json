@@ -11,6 +11,7 @@
     "gather:express": "node src/cli.js gather --express",
     "gather:pnp": "node src/cli.js gather --pnp",
     "list": "node src/cli.js list",
+    "eligibility": "node src/cli.js eligibility",
     "check": "node src/cli.js check",
     "history": "node src/cli.js history",
     "test": "node --test src/**/*.test.js",

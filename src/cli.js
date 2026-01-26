@@ -8,6 +8,8 @@
  *   node src/cli.js gather --express    # Gather Express Entry only
  *   node src/cli.js gather --pnp        # Gather PNP programs only
  *   node src/cli.js list                # List all tracked programs
+ *   node src/cli.js eligibility         # Show all eligibility requirements
+ *   node src/cli.js eligibility <id>    # Show eligibility for specific program
  *   node src/cli.js check               # Quick change check
  *   node src/cli.js history             # List historical snapshots
  *   node src/cli.js compare <snapshot>  # Compare with specific snapshot
@@ -21,7 +23,12 @@ const {
   loadSnapshot,
   loadBaseline,
   generateDiffReport,
-  compareWithBaseline
+  compareWithBaseline,
+  getSourceById,
+  getAllSources,
+  getEligibility,
+  generateEligibilityReport,
+  formatEligibility
 } = require('./index');
 
 const args = process.argv.slice(2);
@@ -48,6 +55,7 @@ Usage: node src/cli.js <command> [options]
 Commands:
   gather              Scrape and gather visa requirements from all sources
   list                List all tracked visa programs
+  eligibility [id]    Show eligibility requirements (all programs or specific ID)
   check               Quick change check (compares hashes)
   history             List historical snapshots
   compare <file>      Compare current baseline with a snapshot
@@ -66,10 +74,94 @@ Examples:
   node src/cli.js gather --express          # Express Entry only
   node src/cli.js gather --pnp              # Provincial programs only
   node src/cli.js list                      # List all programs
+  node src/cli.js eligibility               # Show all eligibility requirements
+  node src/cli.js eligibility ee-fsw        # Show FSW eligibility
+  node src/cli.js eligibility pnp-on        # Show Ontario PNP eligibility
   node src/cli.js check                     # Quick change detection
   node src/cli.js history                   # View history
   node src/cli.js compare snapshot-2024.json
+
+Program IDs:
+  Express Entry: ee-fsw, ee-fst, ee-cec, ee-crs, ee-lang
+  Work Permits:  wp-iec, wp-general
+  Study Permits: sp-main, sp-pal, sp-pgwp, sp-spouse
+  Visitor:       vp-trv
+  PNP Programs:  pnp-on, pnp-bc, pnp-ab, pnp-sk, pnp-mb, pnp-nb, pnp-ns, pnp-pe, pnp-nl, pnp-nt, pnp-yt
+  Quebec:        qc-skilled
+  Nunavut:       nu-imm
 `);
+}
+
+/**
+ * Print eligibility for a specific program
+ */
+function printProgramEligibility(programId) {
+  const source = getSourceById(programId);
+  if (!source) {
+    console.error(`Program not found: ${programId}`);
+    console.log('\nUse "node src/cli.js list" to see available programs.');
+    process.exit(1);
+  }
+
+  console.log('\n' + '='.repeat(80));
+  console.log(`ELIGIBILITY REQUIREMENTS: ${source.name}`);
+  console.log('='.repeat(80));
+  console.log(`\nID: ${source.id}`);
+  console.log(`Category: ${source.category}`);
+  if (source.province) console.log(`Province: ${source.province}`);
+  console.log(`URL: ${source.url}`);
+  if (source.description) console.log(`\nDescription: ${source.description}`);
+  console.log('');
+
+  if (!source.eligibility) {
+    console.log('No eligibility requirements defined for this program.');
+    console.log('(This may be a news source or informational page)');
+    return;
+  }
+
+  const lines = formatEligibility(source.eligibility, '');
+  console.log(lines.join('\n'));
+  console.log('');
+}
+
+/**
+ * Print eligibility for all programs
+ */
+function printAllEligibility() {
+  const sources = getAllSources().filter(s => s.eligibility);
+
+  console.log('\n' + '='.repeat(80));
+  console.log('CANADIAN VISA PROGRAMS - ELIGIBILITY REQUIREMENTS');
+  console.log('='.repeat(80));
+  console.log(`\nTotal Programs with Eligibility Data: ${sources.length}\n`);
+
+  // Group by category
+  const byCategory = {};
+  for (const source of sources) {
+    const cat = source.category || 'Other';
+    if (!byCategory[cat]) byCategory[cat] = [];
+    byCategory[cat].push(source);
+  }
+
+  for (const [category, programs] of Object.entries(byCategory)) {
+    console.log('\n' + '-'.repeat(80));
+    console.log(`${category.toUpperCase()} (${programs.length} programs)`);
+    console.log('-'.repeat(80));
+
+    for (const prog of programs) {
+      console.log(`\n[${prog.id}] ${prog.name}`);
+      if (prog.province) console.log(`Province: ${prog.province}`);
+      console.log(`URL: ${prog.url}`);
+      console.log('');
+
+      const lines = formatEligibility(prog.eligibility, '  ');
+      console.log(lines.join('\n'));
+    }
+  }
+
+  console.log('\n' + '='.repeat(80));
+  console.log('Use "node src/cli.js eligibility <program-id>" for detailed view');
+  console.log('='.repeat(80) + '\n');
 }
 
 async function main() {
@@ -112,6 +204,16 @@ async function main() {
 
       case 'list': {
         printProgramList();
+        break;
+      }
+
+      case 'eligibility': {
+        const programId = args[1];
+        if (programId && !programId.startsWith('-')) {
+          printProgramEligibility(programId);
+        } else {
+          printAllEligibility();
+        }
         break;
       }
 

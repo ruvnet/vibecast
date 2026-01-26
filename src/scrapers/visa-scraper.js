@@ -5,7 +5,7 @@
 
 const cheerio = require('cheerio');
 const crypto = require('crypto');
-const { getAllSources, getSourceById } = require('../config/visa-sources');
+const { getAllSources, getSourceById, getEligibility } = require('../config/visa-sources');
 
 // Try to load playwright for browser automation (optional)
 let playwright;
@@ -253,12 +253,16 @@ async function scrapeSingleSource(source, config = {}) {
     // Create content hash for change detection
     const contentHash = createContentHash(content.textContent);
 
+    // Get predefined eligibility requirements from config
+    const eligibility = getEligibility(source.id);
+
     const result = {
       id: source.id,
       name: source.name,
       url: source.url,
       category: source.category,
       province: source.province || null,
+      description: source.description || null,
       scrapedAt: new Date().toISOString(),
       processingTime: Date.now() - startTime,
       contentHash,
@@ -266,6 +270,7 @@ async function scrapeSingleSource(source, config = {}) {
       sections: content.sections,
       requirements: content.requirements.slice(0, 100), // Limit to top 100
       conditions,
+      eligibility, // Include structured eligibility requirements
       links: content.links.slice(0, 50), // Limit to top 50 links
       rawTextLength: content.textContent.length,
       success: true,

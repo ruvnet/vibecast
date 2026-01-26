@@ -1,10 +1,12 @@
 /**
  * Diff Detector - Compares visa requirements and detects changes
  * Identifies new programs, modified conditions, and removed requirements
+ * Includes eligibility requirements in reports
  */
 
 const fs = require('fs').promises;
 const path = require('path');
+const { getEligibility, getAllEligibilitySummaries } = require('../config/visa-sources');
 
 const DATA_DIR = path.join(__dirname, '../../data');
 const BASELINE_FILE = path.join(DATA_DIR, 'baseline.json');
@@ -490,6 +492,165 @@ async function detectChanges(newResults, options = {}) {
   };
 }
 
+/**
+ * Format eligibility requirements for display
+ */
+function formatEligibility(eligibility, indent = '  ') {
+  if (!eligibility) return [];
+
+  const lines = [];
+
+  // Handle minimum requirements array
+  if (eligibility.minimumRequirements) {
+    lines.push(`${indent}MINIMUM REQUIREMENTS:`);
+    for (const req of eligibility.minimumRequirements) {
+      lines.push(`${indent}  - ${req}`);
+    }
+  }
+
+  // Handle general requirements array
+  if (eligibility.generalRequirements) {
+    lines.push(`${indent}GENERAL REQUIREMENTS:`);
+    for (const req of eligibility.generalRequirements) {
+      lines.push(`${indent}  - ${req}`);
+    }
+  }
+
+  // Handle language requirements
+  if (eligibility.language) {
+    lines.push(`${indent}LANGUAGE:`);
+    if (typeof eligibility.language === 'object') {
+      if (eligibility.language.minimum) {
+        lines.push(`${indent}  Minimum: ${eligibility.language.minimum}`);
+      }
+      if (eligibility.language.acceptedTests) {
+        lines.push(`${indent}  Accepted Tests: ${eligibility.language.acceptedTests.join(', ')}`);
+      }
+      if (eligibility.language.teer0or1) {
+        lines.push(`${indent}  TEER 0/1: ${eligibility.language.teer0or1}`);
+      }
+      if (eligibility.language.teer2or3) {
+        lines.push(`${indent}  TEER 2/3: ${eligibility.language.teer2or3}`);
+      }
+    }
+  }
+
+  // Handle work experience requirements
+  if (eligibility.workExperience) {
+    lines.push(`${indent}WORK EXPERIENCE:`);
+    if (eligibility.workExperience.minimum) {
+      lines.push(`${indent}  Minimum: ${eligibility.workExperience.minimum}`);
+    }
+    if (eligibility.workExperience.recency) {
+      lines.push(`${indent}  Recency: ${eligibility.workExperience.recency}`);
+    }
+    if (eligibility.workExperience.type) {
+      lines.push(`${indent}  Type: ${eligibility.workExperience.type}`);
+    }
+  }
+
+  // Handle education requirements
+  if (eligibility.education) {
+    lines.push(`${indent}EDUCATION:`);
+    if (eligibility.education.minimum) {
+      lines.push(`${indent}  Minimum: ${eligibility.education.minimum}`);
+    }
+    if (eligibility.education.ecaRequired !== undefined) {
+      lines.push(`${indent}  ECA Required: ${eligibility.education.ecaRequired ? 'Yes' : 'No'}`);
+    }
+  }
+
+  // Handle points grid
+  if (eligibility.pointsGrid) {
+    lines.push(`${indent}POINTS GRID:`);
+    for (const [factor, details] of Object.entries(eligibility.pointsGrid)) {
+      if (typeof details === 'object' && details.max) {
+        lines.push(`${indent}  ${factor}: Max ${details.max} points - ${details.description || ''}`);
+      }
+    }
+    if (eligibility.passingScore) {
+      lines.push(`${indent}  Passing Score: ${eligibility.passingScore} points`);
+    }
+  }
+
+  // Handle streams for PNP
+  if (eligibility.streams) {
+    lines.push(`${indent}AVAILABLE STREAMS:`);
+    for (const [key, stream] of Object.entries(eligibility.streams)) {
+      if (stream.name) {
+        lines.push(`${indent}  ${stream.name}:`);
+        if (stream.requirements) {
+          for (const req of stream.requirements.slice(0, 3)) {
+            lines.push(`${indent}    - ${req}`);
+          }
+        }
+      }
+    }
+  }
+
+  // Handle common requirements
+  if (eligibility.commonRequirements) {
+    lines.push(`${indent}COMMON REQUIREMENTS:`);
+    for (const req of eligibility.commonRequirements) {
+      lines.push(`${indent}  - ${req}`);
+    }
+  }
+
+  return lines;
+}
+
+/**
+ * Generate eligibility report for all programs
+ */
+function generateEligibilityReport(results = []) {
+  const lines = [];
+
+  lines.push('='.repeat(80));
+  lines.push('CANADIAN VISA PROGRAMS - ELIGIBILITY REQUIREMENTS');
+  lines.push('='.repeat(80));
+  lines.push('');
+
+  // Group by category
+  const byCategory = {};
+  for (const result of results) {
+    if (!result.eligibility) continue;
+    const cat = result.category || 'Other';
+    if (!byCategory[cat]) byCategory[cat] = [];
+    byCategory[cat].push(result);
+  }
+
+  for (const [category, programs] of Object.entries(byCategory)) {
+    lines.push('-'.repeat(80));
+    lines.push(`${category.toUpperCase()}`);
+    lines.push('-'.repeat(80));
+
+    for (const prog of programs) {
+      lines.push('');
+      lines.push(`[${prog.id}] ${prog.name}`);
+      if (prog.province) lines.push(`Province: ${prog.province}`);
+      lines.push(`URL: ${prog.url}`);
+      if (prog.description) lines.push(`Description: ${prog.description}`);
+      lines.push('');
+
+      const eligLines = formatEligibility(prog.eligibility);
+      lines.push(...eligLines);
+      lines.push('');
+    }
+  }
+
+  return lines.join('\n');
+}
+
+/**
+ * Generate a program-specific eligibility summary
+ */
+function getProgramEligibilitySummary(programId) {
+  const eligibility = getEligibility(programId);
+  if (!eligibility) return null;
+
+  return formatEligibility(eligibility, '').join('\n');
+}
+
 module.exports = {
   loadBaseline,
   saveBaseline,
@@ -502,5 +663,8 @@ module.exports = {
   detectChanges,
   compareRequirements,
   compareConditions,
-  calculateSimilarity
+  calculateSimilarity,
+  formatEligibility,
+  generateEligibilityReport,
+  getProgramEligibilitySummary
 };
