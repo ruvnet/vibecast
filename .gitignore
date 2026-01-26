@@ -134,3 +134,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Claude Flow runtime databases
+vectors.db
+*.db
+.swarm/
