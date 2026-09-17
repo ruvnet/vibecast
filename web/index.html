@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Vibecast is an independent creative studio for cinematic images, moving scenes, narration and review films, powered by fal.">
+<meta name="theme-color" content="#101110"><title>Vibecast · Director's Studio</title>
+<link rel="icon" href="/art.svg" type="image/svg+xml"><link rel="stylesheet" href="/studio.css"><script src="/studio.js" defer></script>
+</head>
+<body>
+<aside class="sidebar">
+<a class="wordmark" href="#create" aria-label="Vibecast home"><span class="logo-mark">v</span>vibecast<span class="wordmark-dot">.</span></a>
+<div class="workspace"><span class="avatar">r</span><div><strong>Independent studio</strong><small>Your ideas. Your final cut.</small></div></div>
+<p class="nav-caption">WORKSPACE</p>
+<nav aria-label="Main navigation">
+<button class="nav-item active" data-view="create"><span>✦</span>Create<span class="new-tag">NEW</span></button>
+<button class="nav-item" data-view="director"><span>▤</span>Director</button>
+<button class="nav-item" data-view="library"><span>▧</span>Media library</button>
+<button class="nav-item" data-view="elements"><span>◉</span>References</button>
+<button class="nav-item" data-view="brands"><span>◈</span>Brand kits</button>
+<button class="nav-item" data-view="activity"><span>↗</span>Activity</button>
+</nav>
+<div class="sidebar-bottom"><div class="budget"><div><small>TODAY'S RESERVATIONS</small><strong id="budgetValue">$0.00</strong></div><div class="budget-track"><span id="budgetBar"></span></div><small id="budgetLimit">Budget guarded before dispatch</small></div><button class="profile" id="settingsButton"><span class="avatar small">r</span><span>Studio settings</span><span>↗</span></button></div>
+</aside>
+<div class="shell">
+<header class="topbar"><div class="crumb"><span class="tiny-logo">v.</span>Workspace <span>/</span><strong id="viewName">Creative studio</strong></div><div class="top-actions"><span class="status-pill" id="modeBadge">CONNECTING</span><button id="themeButton" class="icon-button" aria-label="Toggle light or dark mode">◐</button><button id="projectShortcut" class="button small secondary">+ New film</button></div></header>
+<main id="main" tabindex="-1"><div class="loading">Opening your studio…</div></main>
+<footer class="footer"><span>INDEPENDENT BY DESIGN.</span><span>Vibecast / Built for the final cut / fal execution</span></footer>
+</div>
+<nav class="mobile-nav" aria-label="Mobile navigation"><button data-view="create">✦<span>Create</span></button><button data-view="director">▤<span>Director</span></button><button data-view="library">▧<span>Library</span></button><button data-view="activity">↗<span>Activity</span></button></nav>
+<dialog id="dialog" aria-labelledby="dialogTitle"><div class="dialog-head"><h2 id="dialogTitle"></h2><button id="closeDialog" class="icon-button" aria-label="Close dialog">×</button></div><div id="dialogBody"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<input type="file" id="fileInput" hidden accept="image/png,image/jpeg,image/webp,video/mp4,video/webm,audio/wav,audio/mpeg,audio/mp4">
+</body></html>

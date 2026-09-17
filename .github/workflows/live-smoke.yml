@@ -1,0 +1,39 @@
+name: Capped fal live smoke
+on:
+  workflow_dispatch:
+  push:
+    branches: ['studio/fal-directors-cut']
+permissions:
+  contents: read
+concurrency:
+  group: vibecast-paid-smoke
+  cancel-in-progress: false
+jobs:
+  live-smoke:
+    if: github.repository == 'ruvnet/vibecast' && (github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[fal-smoke]'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install application dependencies
+        run: pip install -r requirements.txt
+      - name: One bounded request through the real application service
+        env:
+          FAL_KEY: ${{ secrets.FAL_KEY }}
+        run: |
+          mkdir -p evidence/live-smoke
+          if [ -z "$FAL_KEY" ]; then
+            printf '%s\n' '{"status":"not_run","reason":"No repository FAL_KEY configured","provider_calls":0,"approved_ceiling_usd":0.01}' > evidence/live-smoke/report.json
+            echo 'Live provider smoke NOT RUN: repository FAL_KEY is absent. No charge.'
+            exit 0
+          fi
+          python scripts/live_smoke.py --approve-usd 0.01
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: capped-fal-smoke-evidence
+          path: evidence/live-smoke/
+          retention-days: 14
