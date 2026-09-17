@@ -76,9 +76,21 @@ function captureProject() {
 function newShot(n=1) { return {id:id(),title:`Shot ${String(n).padStart(2,'0')}`,prompt:S.prompt||'An explorer approaches a colossal gateway in the desert.',camera:S.camera,lens:'35mm anamorphic',light:'Warm backlight and atmospheric dust',duration:5,narration:'',asset_id:null,audio_asset_id:null,reference_id:null}; }
 async function saveProject(recapture=true) {
   if(recapture)captureProject();
+  if(S.saving)throw new Error('Wait for the current film save to finish.');
   const {id:pid,...data}=S.project;
-  const saved=await api('/api/projects/'+pid,'PUT',data);S.project=saved;
-  S.projects=S.projects.map(p=>p.id===pid?saved:p);return saved;
+  // Lock the old inspector while a structural edit is being persisted. Otherwise
+  // a fast edit can target the previous shot and be replaced by the response.
+  S.saving=true;
+  const controls=[...document.querySelectorAll('#main input,#main textarea,#main select,#main button')].map(el=>[el,el.disabled]);
+  controls.forEach(([el])=>{el.disabled=true;});
+  $('#main').setAttribute('aria-busy','true');
+  try {
+    const saved=await api('/api/projects/'+pid,'PUT',data);S.project=saved;
+    S.projects=S.projects.map(p=>p.id===pid?saved:p);return saved;
+  } finally {
+    controls.forEach(([el,disabled])=>{el.disabled=disabled;});
+    $('#main').removeAttribute('aria-busy');S.saving=false;
+  }
 }
 function directorView() {
   if(!S.project) return header('Your director’s chair.','One story. Every shot under your control.')+empty('Give your story a home.','Create a film, plan its shots, choose your takes, and export a real review cut.','<button class="button primary" data-action="new-project">+ Create a film</button>');
@@ -157,7 +169,7 @@ async function action(name,button) {
   if(name==='logout'){await api('/api/session','DELETE');closeModal();S.session=null;return load();}
 }
 document.addEventListener('click',async event=>{
-  const b=event.target.closest('button, [data-view]');if(!b||b.disabled)return;
+  const b=event.target.closest('button, [data-view]');if(!b||b.disabled||S.saving)return;
   try {
     if(b.dataset.view)return await navigate(b.dataset.view);
     if(b.dataset.action)return await action(b.dataset.action,b);

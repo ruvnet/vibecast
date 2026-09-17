@@ -87,7 +87,12 @@ def main():
                 print('STEP voice',flush=True);page.locator('[data-shot-generate="voice"]').click();page.wait_for_selector('[data-approve]');page.locator('[data-approve]').click()
                 page.wait_for_selector('[data-use-job]',timeout=30000);page.locator('[data-use-job]').first.click()
                 expect(page.locator('.success-text')).to_contain_text('Narration take attached')
-                page.locator('[data-action="add-shot"]').last.click();page.wait_for_selector('#shot-title')
+                page.locator('[data-action="add-shot"]').last.click()
+                # Existing inspector fields are not evidence that the asynchronous
+                # structural save finished. Wait for the new shot, not an old input.
+                expect(page.locator('.shot-entry')).to_have_count(2)
+                expect(page.locator('#shot-title')).to_have_value('Shot 02')
+                expect(page.locator('#shot-title')).to_be_enabled()
                 page.locator('#shot-title').fill('The discovery');page.locator('#shot-duration').fill('3')
                 print('STEP choosing',flush=True);page.locator('[data-action="choose-take"]').first.click();print('STEP chooser open',flush=True);page.locator('[data-select-asset]').filter(has=page.locator('img')).first.click()
                 page.locator('[data-action="save-project"]').click()
@@ -95,11 +100,13 @@ def main():
                 # Choose a visual asset explicitly; never attach an audio file as shot visual.
                 film=httpx.get(ORIGIN+'/api/projects').json()[0]
                 assert len(film['shots'])==2 and all(s['asset_id'] for s in film['shots']),film
+                assert [s['duration'] for s in film['shots']]==[5,3],film
+                assert film['shots'][1]['title']=='The discovery',film
                 page.screenshot(path=str(OUT/'studio-director.png'),full_page=True)
                 page.locator('[data-action="export"]').click();page.wait_for_selector('.preview-media video',timeout=120000);print('STEP export complete',flush=True)
                 expect(page.locator('#dialogTitle')).to_contain_text('review film')
                 exported=next(a for a in httpx.get(ORIGIN+'/api/assets').json() if a['provenance']['mode']=='export')
-                assert abs(exported['duration']-8)<.25
+                assert abs(exported['duration']-8)<.25, {'duration':exported['duration'],'shots':film['shots']}
                 (OUT/'acceptance-review.mp4').write_bytes(httpx.get(ORIGIN+'/api/assets/'+exported['id']+'/file').content)
                 page.locator('#closeDialog').click()
                 # Upload and ownership-backed reference library.
