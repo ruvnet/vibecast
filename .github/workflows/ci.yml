@@ -2,17 +2,21 @@ name: Studio acceptance
 on:
   pull_request:
   push:
-    branches: [main, 'studio/**']
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: studio-acceptance-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
   acceptance:
-    if: ${{ !contains(github.event.head_commit.message, '[delivery]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
@@ -25,8 +29,17 @@ jobs:
           sudo apt-get install -y ffmpeg
           pip install -r requirements-dev.txt
           python -m playwright install --with-deps chromium
-      - name: Compile and validate
+      - name: Compile and validate exact source
         run: |
+          python - <<'PY'
+          import hashlib, json, pathlib
+          root=pathlib.Path.cwd()
+          for name, expected in json.loads((root/'docs/source-manifest.json').read_text()).items():
+              path=root/name
+              assert path.resolve().is_relative_to(root)
+              assert hashlib.sha256(path.read_bytes()).hexdigest()==expected, name
+          print('Source manifest verified.')
+          PY
           python -m compileall -q studio scripts tests
           node --check web/studio.js
           mkdir -p evidence
@@ -43,3 +56,4 @@ jobs:
           name: studio-acceptance-evidence
           path: evidence/
           retention-days: 14
+          if-no-files-found: error
