@@ -111,7 +111,10 @@ def main():
                 page.locator('#closeDialog').click()
                 # Upload and ownership-backed reference library.
                 png=Path(td)/'reference.png';Image.new('RGBA',(320,180),(40,80,55,128)).save(png)
-                page.locator('#fileInput').set_input_files(str(png));page.wait_for_function("S.assets.some(a => a.name === 'reference.png')")
+                page.locator('#fileInput').set_input_files(str(png))
+                # Observe the completed UI state instead of Playwright's eval-based
+                # polling helper; production CSP intentionally excludes unsafe-eval.
+                expect(page.locator('#toast')).to_contain_text('Media archived. Your upload is available in the library.')
                 page.locator('.sidebar [data-view="elements"]').click()
                 page.locator('#elementForm input[name="name"]').fill('Explorer continuity')
                 assets=httpx.get(ORIGIN+'/api/assets').json();a=next(a for a in assets if a['name']=='reference.png')

@@ -19,7 +19,7 @@
   "studio/catalog.py": "f1a3693e65ca6059f4d3214414bdca0d808eb9f7c4cecaf1638f57c7e4b0ffae",
   "studio/media.py": "2c65539864c0037e8d24c40f158b73add01538b79a4f010ed9418c2e76fe64b4",
   "studio/provider.py": "d6f6c1ceddd6d185d3106f2ce98137b66e153bf9e269fedf02f770f8361bf2e2",
-  "tests/browser_flow.py": "f09837b5026906eab16a6e6d81353b73a5cc3da9d041db762f6b53da19abde88",
+  "tests/browser_flow.py": "8f98223a9048c0a6c8907328eeb41cbc63d2f86ea2d5eeaa3dda70d0fe88f571",
   "tests/test_studio.py": "78af8422faab9a73dbc1bae5af867b027eb54d3214f351597a853c4ee9e78c4c",
   "web/art.svg": "f05b0c4eba9533dca6ec94f3e7b2418007e854049b9d3c58a196cf2f1e93605c",
   "web/index.html": "95f4267d0d44b33a45b40ef21af24a6cf85e2d298a3bf4f20ce202b27e0be43b",
