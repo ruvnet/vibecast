@@ -1,0 +1,7 @@
+.git
+.venv
+data
+evidence
+.env
+.swarm
+__pycache__
