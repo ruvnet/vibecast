@@ -1,0 +1,57 @@
+name: Materialize verified studio source
+on:
+  push:
+    branches: ['studio/fal-directors-cut']
+    paths: ['.delivery/**', '.github/workflows/deliver.yml']
+permissions:
+  contents: write
+concurrency:
+  group: studio-source-delivery
+  cancel-in-progress: false
+jobs:
+  materialize:
+    if: github.repository == 'ruvnet/vibecast' && github.ref == 'refs/heads/studio/fal-directors-cut'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify and unpack tested source
+        run: |
+          python3 - <<'PY'
+          import base64, hashlib, io, json, pathlib, tarfile
+          root = pathlib.Path.cwd()
+          parts = [root / '.delivery' / f'part-{i}' for i in range(7)]
+          encoded = ''.join(p.read_text() for p in parts)
+          data = base64.b64decode(encoded, validate=True)
+          assert hashlib.sha256(data).hexdigest() == 'ff73b03c27ba5280a969b0462572133eabad992814fd4c42c83bafe103fd1d3b', 'Delivery integrity mismatch'
+          with tarfile.open(fileobj=io.BytesIO(data), mode='r:xz') as archive:
+              members = archive.getmembers()
+              assert len(members) == 27
+              assert sum(m.size for m in members) < 2000000
+              for m in members:
+                  path = pathlib.PurePosixPath(m.name)
+                  assert m.isfile() and not path.is_absolute() and '..' not in path.parts
+                  assert path.parts[0] not in {'.git', '.github', '.delivery', 'LICENSE'}
+                  assert m.size < 500000
+                  target = root / path
+                  assert target.resolve().is_relative_to(root)
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(archive.extractfile(m).read())
+          manifest = json.loads((root / 'docs/source-manifest.json').read_text())
+          files = manifest.get('files', manifest)
+          for name, expected in files.items():
+              actual = hashlib.sha256((root / name).read_bytes()).hexdigest()
+              assert actual == expected, f'Source integrity mismatch: {name}'
+          for p in parts:
+              p.unlink()
+          (root / '.delivery').rmdir()
+          print('Verified and materialized 27 source files. Main and license unchanged.')
+          PY
+      - name: Commit source only to requested feature branch
+        run: |
+          test "${GITHUB_REF}" = 'refs/heads/studio/fal-directors-cut'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add --all
+          git commit -m 'feat: add governed fal studio, director workflow and end-to-end acceptance tests'
+          git push origin HEAD:refs/heads/studio/fal-directors-cut
